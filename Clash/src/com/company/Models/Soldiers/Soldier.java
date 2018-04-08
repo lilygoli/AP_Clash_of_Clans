@@ -18,7 +18,8 @@ public abstract class Soldier {
     private int addedDamage;
     private int unlockLevel;
     private double x , y;
-    boolean canFly;
+    private boolean canFly;
+    private boolean isDead;
     private Directon directon;
     
 }
