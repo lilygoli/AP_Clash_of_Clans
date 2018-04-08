@@ -1,6 +1,6 @@
 package com.company.Models.Buildings;
 
-import com.company.View.View;
+import com.company.View;
 
 public class Storage extends Building {
     private int capacity;
