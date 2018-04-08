@@ -1,14 +1,55 @@
 package com.company.Models.Defences;
 
-public abstract class Defence {
-    public int jsonType;
-    public int cost;
-    public int buildDuration;
-    public int strength;
-    public int damage;
-    public int radius;
-    public int pointsGainedWhenDistructed;
-    public int resourceGainedWhenDistructed;
-    public int level;
+import java.util.ArrayList;
 
+public abstract class Defence {
+    private int level;
+
+    public void showMenu() {
+
+    }
+
+    public void showInfoMenu() {
+
+    }
+
+    public Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers) {
+
+    }
+
+    public int getJsonType() {
+
+    }
+
+    public int getCost() {
+
+    }
+
+    public int getBuildDuration() {
+
+    }
+
+    public int getStrength() {
+
+    }
+
+    public int getDamage() {
+
+    }
+
+    public int getRadius() {
+
+    }
+
+    public int getPointsGainedWhenDistructed() {
+
+    }
+
+    public int getResourceGainedWhenDistructed() {
+
+    }
+
+    public int getUpgradeCost() {
+
+    }
 }
