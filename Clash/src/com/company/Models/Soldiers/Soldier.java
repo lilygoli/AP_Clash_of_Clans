@@ -21,5 +21,101 @@ public abstract class Soldier {
     private boolean canFly;
     private boolean isDead;
     private Directon directon;
+
+    public static ArrayList<Soldier> getSoldierSubClasses() {
+        return soldierSubClasses;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public int getBuildDuration() {
+        return buildDuration;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    public int getMaxSpeed() {
+        return maxSpeed;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getAddedHealth() {
+        return addedHealth;
+    }
+
+    public int getAddedDamage() {
+        return addedDamage;
+    }
+
+    public int getUnlockLevel() {
+        return unlockLevel;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public boolean isCanFly() {
+        return canFly;
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public Directon getDirecton() {
+        return directon;
+    }
+
+    public void upgrade(){
+
+    }
+
+    public Directon findDirection(Village enemyVillage , Cell destination){
+
+    }
+
+    public boolean hasReachedDestination(){
+
+    }
+
+    public Cell findDestination(){
+
+    }
+
+    public void moveSoldier(Directon directon){
+        if (directon == Directon.UP){
+            y = y + maxSpeed;
+        }
+        else if (directon == Directon.DOWN){
+            this.y = this.y - thi;
+        }
+    }
+
+    public void attackTarget(Cell target){
+
+    }
+
+
+
     
 }
