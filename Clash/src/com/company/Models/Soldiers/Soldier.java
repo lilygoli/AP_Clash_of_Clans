@@ -97,7 +97,7 @@ public abstract class Soldier {
     }
 
     public boolean hasReachedDestination(Village enemyVillage){
-        if (Math.sqrt(Math.pow(x - findDestination(enemyVillage).x , 2) + Math.pow(y - findDestination(enemyVillage).y , 2)) < radius){
+        if (Math.sqrt(Math.pow(x - findDestination(enemyVillage).getX() , 2) + Math.pow(y - findDestination(enemyVillage).getY() , 2)) <= radius){
             return true;
         }
         return false;
