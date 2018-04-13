@@ -95,11 +95,15 @@ public abstract class Soldier {
     }
 
     public boolean hasReachedDestination(){
-
+        if (Math.sqrt(Math.pow(x - findDestination().x , 2) + Math.pow(y - findDestination().y , 2)) < radius){
+            return true;
+        }
+        return false;
     }
 
     public Cell findDestination(){
-
+        Cell cell = new Cell();
+        return cell;
     }
 
     public void moveSoldier(Directon directon){
