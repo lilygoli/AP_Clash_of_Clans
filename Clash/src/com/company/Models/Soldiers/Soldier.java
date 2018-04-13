@@ -117,12 +117,19 @@ public abstract class Soldier {
         return destination;
     }
 
-    public void moveSoldier(Direction directon){
-        if (directon == Direction.UP){
-            y = y + maxSpeed;
+    public void moveSoldier(Direction directon , Village enemyVillage){
+        directon = findDirection(enemyVillage , findDestination(enemyVillage));
+        if (directon == Direction.LEFT){
+            x = x - 1/maxSpeed;
+        }
+        else if (directon == Direction.RIGHT){
+            x = x + 1/maxSpeed;
+        }
+        else if (directon == Direction.UP){
+            y = y + 1/maxSpeed;
         }
         else if (directon == Direction.DOWN){
-            ;
+            y = y - 1/maxSpeed;
         }
     }
 
