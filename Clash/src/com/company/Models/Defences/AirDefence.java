@@ -1,6 +1,6 @@
 package com.company.Models.Defences;
 
-public class AirDefence {
+public class AirDefence extends Defence {
     public void showInfoMenu() {
 
     }

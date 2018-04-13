@@ -1,6 +1,6 @@
 package com.company.Models.Defences;
 
-public class ArcherTower {
+public class ArcherTower extends Defence {
     public void showInfoMenu() {
 
     }

@@ -1,6 +1,6 @@
 package com.company.Models.Defences;
 
-public class WizardTower {
+public class WizardTower extends Defence {
     public void showInfoMenu() {
 
     }

@@ -1,6 +1,6 @@
 package com.company.Models.Defences;
 
-public class Cannon {
+public class Cannon extends Defence {
     public void showInfoMenu() {
 
     }
