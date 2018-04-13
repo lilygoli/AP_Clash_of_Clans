@@ -1,6 +1,6 @@
 package com.company.Models.Soldiers;
 
-import com.company.Enums.Directon;
+import com.company.Enums.Direction;
 
 import java.util.ArrayList;
 
@@ -20,7 +20,9 @@ public abstract class Soldier {
     private double x , y;
     private boolean canFly;
     private boolean isDead;
-    private Directon directon;
+    private Direction directon;
+
+    //private distanceCalc()
 
     public static ArrayList<Soldier> getSoldierSubClasses() {
         return soldierSubClasses;
@@ -82,36 +84,45 @@ public abstract class Soldier {
         return isDead;
     }
 
-    public Directon getDirecton() {
+    public Direction getDirecton() {
         return directon;
     }
 
     public void upgrade(){
-
+        ;
     }
 
-    public Directon findDirection(Village enemyVillage , Cell destination){
-
+    public Direction findDirection(Village enemyVillage , Cell destination){
+        return Direction.UP;
     }
 
-    public boolean hasReachedDestination(){
-        if (Math.sqrt(Math.pow(x - findDestination().x , 2) + Math.pow(y - findDestination().y , 2)) < radius){
+    public boolean hasReachedDestination(Village enemyVillage){
+        if (Math.sqrt(Math.pow(x - findDestination(enemyVillage).x , 2) + Math.pow(y - findDestination(enemyVillage).y , 2)) < radius){
             return true;
         }
         return false;
     }
 
-    public Cell findDestination(){
-        Cell cell = new Cell();
-        return cell;
+    public Cell findDestination(Village enemyVillage){
+        Cell destination = new Cell();
+        double minDistance = 100;
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
+                if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j , 2)) < minDistance){
+                    destination = enemyVillage.getMap()[i][j];
+                    minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j , 2));
+                }
+            }
+        }
+        return destination;
     }
 
-    public void moveSoldier(Directon directon){
-        if (directon == Directon.UP){
+    public void moveSoldier(Direction directon){
+        if (directon == Direction.UP){
             y = y + maxSpeed;
         }
-        else if (directon == Directon.DOWN){
-            this.y = this.y - thi;
+        else if (directon == Direction.DOWN){
+            ;
         }
     }
 

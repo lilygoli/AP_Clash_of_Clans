@@ -1,5 +1,5 @@
 package com.company.Enums;
 
-public enum Directon {
+public enum Direction {
     UP, RIGHT, DOWN, LEFT , NONE;
 }
