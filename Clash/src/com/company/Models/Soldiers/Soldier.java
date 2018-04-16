@@ -94,18 +94,18 @@ public abstract class Soldier {
         health += addedHealth;
     }
 
-    public Direction findDirection(Village enemyVillage, Cell destination) {
+    private Direction findDirection(Village enemyVillage, Cell destination) {
         return Direction.UP;
     }
 
-    public boolean hasReachedDestination(Village enemyVillage) {
+    private boolean hasReachedDestination(Village enemyVillage) {
         if (Math.sqrt(Math.pow(x - findDestination(enemyVillage).getX(), 2) + Math.pow(y - findDestination(enemyVillage).getY(), 2)) <= radius) {
             return true;
         }
         return false;
     }
 
-    public Cell findDestination(Village enemyVillage) {
+    private Cell findDestination(Village enemyVillage) {
         Cell destination = new Cell();
         double minDistance = 100;
         for (int i = 0; i < 30; i++) {
@@ -119,7 +119,7 @@ public abstract class Soldier {
         return destination;
     }
 
-    public void moveSoldier(Direction directon) {
+    private void moveSoldier(Direction directon) {
         if (directon == Direction.LEFT) {
             x = x - MOVE_PER_TURN;
         } else if (directon == Direction.RIGHT) {
