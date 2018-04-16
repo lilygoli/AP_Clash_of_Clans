@@ -1,11 +1,31 @@
 package com.company.Models;
 
 public abstract class Cell {
+    private final String overalInfo = "Level: " + this.getLevel() + "\nHealth: " + this.getHealth();
+    private final String upgradeInfo = "Upgrade Cost: " + this.getUpgradeCost();
     private boolean isUnderConstruction;
     private int timeTillConstruction;
     private int x;
     private int y;
     private boolean isRuined;
+    private int level;
+    private int Health;
+
+    public int getHealth() {
+        return Health;
+    }
+
+    public void setHealth(int health) {
+        Health = health;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 
     public boolean isUnderConstruction() {
         return isUnderConstruction;
@@ -54,11 +74,11 @@ public abstract class Cell {
     }
 
     public void showOveralInfo() {
-
+        View.show(overalInfo);
     }
 
     public void showUpgradeInfo() {
-
+        View.show(upgradeInfo);
     }
 
     public static void sortTowers(Cell[] towers) {
