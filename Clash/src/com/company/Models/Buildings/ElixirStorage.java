@@ -1,4 +1,7 @@
 package com.company.Models.Buildings;
 
-public class ElixirStorage {
+public class ElixirStorage extends Storage {
+    public ElixirStorage(int number, int level) {
+        super(number, level);
+    }
 }
