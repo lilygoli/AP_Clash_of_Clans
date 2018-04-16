@@ -14,6 +14,8 @@ private int elixirGainedWhenDestructed;
 private int jsonType;
 private int level;
 private int number;
+private int timeLeftOfConstruction;
+private static String[] nameOfChildren=new String[]{"Barracks","Camp","ElixirMine","GoldMine","GoldStorage","ElixirStorage"};
 
     public Building(int number,int level){
         this.level=level;
@@ -83,6 +85,18 @@ private int number;
 
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    public static String[] getNameOfChildren() {
+        return nameOfChildren;
+    }
+
+    public void setTimeLeftOfConstruction(int timeLeftOfConstruction) {
+        this.timeLeftOfConstruction = timeLeftOfConstruction;
+    }
+
+    public int getTimeLeftOfConstruction() {
+        return timeLeftOfConstruction;
     }
 
     public abstract void upgrade();
