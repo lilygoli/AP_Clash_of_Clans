@@ -3,7 +3,7 @@ package com.company.Models;
 import com.company.View;
 
 public abstract class Cell {
-    private final String overalInfo = "Level: " + this.getLevel() + "\nHealth: " + this.getHealth();
+    private final String overalInfo = "Level: " + this.getLevel() + "\nHealth: " + this.getStrength();
     private final String upgradeInfo = "Upgrade Cost: " + this.getUpgradeCost();
     private boolean isUnderConstruction;
     private int timeTillConstruction;
@@ -11,14 +11,14 @@ public abstract class Cell {
     private int y;
     private boolean isRuined;
     private int level;
-    private int Health;
+    private int strength;
 
-    public int getHealth() {
-        return Health;
+    public int getStrength() {
+        return strength;
     }
 
-    public void setHealth(int health) {
-        Health = health;
+    public void setStrength(int strength) {
+        this.strength = strength;
     }
 
     public int getLevel() {
@@ -84,10 +84,10 @@ public abstract class Cell {
     }
 
     public static void sortTowers(Cell[] towers) {
-
+        ;
     }
 
     public int getUpgradeCost() {
-
+        return 1;
     }
 }

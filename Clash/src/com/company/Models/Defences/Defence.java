@@ -1,5 +1,4 @@
 package com.company.Models.Defences;
-
 import com.company.Models.Cell;
 import com.company.Models.Soldiers.Soldier;
 import com.company.View;

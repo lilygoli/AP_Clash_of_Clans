@@ -79,7 +79,7 @@ public abstract class Soldier {
         return y;
     }
 
-    public boolean isCanFly() {
+    public boolean getCanFly() {
         return canFly;
     }
 
@@ -89,6 +89,70 @@ public abstract class Soldier {
 
     public Direction getDirecton() {
         return directon;
+    }
+
+    public static void setSoldierSubClasses(ArrayList<Soldier> soldierSubClasses) {
+        Soldier.soldierSubClasses = soldierSubClasses;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public void setBuildDuration(int buildDuration) {
+        this.buildDuration = buildDuration;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
+    public void setMaxSpeed(int maxSpeed) {
+        this.maxSpeed = maxSpeed;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setAddedHealth(int addedHealth) {
+        this.addedHealth = addedHealth;
+    }
+
+    public void setAddedDamage(int addedDamage) {
+        this.addedDamage = addedDamage;
+    }
+
+    public void setUnlockLevel(int unlockLevel) {
+        this.unlockLevel = unlockLevel;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public void setCanFly(boolean canFly) {
+        this.canFly = canFly;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
+
+    public void setDirecton(Direction directon) {
+        this.directon = directon;
     }
 
     public void upgrade() {
