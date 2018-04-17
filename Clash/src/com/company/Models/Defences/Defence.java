@@ -1,6 +1,8 @@
 package com.company.Models.Defences;
 
 import com.company.Models.Cell;
+import com.company.Models.Soldiers.Soldier;
+import com.company.View;
 
 import java.util.ArrayList;
 
@@ -16,18 +18,22 @@ public abstract class Defence extends Cell {
         View.show(infoMenuOptions);
     }
 
-    public Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers) {
-        Soldier target = findNearestEnemyInRange(enemySoldiers);
-        if (target != null) {
-            //TODO shoot enemy
-        }
-        return target;
-    }
+    public abstract Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers);
 
-    public Soldier findNearestEnemyInRange(ArrayList<Soldier> enemySoldiers) {
+    public Soldier findNearestEnemyInRange(ArrayList<Soldier> enemySoldiers, boolean canShootFlyingSoldiers, boolean canShootGroundSoldiers) {
         double minDistance = -1;
-        Soldier target;
+        Soldier target = null;
         for(Soldier soldier : enemySoldiers) {
+            if (Soldier.getCanFly() == true) {
+                if (!canShootFlyingSoldiers) {
+                    continue;
+                }
+            }
+            else {
+                if (!canShootGroundSoldiers) {
+                    continue;
+                }
+            }
             double deltaX = (soldier.getX() - this.getX()) * (soldier.getX() - this.getX());
             double deltaY = (soldier.getY() - this.getY()) * (soldier.getY() - this.getY());
             double distance = Math.sqrt(deltaX * deltaX - deltaY * deltaY);

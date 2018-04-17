@@ -1,5 +1,7 @@
 package com.company.Models;
 
+import com.company.View;
+
 public abstract class Cell {
     private final String overalInfo = "Level: " + this.getLevel() + "\nHealth: " + this.getHealth();
     private final String upgradeInfo = "Upgrade Cost: " + this.getUpgradeCost();
