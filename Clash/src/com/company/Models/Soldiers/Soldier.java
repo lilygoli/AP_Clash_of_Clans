@@ -35,5 +35,18 @@ public abstract class Soldier {
         }
     }
 
+    private void moveSoldier(Direction directon) {
+        if (directon == Direction.LEFT) {
+            x = x - MOVE_PER_TURN;
+        } else if (directon == Direction.RIGHT) {
+            x = x + MOVE_PER_TURN;
+        } else if (directon == Direction.UP) {
+            y = y + MOVE_PER_TURN;
+        } else if (directon == Direction.DOWN) {
+            y = y - MOVE_PER_TURN;
+        }
+    }
+
+
 
 }

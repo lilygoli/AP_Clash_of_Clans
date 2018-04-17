@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77a1374a-3050-4722-aee7-b413d1d63ad3" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/../.idea/misc.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java" />
     </list>
@@ -128,8 +125,8 @@
       <file leaf-file-name="Soldier.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="548">
-              <caret line="25" column="33" lean-forward="false" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+            <state relative-caret-position="911">
+              <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -347,12 +344,12 @@
       <workItem from="1523859059291" duration="186000" />
       <workItem from="1523866399729" duration="57000" />
       <workItem from="1523867591596" duration="2039000" />
-      <workItem from="1523969942687" duration="448000" />
+      <workItem from="1523969942687" duration="501000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8120000" />
+    <option name="totallyTimeSpent" value="8173000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
@@ -1102,8 +1099,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="25" column="33" lean-forward="false" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+        <state relative-caret-position="911">
+          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding />
         </state>
       </provider>
