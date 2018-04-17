@@ -10,8 +10,6 @@ import java.util.Collections;
 public class MainBuilding extends Building {
     private ArrayList<Builder> builders = new ArrayList<Builder>();
     private int numberOfBuilders = 1;
-    private GoldStorage innerGoldStorage = new GoldStorage();
-    private ElixirStorage innerElixirStorage = new ElixirStorage();
 
     public MainBuilding() {
         super(1, 0); // only one should be constructed at the beginning of the game

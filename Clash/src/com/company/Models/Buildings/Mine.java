@@ -21,6 +21,14 @@ public class Mine extends Building {
         this.resourceGainSpeed = resourceGainSpeed;
     }
 
+    public int getResource() {
+        return resource;
+    }
+
+    public void setResource(int resource) {
+        this.resource = resource;
+    }
+
     public void upgrade() {
         setLevel(getLevel()+1);
         resourceGainSpeed=(resourceGainSpeed*16)/10;
@@ -36,10 +44,22 @@ public class Mine extends Building {
         for (Storage storage : allRelatedStorage
                 ) {
             if (storage.getCapacity() - storage.getResources() >= resource) {
+                storage.addToStorage(resource);
                 resource = 0;
-                storage.setResources(storage.getResources() + resource);
                 return;
             }
+        }
+    }
+    public void addToMine(ArrayList<Storage> allRelatedStorage){
+        int flag=0;
+        for (Storage storage:allRelatedStorage
+             ) {
+            if(storage.getCapacity()-storage.getResources()!=0){
+                flag=1;
+            }
+        }
+        if(flag==1){
+            this.setResource(this.getResource()+this.getResourceGainSpeed());
         }
     }
 }
