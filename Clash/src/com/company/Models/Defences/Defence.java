@@ -46,34 +46,35 @@ public abstract class Defence extends Cell {
     }
 
     public int getJsonType() {
-
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_JSON_TYPE");
     }
 
     public int getCost() {
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_COST");
 
     }
 
     public int getBuildDuration() {
-
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION");
     }
 
     public int getStrength() {
-
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_STRENGTH");
     }
 
     public int getDamage() {
-
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_DAMAGE");
     }
 
     public int getRadius() {
-
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_RADIUS");
     }
 
     public int getPointsGainedWhenDistructed() {
-
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_POINTS_GAINED_WHEN_DISTRUCTED");
     }
 
     public int getResourceGainedWhenDistructed() {
-
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_RESOURCE_GAINED_WHEN_DISTRUCTED");
     }
 }
