@@ -1,6 +1,8 @@
 package com.company.Models.Soldiers;
 
+import com.company.Enums.Direction;
 import com.company.Enums.Directon;
+import com.company.Models.Cell;
 
 import java.util.ArrayList;
 
@@ -19,6 +21,19 @@ public abstract class Soldier {
     private int unlockLevel;
     private double x , y;
     boolean canFly;
-    private Directon directon;
-    
+    private Direction directon;
+
+    public void attackTarget(Cell target, Village enemyVillage) {
+        if (hasReachedDestination(enemyVillage)) {
+            target.setStrength(target.getStrength() - damage);
+            if (target.getStrength() <= 0) {
+                target.setRuined(true);
+            }
+        } else {
+            directon = findDirection(enemyVillage, findDestination(enemyVillage));
+            moveSoldier(directon);
+        }
+    }
+
+
 }
