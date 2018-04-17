@@ -19,9 +19,83 @@ public abstract class Soldier {
     private int addedHealth;
     private int addedDamage;
     private int unlockLevel;
-    private double x , y;
-    boolean canFly;
+    private double x, y;
+    private boolean canFly;
+    private boolean isDead;
     private Direction directon;
+
+    private final double MOVE_PER_TURN = 1 / maxSpeed;
+    //private distanceCalc()
+
+    public static ArrayList<Soldier> getSoldierSubClasses() {
+        return soldierSubClasses;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public int getBuildDuration() {
+        return buildDuration;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    public int getMaxSpeed() {
+        return maxSpeed;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getAddedHealth() {
+        return addedHealth;
+    }
+
+    public int getAddedDamage() {
+        return addedDamage;
+    }
+
+    public int getUnlockLevel() {
+        return unlockLevel;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public boolean isCanFly() {
+        return canFly;
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public Direction getDirecton() {
+        return directon;
+    }
+
+    public void upgrade() {
+        damage += addedDamage;
+        health += addedHealth;
+    }
+
 
     public void attackTarget(Cell target, Village enemyVillage) {
         if (hasReachedDestination(enemyVillage)) {
