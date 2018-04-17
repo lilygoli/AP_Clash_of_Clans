@@ -47,6 +47,21 @@ public abstract class Soldier {
         }
     }
 
+    private Cell findDestination(Village enemyVillage) {
+        Cell destination = new Cell();
+        double minDistance = 100;
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
+                if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
+                    destination = enemyVillage.getMap()[i][j];
+                    minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
+                }
+            }
+        }
+        return destination;
+    }
+
+
 
 
 }
