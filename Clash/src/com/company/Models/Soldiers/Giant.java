@@ -5,8 +5,7 @@ import com.company.Models.Defences.Wall;
 import com.company.Models.Village;
 
 public class Giant extends Soldier {
-    @Override
-    public Cell findDestination(Village enemyVillage , String favoriteTarget) {
-        return super.findDestination(enemyVillage , "Storage");
+    public void attackTarget(Village enemyVillage){
+        super.attackTarget(enemyVillage , "Storage");
     }
 }

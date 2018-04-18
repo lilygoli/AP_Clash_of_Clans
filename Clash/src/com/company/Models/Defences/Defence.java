@@ -23,7 +23,7 @@ public abstract class Defence extends Cell {
         double minDistance = -1;
         Soldier target = null;
         for(Soldier soldier : enemySoldiers) {
-            if (Soldier.getCanFly() == true) {
+            if (Soldier.getCanFly()) {
                 if (!canShootFlyingSoldiers) {
                     continue;
                 }

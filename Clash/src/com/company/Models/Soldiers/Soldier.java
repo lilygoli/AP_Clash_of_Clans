@@ -33,27 +33,27 @@ public abstract class Soldier {
     }
 
     public int getCost() {
-        return cost;
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "ELEXIR_COST");
     }
 
     public int getBuildDuration() {
-        return buildDuration;
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION");
     }
 
     public int getHealth() {
-        return health;
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_HEALTH");
     }
 
     public int getDamage() {
-        return damage;
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_DAMAGE");
     }
 
     public int getRadius() {
-        return radius;
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_RADIUS");
     }
 
     public int getMaxSpeed() {
-        return maxSpeed;
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_MAX_SPEED");
     }
 
     public int getLevel() {
@@ -61,15 +61,15 @@ public abstract class Soldier {
     }
 
     public int getAddedHealth() {
-        return addedHealth;
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_ADDED_HEALTH");
     }
 
     public int getAddedDamage() {
-        return addedDamage;
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_ADDED_DAMAGE");
     }
 
     public int getUnlockLevel() {
-        return unlockLevel;
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_UNLOCK_LEVEL");
     }
 
     public double getX() {
@@ -81,7 +81,9 @@ public abstract class Soldier {
     }
 
     public boolean getCanFly() {
-        return canFly;
+        if (Config.getDictionary().get(this.getClass().getSimpleName() + "_CAN_FLY") == 0)
+            return false;
+        return true;
     }
 
     public boolean isDead() {
@@ -162,9 +164,10 @@ public abstract class Soldier {
     }
 
 
-    public void attackTarget(Cell target, Village enemyVillage , String favoriteTarget) {
+    public void attackTarget(Village enemyVillage , String favoriteTarget) {
         if (hasReachedDestination(enemyVillage , favoriteTarget)) {
-            target.setStrength(target.getStrength() - damage);
+            Cell target = findDestination(enemyVillage , favoriteTarget);
+            target.setStrength(target.getStrength() - getDamage());
             if (target.getStrength() <= 0) {
                 target.setRuined(true);
             }
