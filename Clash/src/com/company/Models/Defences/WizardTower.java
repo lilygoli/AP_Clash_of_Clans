@@ -7,5 +7,18 @@ import java.util.ArrayList;
 
 public class WizardTower extends Defence {
     public Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers) {
+        ArrayList<Integer> validManhatanDistance = new ArrayList<>();
+        validManhatanDistance.add(0);
+        validManhatanDistance.add(1);
+        Soldier target = findNearestEnemyInRange(enemySoldiers, true, true);
+        if (target != null) {
+            for (Soldier enemySoldier : enemySoldiers) {
+                Integer manhatanDistance =(int)Math.abs(enemySoldier.getX() - target.getX()) + (int)Math.abs(enemySoldier.getY() - target.getY());
+                if (validManhatanDistance.contains(manhatanDistance)) {
+                    enemySoldier.setHealth(enemySoldier.getHealth() - this.getDamage());
+                }
+            }
+        }
+        return target;
     }
 }
