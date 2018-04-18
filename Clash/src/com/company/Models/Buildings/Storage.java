@@ -28,7 +28,8 @@ public class Storage extends Building {
 
     @Override
     public void upgrade() {
-
+        setLevel(getLevel()+1);
+        capacity=(capacity*16)/10;
     }
 
     @Override

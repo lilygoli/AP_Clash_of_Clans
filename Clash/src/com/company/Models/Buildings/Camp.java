@@ -8,7 +8,6 @@ import java.util.HashMap;
 
 public class Camp extends Building {
 
-    private static final int capacity=50;
     private ArrayList<Soldier> soldiers=new ArrayList<Soldier>();
 
     public Camp(int number) {
@@ -17,7 +16,7 @@ public class Camp extends Building {
 
     @Override
     public void upgrade() {
-        //cannot be upgraded
+       //cant be upgraded
     }
 
     @Override
@@ -30,7 +29,7 @@ public class Camp extends Building {
         View.show(infoMenu);
     }
     public void showCapacityInfo(int numberOfSoldiers,int numberOfCamps){
-        String capacityInfo="Your camps capacity is "+numberOfSoldiers+"/"+numberOfCamps*capacity+".";
+        String capacityInfo="Your camps capacity is "+numberOfSoldiers+"/"+numberOfCamps*getCapacity()+".";
         View.show(capacityInfo);
     }
     public void showSoldiers(){
@@ -74,4 +73,5 @@ public class Camp extends Building {
     public ArrayList<Soldier> getSoldiers() {
         return soldiers;
     }
+
 }

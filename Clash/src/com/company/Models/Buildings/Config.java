@@ -64,6 +64,18 @@ public class Config {
         dictionary.put("Camp_GOLD_GAINED_WHEN_DESTRUCTED",200);
         dictionary.put("Camp_ELIXIR_GAINED_WHEN_DESTRUCTED",0);
         dictionary.put("Camp_UPGRADE_POINTS_NEEDED",0);
+        dictionary.put("Camp_CAPACITY",50);
+
+        dictionary.put("Camp_GOLD_COST",200);
+        dictionary.put("Camp_ELIXIR_COST",0);
+        dictionary.put("Camp_JSON_TYPE",6);
+        dictionary.put("Camp_STRENGTH",300);
+        dictionary.put("Camp_BUILD_DURATION",100);
+        dictionary.put("Camp_POINTS_GAINED_WHEN_DESTRUCTED",1);
+        dictionary.put("Camp_GOLD_GAINED_WHEN_DESTRUCTED",200);
+        dictionary.put("Camp_ELIXIR_GAINED_WHEN_DESTRUCTED",0);
+        dictionary.put("Camp_UPGRADE_POINTS_NEEDED",0);
+        dictionary.put("Camp_CAPACITY",50);
     }
 
     public static HashMap<String, Integer> getDictionary() {
