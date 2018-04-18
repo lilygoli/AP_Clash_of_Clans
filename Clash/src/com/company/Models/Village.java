@@ -1,4 +1,4 @@
-package com.company.Models.Soldiers;
+package com.company.Models;
 
 import com.company.Models.Cell;
 

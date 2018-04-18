@@ -1,8 +1,8 @@
 package com.company.Models.Soldiers;
 
 import com.company.Enums.Direction;
-import com.company.Enums.Directon;
 import com.company.Models.Cell;
+import com.company.Models.Village;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ public abstract class Soldier {
     private double x, y;
     private boolean canFly;
     private boolean isDead;
-    private Direction directon;
+    private Direction direction;
 
     private final double MOVE_PER_TURN = 1 / maxSpeed;
     //private distanceCalc()
@@ -87,8 +87,8 @@ public abstract class Soldier {
         return isDead;
     }
 
-    public Direction getDirecton() {
-        return directon;
+    public Direction getDirection() {
+        return direction;
     }
 
     public static void setSoldierSubClasses(ArrayList<Soldier> soldierSubClasses) {
@@ -152,7 +152,7 @@ public abstract class Soldier {
     }
 
     public void setDirecton(Direction directon) {
-        this.directon = directon;
+        this.direction = directon;
     }
 
     public void upgrade() {
@@ -168,8 +168,8 @@ public abstract class Soldier {
                 target.setRuined(true);
             }
         } else {
-            directon = findDirection(enemyVillage, findDestination(enemyVillage));
-            moveSoldier(directon);
+            direction = findDirection(enemyVillage, findDestination(enemyVillage));
+            moveSoldier(direction);
         }
     }
 
