@@ -2,6 +2,7 @@ package com.company.Models.Soldiers;
 
 import com.company.Enums.Direction;
 import com.company.Models.Cell;
+import com.company.Models.Defences.Wall;
 import com.company.Models.Village;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public abstract class Soldier {
     private int unlockLevel;
     private double x, y;
     private boolean canFly;
-    private boolean isDead;
+    private boolean dead;
     private Direction direction;
 
     private final double MOVE_PER_TURN = 1 / maxSpeed;
@@ -84,7 +85,7 @@ public abstract class Soldier {
     }
 
     public boolean isDead() {
-        return isDead;
+        return dead;
     }
 
     public Direction getDirection() {
@@ -148,7 +149,7 @@ public abstract class Soldier {
     }
 
     public void setDead(boolean dead) {
-        isDead = dead;
+        this.dead = dead;
     }
 
     public void setDirecton(Direction directon) {
@@ -173,7 +174,7 @@ public abstract class Soldier {
         }
     }
 
-    private void moveSoldier(Direction directon) {
+    public void moveSoldier(Direction directon) {
         if (directon == Direction.LEFT) {
             x = x - MOVE_PER_TURN;
         } else if (directon == Direction.RIGHT) {
@@ -185,12 +186,15 @@ public abstract class Soldier {
         }
     }
 
-    private Cell findDestination(Village enemyVillage) {
+    public Cell findDestination(Village enemyVillage) {
         Cell destination = new Cell();
         double minDistance = 100;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
                 if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
+                    if (enemyVillage.getMap()[i][j].getClass().equals(Wall.class) || enemyVillage.getMap()[i][j].getClass().equals(Grass.class) || enemyVillage.getMap()[i][j].getClass().equals(Trap.class)){
+                        continue;
+                    }
                     destination = enemyVillage.getMap()[i][j];
                     minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
                 }
@@ -199,19 +203,16 @@ public abstract class Soldier {
         return destination;
     }
 
-    private Direction findDirection(Village enemyVillage, Cell destination) {
+    public Direction findDirection(Village enemyVillage, Cell destination) {
         return Direction.UP;
     }
 
-    private boolean hasReachedDestination(Village enemyVillage) {
+    public boolean hasReachedDestination(Village enemyVillage) {
         if (Math.sqrt(Math.pow(x - findDestination(enemyVillage).getX(), 2) + Math.pow(y - findDestination(enemyVillage).getY(), 2)) <= radius) {
             return true;
         }
         return false;
     }
-
-
-
 
 
 }

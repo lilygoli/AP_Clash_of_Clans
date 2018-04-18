@@ -12,7 +12,7 @@ public class Cannon extends Defence {
         Soldier target = findNearestEnemyInRange(enemySoldiers, false, true);
         if (target != null) {
             for (Soldier enemySoldier : enemySoldiers) {
-                Integer manhatanDistance = Math.abs(enemySoldier.getX() _ target.getX()) + Math.abs(enemySoldier.getY() - target.getY());
+                Integer manhatanDistance = Math.abs(enemySoldier.getX() - target.getX()) + Math.abs(enemySoldier.getY() - target.getY());
                 if (validManhatanDistance.contains(manhatanDistance)) {
                     enemySoldier.setHealth(enemySoldier.getHealth() - this.getDamage());
                 }
