@@ -18,10 +18,10 @@ public class Barracks extends Building {
     }
 
     @Override
-    public void upgrade() { // the comparison eith mainbuilding level should be handled in Game
+    public void upgrade() { // the comparison with mainBuilding level should be handled in Game
         if (canBeUpgraded) {
             if (timeDecreasedToMakeASoldier < 45) {
-                timeDecreasedToMakeASoldier++;//in soldiers constructer it should be handled if it gets negative
+                timeDecreasedToMakeASoldier++;//in soldiers constructor it should be handled if it gets negative
             } else {
                 canBeUpgraded = false;
             }
