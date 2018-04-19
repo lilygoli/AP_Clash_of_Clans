@@ -7,13 +7,13 @@ import com.company.View;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
-public class Barracks extends Building {
+public class Barrack extends Building {
     private ArrayList<HashMap<Soldier, Integer>> underConstructionSoldiers = new ArrayList<HashMap<Soldier, Integer>>();
     private int timeDecreasedToMakeASoldier = 0;
     private int soldierBuildLevel = 0;
     private boolean canBeUpgraded = true;
 
-    public Barracks(int number) {
+    public Barrack(int number) {
         super(number, 0);
     }
 

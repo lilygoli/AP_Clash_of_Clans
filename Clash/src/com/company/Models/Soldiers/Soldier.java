@@ -162,6 +162,7 @@ public abstract class Soldier {
     public void upgrade() {
         damage += addedDamage;
         health += addedHealth;
+        level++;
     }
 
 

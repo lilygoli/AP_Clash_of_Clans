@@ -66,15 +66,15 @@ public class Config {
         dictionary.put("Camp_UPGRADE_POINTS_NEEDED",0);
         dictionary.put("Camp_CAPACITY",50);
 
-        dictionary.put("Barracks_GOLD_COST",200);
-        dictionary.put("Barracks_ELIXIR_COST",0);
-        dictionary.put("Barracks_JSON_TYPE",6);
-        dictionary.put("Barracks_STRENGTH",300);
-        dictionary.put("Barracks_BUILD_DURATION",100);
-        dictionary.put("Barracks_POINTS_GAINED_WHEN_DESTRUCTED",1);
-        dictionary.put("Barracks_GOLD_GAINED_WHEN_DESTRUCTED",200);
-        dictionary.put("Barracks_ELIXIR_GAINED_WHEN_DESTRUCTED",0);
-        dictionary.put("Barracks_UPGRADE_POINTS_NEEDED",0);
+        dictionary.put("Barrack_GOLD_COST",200);
+        dictionary.put("Barrack_ELIXIR_COST",0);
+        dictionary.put("Barrack_JSON_TYPE",6);
+        dictionary.put("Barrack_STRENGTH",300);
+        dictionary.put("Barrack_BUILD_DURATION",100);
+        dictionary.put("Barrack_POINTS_GAINED_WHEN_DESTRUCTED",1);
+        dictionary.put("Barrack_GOLD_GAINED_WHEN_DESTRUCTED",200);
+        dictionary.put("Barrack_ELIXIR_GAINED_WHEN_DESTRUCTED",0);
+        dictionary.put("Barrack_UPGRADE_POINTS_NEEDED",0);
 
         dictionary.put("Grass_GOLD_COST",0);
         dictionary.put("Grass_ELIXIR_COST",0);

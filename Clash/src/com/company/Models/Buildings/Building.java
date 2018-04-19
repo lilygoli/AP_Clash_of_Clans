@@ -17,7 +17,7 @@ private int jsonType;
 private int level;
 private int number;
 private int timeLeftOfConstruction;
-private static String[] nameOfChildren=new String[]{"Barracks","Camp","ElixirMine","GoldMine","GoldStorage","ElixirStorage"};
+private static String[] nameOfChildren=new String[]{"Barrack","Camp","ElixirMine","GoldMine","GoldStorage","ElixirStorage"};
 
     public Building(int number,int level){
         this.level=level;
