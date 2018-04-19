@@ -1,5 +1,7 @@
 package com.company.Models;
 
+import com.company.Exception.BusyCellException;
+import com.company.Exception.MarginalTowerException;
 import com.company.Models.Buildings.*;
 import com.company.Models.Defences.*;
 
@@ -159,5 +161,34 @@ public class Village {
 
     public void setNumOfFreeBuilder(int numOfFreeBuilder) {
         this.numOfFreeBuilder = numOfFreeBuilder;
+    }
+
+    public void buildTower(Cell tower) throws BusyCellException, MarginalTowerException {
+        if (tower.getX() <= 0 || tower.getX() >= 29 || tower.getY() <= 0 || tower.getY() >= 29) {
+            throw new MarginalTowerException();
+        }
+        if (!map[tower.getX()][tower.getY()].getClass().isInstance(Grass.class)) {
+            map[tower.getX()][tower.getY()] = tower;
+        }
+        else {
+            throw new BusyCellException();
+        }
+    }
+
+    public String showTownHallStatus() {
+        StringBuilder status = new StringBuilder();
+        ArrayList<Cell> underConstructionTowers = new ArrayList<>();
+        for (Cell[] cells : map) {
+            for (Cell cell : cells) {
+                if (cell.isUnderConstruction()) {
+                    underConstructionTowers.add(cell);
+                }
+            }
+            Cell.sortTowers(underConstructionTowers);
+            for (Cell underConstructionTower : underConstructionTowers) {
+                status.append(underConstructionTower.getName() + underConstructionTower.getTimeTillConstruction());
+            }
+        }
+        return status.toString();
     }
 }

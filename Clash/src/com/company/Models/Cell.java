@@ -2,6 +2,8 @@ package com.company.Models;
 
 import com.company.View;
 
+import java.util.ArrayList;
+
 public class Cell {
     private final String overalInfo = "Level: " + this.getLevel() + "\nHealth: " + this.getStrength();
     private final String upgradeInfo = "Upgrade Cost: " + this.getUpgradeCost();
@@ -85,7 +87,7 @@ public class Cell {
         View.show(upgradeInfo);
     }
 
-    public static void sortTowers(Cell[] towers) {
+    public static void sortTowers(ArrayList<Cell> towers) {
         ;
     }
 
