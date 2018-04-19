@@ -1,8 +1,8 @@
 package com.company.Models.Buildings;
 
 import com.company.Exception.NotEnoughResourcesException;
-import com.company.Models.Soldier.Soldier;
-import com.company.View.View;
+import com.company.Models.Soldiers.Soldier;
+import com.company.View;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -85,18 +85,18 @@ public class Barracks extends Building {
         HashMap<String, Integer> availableSoldiers = new HashMap<String, Integer>(); //number of soldiers we cannot build is 0
         for (Soldier soldier : Soldier.getSoldierSubClasses()
                 ) {
-            if (soldier.getSoldierUnlockLevel() <= getLevel()) {
+            if (soldier.getUnlockLevel() <= getLevel()) {
                 int number = 0;
-                if (gold / soldier.getSoldierGoldCost() < elixir / soldier.getSoldierElixirCost()) {
-                    number = gold / soldier.getSoldierGoldCost();
-                } else {
-                    number = elixir / soldier.getSoldierElixirCost();
-                }
+                number = gold / soldier.getCost();
                 availableSoldiers.put(soldier.getClass().toString().split(" ")[1], number);
             } else {
                 availableSoldiers.put(soldier.getClass().toString().split(" ")[1], 0);
             }
         }
         return availableSoldiers;
+    }
+
+    public int getTimeDecreasedToMakeASoldier() {
+        return timeDecreasedToMakeASoldier;
     }
 }
