@@ -6,7 +6,7 @@ public class Healer extends Soldier {
     private int healAdded;
 
     public int getHeal() {
-        return heal;
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_HEAL");
     }
 
     public void setHeal(int heal) {
@@ -14,7 +14,7 @@ public class Healer extends Soldier {
     }
 
     public int getHealAdded() {
-        return healAdded;
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_ADDED_HEAL");
     }
 
     public void setHealAdded(int healAdded) {
@@ -23,6 +23,7 @@ public class Healer extends Soldier {
 
     @Override
     public void upgrade(){
+        // TODO: 4/18/2018 add config for this func
         heal += healAdded;
     }
 }

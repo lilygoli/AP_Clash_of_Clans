@@ -1,5 +1,6 @@
 package com.company.Models.Defences;
 import com.company.Models.Cell;
+import com.company.Models.Config;
 import com.company.Models.Soldiers.Soldier;
 import com.company.View;
 
@@ -23,7 +24,7 @@ public abstract class Defence extends Cell {
         double minDistance = -1;
         Soldier target = null;
         for(Soldier soldier : enemySoldiers) {
-            if (Soldier.getCanFly() == true) {
+            if (soldier.getCanFly()) {
                 if (!canShootFlyingSoldiers) {
                     continue;
                 }
