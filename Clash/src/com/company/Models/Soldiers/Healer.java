@@ -1,5 +1,7 @@
 package com.company.Models.Soldiers;
 
+import com.company.Models.Config;
+
 public class Healer extends Soldier {
 
     private int heal;

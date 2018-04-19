@@ -2,7 +2,7 @@ package com.company.Models;
 
 import com.company.View;
 
-public abstract class Cell {
+public class Cell {
     private final String overalInfo = "Level: " + this.getLevel() + "\nHealth: " + this.getStrength();
     private final String upgradeInfo = "Upgrade Cost: " + this.getUpgradeCost();
     private boolean isUnderConstruction;
@@ -69,7 +69,9 @@ public abstract class Cell {
         isRuined = ruined;
     }
 
-    public abstract void showInfoMenu();
+    public void showInfoMenu(){
+        ;
+    }
 
     public String getName() {
         return this.getClass().getSimpleName();

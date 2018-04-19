@@ -1,9 +1,10 @@
 package com.company.Models.Soldiers;
 
 import com.company.Enums.Direction;
+import com.company.Models.Buildings.*;
 import com.company.Models.Cell;
-import com.company.Models.Defences.Defence;
-import com.company.Models.Defences.Wall;
+import com.company.Models.Config;
+import com.company.Models.Defences.*;
 import com.company.Models.Village;
 
 import java.util.ArrayList;
