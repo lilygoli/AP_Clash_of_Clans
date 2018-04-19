@@ -191,4 +191,8 @@ public class Village {
         }
         return status.toString();
     }
+
+    public String showEnemyMapInfo(){
+        return "";
+    }
 }
