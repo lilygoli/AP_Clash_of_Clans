@@ -195,4 +195,9 @@ public class Village {
     public String showEnemyMapInfo(){
         return "";
     }
+    public String showSourcesInfo(){
+        String result="";
+        result=result+"Gold:"+gold+"\nElixir:"+elixir+"\nScore:"+score;
+        return result;
+    }
 }
