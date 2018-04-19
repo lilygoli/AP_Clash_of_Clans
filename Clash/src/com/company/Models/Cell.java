@@ -69,8 +69,8 @@ public class Cell {
         isRuined = ruined;
     }
 
-    public void showInfoMenu() {
-
+    public void showInfoMenu(){
+        ;
     }
 
     public String getName() {
