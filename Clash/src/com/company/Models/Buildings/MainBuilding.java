@@ -2,7 +2,7 @@ package com.company.Models.Buildings;
 
 import com.company.Models.Builder;
 import com.company.Models.Config;
-import com.company.View.View;
+import com.company.View;
 
 import java.util.ArrayList;
 import java.util.Arrays;
