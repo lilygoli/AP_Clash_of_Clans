@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Cell {
     private final String overalInfo = "Level: " + this.getLevel() + "\nHealth: " + this.getStrength();
     private final String upgradeInfo = "Upgrade Cost: " + this.getUpgradeCost();
+    private final String infoMenu = "1. Overall Info\n2. Upgrade Info\n3. Back";
     private boolean isUnderConstruction;
     private int timeTillConstruction;
     private int x;
@@ -72,7 +73,7 @@ public class Cell {
     }
 
     public void showInfoMenu(){
-        ;
+        View.show(infoMenu);
     }
 
     public String getName() {
@@ -88,7 +89,21 @@ public class Cell {
     }
 
     public static void sortTowers(ArrayList<Cell> towers) {
-        ;
+        if (towers.isEmpty()) {
+            return;
+        }
+        ArrayList<Cell> sortedTowers = new ArrayList<>();
+        while(!towers.isEmpty()) {
+            Cell min = towers.get(0);
+            for (Cell tower : towers) {
+                if (tower.getName().compareTo(min.getName()) < 0) { //TODO شاید باید بزرگتر از ۰ باشه!
+                    min = tower;
+                }
+            }
+            sortedTowers.add(min);
+            towers.remove(min);
+        }
+        towers = sortedTowers;
     }
 
     public int getUpgradeCost() {
