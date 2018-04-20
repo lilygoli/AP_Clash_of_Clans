@@ -99,4 +99,8 @@ public class Barrack extends Building {
     public int getTimeDecreasedToMakeASoldier() {
         return timeDecreasedToMakeASoldier;
     }
+
+    public ArrayList<HashMap<Soldier, Integer>> getUnderConstructionSoldiers() {
+        return underConstructionSoldiers;
+    }
 }

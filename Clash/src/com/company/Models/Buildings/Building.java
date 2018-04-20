@@ -1,10 +1,11 @@
 package com.company.Models.Buildings;
 
+import com.company.Models.Cell;
 import com.company.Models.Config;
 
 import java.util.Properties;
 
-public abstract class Building {
+public abstract class Building extends Cell {
 private int goldCost;
 private int elixirCost;
 private int buildDuration;

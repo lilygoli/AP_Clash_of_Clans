@@ -4,8 +4,10 @@ import com.company.Exception.BusyCellException;
 import com.company.Exception.MarginalTowerException;
 import com.company.Models.Buildings.*;
 import com.company.Models.Defences.*;
+import com.company.Models.Soldiers.Soldier;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Village {
     private Cell[][] map;
@@ -21,11 +23,13 @@ public class Village {
     // TODO: 4/19/2018 add guardian giant arraylist and class
     private ArrayList<GoldMine> goldMines;
     private ArrayList<ElixirMine> elixirMines;
+    private ArrayList<GoldStorage> goldStorages;
+    private ArrayList<ElixirStorage> elixirStorages;
     private MainBuilding mainBuilding;
     private ArrayList<Barrack> barracks;
     private ArrayList<Camp> camps;
-    int numOfBuilder;
-    int numOfFreeBuilder;
+    private int numOfBuilder;
+    private int numOfFreeBuilder;
 
     public Cell[][] getMap() {
         return map;
@@ -57,6 +61,14 @@ public class Village {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public ArrayList<ElixirStorage> getElixirStorages() {
+        return elixirStorages;
+    }
+
+    public ArrayList<GoldStorage> getGoldStorages() {
+        return goldStorages;
     }
 
     public ArrayList<ArcherTower> getArcherTowers() {
@@ -192,12 +204,77 @@ public class Village {
         return status.toString();
     }
 
-    public String showEnemyMapInfo(){
-        return "";
+
+    public String showBarracksStatus(int time) {
+        StringBuilder result = new StringBuilder();
+        for (Integer timeLeft : sortSoldiersByTimeLeft(time)
+                ) {
+            for (Barrack barrack : barracks
+                    ) {
+                for (HashMap<Soldier, Integer> soldierInitialTime : barrack.getUnderConstructionSoldiers()
+                        ) {
+                    for (Soldier soldier : soldierInitialTime.keySet()) {
+                        if (time - soldierInitialTime.get(soldier) == timeLeft) {
+                            result.append(soldier.getClass().toString().split(" ")[1]).append(" ").append(timeLeft.toString()).append("\n");
+                        }
+                    }
+                }
+            }
+
+        }
+        return result.toString().trim();
+    }
+    private ArrayList<Integer> sortSoldiersByTimeLeft(int time){
+        ArrayList<Integer> turnsLeft = new ArrayList<Integer>();
+        for (Barrack barrack : barracks
+                ) {
+            for (HashMap<Soldier, Integer> soldierInitialTime : barrack.getUnderConstructionSoldiers()
+                    ) {
+                for (Soldier soldier : soldierInitialTime.keySet()) {
+                    turnsLeft.add(time - soldierInitialTime.get(soldier));
+                }
+            }
+        }
+        turnsLeft.sort((a, b) -> a < b ? a : b);
+        return turnsLeft;
     }
     public String showSourcesInfo(){
+        //set whereIam
         String result="";
-        result=result+"Gold:"+gold+"\nElixir:"+elixir+"\nScore:"+score;
+        result=result+"GOLD:"+gold+"\nElixir:"+elixir+"\nScore:"+score;
+        return result;
+    }
+    public String showEnemyMapInfo(Village enemyVillage) {
+        //set whereIam
+        StringBuilder result= new StringBuilder();
+        result.append("Gold: ").append(enemyVillage.getGold()).append("\nElixir: ").append(enemyVillage.getElixir());
+        for (Cell cell:Cell.getCellKinds()
+                ) {
+            result.append("\n").append(cell.getName()).append(": ").append(getNumberOfTower(cell, enemyVillage));
+        }
+        return result.toString();
+    }
+    private int getNumberOfTower(Cell cell,Village enemyVillage){
+        int number=0;
+        switch (cell.getName()){
+            case "Camp":number= enemyVillage.getCamps().size();break;
+            case "Barrack": number= enemyVillage.getBarracks().size();break;
+            case "ElixirStorage":number= enemyVillage.getElixirStorages().size();break;
+            case "GoldStorage":number= enemyVillage.getElixirStorages().size();break;
+            case "ElixirMine":number= enemyVillage.getElixirMines().size();break;
+            case "GoldMine":number= enemyVillage.getGoldMines().size();break;
+            case "MainBuilding":number= 1;break;
+            case "AirDefense":number= enemyVillage.getAirDefences().size();break;
+            case "ArcherTower":number= enemyVillage.getArcherTowers().size();break;
+            case "Cannon":number=enemyVillage.getCannons().size();break;
+            case "WizardTower":number= enemyVillage.getWizardTowers().size();break;
+        }
+        return number;
+    }
+
+    public String showEnemyMapMenu(){
+        //set whereIam
+        String result="1. Map Info\n2. Attack map\n3. Back";
         return result;
     }
 }

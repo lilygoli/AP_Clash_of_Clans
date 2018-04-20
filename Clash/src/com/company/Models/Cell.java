@@ -1,11 +1,17 @@
 package com.company.Models;
 
+import com.company.Main;
+import com.company.Models.Buildings.*;
+import com.company.Models.Defences.AirDefence;
+import com.company.Models.Defences.ArcherTower;
+import com.company.Models.Defences.Cannon;
+import com.company.Models.Defences.WizardTower;
 import com.company.View;
 
 import java.util.ArrayList;
 
 public class Cell {
-    private final String overalInfo = "Level: " + this.getLevel() + "\nHealth: " + this.getStrength();
+    private final String overallInfo = "Level: " + this.getLevel() + "\nHealth: " + this.getStrength();//TODO test kardam kar nemikone this tooye const seda zadan ghablan 0 set mishe , avaz beshe
     private final String upgradeInfo = "Upgrade Cost: " + this.getUpgradeCost();
     private final String infoMenu = "1. Overall Info\n2. Upgrade Info\n3. Back";
     private boolean isUnderConstruction;
@@ -15,6 +21,24 @@ public class Cell {
     private boolean isRuined;
     private int level;
     private int strength;
+    private static ArrayList<Cell> cellKinds=new ArrayList<Cell>();
+    static {
+        cellKinds.add(new Barrack(0));
+        cellKinds.add(new Camp(0));
+        cellKinds.add(new ElixirStorage(0));
+        cellKinds.add(new GoldStorage(0));
+        cellKinds.add(new GoldMine(0));
+        cellKinds.add(new ElixirMine(0));
+        cellKinds.add(new MainBuilding());
+        cellKinds.add(new AirDefence());
+        cellKinds.add(new ArcherTower());
+        cellKinds.add(new Cannon());
+        cellKinds.add(new WizardTower());
+    }
+
+    public static ArrayList<Cell> getCellKinds() {
+        return cellKinds;
+    }
 
     public int getStrength() {
         return strength;
@@ -81,7 +105,7 @@ public class Cell {
     }
 
     public void showOveralInfo() {
-        View.show(overalInfo);
+        View.show(overallInfo);
     }
 
     public void showUpgradeInfo() {
