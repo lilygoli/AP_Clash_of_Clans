@@ -125,4 +125,33 @@ public class Game {
         }
         return finalString.toString();
     }
+
+    public String statusTower(String towerType){
+        StringBuilder finalString = new StringBuilder();
+        for (Cell[] cells : attackedVillage.village.getMap()) {
+            for (Cell cell : cells) {
+                if (cell.getClass().getSimpleName().equals(towerType)){
+                    finalString.append(towerType + " level= " + cell.getLevel() + " in(" + cell.getX() + "," + cell.getY() + ") with health" + cell.getStrength() + "\n");
+                }
+            }
+        }
+        return finalString.toString();
+    }
+
+    public String statusTower(){
+        StringBuilder finalString = new StringBuilder();
+        for (Cell cell : Cell.getCellKinds()) {
+            finalString.append(statusTower(cell.getClass().getSimpleName()) + "\n");
+        }
+        return finalString.toString();
+    }
+
+    public String statusAll(){
+        StringBuilder finalString = new StringBuilder();
+        finalString.append(statusTower() + statusUnit());
+        // TODO: 4/21/2018 add status resources
+        return finalString.toString();
+    }
+
+
 }
