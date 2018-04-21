@@ -6,6 +6,8 @@ import com.company.View;
 import java.util.ArrayList;
 
 public class Game {
+    private static int elexirGained;
+    private static int goldGained;
     private String playerName;
     private Village village;
     private int time;
@@ -31,5 +33,22 @@ public class Game {
     }
     public void showBuildings() {
 
+    }
+
+    public String statusUnit(String unitType){
+        StringBuilder finalString = new StringBuilder();
+        for (Soldier troop : troops) {
+            if (troop.getClass().getSimpleName().equals(unitType)){
+                finalString.append(unitType + " level= " + troop.getLevel() + " in(" + troop.getX() + "," + troop.getY() + ") with health" + troop.getHealth() + "\n");
+            }
+        }
+        return finalString.toString();
+    }
+    public String statusUnit(){
+        StringBuilder finalString = new StringBuilder();
+        for (Soldier soldier : Soldier.getSoldierSubClasses()) {
+            finalString.append(statusUnit(soldier.getClass().getSimpleName()) + "\n");
+        }
+        return finalString;
     }
 }

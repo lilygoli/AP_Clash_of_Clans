@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public abstract class Soldier {
     // TODO: 4/21/2018 add heal func
-    static ArrayList<Soldier> soldierSubClasses;
+    private static ArrayList<Soldier> soldierSubClasses;
     private int cost;
     private int buildDuration;
     private int health;
@@ -26,6 +26,15 @@ public abstract class Soldier {
     private boolean canFly;
     private boolean dead;
     private Direction direction;
+
+    static{
+        soldierSubClasses.add(new Archer());
+        soldierSubClasses.add(new Dragon());
+        soldierSubClasses.add(new Giant());
+        soldierSubClasses.add(new Guardian());
+        soldierSubClasses.add(new Healer());
+        soldierSubClasses.add(new WallBreaker());
+    }
 
     // TODO: 4/21/2018 read health from config in constructor
 
@@ -264,6 +273,7 @@ public abstract class Soldier {
         return destination;
     }
     // TODO: 4/18/2018 add helaer
+    // TODO: 4/21/2018 check that the cell is not ruined
     public Cell findDestinationForAll(Village enemyVillage) {
         Cell destination = new Cell();
         double minDistance = 100d;
