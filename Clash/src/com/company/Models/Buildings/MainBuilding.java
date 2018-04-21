@@ -2,6 +2,7 @@ package com.company.Models.Buildings;
 
 import com.company.Models.Builder;
 import com.company.Models.Config;
+import com.company.Models.Game;
 import com.company.View;
 
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class MainBuilding extends Building {
     }
 
     public void showMenu() {
-        // Game.setWhereIam("Town Hall Menu"); should be implemented here on in controller after class Game is implemented
+        Game.setWhereIam("You are in TownHall Menu");
         String menu = "1. Info\n2. Available buildings\n3. Status\n4. back";
         View.show(menu);
     }

@@ -1,6 +1,7 @@
 package com.company.Models.Buildings;
 
 import com.company.Exception.NotEnoughResourcesException;
+import com.company.Models.Game;
 import com.company.Models.Soldiers.Soldier;
 import com.company.View;
 
@@ -32,6 +33,7 @@ public class Barrack extends Building {
     }
 
     public void showMenu() {
+        Game.setWhereIam("You are in Barracks Menu");
         String infoMenu = "1. Info\n2. Build Soldiers\n3. Status\n4. back";
         View.show(infoMenu);
     }

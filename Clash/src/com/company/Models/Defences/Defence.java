@@ -1,6 +1,7 @@
 package com.company.Models.Defences;
 import com.company.Models.Cell;
 import com.company.Models.Config;
+import com.company.Models.Game;
 import com.company.Models.Soldiers.Soldier;
 import com.company.View;
 
@@ -17,10 +18,12 @@ public abstract class Defence extends Cell {
     }
 
     public void showMenu() {
+        Game.setWhereIam("You are in"+this.getClass().getSimpleName() +"enemy map menu");
         View.show(menuOptions);
     }
 
     public void showInfoMenu() {
+        Game.setWhereIam("You are in"+this.getClass().getSimpleName() +"enemy map menu");
         View.show(infoMenuOptions);
     }
 
@@ -62,10 +65,6 @@ public abstract class Defence extends Cell {
 
     public int getBuildDuration() {
         return Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION");
-    }
-
-    public int getStrength() {
-        return Config.getDictionary().get(this.getClass().getSimpleName() + "_STRENGTH");
     }
 
     public int getDamage() {
