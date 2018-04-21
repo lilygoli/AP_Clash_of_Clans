@@ -1,0 +1,11 @@
+package com.company.Models;
+
+import java.util.ArrayList;
+
+public class GameCenter {
+    private static ArrayList<Game> games;
+
+    public static ArrayList<Game> getGames() {
+        return games;
+    }
+}
