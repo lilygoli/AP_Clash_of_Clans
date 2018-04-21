@@ -21,7 +21,9 @@ public class Cell {
     private boolean isRuined;
     private int level;
     private int strength;
-    private static ArrayList<Cell> cellKinds=new ArrayList<Cell>();
+    private static ArrayList<Cell> cellKinds=new ArrayList<>();
+    private int number;
+
     static {
         cellKinds.add(new Barrack(0));
         cellKinds.add(new Camp(0));
@@ -34,6 +36,14 @@ public class Cell {
         cellKinds.add(new ArcherTower(0));
         cellKinds.add(new Cannon(0));
         cellKinds.add(new WizardTower(0));
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public static ArrayList<Cell> getCellKinds() {
@@ -123,11 +133,16 @@ public class Cell {
                 if (tower.getName().compareTo(min.getName()) < 0) { //TODO شاید باید بزرگتر از ۰ باشه!
                     min = tower;
                 }
+                else if (tower.getName().compareTo(min.getName()) == 0) {
+                    if (min.getNumber() > tower.getNumber()) {
+                        min = tower;
+                    }
+                }
             }
             sortedTowers.add(min);
             towers.remove(min);
         }
-        towers = sortedTowers;
+        towers.addAll(sortedTowers);
     }
 
     public int getUpgradeCost() {

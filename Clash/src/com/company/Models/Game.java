@@ -1,5 +1,6 @@
 package com.company.Models;
 
+import com.company.Models.Buildings.Grass;
 import com.company.Models.Soldiers.Soldier;
 import com.company.View;
 
@@ -29,7 +30,19 @@ public class Game {
         finalString.append(cnt + ".Back\n");
         return finalString.toString();
     }
-    public void showBuildings() {
 
+    public void showBuildings() {
+        ArrayList<Cell> buildings = new ArrayList<>();
+        for (Cell[] cells : village.getMap()) {
+            for (Cell cell : cells) {
+                if (cell.getClass().isInstance(Grass.class)) {
+                    buildings.add(cell);
+                }
+            }
+            Cell.sortTowers(buildings);
+            for (Cell building : buildings) {
+                View.show(building.getName() + building.getNumber());
+            }
+        }
     }
 }
