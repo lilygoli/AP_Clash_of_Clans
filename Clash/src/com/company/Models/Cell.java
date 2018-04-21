@@ -11,8 +11,8 @@ import com.company.View;
 import java.util.ArrayList;
 
 public class Cell {
-    private final String overallInfo = "Level: " + this.getLevel() + "\nHealth: " + this.getStrength();//TODO test kardam kar nemikone this tooye const seda zadan ghablan 0 set mishe , avaz beshe
-    private final String upgradeInfo = "Upgrade Cost: " + this.getUpgradeCost();
+    //TODO test kardam kar nemikone this tooye const seda zadan ghablan 0 set mishe , avaz beshe
+
     private final String infoMenu = "1. Overall Info\n2. Upgrade Info\n3. Back";
     private boolean isUnderConstruction;
     private int timeTillConstruction;
@@ -104,12 +104,12 @@ public class Cell {
         return this.getClass().getSimpleName();
     }
 
-    public void showOveralInfo() {
-        View.show(overallInfo);
+    public void showOverallInfo() {
+        View.show("Level: " + this.getLevel() + "\nHealth: " + this.getStrength());
     }
 
     public void showUpgradeInfo() {
-        View.show(upgradeInfo);
+        View.show("Upgrade Cost: " + this.getUpgradeCost());
     }
 
     public static void sortTowers(ArrayList<Cell> towers) {
