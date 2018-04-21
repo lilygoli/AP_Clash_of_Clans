@@ -30,10 +30,10 @@ public class Cell {
         cellKinds.add(new GoldMine(0));
         cellKinds.add(new ElixirMine(0));
         cellKinds.add(new MainBuilding());
-        cellKinds.add(new AirDefence());
-        cellKinds.add(new ArcherTower());
-        cellKinds.add(new Cannon());
-        cellKinds.add(new WizardTower());
+        cellKinds.add(new AirDefence(0));
+        cellKinds.add(new ArcherTower(0));
+        cellKinds.add(new Cannon(0));
+        cellKinds.add(new WizardTower(0));
     }
 
     public static ArrayList<Cell> getCellKinds() {
