@@ -1,6 +1,7 @@
 package com.company.Models;
 
 import com.company.Models.Buildings.Grass;
+import com.company.Models.Buildings.MainBuilding;
 import com.company.Models.Soldiers.Soldier;
 import com.company.View;
 
@@ -90,5 +91,19 @@ public class Game {
     }
     public void showWhereIAm(){
         View.show(whereIam);
+    }
+
+    public void rebuild() {
+        for (Cell[] cells : village.getMap()) {
+            for (Cell cell : cells) {
+                if (cell.getClass().isInstance(MainBuilding.class)) {
+                    cell.setStrength(Config.getDictionary().get(this.getClass().getSimpleName() + "_STRENGTH") + cell.getLevel() * 500);
+                }
+                if (!cell.getClass().isInstance(Grass.class) && cell.isRuined()) {
+                    cell.setRuined(false);
+                }
+                cell.setStrength(Config.getDictionary().get(this.getClass().getSimpleName() + "_STRENGTH"));
+            }
+        }
     }
 }
