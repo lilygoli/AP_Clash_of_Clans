@@ -67,10 +67,6 @@ public abstract class Defence extends Cell {
         return Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION");
     }
 
-    public int getStrength() {
-        return Config.getDictionary().get(this.getClass().getSimpleName() + "_STRENGTH");
-    }
-
     public int getDamage() {
         return Config.getDictionary().get(this.getClass().getSimpleName() + "_DAMAGE");
     }
