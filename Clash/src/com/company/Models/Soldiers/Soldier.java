@@ -27,6 +27,8 @@ public abstract class Soldier {
     private boolean dead;
     private Direction direction;
 
+    // TODO: 4/21/2018 read health from config in constructor
+
     private final double MOVE_PER_TURN = 1 / maxSpeed;
 
     public static ArrayList<Soldier> getSoldierSubClasses() {
@@ -167,14 +169,27 @@ public abstract class Soldier {
 
 
     public void attackTarget(Village enemyVillage , String favoriteTarget) {
-        if (hasReachedDestination(enemyVillage , favoriteTarget)) {
-            Cell target = findDestination(enemyVillage , favoriteTarget);
+        Cell target = new Cell();
+        if (favoriteTarget.equals("Storage")) {
+            target = findDestinationForGiant(enemyVillage);
+        }
+        else if (favoriteTarget.equals("Defence")) {
+            target = findDestinationForArcher(enemyVillage);
+        }
+        else if (favoriteTarget.equals("Wall")) {
+            target = findDestinationForWallBreaker(enemyVillage);
+        }
+        else{
+            target = findDestinationForAll(enemyVillage);
+        }
+
+        if (hasReachedDestination(target)) {
             target.setStrength(target.getStrength() - getDamage());
             if (target.getStrength() <= 0) {
                 target.setRuined(true);
             }
         } else {
-            direction = findDirection(enemyVillage, findDestination(enemyVillage , favoriteTarget));
+            direction = findDirection(enemyVillage, target);
             moveSoldier(direction);
         }
     }
@@ -191,61 +206,65 @@ public abstract class Soldier {
         }
     }
 
-    public Cell findDestination(Village enemyVillage, String favoriteTarget) {
-        if (favoriteTarget.equals("Defence")) {
-            Cell destination = new Cell();
-            double minDistance = 100d;
-            for (int i = 0; i < 30; i++) {
-                for (int j = 0; j < 30; j++) {
-                    // TODO: 4/18/2018 add wall and trap
-                    if (enemyVillage.getMap()[i][j].getClass().isInstance(Defence.class)) {
-                        if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
-                            destination = enemyVillage.getMap()[i][j];
-                            minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
-                        }
+    public Cell findDestinationForArcher(Village enemyVillage) {
+        Cell destination = new Cell();
+        double minDistance = 100d;
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
+                // TODO: 4/18/2018 add wall and trap
+                if (enemyVillage.getMap()[i][j].getClass().isInstance(Defence.class)) {
+                    if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
+                        destination = enemyVillage.getMap()[i][j];
+                        minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
                     }
                 }
             }
-            if (Math.abs(minDistance - 100) < 0.01) {
-                return findDestination(enemyVillage, "all");
-            }
-            return destination;
-        } else if (favoriteTarget.equals("Storage")) {
-            Cell destination = new Cell();
-            double minDistance = 100d;
-            for (int i = 0; i < 30; i++) {
-                for (int j = 0; j < 30; j++) {
-                    if (enemyVillage.getMap()[i][j].getClass().isInstance(Storage.class) || enemyVillage.getMap()[i][j].getClass().isInstance(Mine.class)) {
-                        if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
-                            destination = enemyVillage.getMap()[i][j];
-                            minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
-                        }
-                    }
-                }
-            }
-            if (Math.abs(minDistance - 100) < 0.01) {
-                return findDestination(enemyVillage, "all");
-            }
-            return destination;
-        } else if (favoriteTarget.equals("Wall")) {
-            Cell destination = new Cell();
-            double minDistance = 100d;
-            for (int i = 0; i < 30; i++) {
-                for (int j = 0; j < 30; j++) {
-                    if (enemyVillage.getMap()[i][j].getClass().isInstance(Wall.class)) {
-                        if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
-                            destination = enemyVillage.getMap()[i][j];
-                            minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
-                        }
-                    }
-                }
-            }
-            if (Math.abs(minDistance - 100) < 0.01) {
-                return findDestination(enemyVillage, "all");
-            }
-            return destination;
         }
-        // TODO: 4/18/2018 add helaer
+        if (Math.abs(minDistance - 100) < 0.01) {
+            return findDestinationForAll(enemyVillage);
+        }
+        return destination;
+    }
+
+    public Cell findDestinationForGiant(Village enemyVillage) {
+        Cell destination = new Cell();
+        double minDistance = 100d;
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
+                if (enemyVillage.getMap()[i][j].getClass().isInstance(Storage.class) || enemyVillage.getMap()[i][j].getClass().isInstance(Mine.class)) {
+                    if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
+                        destination = enemyVillage.getMap()[i][j];
+                        minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
+                    }
+                }
+            }
+        }
+        if (Math.abs(minDistance - 100) < 0.01) {
+            return findDestinationForAll(enemyVillage);
+        }
+        return destination;
+    }
+
+    public Cell findDestinationForWallBreaker(Village enemyVillage) {
+        Cell destination = new Cell();
+        double minDistance = 100d;
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
+                if (enemyVillage.getMap()[i][j].getClass().isInstance(Wall.class)) {
+                    if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
+                        destination = enemyVillage.getMap()[i][j];
+                        minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
+                    }
+                }
+            }
+        }
+        if (Math.abs(minDistance - 100) < 0.01) {
+            return findDestinationForAll(enemyVillage);
+        }
+        return destination;
+    }
+    // TODO: 4/18/2018 add helaer
+    public Cell findDestinationForAll(Village enemyVillage) {
         Cell destination = new Cell();
         double minDistance = 100d;
         for (int i = 0; i < 30; i++) {
@@ -257,7 +276,6 @@ public abstract class Soldier {
             }
         }
         return destination;
-
     }
 
     public Direction findDirection(Village enemyVillage, Cell destination) {
@@ -265,8 +283,8 @@ public abstract class Soldier {
         return Direction.UP;
     }
 
-    public boolean hasReachedDestination(Village enemyVillage , String favoriteTarget) {
-        if (Math.sqrt(Math.pow(x - findDestination(enemyVillage , favoriteTarget).getX(), 2) + Math.pow(y - findDestination(enemyVillage , favoriteTarget).getY(), 2)) <= radius) {
+    public boolean hasReachedDestination(Cell target) {
+        if (Math.sqrt(Math.pow(x - target.getX(), 2) + Math.pow(y - target.getY(), 2)) <= radius) {
             return true;
         }
         return false;
