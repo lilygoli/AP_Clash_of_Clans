@@ -10,7 +10,7 @@ import com.company.Models.*;
 import java.util.ArrayList;
 
 public abstract class Soldier {
-
+    // TODO: 4/21/2018 add heal func
     static ArrayList<Soldier> soldierSubClasses;
     private int cost;
     private int buildDuration;

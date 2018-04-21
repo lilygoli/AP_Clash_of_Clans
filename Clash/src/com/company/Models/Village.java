@@ -32,6 +32,14 @@ public class Village {
     private int numOfBuilder;
     private int numOfFreeBuilder;
 
+    public void setGoldStorages(ArrayList<GoldStorage> goldStorages) {
+        this.goldStorages = goldStorages;
+    }
+
+    public void setElixirStorages(ArrayList<ElixirStorage> elixirStorages) {
+        this.elixirStorages = elixirStorages;
+    }
+
     public Cell[][] getMap() {
         return map;
     }
