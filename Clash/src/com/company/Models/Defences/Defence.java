@@ -9,6 +9,12 @@ import java.util.ArrayList;
 public abstract class Defence extends Cell {
     private static final String menuOptions = "1. Info\n2. Target\n3. Back";
     private static final String infoMenuOptions = "1. Overall info\n2. Upgrade info\n3. Attack info\n4. Back";
+    private int number;
+
+    public Defence(int number, int level) {
+        super.setLevel(level);
+        this.number = number;
+    }
 
     public void showMenu() {
         View.show(menuOptions);
