@@ -1,5 +1,6 @@
 package com.company.Models.Buildings;
 
+import com.company.Models.Game;
 import com.company.View;
 
 public class Storage extends Building {
@@ -34,6 +35,7 @@ public class Storage extends Building {
 
     @Override
     public void showMenu() {
+        Game.setWhereIam("You are in Storage Menu");
         String menu = "1. Info";
         View.show(menu);
     }

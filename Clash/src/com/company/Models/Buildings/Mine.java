@@ -1,5 +1,6 @@
 package com.company.Models.Buildings;
 
+import com.company.Models.Game;
 import com.company.View;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class Mine extends Building {
 
     @Override
     public void showMenu() {
+        Game.setWhereIam("You are in Mine Menu");
         String menu = "1. Info\n2. Mine\n3. back";
         View.show(menu);
     }
