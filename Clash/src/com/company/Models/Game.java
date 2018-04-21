@@ -49,6 +49,6 @@ public class Game {
         for (Soldier soldier : Soldier.getSoldierSubClasses()) {
             finalString.append(statusUnit(soldier.getClass().getSimpleName()) + "\n");
         }
-        return finalString;
+        return finalString.toString();
     }
 }
