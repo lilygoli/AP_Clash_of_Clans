@@ -4,6 +4,7 @@ import com.company.Exception.BusyCellException;
 import com.company.Exception.MarginalTowerException;
 import com.company.Models.Buildings.*;
 import com.company.Models.Defences.*;
+import com.company.Models.Soldiers.Archer;
 import com.company.Models.Soldiers.Soldier;
 
 import java.util.ArrayList;
@@ -181,6 +182,19 @@ public class Village {
         }
         if (!map[tower.getX()][tower.getY()].getClass().isInstance(Grass.class)) {
             map[tower.getX()][tower.getY()] = tower;
+            switch (tower.getName()){
+                case "Camp":this.getCamps().add((Camp)tower);break;
+                case "Barrack": this.getBarracks().add((Barrack) tower);break;
+                case "ElixirStorage":this.getElixirStorages().add((ElixirStorage)tower);break;
+                case "GoldStorage":this.getGoldStorages().add((GoldStorage)tower);break;
+                case "ElixirMine":this.getElixirMines().add((ElixirMine) tower);break;
+                case "GoldMine":this.getGoldMines().add((GoldMine)tower);break;
+                case "AirDefense":this.getAirDefences().add((AirDefence) tower);break;
+                case "ArcherTower":this.getArcherTowers().add((ArcherTower) tower);break;
+                case "Cannon":this.getCannons().add((Cannon)tower);break;
+                case "WizardTower":this.getWizardTowers().add((WizardTower) tower);break;
+            }
+
         }
         else {
             throw new BusyCellException();
