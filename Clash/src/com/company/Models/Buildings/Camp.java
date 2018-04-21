@@ -12,8 +12,8 @@ public class Camp extends Building {
 
     private ArrayList<Soldier> soldiers=new ArrayList<Soldier>();
 
-    public Camp(int number) {
-        super(number, 0);
+    public Camp(int number,int level) {
+        super(number, level);
     }
 
     @Override

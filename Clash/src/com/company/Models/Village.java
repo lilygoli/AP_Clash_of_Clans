@@ -12,8 +12,7 @@ import java.util.HashMap;
 
 public class Village {
     private Cell[][] map;
-    private int gold;
-    private int elixir;
+    private Resource resource;
     private int score;
     private ArrayList<ArcherTower> archerTowers;
     private ArrayList<Cannon> cannons;
@@ -32,6 +31,14 @@ public class Village {
     private int numOfBuilder;
     private int numOfFreeBuilder;
 
+    public void setResource(Resource resource) {
+        this.resource = resource;
+    }
+
+    public Resource getResource() {
+        return resource;
+    }
+
     public void setGoldStorages(ArrayList<GoldStorage> goldStorages) {
         this.goldStorages = goldStorages;
     }
@@ -46,22 +53,6 @@ public class Village {
 
     public void setMap(Cell[][] map) {
         this.map = map;
-    }
-
-    public int getGold() {
-        return gold;
-    }
-
-    public void setGold(int gold) {
-        this.gold = gold;
-    }
-
-    public int getElixir() {
-        return elixir;
-    }
-
-    public void setElixir(int elixir) {
-        this.elixir = elixir;
     }
 
     public int getScore() {
@@ -220,7 +211,7 @@ public class Village {
             }
             Cell.sortTowers(underConstructionTowers);
             for (Cell underConstructionTower : underConstructionTowers) {
-                status.append(underConstructionTower.getName() + underConstructionTower.getTimeTillConstruction());
+                status.append(underConstructionTower.getName()).append(underConstructionTower.getTimeTillConstruction());
             }
         }
         return status.toString();
@@ -261,9 +252,8 @@ public class Village {
         return turnsLeft;
     }
     public String showSourcesInfo(){
-        //set whereIam
         String result="";
-        result=result+"GOLD:"+gold+"\nElixir:"+elixir+"\nScore:"+score;
+        result=result+"GOLD:"+resource.getGold()+"\nElixir:"+resource.getElixir()+"\nScore:"+score;
         return result;
     }
 

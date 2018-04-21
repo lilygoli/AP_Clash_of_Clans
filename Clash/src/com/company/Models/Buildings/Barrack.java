@@ -14,8 +14,8 @@ public class Barrack extends Building {
     private int soldierBuildLevel = 0;
     private boolean canBeUpgraded = true;
 
-    public Barrack(int number) {
-        super(number, 0);
+    public Barrack(int number,int level) {
+        super(number, level);
     }
 
     @Override

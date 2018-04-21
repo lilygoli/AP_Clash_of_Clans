@@ -7,23 +7,31 @@ import com.company.View;
 
 import java.util.ArrayList;
 
-import com.company.View;
-
 public class Game {
-    private static int elexirGained;
+    private static int elixirGained;
     private static int goldGained;
     private String playerName;
     private Village village;
     private int time;
-    private boolean isUnderAttackOrVillage;
+    private boolean isUnderAttackOrDefense;
     private Game attackedVillage=null;
     private static String whereIAm;
     private ArrayList<Soldier> troops;
     private static String whereIam="You are in village";
+    //TODO save our game, toJson class game and writing it into a file
     public void showResources(){
         village.showSourcesInfo();
     }
 
+    public Village getVillage() {
+        return village;
+    }
+    public void setAttackStatus(boolean isUnderAttack){
+        this.isUnderAttackOrDefense =isUnderAttack;
+    }
+    public boolean getAttackStatus(){
+        return isUnderAttackOrDefense;
+    }
     public String showAttackMenu(){
         StringBuilder finalString = new StringBuilder();
         finalString.append("1.Load Map\n");
@@ -62,7 +70,7 @@ public class Game {
     public String showEnemyMapInfo(Village enemyVillage) {
         Game.setWhereIam("You are in enemy map menu");
         StringBuilder result= new StringBuilder();
-        result.append("Gold: ").append(enemyVillage.getGold()).append("\nElixir: ").append(enemyVillage.getElixir());
+        result.append("Gold: ").append(enemyVillage.getResource().getGold()).append("\nElixir: ").append(enemyVillage.getResource().getElixir());
         for (Cell cell:Cell.getCellKinds()
                 ) {
             result.append("\n").append(cell.getName()).append(": ").append(getNumberOfTower(cell, enemyVillage));

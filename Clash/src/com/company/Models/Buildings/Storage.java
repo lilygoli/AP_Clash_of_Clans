@@ -5,22 +5,22 @@ import com.company.View;
 
 public class Storage extends Building {
     private int capacity;
-    private int resources;
+    private int resource;
 
-    public Storage(int number) {
-        super(number, 0);
+    public Storage(int number,int level) {
+        super(number,level);
     }
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
-    public void setResources(int resources) {
-        this.resources = resources;
+    public void setResource(int resource) {
+        this.resource = resource;
     }
 
-    public int getResources() {
-        return resources;
+    public int getResource() {
+        return resource;
     }
 
     public int getCapacity() {
@@ -46,10 +46,10 @@ public class Storage extends Building {
     }
 
     public void addToStorage(int amount) {
-        if (capacity - resources >= amount) {
-            resources += amount;
+        if (capacity - resource >= amount) {
+            resource += amount;
         }else{
-            resources=capacity;
+            resource =capacity;
         }
 
     }

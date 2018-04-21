@@ -18,28 +18,39 @@ public class Cell {
     private int timeTillConstruction;
     private int x;
     private int y;
+    private int jsonType;
     private boolean isRuined;
     private int level;
     private int strength;
+    private int amount;
     private static ArrayList<Cell> cellKinds=new ArrayList<>();
     private int number;
 
     static {
-        cellKinds.add(new Barrack(0));
-        cellKinds.add(new Camp(0));
-        cellKinds.add(new ElixirStorage(0));
-        cellKinds.add(new GoldStorage(0));
-        cellKinds.add(new GoldMine(0));
-        cellKinds.add(new ElixirMine(0));
-        cellKinds.add(new MainBuilding());
-        cellKinds.add(new AirDefence(0));
-        cellKinds.add(new ArcherTower(0));
-        cellKinds.add(new Cannon(0));
-        cellKinds.add(new WizardTower(0));
+        cellKinds.add(new Barrack(0,0));
+        cellKinds.add(new Camp(0,0));
+        cellKinds.add(new ElixirStorage(0,0));
+        cellKinds.add(new GoldStorage(0,0));
+        cellKinds.add(new GoldMine(0,0));
+        cellKinds.add(new ElixirMine(0,0));
+        cellKinds.add(new MainBuilding(0));
+        cellKinds.add(new AirDefence(0,0));
+        cellKinds.add(new ArcherTower(0,0));
+        cellKinds.add(new Cannon(0,0));
+        cellKinds.add(new WizardTower(0,0));
     }
     public Cell(){
         Config.getDictionary().get(this.getClass().getSimpleName()+"_STRENGTH");
     }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public int getJsonType() {
+        return jsonType;
+    }
+
     public int getNumber() {
         return number;
     }

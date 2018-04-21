@@ -10,8 +10,8 @@ public class Mine extends Building {
     private int resource = 0;
 
 
-    public Mine(int number) {
-        super(number, 0);
+    public Mine(int number,int level) {
+        super(number, level);
     }
 
     public int getResourceGainSpeed() {
@@ -45,7 +45,7 @@ public class Mine extends Building {
     public void mine(ArrayList<Storage> allRelatedStorage) { //for any mine we should pass the related array of storage
         for (Storage storage : allRelatedStorage
                 ) {
-            if (storage.getCapacity() - storage.getResources() >= resource) {
+            if (storage.getCapacity() - storage.getResource() >= resource) {
                 storage.addToStorage(resource);
                 resource = 0;
                 return;
@@ -56,7 +56,7 @@ public class Mine extends Building {
         int flag=0;
         for (Storage storage:allRelatedStorage
              ) {
-            if(storage.getCapacity()-storage.getResources()!=0){
+            if(storage.getCapacity()-storage.getResource()!=0){
                 flag=1;
             }
         }

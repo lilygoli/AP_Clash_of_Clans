@@ -6,20 +6,13 @@ import com.company.Models.Config;
 import java.util.Properties;
 
 public abstract class Building extends Cell {
-private int goldCost;
-private int elixirCost;
-private int buildDuration;
-private int pointsGainedWhenDestructed;
-private int goldGainedWhenDestructed;
-private int elixirGainedWhenDestructed;
-private int jsonType;
-private int level;
+
 private int number;
 private int timeLeftOfConstruction;
 private static String[] nameOfChildren=new String[]{"Barrack","Camp","ElixirMine","GoldMine","GoldStorage","ElixirStorage"};
 
     public Building(int number,int level){
-        this.level=level;
+        super.setLevel(level);
         this.number=number;
     }
 
@@ -64,16 +57,9 @@ private static String[] nameOfChildren=new String[]{"Barrack","Camp","ElixirMine
         return Config.getDictionary().get(this.getClass().getSimpleName()+"_UPGRADE_COST");
     }
 
-    public int getLevel() {
-        return level;
-    }
 
     public int getNumber() {
         return number;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     public void setNumber(int number) {

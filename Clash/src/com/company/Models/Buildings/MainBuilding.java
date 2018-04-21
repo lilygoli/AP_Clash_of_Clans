@@ -13,8 +13,8 @@ public class MainBuilding extends Building {
     private ArrayList<Builder> builders = new ArrayList<Builder>();
     private int numberOfBuilders = 1;
 
-    public MainBuilding() {
-        super(1, 0); // only one should be constructed at the beginning of the game
+    public MainBuilding(int level) {
+        super(1,level); // only one should be constructed at the beginning of the game
         Builder firstBuilder = new Builder(1);
         builders.add(firstBuilder);
         this.setTimeLeftOfConstruction(this.getBuildDuration());
@@ -35,7 +35,7 @@ public class MainBuilding extends Building {
         int counter = 0;
         for (String building : allBuildings
                 ) {
-            if (Config.getDictionary().get(building + "_GOLD_COST") <= gold || Config.getDictionary().get(building + "ELIXIR_COST") <= elixir) {
+            if (Config.getDictionary().get(building + "_GOLD_COST") <= gold && Config.getDictionary().get(building + "ELIXIR_COST") <= elixir) {
                 counter++;
                 availableBuildings.append(Integer.toString(counter)).append(". ").append(building).append("\n");
             }

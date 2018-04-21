@@ -5,8 +5,8 @@ import com.company.Models.Soldiers.Soldier;
 import java.util.ArrayList;
 
 public class AirDefence extends Defence {
-    public AirDefence(int number) {
-        super(number, 0);
+    public AirDefence(int number,int level) {
+        super(number,level);
     }
 
     public Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers) {
