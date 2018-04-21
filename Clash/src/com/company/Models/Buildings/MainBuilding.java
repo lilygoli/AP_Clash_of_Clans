@@ -17,7 +17,6 @@ public class MainBuilding extends Building {
         super(1, 0); // only one should be constructed at the beginning of the game
         Builder firstBuilder = new Builder(1);
         builders.add(firstBuilder);
-        this.setHealth(this.getStrength());
         this.setTimeLeftOfConstruction(this.getBuildDuration());
     }
 
@@ -59,6 +58,6 @@ public class MainBuilding extends Building {
             Builder builder = new Builder(numberOfBuilders);
             builders.add(builder);
         }
-        setHealth(getHealth() + 500);
+        setStrength(getStrength() + 500);
     }
 }

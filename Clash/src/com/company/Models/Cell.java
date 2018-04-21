@@ -37,7 +37,9 @@ public class Cell {
         cellKinds.add(new Cannon(0));
         cellKinds.add(new WizardTower(0));
     }
-
+    public Cell(){
+        Config.getDictionary().get(this.getClass().getSimpleName()+"_STRENGTH");
+    }
     public int getNumber() {
         return number;
     }

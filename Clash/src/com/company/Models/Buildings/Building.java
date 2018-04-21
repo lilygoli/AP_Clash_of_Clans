@@ -9,8 +9,6 @@ public abstract class Building extends Cell {
 private int goldCost;
 private int elixirCost;
 private int buildDuration;
-private int strength;
-private int health;
 private int pointsGainedWhenDestructed;
 private int goldGainedWhenDestructed;
 private int elixirGainedWhenDestructed;
@@ -80,14 +78,6 @@ private static String[] nameOfChildren=new String[]{"Barrack","Camp","ElixirMine
 
     public void setNumber(int number) {
         this.number = number;
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
     }
 
     public static String[] getNameOfChildren() {
