@@ -43,6 +43,10 @@ public class Cell {
         Config.getDictionary().get(this.getClass().getSimpleName()+"_STRENGTH");
     }
 
+    public void upgrade() {
+        //it is overrided in its childs
+    }
+
     public int getAmount() {
         return amount;
     }

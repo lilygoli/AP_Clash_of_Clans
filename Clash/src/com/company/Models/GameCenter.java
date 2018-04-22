@@ -8,4 +8,8 @@ public class GameCenter {
     public static ArrayList<Game> getGames() {
         return games;
     }
+
+    public static void passTurn(int numOfTurns) {
+
+    }
 }

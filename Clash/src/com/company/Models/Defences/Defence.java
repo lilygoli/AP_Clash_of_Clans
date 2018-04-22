@@ -17,6 +17,11 @@ public abstract class Defence extends Cell {
         this.number = number;
     }
 
+    @Override
+    public void upgrade() {
+        this.setLevel(this.getLevel() + 1);
+    }
+
     public void showMenu() {
         Game.setWhereIam("You are in"+this.getClass().getSimpleName() +"enemy map menu");
         View.show(menuOptions);
@@ -68,8 +73,13 @@ public abstract class Defence extends Cell {
     }
 
     public int getDamage() {
-        return Config.getDictionary().get(this.getClass().getSimpleName() + "_DAMAGE");
+        return 1 * super.getLevel() + Config.getDictionary().get(this.getClass().getSimpleName() + "_DAMAGE");
     }
+
+    public int getStrength() {
+        return 10 * super.getLevel() + Config.getDictionary().get(this.getClass().getSimpleName() + "_STRENGTH");
+    }
+
 
     public int getRadius() {
         return Config.getDictionary().get(this.getClass().getSimpleName() + "_RADIUS");
