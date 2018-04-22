@@ -26,6 +26,27 @@ public class Game {
     public Village getVillage() {
         return village;
     }
+
+    public void setVillage(Village village) {
+        this.village = village;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
     public void setAttackStatus(boolean isUnderAttack){
         this.isUnderAttackOrDefense =isUnderAttack;
     }

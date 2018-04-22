@@ -8,7 +8,7 @@ import com.company.Models.Resource;
 import java.util.ArrayList;
 
 public class EnemyMapJson {
-
+    private static final int mapSize = 30;
     private ArrayList<Integer> size = null;
     private ArrayList<Wall> walls = null;
     private Resource resources;
@@ -45,8 +45,11 @@ public class EnemyMapJson {
     public void setBuildings(ArrayList<Cell> buildings) {
         this.buildings = buildings;
     }
+
     public Game ConvertEnemyJsonToGame(){ //name player bayad tooye loadMap az roo file mikhunim barabare name file gharar begire
         Game game=new Game();
+        game.setVillage(new Village());
+        game.setTime(0);
         game.setAttackStatus(true);
         game.getVillage().setWalls(walls);
         game.getVillage().setResource(resources);
@@ -70,6 +73,26 @@ public class EnemyMapJson {
             }
         }
         return game;
+    }
+    public EnemyMapJson convertGameToEnemyMapJson(Game game){
+        EnemyMapJson enemyMapJson=new EnemyMapJson();
+        size.add(mapSize);
+        size.add(mapSize);
+        walls.addAll(game.getVillage().getWalls());
+        resources=game.getVillage().getResource();
+        buildings.addAll(game.getVillage().getAirDefences());
+        buildings.addAll(game.getVillage().getArcherTowers());
+        buildings.addAll(game.getVillage().getBarracks());
+        buildings.addAll(game.getVillage().getCamps());
+        buildings.addAll(game.getVillage().getCannons());
+        buildings.addAll(game.getVillage().getElixirMines());
+        buildings.addAll(game.getVillage().getElixirStorages());
+        buildings.addAll(game.getVillage().getGoldMines());
+        buildings.addAll(game.getVillage().getGoldStorages());
+        buildings.addAll(game.getVillage().getWizardTowers());
+        buildings.add(game.getVillage().getMainBuilding());
+        return enemyMapJson;
+
     }
     private void initializeGoldMine(Game game,Cell building){
         GoldMine goldMine= new GoldMine(game.getVillage().getGoldMines().size(),building.getLevel());

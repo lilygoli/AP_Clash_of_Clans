@@ -49,12 +49,12 @@ public class Barrack extends Building {
                         Soldier newSoldier = null;
                         try {
                             newSoldier = soldier.getClass().getDeclaredConstructor().newInstance();//depends on the soldier Constructor
-                            //build duration and level should be set by deceasedBuildingDuration and SoldierBuildLevel
+                            //TODO build duration and level should be set by deceasedBuildingDuration and SoldierBuildLevel
                         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                             e.printStackTrace();
                         }
                         HashMap<Soldier, Integer> startingTimeOfBuildingSoldier = new HashMap<Soldier, Integer>();
-                        startingTimeOfBuildingSoldier.put(soldier, time);
+                        startingTimeOfBuildingSoldier.put(newSoldier, time);
                         underConstructionSoldiers.add(startingTimeOfBuildingSoldier);
                     }
                 } else {
