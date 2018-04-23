@@ -8,9 +8,10 @@ import com.company.Models.Defences.*;
 import com.company.Models.*;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public abstract class Soldier {
-    // TODO: 4/21/2018 add heal func
     private static ArrayList<Soldier> soldierSubClasses;
     private int cost;
     private int buildDuration;
@@ -27,7 +28,7 @@ public abstract class Soldier {
     private boolean dead;
     private Direction direction;
 
-    static{
+    static {
         soldierSubClasses.add(new Archer());
         soldierSubClasses.add(new Dragon());
         soldierSubClasses.add(new Giant());
@@ -36,7 +37,10 @@ public abstract class Soldier {
         soldierSubClasses.add(new WallBreaker());
     }
 
-    // TODO: 4/21/2018 read health from config in constructor
+    {
+        health = Config.getDictionary().get(this.getClass().getSimpleName() + "_HEALTH");
+        damage = Config.getDictionary().get(this.getClass().getSimpleName() + "_DAMAGE");
+    }
 
     private final double MOVE_PER_TURN = 1 / maxSpeed;
 
@@ -53,11 +57,11 @@ public abstract class Soldier {
     }
 
     public int getHealth() {
-        return Config.getDictionary().get(this.getClass().getSimpleName() + "_HEALTH");
+        return health;
     }
 
     public int getDamage() {
-        return Config.getDictionary().get(this.getClass().getSimpleName() + "_DAMAGE");
+        return damage;
     }
 
     public int getRadius() {
@@ -176,19 +180,20 @@ public abstract class Soldier {
         level++;
     }
 
+    public void heal() {
+        health = Config.getDictionary().get(this.getClass().getSimpleName() + "_HEALTH") + (level * addedHealth);
+    }
 
-    public void attackTarget(Village enemyVillage , String favoriteTarget) {
+
+    public void attackTarget(Village enemyVillage, String favoriteTarget) {
         Cell target = new Cell();
         if (favoriteTarget.equals("Storage")) {
             target = findDestinationForGiant(enemyVillage);
-        }
-        else if (favoriteTarget.equals("Defence")) {
+        } else if (favoriteTarget.equals("Defence")) {
             target = findDestinationForArcher(enemyVillage);
-        }
-        else if (favoriteTarget.equals("Wall")) {
+        } else if (favoriteTarget.equals("Wall")) {
             target = findDestinationForWallBreaker(enemyVillage);
-        }
-        else{
+        } else {
             target = findDestinationForAll(enemyVillage);
         }
 
@@ -196,6 +201,7 @@ public abstract class Soldier {
             target.setStrength(target.getStrength() - getDamage());
             if (target.getStrength() <= 0) {
                 target.setRuined(true);
+                target.setStrength(0);
             }
         } else {
             direction = findDirection(enemyVillage, target);
@@ -220,11 +226,12 @@ public abstract class Soldier {
         double minDistance = 100d;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
-                // TODO: 4/18/2018 add wall and trap
-                if (enemyVillage.getMap()[i][j].getClass().isInstance(Defence.class)) {
-                    if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
-                        destination = enemyVillage.getMap()[i][j];
-                        minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
+                if (!enemyVillage.getMap()[i][j].isRuined()) {
+                    if (enemyVillage.getMap()[i][j].getClass().isInstance(Defence.class) && !enemyVillage.getMap()[i][j].getClass().isInstance(Wall.class) && !enemyVillage.getMap()[i][j].getClass().isInstance(Trap.class)) {
+                        if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
+                            destination = enemyVillage.getMap()[i][j];
+                            minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
+                        }
                     }
                 }
             }
@@ -240,10 +247,12 @@ public abstract class Soldier {
         double minDistance = 100d;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
-                if (enemyVillage.getMap()[i][j].getClass().isInstance(Storage.class) || enemyVillage.getMap()[i][j].getClass().isInstance(Mine.class)) {
-                    if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
-                        destination = enemyVillage.getMap()[i][j];
-                        minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
+                if (!enemyVillage.getMap()[i][j].isRuined()) {
+                    if (enemyVillage.getMap()[i][j].getClass().isInstance(Storage.class) || enemyVillage.getMap()[i][j].getClass().isInstance(Mine.class)) {
+                        if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
+                            destination = enemyVillage.getMap()[i][j];
+                            minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
+                        }
                     }
                 }
             }
@@ -259,10 +268,12 @@ public abstract class Soldier {
         double minDistance = 100d;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
-                if (enemyVillage.getMap()[i][j].getClass().isInstance(Wall.class)) {
-                    if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
-                        destination = enemyVillage.getMap()[i][j];
-                        minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
+                if (!enemyVillage.getMap()[i][j].isRuined()) {
+                    if (enemyVillage.getMap()[i][j].getClass().isInstance(Wall.class)) {
+                        if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
+                            destination = enemyVillage.getMap()[i][j];
+                            minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
+                        }
                     }
                 }
             }
@@ -272,16 +283,20 @@ public abstract class Soldier {
         }
         return destination;
     }
-    // TODO: 4/18/2018 add helaer
-    // TODO: 4/21/2018 check that the cell is not ruined
+
+    // TODO: 4/18/2018 add healer
     public Cell findDestinationForAll(Village enemyVillage) {
         Cell destination = new Cell();
         double minDistance = 100d;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
-                if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
-                    destination = enemyVillage.getMap()[i][j];
-                    minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
+                if (!enemyVillage.getMap()[i][j].isRuined()) {
+                    if (!enemyVillage.getMap()[i][j].getClass().isInstance(Grass.class) && !enemyVillage.getMap()[i][j].getClass().isInstance(Trap.class)) {
+                        if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
+                            destination = enemyVillage.getMap()[i][j];
+                            minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
+                        }
+                    }
                 }
             }
         }
@@ -290,7 +305,68 @@ public abstract class Soldier {
 
     public Direction findDirection(Village enemyVillage, Cell destination) {
         // TODO: 4/18/2018 make it complete
-        return Direction.UP;
+        int infinity = Integer.MAX_VALUE;
+        // TODO: 4/23/2018 add POSITION Class
+        LinkedList<Integer> queueX = new LinkedList<>();
+        LinkedList<Integer> queueY = new LinkedList<>();
+        int[][] distance = new int[30][30];
+        Direction[][] lastDir = new Direction[30][30];
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
+                distance[i][j] = infinity;
+            }
+        }
+        queueX.add(destination.getX());
+        queueY.add(destination.getY());
+        lastDir[destination.getX()][destination.getY()] = Direction.NONE;
+        distance[destination.getX()][destination.getY()] = 0;
+        while (!queueX.isEmpty()) {
+            int x = queueX.getFirst(), y = queueY.getFirst();
+            Integer[][] adjacent = new Integer[4][2];
+            adjacent[0][0] = x;
+            if (y - 1 >= 0) {
+                adjacent[0][1] = y - 1;
+            }
+            adjacent[1][1] = y;
+            if (x + 1 < 30) {
+                adjacent[1][0] = x + 1;
+            }
+            adjacent[2][0] = x;
+            if (y + 1 < 30) {
+                adjacent[2][1] = y;
+            }
+            adjacent[3][1] = y;
+            if (x - 1 >= 0) {
+                adjacent[3][0] = x;
+            }
+            for (int i = 0; i < 4; i++) {
+                // TODO: 4/23/2018 refactor
+                if (!adjacent[i][0].equals(null) && !adjacent[i][1].equals(null) && distance[x][y] + 1 + (int) (enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getStrength() / damage) < distance[adjacent[i][0]][adjacent[i][1]]) {
+                    distance[adjacent[i][0]][adjacent[i][1]] = distance[x][y] + 1 + (int) (enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getStrength() / damage);
+                    switch (i) {
+                        case 0:
+                            lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.DOWN;
+                            break;
+                        case 1:
+                            lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.LEFT;
+                            break;
+                        case 2:
+                            lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.UP;
+                            break;
+                        case 3:
+                            lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.RIGHT;
+                            break;
+                    }
+                    queueX.add(adjacent[i][0]);
+                    queueY.add(adjacent[i][1]);
+
+                }
+            }
+            queueX.removeFirst();
+            queueY.removeFirst();
+        }
+        // TODO: 4/23/2018 check double and int 
+        return lastDir[(int)getX()][(int)getY()];
     }
 
     public boolean hasReachedDestination(Cell target) {

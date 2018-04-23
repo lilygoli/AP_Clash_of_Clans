@@ -44,7 +44,7 @@ public class Cell {
     }
 
     public void upgrade() {
-        //it is overrided in its childs
+        //it is overRided in its childs
     }
 
     public int getAmount() {
