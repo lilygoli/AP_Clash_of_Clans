@@ -25,8 +25,15 @@ public class Cell {
     private int amount;
     private static ArrayList<Cell> cellKinds=new ArrayList<>();
     private int number;
+    private Builder workingBuilder;
 
-    // TODO: 4/23/18 builder
+    public Builder getWorkingBuilder() {
+        return workingBuilder;
+    }
+
+    public void setWorkingBuilder(Builder workingBuilder) {
+        this.workingBuilder = workingBuilder;
+    }
 
     static {
         cellKinds.add(new Barrack(0,0));

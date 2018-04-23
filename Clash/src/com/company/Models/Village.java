@@ -2,6 +2,7 @@ package com.company.Models;
 
 import com.company.Exception.BusyCellException;
 import com.company.Exception.MarginalTowerException;
+import com.company.Exception.NotEnoughFreeBuildersException;
 import com.company.Models.Buildings.*;
 import com.company.Models.Defences.*;
 import com.company.Models.Soldiers.Archer;
@@ -175,12 +176,24 @@ public class Village {
         this.numOfFreeBuilder = numOfFreeBuilder;
     }
 
-    public void buildTower(Cell tower) throws BusyCellException, MarginalTowerException {
+    public void buildTower(Cell tower) throws BusyCellException, MarginalTowerException, NotEnoughFreeBuildersException {
         if (tower.getX() <= 0 || tower.getX() >= 29 || tower.getY() <= 0 || tower.getY() >= 29) {
             throw new MarginalTowerException();
         }
+        int numberOfFreeBuilders = 0;
+        Builder builderToConstruct = null;
+        for (Builder builder : this.getMainBuilding().getBuilders()) {
+            if (!builder.getOccupationState()) {
+                builderToConstruct = builder;
+                numberOfFreeBuilders++;
+            }
+        }
+        if (numberOfFreeBuilders == 0) {
+            throw new NotEnoughFreeBuildersException();
+        }
+        builderToConstruct.setOccupationState(true);
+        tower.setWorkingBuilder(builderToConstruct);
 
-        // TODO: 4/23/18 builder
         if (!map[tower.getX()][tower.getY()].getClass().isInstance(Grass.class)) {
             map[tower.getX()][tower.getY()] = tower;
             switch (tower.getName()){

@@ -20,6 +20,14 @@ public class MainBuilding extends Building {
         this.setTimeLeftOfConstruction(this.getBuildDuration());
     }
 
+    public ArrayList<Builder> getBuilders() {
+        return builders;
+    }
+
+    public void setBuilders(ArrayList<Builder> builders) {
+        this.builders = builders;
+    }
+
     public int getNumberOfBuilders() {
         return numberOfBuilders;
     }
