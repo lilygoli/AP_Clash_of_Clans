@@ -27,14 +27,14 @@ public class GameCenter {
         return null;
     }
 
-    public void saveGame(Game mainGame, String pathName,String name) {
+    public void saveGame(Game mainGame, String pathName, String name) {
         Gson gson = new Gson();
         String stringJsonOfMainGame = gson.toJson(mainGame);
         BufferedWriter bufferedWriter = null;
         FileWriter fileWriter = null;
 
         try {
-            fileWriter = new FileWriter(pathName+"\\"+name+".txt");
+            fileWriter = new FileWriter(pathName + "\\" + name + ".txt");
             bufferedWriter = new BufferedWriter(fileWriter);
             bufferedWriter.write(stringJsonOfMainGame);
         } catch (IOException e) {
@@ -84,6 +84,9 @@ public class GameCenter {
         }
         fileNameAndContent[0] = jsonConvertedToString.toString();
         return fileNameAndContent;
+    }
+
+    public static void passTurn(int numOfTurns) {
 
     }
 }

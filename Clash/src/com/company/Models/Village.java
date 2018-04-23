@@ -179,6 +179,8 @@ public class Village {
         if (tower.getX() <= 0 || tower.getX() >= 29 || tower.getY() <= 0 || tower.getY() >= 29) {
             throw new MarginalTowerException();
         }
+
+        // TODO: 4/23/18 builder
         if (!map[tower.getX()][tower.getY()].getClass().isInstance(Grass.class)) {
             map[tower.getX()][tower.getY()] = tower;
             switch (tower.getName()){

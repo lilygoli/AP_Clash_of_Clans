@@ -26,6 +26,8 @@ public class Cell {
     private static ArrayList<Cell> cellKinds=new ArrayList<>();
     private int number;
 
+    // TODO: 4/23/18 builder
+
     static {
         cellKinds.add(new Barrack(0,0));
         cellKinds.add(new Camp(0,0));

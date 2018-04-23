@@ -32,7 +32,7 @@ public abstract class Defence extends Cell {
         View.show(infoMenuOptions);
     }
 
-    public abstract Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers);
+    public abstract Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers); // TODO: 4/23/18 enemy soldier should die sometimes:)
 
     public Soldier findNearestEnemyInRange(ArrayList<Soldier> enemySoldiers, boolean canShootFlyingSoldiers, boolean canShootGroundSoldiers) {
         double minDistance = -1;

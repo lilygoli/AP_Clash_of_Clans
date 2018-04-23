@@ -3,6 +3,7 @@ package com.company.Models;
 public class Builder {
     private int number;
     private boolean isOccupied;
+    private int x, y;
     public Builder(int number){
         this.number=number;
         this.isOccupied=false;
