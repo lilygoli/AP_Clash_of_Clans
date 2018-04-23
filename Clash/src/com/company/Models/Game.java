@@ -8,17 +8,26 @@ import com.company.View;
 import java.util.ArrayList;
 
 public class Game {
-    private static int elixirGained;
-    private static int goldGained;
+    private Resource gainedResource;
     private String playerName;
     private Village village;
     private int time;
     private boolean isUnderAttackOrDefense;
     private Game attackedVillage=null;
+    private ArrayList<Game> allAttackedVillages=new ArrayList<Game>();
     private static String whereIAm;
     private ArrayList<Soldier> troops;
     private static String whereIam="You are in village";
     //TODO save our game, toJson class game and writing it into a file
+
+    public void setAllAttackedVillages(ArrayList<Game> allAttackedVillages) {
+        this.allAttackedVillages = allAttackedVillages;
+    }
+
+    public ArrayList<Game> getAllAttackedVillages() {
+        return allAttackedVillages;
+    }
+
     public void showResources(){
         village.showSourcesInfo();
     }

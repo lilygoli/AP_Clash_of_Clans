@@ -62,7 +62,7 @@ public class GameCenter {
         enemyGame.setPlayerName(EnemyJsonAndName[1]);
         games.add(enemyGame);
 
-        return enemyGame;//TODO tooye controller attackedVillage e game i k tooshim set beshe ba in
+        return enemyGame;//TODO tooye controller attackedVillage e game i k tooshim set beshe ba in be allAttackedVillages ham add beshe
 
     }
 
