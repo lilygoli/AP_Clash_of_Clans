@@ -1,7 +1,10 @@
 package com.company.Models.Buildings;
 
 import com.company.Models.Builder;
+import com.company.Models.Cell;
 import com.company.Models.Config;
+import com.company.Models.Defences.Trap;
+import com.company.Models.Defences.Wall;
 import com.company.Models.Game;
 import com.company.View;
 
@@ -36,8 +39,10 @@ public class MainBuilding extends Building {
         this.numberOfBuilders = numberOfBuilders;
     }
 
-    public void showAvailableBuildings(int gold, int elixir) {
-        ArrayList<String> allBuildings = new ArrayList<String>(Arrays.asList(Building.getNameOfChildren()));
+    public String findAvailableBuildings(int gold, int elixir) {
+        ArrayList<String> allBuildings = new ArrayList<String>(Collections.singletonList(Cell.getCellKinds().getClass().getSimpleName()));//TODO age defense ha ro ham shamel mishe beja Building Cell bezar age in doros bud esmesho bezar Tower
+        allBuildings.add(Wall.class.getSimpleName());
+        allBuildings.add(Trap.class.getSimpleName());
         Collections.sort(allBuildings);
         StringBuilder availableBuildings = new StringBuilder();
         int counter = 0;
@@ -49,11 +54,11 @@ public class MainBuilding extends Building {
             }
         }
         availableBuildings = new StringBuilder(availableBuildings.toString().trim());
-        View.show(availableBuildings.toString());
+        return availableBuildings.toString();
     }
 
     public void showMenu() {
-        Game.setWhereIam("You are in TownHall Menu");
+        Game.setWhereIAm("You are in TownHall Menu");
         String menu = "1. Info\n2. Available buildings\n3. Status\n4. back";
         View.show(menu);
     }

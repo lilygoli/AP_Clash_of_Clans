@@ -1,6 +1,5 @@
 package com.company.Models;
 
-import com.company.Main;
 import com.company.Models.Buildings.*;
 import com.company.Models.Defences.AirDefence;
 import com.company.Models.Defences.ArcherTower;
@@ -133,7 +132,7 @@ public class Cell {
     }
 
     public void showInfoMenu(){
-        Game.setWhereIam("You are in"+this.getClass().getSimpleName()+"info menu");
+        Game.setWhereIAm("You are in"+this.getClass().getSimpleName()+"info menu");
         View.show(infoMenu);
     }
 
@@ -142,12 +141,12 @@ public class Cell {
     }
 
     public void showOverallInfo() {
-        Game.setWhereIam("You are in"+this.getClass().getSimpleName()+"Overall info menu");
+        Game.setWhereIAm("You are in"+this.getClass().getSimpleName()+"Overall info menu");
         View.show("Level: " + this.getLevel() + "\nHealth: " + this.getStrength());
     }
 
     public void showUpgradeInfo() {
-        Game.setWhereIam("You are in"+this.getClass().getSimpleName()+"upgrade info menu");
+        Game.setWhereIAm("You are in"+this.getClass().getSimpleName()+"upgrade info menu");
         View.show("Upgrade Cost: " + this.getUpgradeCost());
     }
 

@@ -9,16 +9,43 @@ import java.util.ArrayList;
 
 public class Game {
     private Resource gainedResource;
-    private String playerName;
-    private Village village;
-    private int time;
-    private boolean isUnderAttackOrDefense;
+    private String playerName="";
+    private Village village=new Village();
+    private int time=0;
+    private boolean isUnderAttackOrDefense=false;
     private Game attackedVillage=null;
     private ArrayList<Game> allAttackedVillages=new ArrayList<Game>();
-    private static String whereIAm;
-    private ArrayList<Soldier> troops;
-    private static String whereIam="You are in village";
-    //TODO save our game, toJson class game and writing it into a file
+    private static String whereIAm="You are in village";
+    private ArrayList<Soldier> troops=null;
+    {
+        gainedResource.setElixir(0);
+        gainedResource.setGold(0);
+    }
+    public void setAttackedVillage(Game attackedVillage) {
+        this.attackedVillage = attackedVillage;
+    }
+
+    public void setGainedResource(Resource gainedResource) {
+        this.gainedResource = gainedResource;
+    }
+
+    public Resource getGainedResource() {
+        return gainedResource;
+    }
+
+    public void setTroops(ArrayList<Soldier> troops) {
+        this.troops = troops;
+    }
+
+    public void setUnderAttackOrDefense(boolean underAttackOrDefense) {
+        isUnderAttackOrDefense = underAttackOrDefense;
+    }
+
+
+
+    public boolean isUnderAttackOrDefense() {
+        return isUnderAttackOrDefense;
+    }
 
     public void setAllAttackedVillages(ArrayList<Game> allAttackedVillages) {
         this.allAttackedVillages = allAttackedVillages;
@@ -65,12 +92,12 @@ public class Game {
     public String showAttackMenu(){
         StringBuilder finalString = new StringBuilder();
         finalString.append("1.Load Map\n");
-        int cnt = 2;
+        int counter = 2;
         for (Game game : GameCenter.getGames()) {
-            finalString.append(cnt + "." + game.playerName + "\n");
-            cnt++;
+            finalString.append(counter).append(".").append(game.playerName).append("\n");
+            counter++;
         }
-        finalString.append(cnt + ".Back\n");
+        finalString.append(counter).append(".Back\n");
         return finalString.toString();
     }
 
@@ -89,16 +116,16 @@ public class Game {
         }
     }
 
-    public static String getWhereIam() {
-        return whereIam;
+    public static String getWhereIAm() {
+        return whereIAm;
     }
 
-    public static void setWhereIam(String whereIam) {
-        Game.whereIam = whereIam;
+    public static void setWhereIAm(String whereIam) {
+        Game.whereIAm = whereIam;
     }
 
     public String showEnemyMapInfo(Village enemyVillage) {
-        Game.setWhereIam("You are in enemy map menu");
+        Game.setWhereIAm("You are in enemy map menu");
         StringBuilder result= new StringBuilder();
         result.append("Gold: ").append(enemyVillage.getResource().getGold()).append("\nElixir: ").append(enemyVillage.getResource().getElixir());
         for (Cell cell:Cell.getCellKinds()
@@ -126,11 +153,11 @@ public class Game {
     }
 
     public String showEnemyMapMenu(){//whereIam should be changed back to you are in village where this is called
-        whereIam="EnemyMapMenu";
+        whereIAm="EnemyMapMenu";
         return "1. Map Info\n2. Attack map\n3. Back";
     }
     public void showWhereIAm(){
-        View.show(whereIam);
+        View.show(whereIAm);
     }
 
     public void rebuild() {
@@ -159,7 +186,7 @@ public class Game {
     public String statusUnit(){
         StringBuilder finalString = new StringBuilder();
         for (Soldier soldier : Soldier.getSoldierSubClasses()) {
-            finalString.append(statusUnit(soldier.getClass().getSimpleName()) + "\n");
+            finalString.append(statusUnit(soldier.getClass().getSimpleName())).append("\n");
         }
         return finalString.toString();
     }
@@ -169,7 +196,7 @@ public class Game {
         for (Cell[] cells : attackedVillage.village.getMap()) {
             for (Cell cell : cells) {
                 if (cell.getClass().getSimpleName().equals(towerType)){
-                    finalString.append(towerType + " level= " + cell.getLevel() + " in(" + cell.getX() + "," + cell.getY() + ") with health" + cell.getStrength() + "\n");
+                    finalString.append(towerType).append(" level= ").append(cell.getLevel()).append(" in(").append(cell.getX()).append(",").append(cell.getY()).append(") with health").append(cell.getStrength()).append("\n");
                 }
             }
         }
@@ -179,7 +206,7 @@ public class Game {
     public String statusTower(){
         StringBuilder finalString = new StringBuilder();
         for (Cell cell : Cell.getCellKinds()) {
-            finalString.append(statusTower(cell.getClass().getSimpleName()) + "\n");
+            finalString.append(statusTower(cell.getClass().getSimpleName())).append("\n");
         }
         return finalString.toString();
     }

@@ -37,7 +37,7 @@ public class Mine extends Building {
 
     @Override
     public void showMenu() {
-        Game.setWhereIam("You are in Mine Menu");
+        Game.setWhereIAm("You are in Mine Menu");
         String menu = "1. Info\n2. Mine\n3. back";
         View.show(menu);
     }

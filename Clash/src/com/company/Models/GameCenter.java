@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class GameCenter {
-    private static ArrayList<Game> games;//tooye khode game nabayad bashe village hayi k tala beshoon hamle karde?ys inke gameCenter ham harbar save va load she
+    private static ArrayList<Game> games=new ArrayList<Game>();//tooye khode game nabayad bashe village hayi k tala beshoon hamle karde?ys inke gameCenter ham harbar save va load she
 
     public static ArrayList<Game> getGames() {
         return games;
@@ -23,13 +23,13 @@ public class GameCenter {
     }
 
     public Game makeNewGame() {
-        //TODO
-        return null;
+        return new Game();
     }
 
     public void saveGame(Game mainGame, String pathName, String name) {
         Gson gson = new Gson();
         String stringJsonOfMainGame = gson.toJson(mainGame);
+        mainGame.setPlayerName(name);
         BufferedWriter bufferedWriter = null;
         FileWriter fileWriter = null;
 
@@ -62,7 +62,7 @@ public class GameCenter {
         enemyGame.setPlayerName(EnemyJsonAndName[1]);
         games.add(enemyGame);
 
-        return enemyGame;//TODO tooye controller attackedVillage e game i k tooshim set beshe ba in be allAttackedVillages ham add beshe
+        return enemyGame;//TODO tooye Controller attackedVillage e game i k tooshim set beshe ba in be allAttackedVillages ham add beshe
 
     }
 

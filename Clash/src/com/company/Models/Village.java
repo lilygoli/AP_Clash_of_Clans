@@ -5,32 +5,51 @@ import com.company.Exception.MarginalTowerException;
 import com.company.Exception.NotEnoughFreeBuildersException;
 import com.company.Models.Buildings.*;
 import com.company.Models.Defences.*;
-import com.company.Models.Soldiers.Archer;
 import com.company.Models.Soldiers.Soldier;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class Village {
-    private Cell[][] map;
+    private Cell[][] map = new Cell[30][30];
     private Resource resource;
-    private int score;
-    private ArrayList<ArcherTower> archerTowers;
-    private ArrayList<Cannon> cannons;
-    private ArrayList<AirDefence> airDefences;
-    private ArrayList<Wall> walls;
-    private ArrayList<WizardTower> wizardTowers;
-    private ArrayList<Trap> traps;
-    // TODO: 4/19/2018 add guardian giant arraylist and class
-    private ArrayList<GoldMine> goldMines;
-    private ArrayList<ElixirMine> elixirMines;
-    private ArrayList<GoldStorage> goldStorages;
-    private ArrayList<ElixirStorage> elixirStorages;
-    private MainBuilding mainBuilding;
-    private ArrayList<Barrack> barracks;
-    private ArrayList<Camp> camps;
-    private int numOfBuilder;
-    private int numOfFreeBuilder;
+    private int score = 0;
+    private ArrayList<ArcherTower> archerTowers = new ArrayList<ArcherTower>();
+    private ArrayList<Cannon> cannons = new ArrayList<Cannon>();
+    private ArrayList<AirDefence> airDefences = new ArrayList<AirDefence>();
+    private ArrayList<Wall> walls = new ArrayList<Wall>();
+    private ArrayList<WizardTower> wizardTowers = new ArrayList<WizardTower>();
+    private ArrayList<Trap> traps = new ArrayList<Trap>();
+    // TODO: 4/19/2018 add guardian giant arrayList and class
+    private ArrayList<GoldMine> goldMines = new ArrayList<GoldMine>();
+    private ArrayList<ElixirMine> elixirMines = new ArrayList<ElixirMine>();
+    private ArrayList<GoldStorage> goldStorages = new ArrayList<GoldStorage>();
+    private ArrayList<ElixirStorage> elixirStorages = new ArrayList<ElixirStorage>();
+    private MainBuilding mainBuilding = new MainBuilding(0);
+    private ArrayList<Barrack> barracks = new ArrayList<Barrack>();
+    private ArrayList<Camp> camps = new ArrayList<Camp>();
+
+    {
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
+                map[j][i] = new Grass();
+            }
+        }
+        resource.setGold(Config.getDictionary().get("STARTING_GOLD"));
+        resource.setElixir(Config.getDictionary().get("STARTING_ELIXIR"));
+        map[14][14] = mainBuilding;
+        map[14][15] = mainBuilding;
+        map[15][14] = mainBuilding;
+        map[15][15] = mainBuilding;
+
+        goldStorages.add(new GoldStorage(1, 0));
+        elixirStorages.add(new ElixirStorage(1, 0));
+        Random random = new Random();
+        map[random.nextInt(28) + 1][random.nextInt(28) + 1] = goldStorages.get(0);
+        map[random.nextInt(28) + 1][random.nextInt(28) + 1] = elixirStorages.get(0);
+
+    }
 
     public void setResource(Resource resource) {
         this.resource = resource;
@@ -160,26 +179,62 @@ public class Village {
         this.camps = camps;
     }
 
-    public int getNumOfBuilder() {
-        return numOfBuilder;
-    }
-
-    public void setNumOfBuilder(int numOfBuilder) {
-        this.numOfBuilder = numOfBuilder;
-    }
-
-    public int getNumOfFreeBuilder() {
-        return numOfFreeBuilder;
-    }
-
-    public void setNumOfFreeBuilder(int numOfFreeBuilder) {
-        this.numOfFreeBuilder = numOfFreeBuilder;
-    }
-
-    public void buildTower(Cell tower) throws BusyCellException, MarginalTowerException, NotEnoughFreeBuildersException {
+    public void buildTower(Cell tower) throws BusyCellException, MarginalTowerException {
         if (tower.getX() <= 0 || tower.getX() >= 29 || tower.getY() <= 0 || tower.getY() >= 29) {
             throw new MarginalTowerException();
         }
+        if (map[tower.getX()][tower.getY()].getClass().isInstance(Grass.class)) {
+            map[tower.getX()][tower.getY()] = tower;
+            tower.setUnderConstruction(true);
+            tower.setTimeTillConstruction(Config.getDictionary().get(tower.getClass().getSimpleName()+"_BUILD_DURATION"));
+            switch (tower.getName()) {
+                case "Camp":
+                    this.getCamps().add((Camp) tower);
+                    tower.setNumber(getCamps().size());
+                    break;
+                case "Barrack":
+                    this.getBarracks().add((Barrack) tower);
+                    tower.setNumber(getBarracks().size());
+                    break;
+                case "ElixirStorage":
+                    this.getElixirStorages().add((ElixirStorage) tower);
+                    tower.setNumber(getElixirStorages().size());
+                    break;
+                case "GoldStorage":
+                    this.getGoldStorages().add((GoldStorage) tower);
+                    tower.setNumber(getGoldStorages().size());
+                    break;
+                case "ElixirMine":
+                    this.getElixirMines().add((ElixirMine) tower);
+                    tower.setNumber(getElixirMines().size());
+                    break;
+                case "GoldMine":
+                    this.getGoldMines().add((GoldMine) tower);
+                    tower.setNumber(getGoldMines().size());
+                    break;
+                case "AirDefense":
+                    this.getAirDefences().add((AirDefence) tower);
+                    tower.setNumber(getAirDefences().size());
+                    break;
+                case "ArcherTower":
+                    this.getArcherTowers().add((ArcherTower) tower);
+                    tower.setNumber(getArcherTowers().size());
+                    break;
+                case "Cannon":
+                    this.getCannons().add((Cannon) tower);
+                    tower.setNumber(getCannons().size());
+                    break;
+                case "WizardTower":
+                    this.getWizardTowers().add((WizardTower) tower);
+                    tower.setNumber(getWizardTowers().size());
+                    break;
+            }
+
+        } else {
+            throw new BusyCellException();
+        }
+    }
+    public Builder findFreeBuilder() throws  NotEnoughFreeBuildersException {
         int numberOfFreeBuilders = 0;
         Builder builderToConstruct = null;
         for (Builder builder : this.getMainBuilding().getBuilders()) {
@@ -191,28 +246,7 @@ public class Village {
         if (numberOfFreeBuilders == 0) {
             throw new NotEnoughFreeBuildersException();
         }
-        builderToConstruct.setOccupationState(true);
-        tower.setWorkingBuilder(builderToConstruct);
-
-        if (!map[tower.getX()][tower.getY()].getClass().isInstance(Grass.class)) {
-            map[tower.getX()][tower.getY()] = tower;
-            switch (tower.getName()){
-                case "Camp":this.getCamps().add((Camp)tower);break;
-                case "Barrack": this.getBarracks().add((Barrack) tower);break;
-                case "ElixirStorage":this.getElixirStorages().add((ElixirStorage)tower);break;
-                case "GoldStorage":this.getGoldStorages().add((GoldStorage)tower);break;
-                case "ElixirMine":this.getElixirMines().add((ElixirMine) tower);break;
-                case "GoldMine":this.getGoldMines().add((GoldMine)tower);break;
-                case "AirDefense":this.getAirDefences().add((AirDefence) tower);break;
-                case "ArcherTower":this.getArcherTowers().add((ArcherTower) tower);break;
-                case "Cannon":this.getCannons().add((Cannon)tower);break;
-                case "WizardTower":this.getWizardTowers().add((WizardTower) tower);break;
-            }
-
-        }
-        else {
-            throw new BusyCellException();
-        }
+        return builderToConstruct;
     }
 
     public String showTownHallStatus() {
@@ -252,7 +286,8 @@ public class Village {
         }
         return result.toString().trim();
     }
-    private ArrayList<Integer> sortSoldiersByTimeLeft(int time){
+
+    private ArrayList<Integer> sortSoldiersByTimeLeft(int time) {
         ArrayList<Integer> turnsLeft = new ArrayList<Integer>();
         for (Barrack barrack : barracks
                 ) {
@@ -266,9 +301,10 @@ public class Village {
         turnsLeft.sort((a, b) -> a < b ? a : b);
         return turnsLeft;
     }
-    public String showSourcesInfo(){
-        String result="";
-        result=result+"GOLD:"+resource.getGold()+"\nElixir:"+resource.getElixir()+"\nScore:"+score;
+
+    public String showSourcesInfo() {
+        String result = "";
+        result = result + "GOLD:" + resource.getGold() + "\nElixir:" + resource.getElixir() + "\nScore:" + score;
         return result;
     }
 

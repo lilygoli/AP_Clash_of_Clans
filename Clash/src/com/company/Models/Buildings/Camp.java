@@ -2,7 +2,6 @@ package com.company.Models.Buildings;
 
 import com.company.Models.Game;
 import com.company.Models.Soldiers.Soldier;
-import com.company.Models.Soldiers.Soldier;
 import com.company.View;
 
 import java.util.ArrayList;
@@ -23,17 +22,17 @@ public class Camp extends Building {
 
     @Override
     public void showMenu() {
-        Game.setWhereIam("You are in Camp Menu");
+        Game.setWhereIAm("You are in Camp Menu");
         String menu = "1. Info\n2. Soldiers\n3. back";
         View.show(menu);
     }
     public void showInfoMenu(){
-        Game.setWhereIam("You are in Camp info menu");
+        Game.setWhereIAm("You are in Camp info menu");
         String infoMenu = "1. Overall info\n2. Upgrade info\n3. Capacity info\n4. Back";
         View.show(infoMenu);
     }
     public void showCapacityInfo(int numberOfSoldiers,int numberOfCamps){
-        Game.setWhereIam("You are in Camp capacity info Menu");
+        Game.setWhereIAm("You are in Camp capacity info Menu");
         String capacityInfo="Your camps capacity is "+numberOfSoldiers+"/"+numberOfCamps*getCapacity()+".";
         View.show(capacityInfo);
     }

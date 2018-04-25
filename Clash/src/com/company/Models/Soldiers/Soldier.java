@@ -186,7 +186,7 @@ public abstract class Soldier {
 
 
     public void attackTarget(Village enemyVillage, String favoriteTarget) {
-        Cell target = new Cell();
+        Cell target;
         if (favoriteTarget.equals("Storage")) {
             target = findDestinationForGiant(enemyVillage);
         } else if (favoriteTarget.equals("Defence")) {
@@ -209,14 +209,14 @@ public abstract class Soldier {
         }
     }
 
-    public void moveSoldier(Direction directon) {
-        if (directon == Direction.LEFT) {
+    public void moveSoldier(Direction direction) {
+        if (direction == Direction.LEFT) {
             x = x - MOVE_PER_TURN;
-        } else if (directon == Direction.RIGHT) {
+        } else if (direction == Direction.RIGHT) {
             x = x + MOVE_PER_TURN;
-        } else if (directon == Direction.UP) {
+        } else if (direction == Direction.UP) {
             y = y + MOVE_PER_TURN;
-        } else if (directon == Direction.DOWN) {
+        } else if (direction == Direction.DOWN) {
             y = y - MOVE_PER_TURN;
         }
     }

@@ -5,11 +5,14 @@ import java.util.HashMap;
 public class Config {
     private static HashMap<String,Integer> dictionary=new HashMap<String,Integer>();
     {
+        dictionary.put("STARTING_GOLD",10000);
+        dictionary.put("STARTING_ELIXIR",1000);
+
         dictionary.put("GoldMine_GOLD_COST",150);
         dictionary.put("GoldMine_ELIXIR_COST",5);
         dictionary.put("GoldMine_JSON_TYPE",1);
         dictionary.put("GoldMine_STRENGTH",200);
-        dictionary.put("GoldMine_BUILD_DURATION",0);
+        dictionary.put("GoldMine_BUILD_DURATION",300);
         dictionary.put("GoldMine_POINTS_GAINED_WHEN_DESTRUCTED",2);
         dictionary.put("GoldMine_GOLD_GAINED_WHEN_DESTRUCTED",150);
         dictionary.put("GoldMine_ELIXIR_GAINED_WHEN_DESTRUCTED",5);
@@ -19,7 +22,7 @@ public class Config {
         dictionary.put("ElixirMine_ELIXIR_COST",3);
         dictionary.put("ElixirMine_JSON_TYPE",2);
         dictionary.put("ElixirMine_STRENGTH",200);
-        dictionary.put("ElixirMine_BUILD_DURATION",0);
+        dictionary.put("ElixirMine_BUILD_DURATION",100);
         dictionary.put("ElixirMine_POINTS_GAINED_WHEN_DESTRUCTED",2);
         dictionary.put("ElixirMine_GOLD_GAINED_WHEN_DESTRUCTED",100);
         dictionary.put("ElixirMine_ELIXIR_GAINED_WHEN_DESTRUCTED",3);
@@ -29,7 +32,7 @@ public class Config {
         dictionary.put("GoldStorage_ELIXIR_COST",0);
         dictionary.put("GoldStorage_JSON_TYPE",3);
         dictionary.put("GoldStorage_STRENGTH",300);
-        dictionary.put("GoldStorage_BUILD_DURATION",0);
+        dictionary.put("GoldStorage_BUILD_DURATION",200);
         dictionary.put("GoldStorage_POINTS_GAINED_WHEN_DESTRUCTED",3);
         dictionary.put("GoldStorage_GOLD_GAINED_WHEN_DESTRUCTED",200);
         dictionary.put("GoldStorage_ELIXIR_GAINED_WHEN_DESTRUCTED",0);
@@ -39,7 +42,7 @@ public class Config {
         dictionary.put("ElixirStorage_ELIXIR_COST",0);
         dictionary.put("ElixirStorage_JSON_TYPE",4);
         dictionary.put("ElixirStorage_STRENGTH",300);
-        dictionary.put("ElixirStorage_BUILD_DURATION",0);
+        dictionary.put("ElixirStorage_BUILD_DURATION",100);
         dictionary.put("ElixirStorage_POINTS_GAINED_WHEN_DESTRUCTED",3);
         dictionary.put("ElixirStorage_GOLD_GAINED_WHEN_DESTRUCTED",200);
         dictionary.put("ElixirStorage_ELIXIR_GAINED_WHEN_DESTRUCTED",0);

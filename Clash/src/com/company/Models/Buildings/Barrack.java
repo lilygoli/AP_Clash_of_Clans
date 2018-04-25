@@ -33,7 +33,7 @@ public class Barrack extends Building {
     }
 
     public void showMenu() {
-        Game.setWhereIam("You are in Barracks Menu");
+        Game.setWhereIAm("You are in Barracks Menu");
         String infoMenu = "1. Info\n2. Build Soldiers\n3. Status\n4. back";
         View.show(infoMenu);
     }

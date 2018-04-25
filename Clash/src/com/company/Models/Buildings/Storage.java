@@ -35,7 +35,7 @@ public class Storage extends Building {
 
     @Override
     public void showMenu() {
-        Game.setWhereIam("You are in Storage Menu");
+        Game.setWhereIAm("You are in Storage Menu");
         String menu = "1. Info";
         View.show(menu);
     }

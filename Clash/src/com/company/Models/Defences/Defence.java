@@ -23,12 +23,12 @@ public abstract class Defence extends Cell {
     }
 
     public void showMenu() {
-        Game.setWhereIam("You are in"+this.getClass().getSimpleName() +"enemy map menu");
+        Game.setWhereIAm("You are in"+this.getClass().getSimpleName() +"enemy map menu");
         View.show(menuOptions);
     }
 
     public void showInfoMenu() {
-        Game.setWhereIam("You are in"+this.getClass().getSimpleName() +"enemy map menu");
+        Game.setWhereIAm("You are in"+this.getClass().getSimpleName() +"enemy map menu");
         View.show(infoMenuOptions);
     }
 
