@@ -42,7 +42,11 @@ public abstract class Soldier {
         damage = Config.getDictionary().get(this.getClass().getSimpleName() + "_DAMAGE");
     }
 
-    private final double MOVE_PER_TURN = 1 / maxSpeed;
+    Soldier(Barrack barrack){
+        buildDuration = Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION") - barrack.getLevel();
+    }
+
+    private final double MOVE_PER_TURN = 1;
     // TODO: 4/26/2018 what is move per turn
 
     public static ArrayList<Soldier> getSoldierSubClasses() {
@@ -207,20 +211,57 @@ public abstract class Soldier {
             }
         } else {
             direction = findDirection(enemyVillage, target);
-            moveSoldier(direction);
+            moveSoldier(direction, enemyVillage);
         }
     }
 
-    public void moveSoldier(Direction direction) {
-        // TODO: 4/24/2018 do damage
+    public void moveSoldier(Direction direction, Village enemyVillage) {
+        // TODO: 4/24/2018 check double int
         if (direction == Direction.LEFT) {
-            x = x - MOVE_PER_TURN;
+            if (enemyVillage.getMap()[(int) (x - 1)][(int) y].equals(Grass.class) || enemyVillage.getMap()[(int)(x - 1)][(int)y].isRuined() || getCanFly()) {
+                x = x - MOVE_PER_TURN;
+            } else {
+                Cell target = enemyVillage.getMap()[(int) (x - 1)][(int) y];
+                target.setStrength(target.getStrength() - getDamage());
+                if (target.getStrength() <= 0) {
+                    target.setRuined(true);
+                    target.setStrength(0);
+                }
+            }
+
         } else if (direction == Direction.RIGHT) {
-            x = x + MOVE_PER_TURN;
+            if (enemyVillage.getMap()[(int) (x + 1)][(int) y].equals(Grass.class)  || enemyVillage.getMap()[(int)(x + 1)][(int)y].isRuined() || getCanFly()) {
+                x = x + MOVE_PER_TURN;
+            } else {
+                Cell target = enemyVillage.getMap()[(int) (x + 1)][(int) y];
+                target.setStrength(target.getStrength() - getDamage());
+                if (target.getStrength() <= 0) {
+                    target.setRuined(true);
+                    target.setStrength(0);
+                }
+            }
         } else if (direction == Direction.UP) {
-            y = y + MOVE_PER_TURN;
+            if (enemyVillage.getMap()[(int) x][(int) (y + 1)].equals(Grass.class) || enemyVillage.getMap()[(int) x][(int) (y + 1)].isRuined() || getCanFly()) {
+                y = y + MOVE_PER_TURN;
+            } else {
+                Cell target = enemyVillage.getMap()[(int) x][(int) (y + 1)];
+                target.setStrength(target.getStrength() - getDamage());
+                if (target.getStrength() <= 0) {
+                    target.setRuined(true);
+                    target.setStrength(0);
+                }
+            }
         } else if (direction == Direction.DOWN) {
-            y = y - MOVE_PER_TURN;
+            if (enemyVillage.getMap()[(int) x][(int) (y - 1)].equals(Grass.class) || enemyVillage.getMap()[(int) x][(int) (y - 1)].isRuined() || getCanFly()) {
+                y = y - MOVE_PER_TURN;
+            } else {
+                Cell target = enemyVillage.getMap()[(int) x][(int) (y - 1)];
+                target.setStrength(target.getStrength() - getDamage());
+                if (target.getStrength() <= 0) {
+                    target.setRuined(true);
+                    target.setStrength(0);
+                }
+            }
         }
     }
 
@@ -323,7 +364,7 @@ public abstract class Soldier {
         distance[destination.getX()][destination.getY()] = 0;
         while (!queueX.isEmpty()) {
             int x = queueX.getFirst(), y = queueY.getFirst();
-            Integer[][] adjacent = {{-1 , - 1} , {-1 , -1} , {-1 , -1} , {-1 , -1}};
+            Integer[][] adjacent = {{-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}};
             adjacent[0][0] = x;
             if (y - 1 >= 0) {
                 adjacent[0][1] = y - 1;
@@ -365,7 +406,7 @@ public abstract class Soldier {
             queueY.removeFirst();
         }
         // TODO: 4/23/2018 check double and int 
-        return lastDir[(int)getX()][(int)getY()];
+        return lastDir[(int) getX()][(int) getY()];
     }
 
     public boolean hasReachedDestination(Cell target) {

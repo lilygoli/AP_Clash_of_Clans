@@ -56,7 +56,6 @@ public class Game {
     }
 
 
-    // TODO: 4/23/2018 decrease time add in constrcutor
     public void showResources(){
         village.showSourcesInfo();
     }
@@ -176,6 +175,14 @@ public class Game {
         }
     }
 
+    public String statusResources(){
+        StringBuilder finalString = new StringBuilder();
+        finalString.append("Gold Achieved : " + gainedResource.getGold() + "\n");
+        finalString.append("Elixir Achieved : " + gainedResource.getElixir() + "\n");
+        finalString.append("Gold Remained In Map : " + (attackedVillage.village.getResource().getGold() - gainedResource.getGold()) + "\n");
+        finalString.append("Elixir Remained In Map : " + (attackedVillage.village.getResource().getElixir() - gainedResource.getElixir()) + "\n");
+        return finalString.toString();
+    }
     public String statusUnit(String unitType){
         StringBuilder finalString = new StringBuilder();
         for (Soldier troop : troops) {
@@ -216,8 +223,7 @@ public class Game {
 
     public String statusAll(){
         StringBuilder finalString = new StringBuilder();
-        finalString.append(statusTower() + statusUnit());
-        // TODO: 4/21/2018 add status resources
+        finalString.append(statusResources() + statusTower() + statusUnit());
         return finalString.toString();
     }
 
