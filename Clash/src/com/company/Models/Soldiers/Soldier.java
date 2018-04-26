@@ -43,6 +43,7 @@ public abstract class Soldier {
     }
 
     private final double MOVE_PER_TURN = 1 / maxSpeed;
+    // TODO: 4/26/2018 what is move per turn
 
     public static ArrayList<Soldier> getSoldierSubClasses() {
         return soldierSubClasses;
@@ -186,6 +187,7 @@ public abstract class Soldier {
 
 
     public void attackTarget(Village enemyVillage, String favoriteTarget) {
+        // TODO: 4/23/2018 add resource decrease
         Cell target;
         if (favoriteTarget.equals("Storage")) {
             target = findDestinationForGiant(enemyVillage);
@@ -210,6 +212,7 @@ public abstract class Soldier {
     }
 
     public void moveSoldier(Direction direction) {
+        // TODO: 4/24/2018 do damage
         if (direction == Direction.LEFT) {
             x = x - MOVE_PER_TURN;
         } else if (direction == Direction.RIGHT) {
@@ -304,9 +307,7 @@ public abstract class Soldier {
     }
 
     public Direction findDirection(Village enemyVillage, Cell destination) {
-        // TODO: 4/18/2018 make it complete
         int infinity = Integer.MAX_VALUE;
-        // TODO: 4/23/2018 add POSITION Class
         LinkedList<Integer> queueX = new LinkedList<>();
         LinkedList<Integer> queueY = new LinkedList<>();
         int[][] distance = new int[30][30];
@@ -322,7 +323,7 @@ public abstract class Soldier {
         distance[destination.getX()][destination.getY()] = 0;
         while (!queueX.isEmpty()) {
             int x = queueX.getFirst(), y = queueY.getFirst();
-            Integer[][] adjacent = new Integer[4][2];
+            Integer[][] adjacent = {{-1 , - 1} , {-1 , -1} , {-1 , -1} , {-1 , -1}};
             adjacent[0][0] = x;
             if (y - 1 >= 0) {
                 adjacent[0][1] = y - 1;
@@ -340,8 +341,7 @@ public abstract class Soldier {
                 adjacent[3][0] = x;
             }
             for (int i = 0; i < 4; i++) {
-                // TODO: 4/23/2018 refactor
-                if (!adjacent[i][0].equals(null) && !adjacent[i][1].equals(null) && distance[x][y] + 1 + (int) (enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getStrength() / damage) < distance[adjacent[i][0]][adjacent[i][1]]) {
+                if (adjacent[i][0] != -1 && adjacent[i][1] != -1 && distance[x][y] + 1 + (int) (enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getStrength() / damage) < distance[adjacent[i][0]][adjacent[i][1]]) {
                     distance[adjacent[i][0]][adjacent[i][1]] = distance[x][y] + 1 + (int) (enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getStrength() / damage);
                     switch (i) {
                         case 0:
@@ -359,7 +359,6 @@ public abstract class Soldier {
                     }
                     queueX.add(adjacent[i][0]);
                     queueY.add(adjacent[i][1]);
-
                 }
             }
             queueX.removeFirst();

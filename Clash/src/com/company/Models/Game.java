@@ -55,6 +55,8 @@ public class Game {
         return allAttackedVillages;
     }
 
+
+    // TODO: 4/23/2018 decrease time add in constrcutor
     public void showResources(){
         village.showSourcesInfo();
     }
@@ -195,7 +197,7 @@ public class Game {
         StringBuilder finalString = new StringBuilder();
         for (Cell[] cells : attackedVillage.village.getMap()) {
             for (Cell cell : cells) {
-                if (cell.getClass().getSimpleName().equals(towerType)){
+                if (cell.getClass().getSimpleName().equals(towerType) && !cell.isRuined()){
                     finalString.append(towerType).append(" level= ").append(cell.getLevel()).append(" in(").append(cell.getX()).append(",").append(cell.getY()).append(") with health").append(cell.getStrength()).append("\n");
                 }
             }
@@ -203,6 +205,7 @@ public class Game {
         return finalString.toString();
     }
 
+    // TODO: 4/23/2018 put unit
     public String statusTower(){
         StringBuilder finalString = new StringBuilder();
         for (Cell cell : Cell.getCellKinds()) {
