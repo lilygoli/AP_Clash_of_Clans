@@ -13,6 +13,9 @@ public class ArcherTower extends Defence {
         Soldier target = findNearestEnemyInRange(enemySoldiers, false, true);
         if (target != null) {
             target.setHealth(target.getHealth() - this.getDamage());
+            if (target.getHealth() <= 0) {
+                enemySoldiers.remove(target);
+            }
         }
         return target;
     }

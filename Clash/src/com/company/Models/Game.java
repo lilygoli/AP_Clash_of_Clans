@@ -45,6 +45,7 @@ public class Game {
     }
 
 
+
     public boolean isUnderAttackOrDefense() {
         return isUnderAttackOrDefense;
     }
@@ -278,5 +279,7 @@ public class Game {
 
     // TODO: 4/26/2018 attack func
 
+    public void passTurnForDefenderMap() {
 
+    }
 }

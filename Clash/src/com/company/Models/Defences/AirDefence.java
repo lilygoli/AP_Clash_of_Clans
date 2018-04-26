@@ -13,6 +13,9 @@ public class AirDefence extends Defence {
         Soldier target = findNearestEnemyInRange(enemySoldiers, true, false);
         if (target != null) {
             target.setHealth(target.getHealth() - this.getDamage());
+            if (target.getHealth() <= 0) {
+                enemySoldiers.remove(target);
+            }
         }
         return target;
     }
