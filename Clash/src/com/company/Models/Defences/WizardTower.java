@@ -20,6 +20,9 @@ public class WizardTower extends Defence {
                 Integer manhatanDistance =(int)Math.abs(enemySoldier.getX() - target.getX()) + (int)Math.abs(enemySoldier.getY() - target.getY());
                 if (validManhattanDistance.contains(manhatanDistance)) {
                     enemySoldier.setHealth(enemySoldier.getHealth() - this.getDamage());
+                    if (target.getHealth() <= 0) {
+                        enemySoldiers.remove(target);
+                    }
                 }
             }
         }

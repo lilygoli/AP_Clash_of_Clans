@@ -218,5 +218,7 @@ public class Game {
         return finalString.toString();
     }
 
+    public void passTurnForDefenderMap() {
 
+    }
 }
