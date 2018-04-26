@@ -44,7 +44,9 @@ public abstract class Soldier {
 
     Soldier(Barrack barrack){
         buildDuration = Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION") - barrack.getLevel();
+        // TODO: 4/26/2018 check
     }
+    Soldier(){};
 
     private final double MOVE_PER_TURN = 1;
     // TODO: 4/26/2018 what is move per turn

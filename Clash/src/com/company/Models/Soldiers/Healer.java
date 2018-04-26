@@ -25,7 +25,6 @@ public class Healer extends Soldier {
 
     @Override
     public void upgrade(){
-        // TODO: 4/18/2018 add config for this func
         heal += healAdded;
     }
 
