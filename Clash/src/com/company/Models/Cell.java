@@ -10,7 +10,6 @@ import com.company.View;
 import java.util.ArrayList;
 
 public class Cell {
-    //TODO test kardam kar nemikone this tooye const seda zadan ghablan 0 set mishe , avaz beshe
 
     private final String infoMenu = "1. Overall Info\n2. Upgrade Info\n3. Back";
     private boolean isUnderConstruction;
@@ -26,6 +25,12 @@ public class Cell {
     private int number;
     private Builder workingBuilder;
 
+    public Cell(int number,int level){
+        Config.getDictionary().get(this.getClass().getSimpleName()+"_STRENGTH");
+        this.level=level;
+        this.number=number;
+    }
+
     public Builder getWorkingBuilder() {
         return workingBuilder;
     }
@@ -33,7 +38,6 @@ public class Cell {
     public void setWorkingBuilder(Builder workingBuilder) {
         this.workingBuilder = workingBuilder;
     }
-
     static {
         cellKinds.add(new Barrack(0,0));
         cellKinds.add(new Camp(0,0));
@@ -47,12 +51,9 @@ public class Cell {
         cellKinds.add(new Cannon(0,0));
         cellKinds.add(new WizardTower(0,0));
     }
-    public Cell(){
-        Config.getDictionary().get(this.getClass().getSimpleName()+"_STRENGTH");
-    }
 
     public void upgrade() {
-        //it is overRided in its childs
+        //it is overRidden in its children
     }
 
     public int getAmount() {

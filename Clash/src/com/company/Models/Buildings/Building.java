@@ -7,13 +7,10 @@ import java.util.Properties;
 
 public abstract class Building extends Cell {
 
-private int number;
 private int timeLeftOfConstruction;
 private static String[] nameOfChildren=new String[]{"Barrack","Camp","ElixirMine","GoldMine","GoldStorage","ElixirStorage"};
-
     public Building(int number,int level){
-        super.setLevel(level);
-        this.number=number;
+        super(number,level);
     }
 
     public int getGoldCost() {
@@ -57,14 +54,6 @@ private static String[] nameOfChildren=new String[]{"Barrack","Camp","ElixirMine
         return Config.getDictionary().get(this.getClass().getSimpleName()+"_UPGRADE_COST");
     }
 
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
 
     public static String[] getNameOfChildren() {
         return nameOfChildren;

@@ -53,5 +53,8 @@ public class Storage extends Building {
         }
 
     }
+    public boolean isFull(){
+        return resource >= capacity;
+    }
 
 }

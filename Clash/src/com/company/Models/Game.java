@@ -1,8 +1,11 @@
 package com.company.Models;
 
+import com.company.Exception.InvalidPlaceForSoldiersException;
+import com.company.Exception.MoreThanLimitSoldiersException;
 import com.company.Models.Buildings.Camp;
 import com.company.Models.Buildings.Grass;
 import com.company.Models.Buildings.MainBuilding;
+import com.company.Models.Buildings.Storage;
 import com.company.Models.Soldiers.Soldier;
 import com.company.View;
 
@@ -14,6 +17,7 @@ public class Game {
     private Village village = new Village();
     private int time = 0;
     private boolean isUnderAttackOrDefense = false;
+    private int timePassedInWar = 0;
     private Game attackedVillage = null;
     private ArrayList<Game> allAttackedVillages = new ArrayList<Game>();
     private static String whereIAm = "You are in village";
@@ -43,7 +47,6 @@ public class Game {
     public void setUnderAttackOrDefense(boolean underAttackOrDefense) {
         isUnderAttackOrDefense = underAttackOrDefense;
     }
-
 
 
     public boolean isUnderAttackOrDefense() {
@@ -205,19 +208,17 @@ public class Game {
     }
 
     public String statusResources() {
-        StringBuilder finalString = new StringBuilder();
-        finalString.append("Gold Achieved : " + gainedResource.getGold() + "\n");
-        finalString.append("Elixir Achieved : " + gainedResource.getElixir() + "\n");
-        finalString.append("Gold Remained In Map : " + (attackedVillage.village.getResource().getGold() - gainedResource.getGold()) + "\n");
-        finalString.append("Elixir Remained In Map : " + (attackedVillage.village.getResource().getElixir() - gainedResource.getElixir()) + "\n");
-        return finalString.toString();
+        return "Gold Achieved : " + gainedResource.getGold() + "\n" +
+                "Elixir Achieved : " + gainedResource.getElixir() + "\n" +
+                "Gold Remained In Map : " + (attackedVillage.village.getResource().getGold() - gainedResource.getGold()) + "\n" +
+                "Elixir Remained In Map : " + (attackedVillage.village.getResource().getElixir() - gainedResource.getElixir()) + "\n";
     }
 
     public String statusUnit(String unitType) {
         StringBuilder finalString = new StringBuilder();
         for (Soldier troop : troops) {
             if (troop.getClass().getSimpleName().equals(unitType)) {
-                finalString.append(unitType + " level= " + troop.getLevel() + " in(" + troop.getX() + "," + troop.getY() + ") with health" + troop.getHealth() + "\n");
+                finalString.append(unitType).append(" level= ").append(troop.getLevel()).append(" in(").append(troop.getX()).append(",").append(troop.getY()).append(") with health").append(troop.getHealth()).append("\n");
             }
         }
         return finalString.toString();
@@ -253,14 +254,17 @@ public class Game {
     }
 
     public String statusAll() {
-        StringBuilder finalString = new StringBuilder();
-        finalString.append(statusResources() + statusTower() + statusUnit());
-        return finalString.toString();
+        return statusResources() + statusTower() + statusUnit();
     }
 
     public void healAfterWar() {
+        for (Soldier soldier : troops
+                ) {
+            soldier.setX(-1);
+            soldier.setY(-1);
+        }
         healSoldiers();
-        rebuild();
+        attackedVillage.rebuild();
     }
 
     public void healSoldiers() {
@@ -277,9 +281,59 @@ public class Game {
         troops.clear();
     }
 
-    // TODO: 4/26/2018 attack func
-
-    public void passTurnForDefenderMap() {
+    // TODO: 4/26/2018 startAttack func
+    public void startAttack() {
 
     }
+
+    public void putUnit(String unitType, int amount, int x, int y) throws MoreThanLimitSoldiersException, InvalidPlaceForSoldiersException {
+        if (amount > 5) {
+            throw new MoreThanLimitSoldiersException();
+        }
+        int sameSoldiersNumber = 0;
+        for (Soldier soldier : troops
+                ) {
+            if (soldier.getY() != -1 && soldier.getX() != -1 && soldier.getX() == x && soldier.getY() == y) {
+                if (soldier.getClass().getSimpleName().equalsIgnoreCase(unitType.replace(" ", ""))) {
+                    sameSoldiersNumber++;
+                } else {
+                    throw new InvalidPlaceForSoldiersException();
+                }
+            }
+        }
+        int number=0;
+        if (sameSoldiersNumber + amount <= 5) {
+            for (Soldier soldier : troops
+                    ) {
+                if(soldier.getX()==-1 && soldier.getY()==-1 && soldier.getClass().getSimpleName().equalsIgnoreCase(unitType.replace(" ", ""))){
+                    number++;
+                    soldier.setX(x);
+                    soldier.setY(y);
+                    if(number==amount){
+                        break;
+                    }
+                }
+            }
+        }
+
+    }
+
+    public void passTurnInNormalMode(){
+
+    }
+
+    public boolean isWarFinished() {
+
+        int flag = 0;
+        ArrayList<Storage> allStorage = new ArrayList<>(village.getElixirStorages());
+        allStorage.addAll(village.getGoldStorages());
+        for (Storage storage : allStorage
+                ) {
+            if (!storage.isFull()) {
+                flag = 1;
+            }
+        }
+        return timePassedInWar >= 10000 || troops.size() == 0 || flag == 0 || (attackedVillage.getVillage().getResource().getGold() == 0 && attackedVillage.getVillage().getResource().getElixir() == 0);
+    }
+
 }

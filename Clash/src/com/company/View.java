@@ -12,6 +12,7 @@ public class View {
     public String getInput() {
         return scanner.nextLine();
     }
+
     public String getInput(String message) {
         System.out.println(message);
         return scanner.nextLine();
@@ -21,14 +22,23 @@ public class View {
         System.out.println(command);
     }
 
-    public void showMap(Village village) {
+    public void showMap(Village village, int isInWarFlag) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
-                if (village.getMap()[j][i].getClass() == Grass.class && i < 29 && j < 29 && j > 0 && i > 0) {
+                if (village.getMap()[j][i].getClass() == Grass.class) {
                     result.append("0");
                 } else {
                     result.append("1");
+                }
+                if (isInWarFlag == 1) {
+                    if (i >= 29 || j >= 29 || j <= 0 || i <= 0) {
+                        result.append("0");
+                    }
+                } else {
+                    if (i >= 29 || j >= 29 || j <= 0 || i <= 0) {
+                        result.append("1");
+                    }
                 }
             }
             result.append("\n");

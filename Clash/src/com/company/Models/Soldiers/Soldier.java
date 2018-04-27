@@ -23,7 +23,7 @@ public abstract class Soldier {
     private int addedHealth;
     private int addedDamage;
     private int unlockLevel;
-    private double x, y;
+    private double x=-1, y=-1;
     private boolean canFly;
     private boolean dead;
     private Direction direction;
@@ -195,14 +195,19 @@ public abstract class Soldier {
     public void attackTarget(Village enemyVillage, String favoriteTarget) {
         // TODO: 4/23/2018 add resource decrease
         Cell target;
-        if (favoriteTarget.equals("Storage")) {
-            target = findDestinationForGiant(enemyVillage);
-        } else if (favoriteTarget.equals("Defence")) {
-            target = findDestinationForArcher(enemyVillage);
-        } else if (favoriteTarget.equals("Wall")) {
-            target = findDestinationForWallBreaker(enemyVillage);
-        } else {
-            target = findDestinationForAll(enemyVillage);
+        switch (favoriteTarget) {
+            case "Storage":
+                target = findDestinationForGiant(enemyVillage);
+                break;
+            case "Defence":
+                target = findDestinationForArcher(enemyVillage);
+                break;
+            case "Wall":
+                target = findDestinationForWallBreaker(enemyVillage);
+                break;
+            default:
+                target = findDestinationForAll(enemyVillage);
+                break;
         }
 
         if (hasReachedDestination(target)) {
@@ -268,7 +273,7 @@ public abstract class Soldier {
     }
 
     public Cell findDestinationForArcher(Village enemyVillage) {
-        Cell destination = new Cell();
+        Cell destination = new Cell(0,0);
         double minDistance = 100d;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
@@ -289,7 +294,7 @@ public abstract class Soldier {
     }
 
     public Cell findDestinationForGiant(Village enemyVillage) {
-        Cell destination = new Cell();
+        Cell destination = new Cell(0,0);
         double minDistance = 100d;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
@@ -310,7 +315,7 @@ public abstract class Soldier {
     }
 
     public Cell findDestinationForWallBreaker(Village enemyVillage) {
-        Cell destination = new Cell();
+        Cell destination = new Cell(0,0);
         double minDistance = 100d;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
@@ -332,7 +337,7 @@ public abstract class Soldier {
 
     // TODO: 4/18/2018 add healer
     public Cell findDestinationForAll(Village enemyVillage) {
-        Cell destination = new Cell();
+        Cell destination = new Cell(0,0);
         double minDistance = 100d;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
