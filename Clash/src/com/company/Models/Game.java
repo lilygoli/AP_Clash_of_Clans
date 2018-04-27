@@ -262,7 +262,7 @@ public class Game {
         return statusResources() + statusTower() + statusUnit();
     }
 
-    public void passTurnForAttack() throws NotInWarException{
+    public void passTurnForAttack() throws NotInWarException {
         if (this.attackedVillage == null) {
             throw new NotInWarException();
         }
@@ -283,6 +283,8 @@ public class Game {
         for (Soldier soldier : troops) {
             soldier.attackTarget(this.attackedVillage.getVillage()); // TODO: 4/27/18 باید چند بار کال شه این تابع تو هر ترن
         }
+    }
+
     public void healAfterWar() {
         for (Soldier soldier : troops
                 ) {
