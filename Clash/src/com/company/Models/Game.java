@@ -1,7 +1,12 @@
 package com.company.Models;
 
+import com.company.Exception.NotInWarException;
 import com.company.Models.Buildings.Grass;
 import com.company.Models.Buildings.MainBuilding;
+import com.company.Models.Defences.AirDefence;
+import com.company.Models.Defences.ArcherTower;
+import com.company.Models.Defences.Cannon;
+import com.company.Models.Defences.WizardTower;
 import com.company.Models.Soldiers.Soldier;
 import com.company.View;
 
@@ -218,7 +223,26 @@ public class Game {
         return finalString.toString();
     }
 
-    public void passTurnForDefenderMap() {
-
+    public void passTurnForAttack() throws NotInWarException{
+        if (this.attackedVillage == null) {
+            throw new NotInWarException();
+        }
+        //Defender Map part
+        for (Cannon cannon : this.attackedVillage.getVillage().getCannons()) {
+            cannon.findAndShootUnit(this.troops);
+        }
+        for (ArcherTower archerTower : this.attackedVillage.getVillage().getArcherTowers()) {
+            archerTower.findAndShootUnit(this.troops);
+        }
+        for (AirDefence airDefence : this.attackedVillage.getVillage().getAirDefences()) {
+            airDefence.findAndShootUnit(this.troops);
+        }
+        for (WizardTower wizardTower : this.attackedVillage.getVillage().getWizardTowers()) {
+            wizardTower.findAndShootUnit(this.troops);
+        }
+        //Attacker Soldiers part
+        for (Soldier soldier : troops) {
+            soldier.attackTarget(this.attackedVillage.getVillage()); // TODO: 4/27/18 باید چند بار کال شه این تابع تو هر ترن
+        }
     }
 }
