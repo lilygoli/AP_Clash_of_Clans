@@ -185,7 +185,7 @@ public class Village {
         }
         if (map[tower.getX()][tower.getY()].getClass().isInstance(Grass.class)) {
             map[tower.getX()][tower.getY()] = tower;
-            tower.setUnderConstruction(true);
+            tower.setUnderConstructionStatus(true);
             tower.setTimeTillConstruction(Config.getDictionary().get(tower.getClass().getSimpleName()+"_BUILD_DURATION"));
             switch (tower.getName()) {
                 case "Camp":
@@ -254,7 +254,7 @@ public class Village {
         ArrayList<Cell> underConstructionTowers = new ArrayList<>();
         for (Cell[] cells : map) {
             for (Cell cell : cells) {
-                if (cell.isUnderConstruction()) {
+                if (cell.getUnderConstrctionStatus()) {
                     underConstructionTowers.add(cell);
                 }
             }

@@ -56,7 +56,7 @@ public class Config {
         dictionary.put("MainBuilding_POINTS_GAINED_WHEN_DESTRUCTED",8);
         dictionary.put("MainBuilding_GOLD_GAINED_WHEN_DESTRUCTED",200);
         dictionary.put("MainBuilding_ELIXIR_GAINED_WHEN_DESTRUCTED",0);
-        dictionary.put("MainBuilding_UPGRADE_POINTS_NEEDED",5);
+        dictionary.put("MainBuilding_UPGRADE_COST",500);
 
         dictionary.put("Camp_GOLD_COST",200);
         dictionary.put("Camp_ELIXIR_COST",0);
@@ -66,7 +66,7 @@ public class Config {
         dictionary.put("Camp_POINTS_GAINED_WHEN_DESTRUCTED",1);
         dictionary.put("Camp_GOLD_GAINED_WHEN_DESTRUCTED",200);
         dictionary.put("Camp_ELIXIR_GAINED_WHEN_DESTRUCTED",0);
-        dictionary.put("Camp_UPGRADE_POINTS_NEEDED",0);
+        dictionary.put("Camp_UPGRADE_COST",0);
         dictionary.put("Camp_CAPACITY",50);
 
         dictionary.put("Barrack_GOLD_COST",200);
@@ -77,7 +77,7 @@ public class Config {
         dictionary.put("Barrack_POINTS_GAINED_WHEN_DESTRUCTED",1);
         dictionary.put("Barrack_GOLD_GAINED_WHEN_DESTRUCTED",200);
         dictionary.put("Barrack_ELIXIR_GAINED_WHEN_DESTRUCTED",0);
-        dictionary.put("Barrack_UPGRADE_POINTS_NEEDED",0);
+        dictionary.put("Barrack_UPGRADE_COST",100);
 
         dictionary.put("Grass_GOLD_COST",0);
         dictionary.put("Grass_ELIXIR_COST",0);
@@ -87,7 +87,7 @@ public class Config {
         dictionary.put("Grass_POINTS_GAINED_WHEN_DESTRUCTED",0);
         dictionary.put("Grass_GOLD_GAINED_WHEN_DESTRUCTED",0);
         dictionary.put("Grass_ELIXIR_GAINED_WHEN_DESTRUCTED",0);
-        dictionary.put("Grass_UPGRADE_POINTS_NEEDED",0);
+        dictionary.put("Grass_UPGRADE_COST",0);
 
 
         dictionary.put("Guardian_ELEXIR_COST",150);

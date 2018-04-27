@@ -7,7 +7,6 @@ import java.util.Properties;
 
 public abstract class Building extends Cell {
 
-private int timeLeftOfConstruction;
 private static String[] nameOfChildren=new String[]{"Barrack","Camp","ElixirMine","GoldMine","GoldStorage","ElixirStorage"};
     public Building(int number,int level){
         super(number,level);
@@ -59,13 +58,6 @@ private static String[] nameOfChildren=new String[]{"Barrack","Camp","ElixirMine
         return nameOfChildren;
     }
 
-    public void setTimeLeftOfConstruction(int timeLeftOfConstruction) {
-        this.timeLeftOfConstruction = timeLeftOfConstruction;
-    }
-
-    public int getTimeLeftOfConstruction() {
-        return timeLeftOfConstruction;
-    }
 
     public abstract void upgrade();
 

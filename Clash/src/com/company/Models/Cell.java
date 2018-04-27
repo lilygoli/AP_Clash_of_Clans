@@ -24,6 +24,7 @@ public class Cell {
     private static ArrayList<Cell> cellKinds=new ArrayList<>();
     private int number;
     private Builder workingBuilder;
+    private int timeLeftOfConstruction;
 
     public Cell(int number,int level){
         Config.getDictionary().get(this.getClass().getSimpleName()+"_STRENGTH");
@@ -92,11 +93,11 @@ public class Cell {
         this.level = level;
     }
 
-    public boolean isUnderConstruction() {
+    public boolean getUnderConstrctionStatus() {
         return isUnderConstruction;
     }
 
-    public void setUnderConstruction(boolean underConstruction) {
+    public void setUnderConstructionStatus(boolean underConstruction) {
         isUnderConstruction = underConstruction;
     }
 
@@ -176,5 +177,12 @@ public class Cell {
 
     public int getUpgradeCost() {
         return 1;
+    }
+    public void setTimeLeftOfConstruction(int timeLeftOfConstruction) {
+        this.timeLeftOfConstruction = timeLeftOfConstruction;
+    }
+
+    public int getTimeLeftOfConstruction() {
+        return timeLeftOfConstruction;
     }
 }

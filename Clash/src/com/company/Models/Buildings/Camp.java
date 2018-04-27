@@ -13,6 +13,7 @@ public class Camp extends Building {
 
     public Camp(int number,int level) {
         super(number, level);
+        this.setTimeLeftOfConstruction(this.getBuildDuration());
     }
 
     @Override

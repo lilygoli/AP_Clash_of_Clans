@@ -70,6 +70,7 @@ public class Controller {
         //case "Go next turn":
         //case "put unit":
     //}
+        //View.show("The war ended with"+game.getGainedResources().getGold()+" gold,"+game.getGainedResources().getElixir()+" elixir and"+game.getScore()+"scores achieved!");
         //game.healAfterWar
     }
 

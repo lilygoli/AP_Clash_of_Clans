@@ -38,7 +38,7 @@ public class Barrack extends Building {
         View.show(infoMenu);
     }
 
-    public void buildSoldier(int number, String name, int time, HashMap<String, Integer> availableSoldiers) throws
+    public void buildSoldier(int number, String name, HashMap<String, Integer> availableSoldiers) throws
             NotEnoughResourcesException {
 
         for (Soldier soldier : Soldier.getSoldierSubClasses()
@@ -68,7 +68,7 @@ public class Barrack extends Building {
         underConstructionSoldiers.get(0).replace(soldier,underConstructionSoldiers.get(0).get(soldier)+1);
     }
 
-    public void transferToCamp(int time, ArrayList<Camp> camps) { //should be called in each turn
+    public void transferToCamp( ArrayList<Camp> camps) { //should be called in each turn
             addToConstructionTime();
             Soldier soldier = (Soldier) underConstructionSoldiers.get(0).keySet().toArray()[0];
             if ( underConstructionSoldiers.get(0).get(soldier) == soldier.getBuildDuration()) {

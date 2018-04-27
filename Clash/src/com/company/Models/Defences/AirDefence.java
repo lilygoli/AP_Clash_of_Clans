@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class AirDefence extends Defence {
     public AirDefence(int number,int level) {
         super(number,level);
+        this.setTimeLeftOfConstruction(this.getBuildDuration());
     }
 
     public Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers) {

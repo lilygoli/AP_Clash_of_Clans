@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class WizardTower extends Defence {
     public WizardTower(int number,int level) {
         super(number,level);
+        this.setTimeLeftOfConstruction(this.getBuildDuration());
     }
 
     public Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers) {
@@ -17,8 +18,8 @@ public class WizardTower extends Defence {
         Soldier target = findNearestEnemyInRange(enemySoldiers, true, true);
         if (target != null) {
             for (Soldier enemySoldier : enemySoldiers) {
-                Integer manhatanDistance =(int)Math.abs(enemySoldier.getX() - target.getX()) + (int)Math.abs(enemySoldier.getY() - target.getY());
-                if (validManhattanDistance.contains(manhatanDistance)) {
+                Integer manhattanDistance =(int)Math.abs(enemySoldier.getX() - target.getX()) + (int)Math.abs(enemySoldier.getY() - target.getY());
+                if (validManhattanDistance.contains(manhattanDistance)) {
                     enemySoldier.setHealth(enemySoldier.getHealth() - this.getDamage());
                     if (target.getHealth() <= 0) {
                         enemySoldiers.remove(target);

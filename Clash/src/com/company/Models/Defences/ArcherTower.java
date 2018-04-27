@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class ArcherTower extends Defence {
     public ArcherTower(int number,int level) {
         super(number, level);
+        this.setTimeLeftOfConstruction(this.getBuildDuration());
     }
 
     public Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers) {

@@ -1,14 +1,13 @@
 package com.company.Models.Buildings;
 
-import java.util.ArrayList;
-
 public class Grass extends Building{
     {
-        this.setUnderConstruction(false);
+        this.setUnderConstructionStatus(false);
     }
 
     public Grass() {
         super(0, 0);
+        this.setTimeLeftOfConstruction(this.getBuildDuration());
     }
 
     @Override

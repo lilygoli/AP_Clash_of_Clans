@@ -104,9 +104,7 @@ public abstract class Soldier {
     }
 
     public boolean getCanFly() {
-        if (Config.getDictionary().get(this.getClass().getSimpleName() + "_CAN_FLY") == 0)
-            return false;
-        return true;
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_CAN_FLY") != 0;
     }
 
     public boolean isDead() {
@@ -177,8 +175,8 @@ public abstract class Soldier {
         this.dead = dead;
     }
 
-    public void setDirecton(Direction directon) {
-        this.direction = directon;
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
     public void upgrade() {
@@ -225,7 +223,7 @@ public abstract class Soldier {
     public void moveSoldier(Direction direction, Village enemyVillage) {
         // TODO: 4/24/2018 check double int
         if (direction == Direction.LEFT) {
-            if (enemyVillage.getMap()[(int) (x - 1)][(int) y].equals(Grass.class) || enemyVillage.getMap()[(int)(x - 1)][(int)y].isRuined() || getCanFly()) {
+            if (enemyVillage.getMap()[(int) (x - 1)][(int) y].getClass().equals(Grass.class) || enemyVillage.getMap()[(int)(x - 1)][(int)y].isRuined() || getCanFly()) {
                 x = x - MOVE_PER_TURN;
             } else {
                 Cell target = enemyVillage.getMap()[(int) (x - 1)][(int) y];
@@ -237,7 +235,7 @@ public abstract class Soldier {
             }
 
         } else if (direction == Direction.RIGHT) {
-            if (enemyVillage.getMap()[(int) (x + 1)][(int) y].equals(Grass.class)  || enemyVillage.getMap()[(int)(x + 1)][(int)y].isRuined() || getCanFly()) {
+            if (enemyVillage.getMap()[(int) (x + 1)][(int) y].getClass().equals(Grass.class)  || enemyVillage.getMap()[(int)(x + 1)][(int)y].isRuined() || getCanFly()) {
                 x = x + MOVE_PER_TURN;
             } else {
                 Cell target = enemyVillage.getMap()[(int) (x + 1)][(int) y];
@@ -248,7 +246,7 @@ public abstract class Soldier {
                 }
             }
         } else if (direction == Direction.UP) {
-            if (enemyVillage.getMap()[(int) x][(int) (y + 1)].equals(Grass.class) || enemyVillage.getMap()[(int) x][(int) (y + 1)].isRuined() || getCanFly()) {
+            if (enemyVillage.getMap()[(int) x][(int) (y + 1)].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) x][(int) (y + 1)].isRuined() || getCanFly()) {
                 y = y + MOVE_PER_TURN;
             } else {
                 Cell target = enemyVillage.getMap()[(int) x][(int) (y + 1)];
@@ -259,7 +257,7 @@ public abstract class Soldier {
                 }
             }
         } else if (direction == Direction.DOWN) {
-            if (enemyVillage.getMap()[(int) x][(int) (y - 1)].equals(Grass.class) || enemyVillage.getMap()[(int) x][(int) (y - 1)].isRuined() || getCanFly()) {
+            if (enemyVillage.getMap()[(int) x][(int) (y - 1)].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) x][(int) (y - 1)].isRuined() || getCanFly()) {
                 y = y - MOVE_PER_TURN;
             } else {
                 Cell target = enemyVillage.getMap()[(int) x][(int) (y - 1)];
@@ -417,10 +415,7 @@ public abstract class Soldier {
     }
 
     public boolean hasReachedDestination(Cell target) {
-        if (Math.sqrt(Math.pow(x - target.getX(), 2) + Math.pow(y - target.getY(), 2)) <= radius) {
-            return true;
-        }
-        return false;
+        return Math.sqrt(Math.pow(x - target.getX(), 2) + Math.pow(y - target.getY(), 2)) <= radius;
     }
 
 
