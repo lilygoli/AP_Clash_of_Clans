@@ -1,7 +1,16 @@
 package com.company.Models;
 
+import com.company.Exception.NotInWarException;
 import com.company.Exception.InvalidPlaceForSoldiersException;
 import com.company.Exception.MoreThanLimitSoldiersException;
+import com.company.Models.Buildings.Camp;
+import com.company.Models.Buildings.Grass;
+import com.company.Models.Buildings.MainBuilding;
+import com.company.Models.Defences.AirDefence;
+import com.company.Models.Defences.ArcherTower;
+import com.company.Models.Defences.Cannon;
+import com.company.Models.Defences.WizardTower;
+import com.company.Models.Buildings.Storage;
 import com.company.Models.Buildings.*;
 import com.company.Models.Soldiers.Soldier;
 import com.company.View;
@@ -29,16 +38,25 @@ public class Game {
         this.attackedVillage = attackedVillage;
     }
 
-    public void setGainedResources(Resource gainedResources) {
-        this.gainedResources = gainedResources;
+    public void setGainedResource(Resource gainedResource) {
+        this.gainedResource = gainedResource;
     }
 
-    public Resource getGainedResources() {
-        return gainedResources;
+    public Resource getGainedResource() {
+        return gainedResource;
     }
 
     public void setTroops(ArrayList<Soldier> troops) {
         this.troops = troops;
+    }
+
+    public void setUnderAttackOrDefense(boolean underAttackOrDefense) {
+        isUnderAttackOrDefense = underAttackOrDefense;
+    }
+
+
+    public boolean isUnderAttackOrDefense() {
+        return isUnderAttackOrDefense;
     }
 
     public void setAllAttackedVillages(ArrayList<Game> allAttackedVillages) {
@@ -196,10 +214,10 @@ public class Game {
     }
 
     public String statusResources() {
-        return "Gold Achieved : " + gainedResources.getGold() + "\n" +
-                "Elixir Achieved : " + gainedResources.getElixir() + "\n" +
-                "Gold Remained In Map : " + (attackedVillage.village.getResource().getGold() - gainedResources.getGold()) + "\n" +
-                "Elixir Remained In Map : " + (attackedVillage.village.getResource().getElixir() - gainedResources.getElixir()) + "\n";
+        return "Gold Achieved : " + gainedResource.getGold() + "\n" +
+                "Elixir Achieved : " + gainedResource.getElixir() + "\n" +
+                "Gold Remained In Map : " + (attackedVillage.village.getResource().getGold() - gainedResource.getGold()) + "\n" +
+                "Elixir Remained In Map : " + (attackedVillage.village.getResource().getElixir() - gainedResource.getElixir()) + "\n";
     }
 
     public String statusUnit(String unitType) {
@@ -305,37 +323,8 @@ public class Game {
         }
 
     }
-    public void passTurn(){
-        if(isUnderAttackOrDefense){
-            //passTurnInWArMode
-        }else {
-            passTurnInNormalMode();
-        }
-    }
+
     public void passTurnInNormalMode(){
-        time++;
-        for (int i = 0; i < 30; i++) {
-            for (int j = 0; j < 30; j++) {
-                if(village.getMap()[j][i].getUnderConstrctionStatus()){
-                    village.getMap()[j][i].setTimeLeftOfConstruction(village.getMap()[j][i].getTimeTillConstruction()-1);
-                    if(village.getMap()[j][i].getTimeLeftOfConstruction()==0){
-                        village.getMap()[j][i].setUnderConstructionStatus(false);
-                        village.getMap()[j][i].getWorkingBuilder().setOccupationState(false);
-                    }
-                }
-            }
-        }
-        for (Barrack barrack : village.getBarracks()) {
-            barrack.transferToCamp(village.getCamps());
-        }
-        ArrayList<Storage> allElixirStorage = new ArrayList<>(village.getElixirStorages());
-        for (ElixirMine elixirMine : village.getElixirMines()) {
-            elixirMine.addToMine(allElixirStorage);
-        }
-        ArrayList<Storage> allGoldStorage = new ArrayList<>(village.getGoldStorages());
-        for (GoldMine goldMine : village.getGoldMines()) {
-            goldMine.addToMine(allGoldStorage);
-        }
 
     }
 
