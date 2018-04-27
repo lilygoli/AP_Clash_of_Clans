@@ -39,11 +39,11 @@ public class Game {
     }
 
     public void setGainedResource(Resource gainedResource) {
-        this.gainedResource = gainedResource;
+        this.gainedResources = gainedResource;
     }
 
     public Resource getGainedResource() {
-        return gainedResource;
+        return gainedResources;
     }
 
     public void setTroops(ArrayList<Soldier> troops) {
@@ -214,10 +214,10 @@ public class Game {
     }
 
     public String statusResources() {
-        return "Gold Achieved : " + gainedResource.getGold() + "\n" +
-                "Elixir Achieved : " + gainedResource.getElixir() + "\n" +
-                "Gold Remained In Map : " + (attackedVillage.village.getResource().getGold() - gainedResource.getGold()) + "\n" +
-                "Elixir Remained In Map : " + (attackedVillage.village.getResource().getElixir() - gainedResource.getElixir()) + "\n";
+        return "Gold Achieved : " + gainedResources.getGold() + "\n" +
+                "Elixir Achieved : " + gainedResources.getElixir() + "\n" +
+                "Gold Remained In Map : " + (attackedVillage.village.getResource().getGold() - gainedResources.getGold()) + "\n" +
+                "Elixir Remained In Map : " + (attackedVillage.village.getResource().getElixir() - gainedResources.getElixir()) + "\n";
     }
 
     public String statusUnit(String unitType) {
@@ -250,7 +250,6 @@ public class Game {
         return finalString.toString();
     }
 
-    // TODO: 4/23/2018 put unit
     public String statusTower() {
         StringBuilder finalString = new StringBuilder();
         for (Cell cell : Cell.getCellKinds()) {
@@ -323,8 +322,38 @@ public class Game {
         }
 
     }
+    public void passTurn(){
+        if(isUnderAttackOrDefense){
+            //passTurnInWArMode
+        }else {
+            passTurnInNormalMode();
+        }
+    }
 
-    public void passTurnInNormalMode(){
+    private void passTurnInNormalMode(){
+        time++;
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
+                if(village.getMap()[j][i].getUnderConstrctionStatus()){
+                    village.getMap()[j][i].setTimeLeftOfConstruction(village.getMap()[j][i].getTimeTillConstruction()-1);
+                    if(village.getMap()[j][i].getTimeLeftOfConstruction()==0){
+                        village.getMap()[j][i].setUnderConstructionStatus(false);
+                        village.getMap()[j][i].getWorkingBuilder().setOccupationState(false);
+                    }
+                }
+            }
+        }
+        for (Barrack barrack : village.getBarracks()) {
+            barrack.transferToCamp(village.getCamps());
+        }
+        ArrayList<Storage> allElixirStorage = new ArrayList<>(village.getElixirStorages());
+        for (ElixirMine elixirMine : village.getElixirMines()) {
+            elixirMine.addToMine(allElixirStorage);
+        }
+        ArrayList<Storage> allGoldStorage = new ArrayList<>(village.getGoldStorages());
+        for (GoldMine goldMine : village.getGoldMines()) {
+            goldMine.addToMine(allGoldStorage);
+        }
 
     }
 
