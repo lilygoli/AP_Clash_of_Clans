@@ -23,7 +23,7 @@ public abstract class Soldier {
     private int addedHealth;
     private int addedDamage;
     private int unlockLevel;
-    private double x, y;
+    private double x=-1, y=-1;
     private boolean canFly;
     private boolean dead;
     private Direction direction;
@@ -42,7 +42,14 @@ public abstract class Soldier {
         damage = Config.getDictionary().get(this.getClass().getSimpleName() + "_DAMAGE");
     }
 
-    private final double MOVE_PER_TURN = 1 / maxSpeed;
+    Soldier(Barrack barrack){
+        buildDuration = Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION") - barrack.getLevel();
+        // TODO: 4/26/2018 check
+    }
+    Soldier(){};
+
+    private final double MOVE_PER_TURN = 1;
+    // TODO: 4/26/2018 what is move per turn
 
     public static ArrayList<Soldier> getSoldierSubClasses() {
         return soldierSubClasses;
@@ -186,15 +193,21 @@ public abstract class Soldier {
 
 
     public void attackTarget(Village enemyVillage, String favoriteTarget) {
+        // TODO: 4/23/2018 add resource decrease
         Cell target;
-        if (favoriteTarget.equals("Storage")) {
-            target = findDestinationForGiant(enemyVillage);
-        } else if (favoriteTarget.equals("Defence")) {
-            target = findDestinationForArcher(enemyVillage);
-        } else if (favoriteTarget.equals("Wall")) {
-            target = findDestinationForWallBreaker(enemyVillage);
-        } else {
-            target = findDestinationForAll(enemyVillage);
+        switch (favoriteTarget) {
+            case "Storage":
+                target = findDestinationForGiant(enemyVillage);
+                break;
+            case "Defence":
+                target = findDestinationForArcher(enemyVillage);
+                break;
+            case "Wall":
+                target = findDestinationForWallBreaker(enemyVillage);
+                break;
+            default:
+                target = findDestinationForAll(enemyVillage);
+                break;
         }
 
         if (hasReachedDestination(target)) {
@@ -205,24 +218,62 @@ public abstract class Soldier {
             }
         } else {
             direction = findDirection(enemyVillage, target);
-            moveSoldier(direction);
+            moveSoldier(direction, enemyVillage);
         }
     }
 
-    public void moveSoldier(Direction direction) {
+    public void moveSoldier(Direction direction, Village enemyVillage) {
+        // TODO: 4/24/2018 check double int
         if (direction == Direction.LEFT) {
-            x = x - MOVE_PER_TURN;
+            if (enemyVillage.getMap()[(int) (x - 1)][(int) y].equals(Grass.class) || enemyVillage.getMap()[(int)(x - 1)][(int)y].isRuined() || getCanFly()) {
+                x = x - MOVE_PER_TURN;
+            } else {
+                Cell target = enemyVillage.getMap()[(int) (x - 1)][(int) y];
+                target.setStrength(target.getStrength() - getDamage());
+                if (target.getStrength() <= 0) {
+                    target.setRuined(true);
+                    target.setStrength(0);
+                }
+            }
+
         } else if (direction == Direction.RIGHT) {
-            x = x + MOVE_PER_TURN;
+            if (enemyVillage.getMap()[(int) (x + 1)][(int) y].equals(Grass.class)  || enemyVillage.getMap()[(int)(x + 1)][(int)y].isRuined() || getCanFly()) {
+                x = x + MOVE_PER_TURN;
+            } else {
+                Cell target = enemyVillage.getMap()[(int) (x + 1)][(int) y];
+                target.setStrength(target.getStrength() - getDamage());
+                if (target.getStrength() <= 0) {
+                    target.setRuined(true);
+                    target.setStrength(0);
+                }
+            }
         } else if (direction == Direction.UP) {
-            y = y + MOVE_PER_TURN;
+            if (enemyVillage.getMap()[(int) x][(int) (y + 1)].equals(Grass.class) || enemyVillage.getMap()[(int) x][(int) (y + 1)].isRuined() || getCanFly()) {
+                y = y + MOVE_PER_TURN;
+            } else {
+                Cell target = enemyVillage.getMap()[(int) x][(int) (y + 1)];
+                target.setStrength(target.getStrength() - getDamage());
+                if (target.getStrength() <= 0) {
+                    target.setRuined(true);
+                    target.setStrength(0);
+                }
+            }
         } else if (direction == Direction.DOWN) {
-            y = y - MOVE_PER_TURN;
+            if (enemyVillage.getMap()[(int) x][(int) (y - 1)].equals(Grass.class) || enemyVillage.getMap()[(int) x][(int) (y - 1)].isRuined() || getCanFly()) {
+                y = y - MOVE_PER_TURN;
+            } else {
+                Cell target = enemyVillage.getMap()[(int) x][(int) (y - 1)];
+                target.setStrength(target.getStrength() - getDamage());
+                if (target.getStrength() <= 0) {
+                    target.setRuined(true);
+                    target.setStrength(0);
+                }
+            }
         }
     }
 
     public Cell findDestinationForArcher(Village enemyVillage) {
-        Cell destination = new Cell();
+        Cell destination = new Cell(0,0);
         double minDistance = 100d;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
@@ -243,7 +294,7 @@ public abstract class Soldier {
     }
 
     public Cell findDestinationForGiant(Village enemyVillage) {
-        Cell destination = new Cell();
+        Cell destination = new Cell(0,0);
         double minDistance = 100d;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
@@ -264,7 +315,7 @@ public abstract class Soldier {
     }
 
     public Cell findDestinationForWallBreaker(Village enemyVillage) {
-        Cell destination = new Cell();
+        Cell destination = new Cell(0,0);
         double minDistance = 100d;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
@@ -286,7 +337,7 @@ public abstract class Soldier {
 
     // TODO: 4/18/2018 add healer
     public Cell findDestinationForAll(Village enemyVillage) {
-        Cell destination = new Cell();
+        Cell destination = new Cell(0,0);
         double minDistance = 100d;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
@@ -304,9 +355,7 @@ public abstract class Soldier {
     }
 
     public Direction findDirection(Village enemyVillage, Cell destination) {
-        // TODO: 4/18/2018 make it complete
         int infinity = Integer.MAX_VALUE;
-        // TODO: 4/23/2018 add POSITION Class
         LinkedList<Integer> queueX = new LinkedList<>();
         LinkedList<Integer> queueY = new LinkedList<>();
         int[][] distance = new int[30][30];
@@ -322,7 +371,7 @@ public abstract class Soldier {
         distance[destination.getX()][destination.getY()] = 0;
         while (!queueX.isEmpty()) {
             int x = queueX.getFirst(), y = queueY.getFirst();
-            Integer[][] adjacent = new Integer[4][2];
+            Integer[][] adjacent = {{-1, -1}, {-1, -1}, {-1, -1}, {-1, -1}};
             adjacent[0][0] = x;
             if (y - 1 >= 0) {
                 adjacent[0][1] = y - 1;
@@ -340,8 +389,7 @@ public abstract class Soldier {
                 adjacent[3][0] = x;
             }
             for (int i = 0; i < 4; i++) {
-                // TODO: 4/23/2018 refactor
-                if (!adjacent[i][0].equals(null) && !adjacent[i][1].equals(null) && distance[x][y] + 1 + (int) (enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getStrength() / damage) < distance[adjacent[i][0]][adjacent[i][1]]) {
+                if (adjacent[i][0] != -1 && adjacent[i][1] != -1 && distance[x][y] + 1 + (int) (enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getStrength() / damage) < distance[adjacent[i][0]][adjacent[i][1]]) {
                     distance[adjacent[i][0]][adjacent[i][1]] = distance[x][y] + 1 + (int) (enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getStrength() / damage);
                     switch (i) {
                         case 0:
@@ -359,14 +407,13 @@ public abstract class Soldier {
                     }
                     queueX.add(adjacent[i][0]);
                     queueY.add(adjacent[i][1]);
-
                 }
             }
             queueX.removeFirst();
             queueY.removeFirst();
         }
         // TODO: 4/23/2018 check double and int 
-        return lastDir[(int)getX()][(int)getY()];
+        return lastDir[(int) getX()][(int) getY()];
     }
 
     public boolean hasReachedDestination(Cell target) {

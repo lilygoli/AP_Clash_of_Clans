@@ -53,9 +53,9 @@ public class Barrack extends Building {
                         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                             e.printStackTrace();
                         }
-                        HashMap<Soldier, Integer> startingTimeOfBuildingSoldier = new HashMap<Soldier, Integer>();
-                        startingTimeOfBuildingSoldier.put(newSoldier, time);
-                        underConstructionSoldiers.add(startingTimeOfBuildingSoldier);
+                        HashMap<Soldier, Integer> soldierAndTimeUnderConstruction = new HashMap<Soldier, Integer>();
+                        soldierAndTimeUnderConstruction.put(newSoldier, 0);
+                        underConstructionSoldiers.add(soldierAndTimeUnderConstruction);
                     }
                 } else {
                     throw new NotEnoughResourcesException();
@@ -63,13 +63,15 @@ public class Barrack extends Building {
             }
         }
     }
+    private void addToConstructionTime(){
+        Soldier soldier=(Soldier)underConstructionSoldiers.get(0).keySet().toArray()[0];
+        underConstructionSoldiers.get(0).replace(soldier,underConstructionSoldiers.get(0).get(soldier)+1);
+    }
 
     public void transferToCamp(int time, ArrayList<Camp> camps) { //should be called in each turn
-        int index = 0;
-        for (HashMap<Soldier, Integer> soldierInitialTime : underConstructionSoldiers
-                ) {
-            Soldier soldier = (Soldier) soldierInitialTime.keySet().toArray()[0];
-            if (time == soldierInitialTime.get(soldier) + soldier.getBuildDuration()) {
+            addToConstructionTime();
+            Soldier soldier = (Soldier) underConstructionSoldiers.get(0).keySet().toArray()[0];
+            if ( underConstructionSoldiers.get(0).get(soldier) == soldier.getBuildDuration()) {
                 for (Camp camp : camps
                         ) {
                     if (camp.getSoldiers().size() < camp.getCapacity()) {
@@ -77,10 +79,9 @@ public class Barrack extends Building {
                         break;
                     }
                 }
-                underConstructionSoldiers.remove(index);
+                underConstructionSoldiers.remove(0);
             }
-            index++;
-        }
+
     }
 
     public HashMap<String, Integer> determineAvailableSoldiers(int gold, int elixir) {

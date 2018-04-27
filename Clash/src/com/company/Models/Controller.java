@@ -40,7 +40,7 @@ public class Controller {
                             if (goldCost > game.getVillage().getResource().getGold() || elixirCost > game.getVillage().getResource().getElixir()) {
                                 throw new NotEnoughResourcesException();
                             } else {
-                                view.showMap(game.getVillage());
+                                view.showMap(game.getVillage(),0);
                                 View.show("where do you want to build" + splitClassNameIntoWords(newCell.getClass().getSimpleName()));
                                 String[] coordinates = view.getInput().split("[(,)]");
                                 newCell.setY(Integer.parseInt(coordinates[1]));
@@ -60,6 +60,17 @@ public class Controller {
             }
         }
 
+    }
+
+    public void implementAttackCommand() {
+        game.startAttack();
+        //while(command.equals("Quit attack")|| game.isWarFinished()){
+        //String attackCommand=view.getInput;
+        //switch(attackCommand){
+        //case "Go next turn":
+        //case "put unit":
+    //}
+        //game.healAfterWar
     }
 
     private String splitClassNameIntoWords(String name) {
