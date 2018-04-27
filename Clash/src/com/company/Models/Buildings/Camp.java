@@ -68,13 +68,7 @@ public class Camp extends Building {
         }
         return number;
     }
-    public void healCamp(){
-        for (Soldier soldier:soldiers
-             ) {
-            //soldier.heal implemented in soldier class
-        }
-    }
-
+    
     public ArrayList<Soldier> getSoldiers() {
         return soldiers;
     }

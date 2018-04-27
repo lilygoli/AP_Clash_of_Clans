@@ -1,15 +1,10 @@
 package com.company.Models;
 
-import com.company.Exception.NotInWarException;
 import com.company.Exception.InvalidPlaceForSoldiersException;
 import com.company.Exception.MoreThanLimitSoldiersException;
 import com.company.Models.Buildings.Camp;
 import com.company.Models.Buildings.Grass;
 import com.company.Models.Buildings.MainBuilding;
-import com.company.Models.Defences.AirDefence;
-import com.company.Models.Defences.ArcherTower;
-import com.company.Models.Defences.Cannon;
-import com.company.Models.Defences.WizardTower;
 import com.company.Models.Buildings.Storage;
 import com.company.Models.Buildings.*;
 import com.company.Models.Soldiers.Soldier;
