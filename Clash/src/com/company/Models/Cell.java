@@ -185,4 +185,8 @@ public class Cell {
     public int getTimeLeftOfConstruction() {
         return timeLeftOfConstruction;
     }
+
+    public void showMenu() {
+
+    }
 }

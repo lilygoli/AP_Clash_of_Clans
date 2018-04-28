@@ -269,15 +269,27 @@ public class Game {
         }
         //Defender Map part
         for (Cannon cannon : this.attackedVillage.getVillage().getCannons()) {
+            if (cannon.getUnderConstrctionStatus()) {
+                continue;
+            }
             cannon.findAndShootUnit(this.troops);
         }
         for (ArcherTower archerTower : this.attackedVillage.getVillage().getArcherTowers()) {
+            if (archerTower.getUnderConstrctionStatus()) {
+                continue;
+            }
             archerTower.findAndShootUnit(this.troops);
         }
         for (AirDefence airDefence : this.attackedVillage.getVillage().getAirDefences()) {
+            if (airDefence.getUnderConstrctionStatus()) {
+                continue;
+            }
             airDefence.findAndShootUnit(this.troops);
         }
         for (WizardTower wizardTower : this.attackedVillage.getVillage().getWizardTowers()) {
+            if (wizardTower.getUnderConstrctionStatus()) {
+                continue;
+            }
             wizardTower.findAndShootUnit(this.troops);
         }
         //Attacker Soldiers part
@@ -317,7 +329,11 @@ public class Game {
 
     public void passTurn(){
         if(isUnderAttackOrDefense){
-            passTurnInWarMode();
+            try {
+                passTurnInWarMode();
+            } catch (NotInWarException e) {
+                //something went wrong
+            }
         }else {
             passTurnInNormalMode();
         }

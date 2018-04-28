@@ -127,4 +127,23 @@ public class Controller {
         }
         return result.toString().trim();
     }
+
+    private void getCommandINBuildings() {
+        String input = view.getInput();
+        Matcher matcher = makePatternAndMatcher(input, Regex.SELECT_BUILDING_REGEX);
+        int buildingNumber = Integer.parseInt(matcher.group(2));
+        String buildingName = matcher.group(1).replace(" ", "");
+        for (Cell[] cells : game.getVillage().getMap()) {
+            for (Cell cell : cells) {
+                if (cell.getClass().getSimpleName().equalsIgnoreCase(buildingName)) {
+                    cell.showMenu();
+                    getCommandInBuilding(cell);
+                }
+            }
+        }
+    }
+
+    private void getCommandInBuilding(Cell cell) {
+
+    }
 }
