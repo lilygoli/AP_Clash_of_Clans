@@ -32,12 +32,16 @@ public class Camp extends Building {
         String infoMenu = "1. Overall info\n2. Upgrade info\n3. Capacity info\n4. Back";
         View.show(infoMenu);
     }
-    public void showCapacityInfo(int numberOfSoldiers,int numberOfCamps){
+    public void showCapacityInfo(ArrayList<Camp> camps){
         Game.setWhereIAm("You are in Camp capacity info Menu");
-        String capacityInfo="Your camps capacity is "+numberOfSoldiers+"/"+numberOfCamps*getCapacity()+".";
+        int numberOfSoldiers=0;
+        for (Camp camp : camps) {
+            numberOfSoldiers+=soldiers.size();
+        }
+        String capacityInfo="Your camps capacity is "+numberOfSoldiers+"/"+camps.size()*getCapacity()+".";
         View.show(capacityInfo);
     }
-    public void showSoldiers(){
+    public String  showSoldiers(){
         HashMap<Class,Integer> soldierClasses=matchEachSoldierTypeWithNumber();
         StringBuilder soldierList= new StringBuilder();
         for (Class soldierClass: soldierClasses.keySet()
@@ -45,7 +49,7 @@ public class Camp extends Building {
             soldierList.append(soldierClass.toString().split(" ")[1]).append(" x").append(soldierClasses.get(soldierClass)).append("\n");
         }
         soldierList = new StringBuilder(soldierList.toString().trim());
-        View.show(soldierList.toString());
+        return soldierList.toString();
 
     }
     private HashMap<Class,Integer> matchEachSoldierTypeWithNumber(){

@@ -3,6 +3,8 @@ package com.company.Models.Buildings;
 import com.company.Models.Game;
 import com.company.View;
 
+import java.util.ArrayList;
+
 public class Storage extends Building {
     private int capacity;
     private int resource;
@@ -51,6 +53,16 @@ public class Storage extends Building {
         }else{
             resource =capacity;
         }
+
+    }
+    public String getSourcesInfo(ArrayList<Storage> storages,String nameOfStorage){
+        int amount=0;
+        int capacity=0;
+        for (Storage storage : storages) {
+            amount+=storage.getResource();
+            capacity+=storage.getCapacity();
+        }
+        return "Your"+nameOfStorage+"is"+amount+"/"+capacity+" loaded.";
 
     }
     public boolean isFull(){

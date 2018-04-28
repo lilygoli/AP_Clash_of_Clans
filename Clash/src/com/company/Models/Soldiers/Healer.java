@@ -1,6 +1,7 @@
 package com.company.Models.Soldiers;
 
 import com.company.Models.Config;
+import com.company.Models.Village;
 
 public class Healer extends Soldier {
 
@@ -26,6 +27,11 @@ public class Healer extends Soldier {
     @Override
     public void upgrade(){
         heal += healAdded;
+    }
+
+    @Override
+    public void attackTarget(Village village) {
+
     }
 
     // TODO: 4/26/2018 complete healer for phase 2

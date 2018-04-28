@@ -1,7 +1,7 @@
 package com.company.Models;
 
 import com.company.Exception.*;
-import com.company.Models.Buildings.Barrack;
+import com.company.Models.Buildings.*;
 import com.company.View;
 
 import java.lang.reflect.InvocationTargetException;
@@ -122,22 +122,24 @@ public class Controller {
         }
 
     }
+
     public void implementBuildSoldiers(Barrack barrack) throws unAvailableSoldierException, NotEnoughResourcesException {
-        StringBuilder result= new StringBuilder();
-        int index=0;
-        HashMap<String,Integer> availableSoldiers=barrack.determineAvailableSoldiers(game.getVillage().getResource().getGold(),game.getVillage().getResource().getElixir());
+        StringBuilder result = new StringBuilder();
+        int index = 0;
+        HashMap<String, Integer> availableSoldiers = barrack.determineAvailableSoldiers(game.getVillage().getResource().getGold(), game.getVillage().getResource().getElixir());
         for (String soldier : availableSoldiers.keySet()) {
-            if(availableSoldiers.get(soldier)!=0){
+            if (availableSoldiers.get(soldier) != 0) {
                 result.append(index).append(". ").append(soldier).append(" Ax").append(availableSoldiers.get(soldier));
-            }else{
+            } else {
                 result.append(index).append(". ").append(soldier).append("U");
             }
+            View.show(result.toString());
             String playerChoice = view.getInput("Enter your preferred soldier name in the list");
-            if(availableSoldiers.get(playerChoice)==0){
+            if (availableSoldiers.get(playerChoice) == 0) {
                 throw new unAvailableSoldierException();
-            }else {
-                int soldierAmount=Integer.parseInt(view.getInput("How many of this soldier do you want to build?"));
-                barrack.buildSoldier(soldierAmount,soldier,availableSoldiers);
+            } else {
+                int soldierAmount = Integer.parseInt(view.getInput("How many of this soldier do you want to build?"));
+                barrack.buildSoldier(soldierAmount, soldier, availableSoldiers);
             }
         }
     }
@@ -195,7 +197,7 @@ public class Controller {
                 getCommandStorage(playerChoice, cell);
                 break;
             case ("MainBuilding"):
-                getCommandInMainBuilding(playerChoice,cell);
+                getCommandInMainBuilding(playerChoice, cell);
                 break;
             case ("AirDefence"):
             case ("ArcherTower"):
@@ -206,6 +208,106 @@ public class Controller {
             case ("Trap"):
             case ("Wall"):
                 break;
+        }
+    }
+
+    private void getCommandStorage(int playerChoice, Cell cell) {
+        if (playerChoice == 1) {
+            cell.showInfoMenu();
+            int choice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
+            switch (choice) {
+                case 1:
+                    cell.showOverallInfo();
+                    break;
+                case 2:
+                    cell.showUpgradeInfo();
+                    break;
+                case 3:
+                    Storage storage=(Storage) cell;
+                    if(storage.getClass().getSimpleName().equals("GoldStorage")) {
+                        storage.getSourcesInfo( new ArrayList<>(game.getVillage().getGoldStorages()), "gold storage");
+                    }else {
+                        storage.getSourcesInfo( new ArrayList<>(game.getVillage().getElixirStorages()), "elixir storage");
+                    }
+                case 4://TODO what does upgrade do here?
+                case 5:return;//back
+            }
+        }
+    }
+    private void getCommandInMine(int playerChoice, Cell cell) {
+        switch (playerChoice){
+            case 1:
+                cell.showInfoMenu();
+                int choice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
+                getCommandInInfoMenu(choice,cell);
+                break;
+            case 2:
+                Mine mine=(Mine)cell;
+                if(mine.getClass().getSimpleName().equals("GoldMine")){
+                    ArrayList<Storage> allGoldStorage=new ArrayList<>(game.getVillage().getGoldStorages());
+                    mine.mine(allGoldStorage);
+                }else {
+                    ArrayList<Storage> allElixirStorage=new ArrayList<>(game.getVillage().getElixirStorages());
+                    mine.mine(allElixirStorage);
+                }
+                break;
+
+            case 3: return;//back
+        }
+    }
+
+    private void getCommandInCamp(int playerChoice, Cell cell) {
+        switch (playerChoice){
+            case 1:
+                cell.showInfoMenu();
+                int choice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
+                getCommandInCampInfoMenu(choice,(Camp) cell);
+                break;
+            case 2:
+                Camp camp=(Camp)cell;
+                View.show(camp.showSoldiers());
+                break;
+            case 3:return;//back
+        }
+    }
+    private void getCommandInCampInfoMenu(int playerChoice,Camp camp){
+        switch (playerChoice){
+            case 1:
+                camp.showOverallInfo();
+                break;
+            case 2:
+                camp.showUpgradeInfo();
+                break;
+            case 3:
+                camp.showCapacityInfo(game.getVillage().getCamps());
+                break;
+            case 4:
+                return;//back
+        }
+    }
+
+    private void getCommandInBarrack(int playerChoice, Cell cell) {
+        switch (playerChoice) {
+            case 1:
+                cell.showInfoMenu();
+                int choice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
+                getCommandInInfoMenu(choice, cell);
+                break;
+            case 2:
+                try {
+                    implementBuildSoldiers((Barrack) cell);
+                } catch (unAvailableSoldierException e) {
+                    e.showMessage();
+                } catch (NotEnoughResourcesException e) {
+                    e.showMessage();
+                }
+                break;
+            case 3:
+                View.show(game.getVillage().showBarracksStatus(game.getTime()));
+                break;
+            case 4:
+                return;//back
+
         }
     }
 
@@ -225,8 +327,8 @@ public class Controller {
                 if (cell.getClass().getSimpleName().equals("Cannon")) {
                     View.show("Target: Ground units\n");
                 }
-                if (cell.getClass().getSimpleName().equals("WizzardTower")) {
-                    View.show("Target: Groung & Flying units\n");
+                if (cell.getClass().getSimpleName().equals("WizardTower")) {
+                    View.show("Target: Ground & Flying units\n");
                 }
                 damageAndRange.append("Damage: ").append(cell.getDamage()).append("\nDamage Range: ").append(cell.getRange());
                 View.show(damageAndRange.toString());

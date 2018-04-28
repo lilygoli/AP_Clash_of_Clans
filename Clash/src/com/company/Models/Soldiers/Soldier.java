@@ -40,13 +40,14 @@ public abstract class Soldier {
     {
         health = Config.getDictionary().get(this.getClass().getSimpleName() + "_HEALTH");
         damage = Config.getDictionary().get(this.getClass().getSimpleName() + "_DAMAGE");
+        buildDuration=Config.getDictionary().get(this.getClass().getSimpleName()+"_BUILD_DURATION");
     }
 
-    Soldier(Barrack barrack){
-        buildDuration = Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION") - barrack.getLevel();
+    public Soldier(int time){
+        buildDuration = Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION") - time;
         // TODO: 4/26/2018 check
     }
-    Soldier(){};
+    public Soldier(){};
 
     private final double MOVE_PER_TURN = 1;
     // TODO: 4/26/2018 what is move per turn
@@ -60,7 +61,7 @@ public abstract class Soldier {
     }
 
     public int getBuildDuration() {
-        return Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION");
+        return buildDuration;
     }
 
     public int getHealth() {

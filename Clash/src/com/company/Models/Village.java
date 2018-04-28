@@ -276,7 +276,7 @@ public class Village {
                 for (HashMap<Soldier, Integer> soldierInitialTime : barrack.getUnderConstructionSoldiers()
                         ) {
                     for (Soldier soldier : soldierInitialTime.keySet()) {
-                        if (time - soldierInitialTime.get(soldier) == timeLeft) {
+                        if (soldier.getBuildDuration() - soldierInitialTime.get(soldier) == timeLeft) {
                             result.append(soldier.getClass().toString().split(" ")[1]).append(" ").append(timeLeft.toString()).append("\n");
                         }
                     }
@@ -294,7 +294,7 @@ public class Village {
             for (HashMap<Soldier, Integer> soldierInitialTime : barrack.getUnderConstructionSoldiers()
                     ) {
                 for (Soldier soldier : soldierInitialTime.keySet()) {
-                    turnsLeft.add(time - soldierInitialTime.get(soldier));
+                    turnsLeft.add(soldier.getBuildDuration() - soldierInitialTime.get(soldier));
                 }
             }
         }
