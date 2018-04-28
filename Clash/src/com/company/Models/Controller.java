@@ -5,8 +5,8 @@ import com.company.Models.Buildings.Barrack;
 import com.company.View;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -122,6 +122,25 @@ public class Controller {
         }
 
     }
+    public void implementBuildSoldiers(Barrack barrack) throws unAvailableSoldierException, NotEnoughResourcesException {
+        StringBuilder result= new StringBuilder();
+        int index=0;
+        HashMap<String,Integer> availableSoldiers=barrack.determineAvailableSoldiers(game.getVillage().getResource().getGold(),game.getVillage().getResource().getElixir());
+        for (String soldier : availableSoldiers.keySet()) {
+            if(availableSoldiers.get(soldier)!=0){
+                result.append(index).append(". ").append(soldier).append(" Ax").append(availableSoldiers.get(soldier));
+            }else{
+                result.append(index).append(". ").append(soldier).append("U");
+            }
+            String playerChoice = view.getInput("Enter your preferred soldier name in the list");
+            if(availableSoldiers.get(playerChoice)==0){
+                throw new unAvailableSoldierException();
+            }else {
+                int soldierAmount=Integer.parseInt(view.getInput("How many of this soldier do you want to build?"));
+                barrack.buildSoldier(soldierAmount,soldier,availableSoldiers);
+            }
+        }
+    }
 
     public void implementAttackCommand() {
         game.startAttack();
@@ -177,12 +196,11 @@ public class Controller {
                 break;
             case ("MainBuilding"):
                 getCommandInMainBuilding(playerChoice,cell);
-                getCommandInMainBuilding(playerChoice, cell);
                 break;
             case ("AirDefence"):
             case ("ArcherTower"):
             case ("Cannon"):
-            case ("WizzardTower"):
+            case ("WizardTower"):
                 getCommandInDefence(playerChoice, cell);
                 break;
             case ("Trap"):
@@ -195,10 +213,7 @@ public class Controller {
         switch (playerChoice) {
             case 1: //info
                 cell.showInfoMenu();
-
                 break;
-            case ("WizardTower"):
-                getCommandInWizzardTower(playerChoice);
             case 2: //Target
                 StringBuilder damageAndRange = new StringBuilder();
                 if (cell.getClass().getSimpleName().equals("ArcherTower")) {
@@ -226,7 +241,7 @@ public class Controller {
             case 1:
                 cell.showInfoMenu();
                 int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
-                getCommandInMainBuildingInfoMenu(playerChoice, cell);
+                getCommandInInfoMenu(playerChoice, cell);
                 break;
             case 2:
                 try {
@@ -249,7 +264,7 @@ public class Controller {
         }
     }
 
-    private void getCommandInMainBuildingInfoMenu(int playerChoice, Cell cell) {
+    private void getCommandInInfoMenu(int playerChoice, Cell cell) {
         switch (playerChoice) {
             case 1:
                 cell.showOverallInfo();
@@ -258,7 +273,7 @@ public class Controller {
                 cell.showUpgradeInfo();
                 break;
             case 3:
-                return;
+                return;//back
         }
     }
 }
