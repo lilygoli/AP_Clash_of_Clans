@@ -1,18 +1,64 @@
 package com.company.Models;
 
-import com.company.Exception.BusyCellException;
-import com.company.Exception.MarginalTowerException;
-import com.company.Exception.NotEnoughFreeBuildersException;
-import com.company.Exception.NotEnoughResourcesException;
+import com.company.Exception.*;
 import com.company.View;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Controller {
     private Game game = null;
     private GameCenter gameCenter = new GameCenter();
     private View view = new View();
+
+    public void mainCommandAnalyzer() {
+        implementStartGame();
+        String input=view.getInput();
+        while(input.matches(Regex.SAVING_GAME_REGEX)){
+            if(input.matches(Regex.PASSING_TURN_REGEX)){
+                Matcher matcher=makePatternAndMatcher(input,Regex.PASSING_TURN_REGEX);
+                if(matcher.find()){
+                    for (int turn = 0; turn < Integer.parseInt(matcher.group(0)); turn++) {
+                        game.passTurn();
+                    }
+                }
+            }
+
+
+
+
+            input=view.getInput();
+        }
+        Matcher matcher=makePatternAndMatcher(input,Regex.SAVING_GAME_REGEX);
+        if(matcher.find()){
+            implementFinishGame(matcher.group(0),matcher.group(1));
+        }
+    }
+    private Matcher makePatternAndMatcher(String input,String regex){
+        Pattern pattern=Pattern.compile(regex);
+        return pattern.matcher(input);
+    }
+    private void implementStartGame() {
+        String startingCommand = view.getInput();
+        if (startingCommand.matches("newGame")) {
+            game = gameCenter.makeNewGame();
+        } else if (startingCommand.matches("load (.+)")) {
+            try {
+                game = gameCenter.loadGame(startingCommand.trim().split("load")[0].trim());
+            } catch (NotValidFilePathException e) {
+                e.showExceptionMassage();
+            }
+        } else {
+            View.show("please enter your preferred path for a saved game or start a new game");
+            implementStartGame();
+        }
+
+    }
+    private void implementFinishGame(String pathname,String name){
+        gameCenter.saveGame(game,pathname,name);
+    }
 
     public void implementBuildATowerCommand() throws NotEnoughFreeBuildersException, NotEnoughResourcesException, BusyCellException, MarginalTowerException { //name and place to be refactored ... was implemented to complete building a tower//available buildings in barracks command
         String availableBuildings = game.getVillage().getMainBuilding().findAvailableBuildings(game.getVillage().getResource().getGold(), game.getVillage().getResource().getElixir());
@@ -31,7 +77,7 @@ public class Controller {
             if (cell.getClass().getSimpleName().equals(buildingName)) {
                 Class spacialBuilding = cell.getClass();
                 try {
-                    Cell newCell = (Cell) spacialBuilding.getDeclaredConstructor(int.class,int.class).newInstance(0,0);
+                    Cell newCell = (Cell) spacialBuilding.getDeclaredConstructor(int.class, int.class).newInstance(0, 0);
                     int goldCost = Config.getDictionary().get(newCell.getClass() + "_GOLD_COST");
                     int elixirCost = Config.getDictionary().get(newCell.getClass() + "_ELIXIR_COST");
                     View.show("Do you wat to build" + buildingName + "for" + goldCost + "gold and" + elixirCost + "elixir? [Y/N]");
@@ -40,7 +86,7 @@ public class Controller {
                             if (goldCost > game.getVillage().getResource().getGold() || elixirCost > game.getVillage().getResource().getElixir()) {
                                 throw new NotEnoughResourcesException();
                             } else {
-                                view.showMap(game.getVillage(),0);
+                                view.showMap(game.getVillage(), 0);
                                 View.show("where do you want to build" + splitClassNameIntoWords(newCell.getClass().getSimpleName()));
                                 String[] coordinates = view.getInput().split("[(,)]");
                                 newCell.setY(Integer.parseInt(coordinates[1]));
@@ -69,7 +115,7 @@ public class Controller {
         //switch(attackCommand){
         //case "Go next turn":
         //case "put unit":
-    //}
+        //}
         //View.show("The war ended with"+game.getGainedResources().getGold()+" gold,"+game.getGainedResources().getElixir()+" elixir and"+game.getScore()+"scores achieved!");
         //game.healAfterWar
     }

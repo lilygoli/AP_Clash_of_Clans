@@ -68,7 +68,7 @@ public class Camp extends Building {
         }
         return number;
     }
-    
+
     public ArrayList<Soldier> getSoldiers() {
         return soldiers;
     }
