@@ -1,6 +1,7 @@
 package com.company.Models;
 
 import com.company.Exception.*;
+import com.company.Models.Buildings.Barrack;
 import com.company.View;
 
 import java.lang.reflect.InvocationTargetException;
@@ -144,6 +145,41 @@ public class Controller {
     }
 
     private void getCommandInBuilding(Cell cell) {
-
+        int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
+        switch (cell.getClass().getSimpleName()) {
+            case ("Barrack"):
+                getCommandInBarrack(playerChoice);
+                break;
+            case ("Camp"):
+                getCommandInCamp(playerChoice);
+                break;
+            case ("ElixirMine"):
+            case ("GoldMine"):
+                getCommandInMine(playerChoice);
+                break;
+            case ("ElixirStorage"):
+            case ("GoldStorage"):
+                getCommandStorage(playerChoice);
+                break;
+            case ("MainBuilding"):
+                getCommandInMainBuilding(playerChoice);
+                break;
+            case ("AirDefence"):
+                getCommandInAirDefence(playerChoice);
+                break;
+            case ("ArcherTower"):
+                getCommandInArcherTower(playerChoice);
+                break;
+            case ("Cannon"):
+                getCommandInCannon(playerChoice);
+                break;
+            case ("Trap"):
+                break;
+            case ("Wall"):
+                break;
+            case ("WizzardTower"):
+                getCommandInWizzardTower(playerChoice);
+                break;
+        }
     }
 }
