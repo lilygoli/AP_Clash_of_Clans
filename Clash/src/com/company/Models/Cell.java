@@ -189,4 +189,12 @@ public class Cell {
     public void showMenu() {
 
     }
+
+    public int getDamage() {
+        return -1;
+    }
+
+    public int getRange() {
+        return -1;
+    }
 }

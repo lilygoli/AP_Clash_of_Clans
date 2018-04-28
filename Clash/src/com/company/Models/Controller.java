@@ -162,37 +162,61 @@ public class Controller {
         int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
         switch (cell.getClass().getSimpleName()) {
             case ("Barrack"):
-                getCommandInBarrack(playerChoice);
+                getCommandInBarrack(playerChoice, cell);
                 break;
             case ("Camp"):
-                getCommandInCamp(playerChoice);
+                getCommandInCamp(playerChoice, cell);
                 break;
             case ("ElixirMine"):
             case ("GoldMine"):
-                getCommandInMine(playerChoice);
+                getCommandInMine(playerChoice, cell);
                 break;
             case ("ElixirStorage"):
             case ("GoldStorage"):
-                getCommandStorage(playerChoice);
+                getCommandStorage(playerChoice, cell);
                 break;
             case ("MainBuilding"):
                 getCommandInMainBuilding(playerChoice,cell);
+                getCommandInMainBuilding(playerChoice, cell);
                 break;
             case ("AirDefence"):
-                getCommandInAirDefence(playerChoice);
-                break;
             case ("ArcherTower"):
-                getCommandInArcherTower(playerChoice);
-                break;
             case ("Cannon"):
-                getCommandInCannon(playerChoice);
+            case ("WizzardTower"):
+                getCommandInDefence(playerChoice, cell);
                 break;
             case ("Trap"):
-                break;
             case ("Wall"):
+                break;
+        }
+    }
+
+    private void getCommandInDefence(int playerChoice, Cell cell) {
+        switch (playerChoice) {
+            case 1: //info
+                cell.showInfoMenu();
+
                 break;
             case ("WizardTower"):
                 getCommandInWizzardTower(playerChoice);
+            case 2: //Target
+                StringBuilder damageAndRange = new StringBuilder();
+                if (cell.getClass().getSimpleName().equals("ArcherTower")) {
+                    View.show("Target: Ground units\n");
+                }
+                if (cell.getClass().getSimpleName().equals("AirDefence")) {
+                    View.show("Target: Flying units\n");
+                }
+                if (cell.getClass().getSimpleName().equals("Cannon")) {
+                    View.show("Target: Ground units\n");
+                }
+                if (cell.getClass().getSimpleName().equals("WizzardTower")) {
+                    View.show("Target: Groung & Flying units\n");
+                }
+                damageAndRange.append("Damage: ").append(cell.getDamage()).append("\nDamage Range: ").append(cell.getRange());
+                View.show(damageAndRange.toString());
+                break;
+            case 3: //back
                 break;
         }
     }
