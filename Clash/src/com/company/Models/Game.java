@@ -1,10 +1,15 @@
 package com.company.Models;
 
+import com.company.Exception.NotInWarException;
 import com.company.Exception.InvalidPlaceForSoldiersException;
 import com.company.Exception.MoreThanLimitSoldiersException;
 import com.company.Models.Buildings.Camp;
 import com.company.Models.Buildings.Grass;
 import com.company.Models.Buildings.MainBuilding;
+import com.company.Models.Defences.AirDefence;
+import com.company.Models.Defences.ArcherTower;
+import com.company.Models.Defences.Cannon;
+import com.company.Models.Defences.WizardTower;
 import com.company.Models.Buildings.Storage;
 import com.company.Models.Buildings.*;
 import com.company.Models.Soldiers.Soldier;
@@ -13,7 +18,7 @@ import com.company.View;
 import java.util.ArrayList;
 
 public class Game {
-    private Resource gainedResources;
+    private Resource gainedResource;
     private String playerName = "";
     private Village village = new Village();
     private int time = 0;
@@ -25,8 +30,8 @@ public class Game {
     private ArrayList<Soldier> troops = null;
 
     {
-        gainedResources.setElixir(0);
-        gainedResources.setGold(0);
+        gainedResource.setElixir(0);
+        gainedResource.setGold(0);
     }
 
     public void setAttackedVillage(Game attackedVillage) {
@@ -34,11 +39,11 @@ public class Game {
     }
 
     public void setGainedResource(Resource gainedResource) {
-        this.gainedResources = gainedResource;
+        this.gainedResource = gainedResource;
     }
 
     public Resource getGainedResource() {
-        return gainedResources;
+        return gainedResource;
     }
 
     public void setTroops(ArrayList<Soldier> troops) {
@@ -209,10 +214,10 @@ public class Game {
     }
 
     public String statusResources() {
-        return "Gold Achieved : " + gainedResources.getGold() + "\n" +
-                "Elixir Achieved : " + gainedResources.getElixir() + "\n" +
-                "Gold Remained In Map : " + (attackedVillage.village.getResource().getGold() - gainedResources.getGold()) + "\n" +
-                "Elixir Remained In Map : " + (attackedVillage.village.getResource().getElixir() - gainedResources.getElixir()) + "\n";
+        return "Gold Achieved : " + gainedResource.getGold() + "\n" +
+                "Elixir Achieved : " + gainedResource.getElixir() + "\n" +
+                "Gold Remained In Map : " + (attackedVillage.village.getResource().getGold() - gainedResource.getGold()) + "\n" +
+                "Elixir Remained In Map : " + (attackedVillage.village.getResource().getElixir() - gainedResource.getElixir()) + "\n";
     }
 
     public String statusUnit(String unitType) {
@@ -245,6 +250,7 @@ public class Game {
         return finalString.toString();
     }
 
+    // TODO: 4/23/2018 put unit
     public String statusTower() {
         StringBuilder finalString = new StringBuilder();
         for (Cell cell : Cell.getCellKinds()) {
@@ -255,6 +261,29 @@ public class Game {
 
     public String statusAll() {
         return statusResources() + statusTower() + statusUnit();
+    }
+
+    public void passTurnInWarMode() throws NotInWarException {
+        if (this.attackedVillage == null) {
+            throw new NotInWarException();
+        }
+        //Defender Map part
+        for (Cannon cannon : this.attackedVillage.getVillage().getCannons()) {
+            cannon.findAndShootUnit(this.troops);
+        }
+        for (ArcherTower archerTower : this.attackedVillage.getVillage().getArcherTowers()) {
+            archerTower.findAndShootUnit(this.troops);
+        }
+        for (AirDefence airDefence : this.attackedVillage.getVillage().getAirDefences()) {
+            airDefence.findAndShootUnit(this.troops);
+        }
+        for (WizardTower wizardTower : this.attackedVillage.getVillage().getWizardTowers()) {
+            wizardTower.findAndShootUnit(this.troops);
+        }
+        //Attacker Soldiers part
+        for (Soldier soldier : troops) {
+            soldier.attackTarget(this.attackedVillage.getVillage()); // TODO: 4/27/18 باید چند بار کال شه این تابع تو هر ترن
+        }
     }
 
     public void healAfterWar() {
@@ -284,6 +313,14 @@ public class Game {
     // TODO: 4/26/2018 startAttack func
     public void startAttack() {
 
+    }
+
+    public void passTurn(){
+        if(isUnderAttackOrDefense){
+            passTurnInWarMode();
+        }else {
+            passTurnInNormalMode();
+        }
     }
 
     public void putUnit(String unitType, int amount, int x, int y) throws MoreThanLimitSoldiersException, InvalidPlaceForSoldiersException {
@@ -316,13 +353,6 @@ public class Game {
             }
         }
 
-    }
-    public void passTurn(){
-        if(isUnderAttackOrDefense){
-            //passTurnInWArMode
-        }else {
-            passTurnInNormalMode();
-        }
     }
 
     private void passTurnInNormalMode(){
