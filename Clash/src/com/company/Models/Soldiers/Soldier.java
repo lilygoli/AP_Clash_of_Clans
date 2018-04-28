@@ -419,4 +419,5 @@ public abstract class Soldier {
     }
 
 
+    public abstract void attackTarget(Village village);
 }
