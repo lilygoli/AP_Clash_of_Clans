@@ -63,7 +63,6 @@ public class MainBuilding extends Building {
         View.show(menu);
     }
 
-
     public void upgrade() {
         setLevel(getLevel() + 1);
         if (getLevel() % 5 == 0) {
@@ -73,4 +72,5 @@ public class MainBuilding extends Building {
         }
         setStrength(getStrength() + 500);
     }
+
 }

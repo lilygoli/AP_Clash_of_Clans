@@ -5,6 +5,7 @@ import com.company.Models.Buildings.Barrack;
 import com.company.View;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,11 +17,23 @@ public class Controller {
 
     public void mainCommandAnalyzer() {
         implementStartGame();
-        String input=view.getInput();
-        while(input.matches(Regex.SAVING_GAME_REGEX)){
-            if(input.matches(Regex.PASSING_TURN_REGEX)){
-                Matcher matcher=makePatternAndMatcher(input,Regex.PASSING_TURN_REGEX);
-                if(matcher.find()){
+        String input = view.getInput();
+        while (input.matches(Regex.SAVING_GAME_REGEX)) {
+            if (Game.getWhereIAm().equals("You are in village")) {
+                switch (input) {
+                    case "showBuildings":
+                        game.showBuildings()
+
+                        ;
+                        break;
+
+                }
+            }
+
+
+            if (input.matches(Regex.PASSING_TURN_REGEX)) {
+                Matcher matcher = makePatternAndMatcher(input, Regex.PASSING_TURN_REGEX);
+                if (matcher.find()) {
                     for (int turn = 0; turn < Integer.parseInt(matcher.group(0)); turn++) {
                         game.passTurn();
                     }
@@ -28,19 +41,19 @@ public class Controller {
             }
 
 
-
-
-            input=view.getInput();
+            input = view.getInput();
         }
-        Matcher matcher=makePatternAndMatcher(input,Regex.SAVING_GAME_REGEX);
-        if(matcher.find()){
-            implementFinishGame(matcher.group(0),matcher.group(1));
+        Matcher matcher = makePatternAndMatcher(input, Regex.SAVING_GAME_REGEX);
+        if (matcher.find()) {
+            implementFinishGame(matcher.group(0), matcher.group(1));
         }
     }
-    private Matcher makePatternAndMatcher(String input,String regex){
-        Pattern pattern=Pattern.compile(regex);
+
+    private Matcher makePatternAndMatcher(String input, String regex) {
+        Pattern pattern = Pattern.compile(regex);
         return pattern.matcher(input);
     }
+
     private void implementStartGame() {
         String startingCommand = view.getInput();
         if (startingCommand.matches("newGame")) {
@@ -57,8 +70,9 @@ public class Controller {
         }
 
     }
-    private void implementFinishGame(String pathname,String name){
-        gameCenter.saveGame(game,pathname,name);
+
+    private void implementFinishGame(String pathname, String name) {
+        gameCenter.saveGame(game, pathname, name);
     }
 
     public void implementBuildATowerCommand() throws NotEnoughFreeBuildersException, NotEnoughResourcesException, BusyCellException, MarginalTowerException { //name and place to be refactored ... was implemented to complete building a tower//available buildings in barracks command
@@ -129,7 +143,7 @@ public class Controller {
         return result.toString().trim();
     }
 
-    private void getCommandINBuildings() {
+    private void getCommandInBuildings() {
         String input = view.getInput();
         Matcher matcher = makePatternAndMatcher(input, Regex.SELECT_BUILDING_REGEX);
         int buildingNumber = Integer.parseInt(matcher.group(2));
@@ -162,7 +176,7 @@ public class Controller {
                 getCommandStorage(playerChoice);
                 break;
             case ("MainBuilding"):
-                getCommandInMainBuilding(playerChoice);
+                getCommandInMainBuilding(playerChoice,cell);
                 break;
             case ("AirDefence"):
                 getCommandInAirDefence(playerChoice);
@@ -177,9 +191,50 @@ public class Controller {
                 break;
             case ("Wall"):
                 break;
-            case ("WizzardTower"):
+            case ("WizardTower"):
                 getCommandInWizzardTower(playerChoice);
                 break;
+        }
+    }
+
+    private void getCommandInMainBuilding(int command, Cell cell) {
+        switch (command) {
+            case 1:
+                cell.showInfoMenu();
+                int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
+                getCommandInMainBuildingInfoMenu(playerChoice, cell);
+                break;
+            case 2:
+                try {
+                    implementBuildATowerCommand();
+                } catch (NotEnoughFreeBuildersException e) {
+                    e.showMessage();
+                } catch (NotEnoughResourcesException e) {
+                    e.printStackTrace();
+                } catch (BusyCellException e) {
+                    e.showMessage();
+                } catch (MarginalTowerException e) {
+                    e.showMessage();
+                }
+                break;
+            case 3:
+                View.show(game.getVillage().showTownHallStatus());
+                break;
+            case 4:
+                return;//back
+        }
+    }
+
+    private void getCommandInMainBuildingInfoMenu(int playerChoice, Cell cell) {
+        switch (playerChoice) {
+            case 1:
+                cell.showOverallInfo();
+                break;
+            case 2:
+                cell.showUpgradeInfo();
+                break;
+            case 3:
+                return;
         }
     }
 }

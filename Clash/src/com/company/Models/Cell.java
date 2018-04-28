@@ -93,7 +93,7 @@ public class Cell {
         this.level = level;
     }
 
-    public boolean getUnderConstrctionStatus() {
+    public boolean getUnderConstructionStatus() {
         return isUnderConstruction;
     }
 

@@ -254,7 +254,7 @@ public class Village {
         ArrayList<Cell> underConstructionTowers = new ArrayList<>();
         for (Cell[] cells : map) {
             for (Cell cell : cells) {
-                if (cell.getUnderConstrctionStatus()) {
+                if (cell.getUnderConstructionStatus()) {
                     underConstructionTowers.add(cell);
                 }
             }
@@ -307,5 +307,6 @@ public class Village {
         result = result + "GOLD:" + resource.getGold() + "\nElixir:" + resource.getElixir() + "\nScore:" + score;
         return result;
     }
+
 
 }

@@ -251,7 +251,7 @@ public class Game {
     }
 
     // TODO: 4/23/2018 put unit
-    public String statusTower() {
+    public String statusTowers() {
         StringBuilder finalString = new StringBuilder();
         for (Cell cell : Cell.getCellKinds()) {
             finalString.append(statusTower(cell.getClass().getSimpleName())).append("\n");
@@ -260,7 +260,7 @@ public class Game {
     }
 
     public String statusAll() {
-        return statusResources() + statusTower() + statusUnit();
+        return statusResources() + statusTowers() + statusUnit();
     }
 
     public void passTurnInWarMode() throws NotInWarException {
@@ -269,25 +269,25 @@ public class Game {
         }
         //Defender Map part
         for (Cannon cannon : this.attackedVillage.getVillage().getCannons()) {
-            if (cannon.getUnderConstrctionStatus()) {
+            if (cannon.getUnderConstructionStatus()) {
                 continue;
             }
             cannon.findAndShootUnit(this.troops);
         }
         for (ArcherTower archerTower : this.attackedVillage.getVillage().getArcherTowers()) {
-            if (archerTower.getUnderConstrctionStatus()) {
+            if (archerTower.getUnderConstructionStatus()) {
                 continue;
             }
             archerTower.findAndShootUnit(this.troops);
         }
         for (AirDefence airDefence : this.attackedVillage.getVillage().getAirDefences()) {
-            if (airDefence.getUnderConstrctionStatus()) {
+            if (airDefence.getUnderConstructionStatus()) {
                 continue;
             }
             airDefence.findAndShootUnit(this.troops);
         }
         for (WizardTower wizardTower : this.attackedVillage.getVillage().getWizardTowers()) {
-            if (wizardTower.getUnderConstrctionStatus()) {
+            if (wizardTower.getUnderConstructionStatus()) {
                 continue;
             }
             wizardTower.findAndShootUnit(this.troops);
@@ -375,7 +375,7 @@ public class Game {
         time++;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
-                if(village.getMap()[j][i].getUnderConstrctionStatus()){
+                if(village.getMap()[j][i].getUnderConstructionStatus()){
                     village.getMap()[j][i].setTimeLeftOfConstruction(village.getMap()[j][i].getTimeTillConstruction()-1);
                     if(village.getMap()[j][i].getTimeLeftOfConstruction()==0){
                         village.getMap()[j][i].setUnderConstructionStatus(false);
