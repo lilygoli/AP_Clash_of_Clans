@@ -12,12 +12,12 @@ import java.util.ArrayList;
 public class Cell {
 
     private final String infoMenu = "1. Overall Info\n2. Upgrade Info\n3. Back";
-    private boolean isUnderConstruction;
+    private boolean isUnderConstruction = false;
     private int timeTillConstruction;
     private int x;
     private int y;
     private int jsonType;
-    private boolean isRuined;
+    private boolean isRuined = false;
     private int level;
     private int strength;
     private int amount;

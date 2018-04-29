@@ -88,6 +88,7 @@ public class Controller {
         Integer chosenNumber = Integer.parseInt(playerChoice);
         Integer nextNumber = chosenNumber + 1;
         String buildingName = availableBuildings.substring(availableBuildings.indexOf(chosenNumber.toString() + ". "), availableBuildings.indexOf(nextNumber.toString()));
+        buildingName = buildingName.split("\\.")[1].trim();
         Builder builder = null;
         builder = game.getVillage().findFreeBuilder();//kollan bara 3 ta exc tooye tabeye bala bayad exc.showMessage seda konim
         ArrayList<Cell> cellKinds = new ArrayList<Cell>(Cell.getCellKinds());
@@ -96,9 +97,9 @@ public class Controller {
                 Class spacialBuilding = cell.getClass();
                 try {
                     Cell newCell = (Cell) spacialBuilding.getDeclaredConstructor(int.class, int.class).newInstance(0, 0);
-                    int goldCost = Config.getDictionary().get(newCell.getClass() + "_GOLD_COST");
-                    int elixirCost = Config.getDictionary().get(newCell.getClass() + "_ELIXIR_COST");
-                    View.show("Do you wat to build" + buildingName + "for" + goldCost + "gold and" + elixirCost + "elixir? [Y/N]");
+                    int goldCost = Config.getDictionary().get(newCell.getClass().getSimpleName() + "_GOLD_COST");
+                    int elixirCost = Config.getDictionary().get(newCell.getClass().getSimpleName() + "_ELIXIR_COST");
+                    View.show("Do you wat to build " + buildingName + " for " + goldCost + " gold and " + elixirCost + " elixir? [Y/N]");
                     switch (view.getInput()) {
                         case "Y": {
                             if (goldCost > game.getVillage().getResource().getGold() || elixirCost > game.getVillage().getResource().getElixir()) {
@@ -108,7 +109,7 @@ public class Controller {
                                 View.show("where do you want to build" + splitClassNameIntoWords(newCell.getClass().getSimpleName()));
                                 String[] coordinates = view.getInput().split("[(,)]");
                                 newCell.setY(Integer.parseInt(coordinates[1]));
-                                newCell.setX(Integer.parseInt(coordinates[0]));
+                                newCell.setX(Integer.parseInt(coordinates[2]));
                                 game.getVillage().buildTower(newCell);
                                 newCell.setWorkingBuilder(builder);
                                 builder.setOccupationState(true);
@@ -170,7 +171,9 @@ public class Controller {
     private void getCommandInBuildings() {
         String input = view.getInput();
         Matcher matcher = makePatternAndMatcher(input, Regex.SELECT_BUILDING_REGEX);
-        int buildingNumber = Integer.parseInt(matcher.group(2));
+        if (matcher.find()) {
+            int buildingNumber = Integer.parseInt(matcher.group(2));
+        }
         String buildingName = matcher.group(1).replace(" ", "");
         for (Cell[] cells : game.getVillage().getMap()) {
             for (Cell cell : cells) {
@@ -228,9 +231,9 @@ public class Controller {
                 case 3:
                     Storage storage=(Storage) cell;
                     if(storage.getClass().getSimpleName().equals("GoldStorage")) {
-                        storage.getSourcesInfo( new ArrayList<>(game.getVillage().getGoldStorages()), "gold storage");
+                        View.show(storage.getSourcesInfo( new ArrayList<>(game.getVillage().getGoldStorages()), "gold storage"));
                     }else {
-                        storage.getSourcesInfo( new ArrayList<>(game.getVillage().getElixirStorages()), "elixir storage");
+                        View.show(storage.getSourcesInfo( new ArrayList<>(game.getVillage().getElixirStorages()), "elixir storage"));
                     }
                 case 4://TODO what does upgrade do here?
                 case 5:return;//back

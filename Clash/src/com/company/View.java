@@ -26,18 +26,27 @@ public class View {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
-                if (village.getMap()[j][i].getClass() == Grass.class) {
-                    result.append("0");
-                } else {
-                    result.append("1");
-                }
                 if (isInWarFlag == 1) {
                     if (i >= 29 || j >= 29 || j <= 0 || i <= 0) {
                         result.append("0");
                     }
+                    else {
+                        if (village.getMap()[j][i].getClass() == Grass.class) {
+                            result.append("0");
+                        } else {
+                            result.append("1");
+                        }
+                    }
                 } else {
                     if (i >= 29 || j >= 29 || j <= 0 || i <= 0) {
                         result.append("1");
+                    }
+                    else {
+                        if (village.getMap()[j][i].getClass() == Grass.class) {
+                            result.append("0");
+                        } else {
+                            result.append("1");
+                        }
                     }
                 }
             }

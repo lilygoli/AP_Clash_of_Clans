@@ -6,7 +6,8 @@ import com.company.View;
 import java.util.ArrayList;
 
 public class Storage extends Building {
-    private int capacity;
+    private int capacity = 500;
+    // TODO: 4/29/2018 what is capacity 500 or 10000
     private int resource;
 
     public Storage(int number,int level) {
@@ -62,7 +63,7 @@ public class Storage extends Building {
             amount+=storage.getResource();
             capacity+=storage.getCapacity();
         }
-        return "Your"+nameOfStorage+"is"+amount+"/"+capacity+" loaded.";
+        return "Your " + nameOfStorage + " is " + amount + "/" + capacity + " loaded.";
 
     }
     public boolean isFull(){

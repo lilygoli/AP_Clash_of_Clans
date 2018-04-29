@@ -160,7 +160,8 @@ public class Config {
 
 
         dictionary.put("AirDefence_JSON_TYPE" , 10);
-        dictionary.put("AirDefence_COST" , 300);
+        dictionary.put("AirDefence_GOLD_COST" , 300);
+        dictionary.put("AirDefence_ELIXIR_COST" , 0);
         dictionary.put("AirDefence_BUILD_DURATION" , 60);
         dictionary.put("AirDefence_STRENGTH" , 300);
         dictionary.put("AirDefence_DAMAGE" , 20);
@@ -169,7 +170,8 @@ public class Config {
         dictionary.put("AirDefence_RESOURCE_GAINED_WHEN_DESTRUCTED" , 300);
 
         dictionary.put("ArcherTower_JSON_TYPE" , 8);
-        dictionary.put("ArcherTower_COST" , 300);
+        dictionary.put("ArcherTower_GOLD_COST" , 300);
+        dictionary.put("ArcherTower_ELIXIR_COST" , 0);
         dictionary.put("ArcherTower_BUILD_DURATION" , 60);
         dictionary.put("ArcherTower_STRENGTH" , 300);
         dictionary.put("ArcherTower_DAMAGE" , 20);
@@ -178,7 +180,8 @@ public class Config {
         dictionary.put("ArcherTower_RESOURCE_GAINED_WHEN_DESTRUCTED" , 300);
 
         dictionary.put("Cannon_JSON_TYPE" , 9);
-        dictionary.put("Cannon_COST" , 400);
+        dictionary.put("Cannon_GOLD_COST" , 400);
+        dictionary.put("Cannon_ELIXIR_COST" , 400);
         dictionary.put("Cannon_BUILD_DURATION" , 100);
         dictionary.put("Cannon_STRENGTH" , 400);
         dictionary.put("Cannon_DAMAGE" , 20);
@@ -187,7 +190,8 @@ public class Config {
         dictionary.put("Cannon_RESOURCE_GAINED_WHEN_DESTRUCTED" , 400);
 
         dictionary.put("WizardTower_JSON_TYPE" , 11);
-        dictionary.put("WizardTower_COST" , 500);
+        dictionary.put("WizardTower_GOLD_COST" , 500);
+        dictionary.put("WizardTower_ELIXIR_COST" , 500);
         dictionary.put("WizardTower_BUILD_DURATION" , 120);
         dictionary.put("WizardTower_STRENGTH" , 700);
         dictionary.put("WizardTower_DAMAGE" , 20);
@@ -196,7 +200,8 @@ public class Config {
         dictionary.put("WizardTower_RESOURCE_GAINED_WHEN_DESTRUCTED" , 500);
 
         dictionary.put("Wall_JSON_TYPE" , 12);
-        dictionary.put("Wall_COST" , 100);
+        dictionary.put("Wall_GOLD_COST" , 100);
+        dictionary.put("Wall_ELIXIR_COST" , 100);
         dictionary.put("Wall_BUILD_DURATION" , 20);
         dictionary.put("Wall_STRENGTH" , 100);
         dictionary.put("Wall_DAMAGE" , 0);
@@ -205,7 +210,8 @@ public class Config {
         dictionary.put("Wall_RESOURCE_GAINED_WHEN_DESTRUCTED" , 100);
 
         dictionary.put("Trap_JSON_TYPE" , 13);
-        dictionary.put("Trap_COST" , 100);
+        dictionary.put("Trap_GOLD_COST" , 100);
+        dictionary.put("Trap_ELIXIR_COST" , 100);
         dictionary.put("Trap_BUILD_DURATION" , 40);
         dictionary.put("Trap_STRENGTH" , 100);
         dictionary.put("Trap_DAMAGE" , 100);

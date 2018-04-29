@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class Village {
     private Cell[][] map;
-    private Resource resource = new Resource(0 ,0);
+    private Resource resource = new Resource(0, 0);
     private int score = 0;
     private ArrayList<ArcherTower> archerTowers = new ArrayList<ArcherTower>();
     private ArrayList<Cannon> cannons = new ArrayList<Cannon>();
@@ -30,17 +30,17 @@ public class Village {
     private ArrayList<Barrack> barracks = new ArrayList<Barrack>();
     private ArrayList<Camp> camps = new ArrayList<Camp>();
 
-    public Village()
     {
         map = new Cell[30][30];
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
-               map[j][i] = new Grass();
+                map[j][i] = new Grass();
             }
         }
         mainBuilding = new MainBuilding(0);
         resource.setGold(Config.getDictionary().get("STARTING_GOLD"));
         resource.setElixir(Config.getDictionary().get("STARTING_ELIXIR"));
+
         map[14][14] = mainBuilding;
         map[14][15] = mainBuilding;
         map[15][14] = mainBuilding;
@@ -48,10 +48,13 @@ public class Village {
 
         goldStorages.add(new GoldStorage(1, 0));
         elixirStorages.add(new ElixirStorage(1, 0));
+
         Random random = new Random();
         map[random.nextInt(28) + 1][random.nextInt(28) + 1] = goldStorages.get(0);
         map[random.nextInt(28) + 1][random.nextInt(28) + 1] = elixirStorages.get(0);
 
+        goldStorages.get(0).setResource(500);// TODO: 4/29/2018 what int resouce should be
+        elixirStorages.get(0).setResource(500);
     }
 
     public void setResource(Resource resource) {
@@ -186,10 +189,10 @@ public class Village {
         if (tower.getX() <= 0 || tower.getX() >= 29 || tower.getY() <= 0 || tower.getY() >= 29) {
             throw new MarginalTowerException();
         }
-        if (map[tower.getX()][tower.getY()].getClass().isInstance(Grass.class)) {
+        if (map[tower.getX()][tower.getY()].getClass().getSimpleName().equals("Grass")) {
             map[tower.getX()][tower.getY()] = tower;
             tower.setUnderConstructionStatus(true);
-            tower.setTimeTillConstruction(Config.getDictionary().get(tower.getClass().getSimpleName()+"_BUILD_DURATION"));
+            tower.setTimeTillConstruction(Config.getDictionary().get(tower.getClass().getSimpleName() + "_BUILD_DURATION"));
             switch (tower.getName()) {
                 case "Camp":
                     this.getCamps().add((Camp) tower);
@@ -237,7 +240,8 @@ public class Village {
             throw new BusyCellException();
         }
     }
-    public Builder findFreeBuilder() throws  NotEnoughFreeBuildersException {
+
+    public Builder findFreeBuilder() throws NotEnoughFreeBuildersException {
         int numberOfFreeBuilders = 0;
         Builder builderToConstruct = null;
         for (Builder builder : this.getMainBuilding().getBuilders()) {
@@ -261,10 +265,10 @@ public class Village {
                     underConstructionTowers.add(cell);
                 }
             }
-            Cell.sortTowers(underConstructionTowers);
-            for (Cell underConstructionTower : underConstructionTowers) {
-                status.append(underConstructionTower.getName()).append(underConstructionTower.getTimeTillConstruction());
-            }
+        }
+        Cell.sortTowers(underConstructionTowers);
+        for (Cell underConstructionTower : underConstructionTowers) {
+            status.append(underConstructionTower.getName() + " ").append(underConstructionTower.getTimeTillConstruction());
         }
         return status.toString();
     }

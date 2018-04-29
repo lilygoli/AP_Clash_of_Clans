@@ -17,7 +17,7 @@ public class MainBuilding extends Building {
     private int numberOfBuilders = 1;
 
     public MainBuilding(int level) {
-        super(1,level); // only one should be constructed at the beginning of the game
+        super(1, level); // only one should be constructed at the beginning of the game
         Builder firstBuilder = new Builder(1);
         builders.add(firstBuilder);
         this.setTimeLeftOfConstruction(this.getBuildDuration());
@@ -40,15 +40,18 @@ public class MainBuilding extends Building {
     }
 
     public String findAvailableBuildings(int gold, int elixir) {
-        ArrayList<String> allBuildings = new ArrayList<String>(Collections.singletonList(Cell.getCellKinds().getClass().getSimpleName()));//TODO age defense ha ro ham shamel mishe beja Building Cell bezar age in doros bud esmesho bezar Tower
+        ArrayList<String> allBuildings = new ArrayList<String>();
+        for (Cell cell : Cell.getCellKinds()) {
+            allBuildings.add(cell.getClass().getSimpleName());
+        }
         allBuildings.add(Wall.class.getSimpleName());
         allBuildings.add(Trap.class.getSimpleName());
         Collections.sort(allBuildings);
         StringBuilder availableBuildings = new StringBuilder();
         int counter = 0;
-        for (String building : allBuildings
-                ) {
-            if (Config.getDictionary().get(building + "_GOLD_COST") <= gold && Config.getDictionary().get(building + "ELIXIR_COST") <= elixir) {
+        for (String building : allBuildings) {
+            System.out.println(building);
+            if (Config.getDictionary().get(building + "_GOLD_COST") <= gold && Config.getDictionary().get(building + "_ELIXIR_COST") <= elixir) {
                 counter++;
                 availableBuildings.append(Integer.toString(counter)).append(". ").append(building).append("\n");
             }
