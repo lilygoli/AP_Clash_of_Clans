@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Config {
     private static HashMap<String,Integer> dictionary=new HashMap<String,Integer>();
-    {
+    static {
         dictionary.put("STARTING_GOLD",10000);
         dictionary.put("STARTING_ELIXIR",1000);
 
@@ -177,14 +177,14 @@ public class Config {
         dictionary.put("ArcherTower_POINTS_GAINED_WHEN_DESTRUCTED" , 3);
         dictionary.put("ArcherTower_RESOURCE_GAINED_WHEN_DESTRUCTED" , 300);
 
-        dictionary.put("Canon_JSON_TYPE" , 9);
-        dictionary.put("Canon_COST" , 400);
-        dictionary.put("Canon_BUILD_DURATION" , 100);
-        dictionary.put("Canon_STRENGTH" , 400);
-        dictionary.put("Canon_DAMAGE" , 20);
-        dictionary.put("Canon_RADIUS" , 13);
-        dictionary.put("Canon_POINTS_GAINED_WHEN_DESTRUCTED" , 4);
-        dictionary.put("Canon_RESOURCE_GAINED_WHEN_DESTRUCTED" , 400);
+        dictionary.put("Cannon_JSON_TYPE" , 9);
+        dictionary.put("Cannon_COST" , 400);
+        dictionary.put("Cannon_BUILD_DURATION" , 100);
+        dictionary.put("Cannon_STRENGTH" , 400);
+        dictionary.put("Cannon_DAMAGE" , 20);
+        dictionary.put("Cannon_RADIUS" , 13);
+        dictionary.put("Cannon_POINTS_GAINED_WHEN_DESTRUCTED" , 4);
+        dictionary.put("Cannon_RESOURCE_GAINED_WHEN_DESTRUCTED" , 400);
 
         dictionary.put("WizardTower_JSON_TYPE" , 11);
         dictionary.put("WizardTower_COST" , 500);

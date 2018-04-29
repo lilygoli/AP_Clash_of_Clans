@@ -68,6 +68,7 @@ public abstract class Defence extends Cell {
     }
 
     public int getBuildDuration() {
+        System.out.println(this.getClass().getSimpleName());
         return Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION");
     }
 

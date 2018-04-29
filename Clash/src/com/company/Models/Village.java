@@ -12,8 +12,8 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Village {
-    private Cell[][] map = new Cell[30][30];
-    private Resource resource;
+    private Cell[][] map;
+    private Resource resource = new Resource(0 ,0);
     private int score = 0;
     private ArrayList<ArcherTower> archerTowers = new ArrayList<ArcherTower>();
     private ArrayList<Cannon> cannons = new ArrayList<Cannon>();
@@ -30,10 +30,12 @@ public class Village {
     private ArrayList<Barrack> barracks = new ArrayList<Barrack>();
     private ArrayList<Camp> camps = new ArrayList<Camp>();
 
+    public Village()
     {
+        map = new Cell[30][30];
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
-                map[j][i] = new Grass();
+               map[j][i] = null;
             }
         }
         mainBuilding = new MainBuilding(0);
