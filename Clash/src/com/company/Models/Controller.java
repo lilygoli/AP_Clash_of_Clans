@@ -316,6 +316,7 @@ public class Controller {
         switch (playerChoice) {
             case 1: //info
                 cell.showInfoMenu();
+                getCommandInDefenceInfoMenu(cell);
                 break;
             case 2: //Target
                 StringBuilder damageAndRange = new StringBuilder();
@@ -335,6 +336,37 @@ public class Controller {
                 View.show(damageAndRange.toString());
                 break;
             case 3: //back
+                break;
+        }
+    }
+
+    private void getCommandInDefenceInfoMenu(Cell cell) {
+        int choice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
+        switch(choice) {
+            case 1:
+                cell.showOverallInfo();
+                break;
+            case 2:
+                cell.showUpgradeInfo();
+                break;
+            case 3:
+                StringBuilder damageAndRange = new StringBuilder();
+                if (cell.getClass().getSimpleName().equals("ArcherTower")) {
+                    View.show("Target: Ground units\n");
+                }
+                if (cell.getClass().getSimpleName().equals("AirDefence")) {
+                    View.show("Target: Flying units\n");
+                }
+                if (cell.getClass().getSimpleName().equals("Cannon")) {
+                    View.show("Target: Ground units\n");
+                }
+                if (cell.getClass().getSimpleName().equals("WizardTower")) {
+                    View.show("Target: Ground & Flying units\n");
+                }
+                damageAndRange.append("Damage: ").append(cell.getDamage()).append("\nDamage Range: ").append(cell.getRange());
+                View.show(damageAndRange.toString());
+                break;
+            case 4: // TODO: 4/29/18 back
                 break;
         }
     }
