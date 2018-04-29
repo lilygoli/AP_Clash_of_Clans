@@ -24,6 +24,11 @@ public class Game {
     private int time;
     private boolean isUnderAttackOrDefense;
     private int timePassedInWar;
+
+    public Game getAttackedVillage() {
+        return attackedVillage;
+    }
+
     private Game attackedVillage;
     private ArrayList<Game> allAttackedVillages;
     private static String whereIAm;
@@ -260,7 +265,6 @@ public class Game {
         return finalString.toString();
     }
 
-    // TODO: 4/23/2018 put unit
     public String statusTowers() {
         StringBuilder finalString = new StringBuilder();
         for (Cell cell : Cell.getCellKinds()) {
@@ -332,9 +336,7 @@ public class Game {
         troops.clear();
     }
 
-    // TODO: 4/26/2018 startAttack func
     public void startAttack() {
-
     }
 
     public void passTurn(){
@@ -348,6 +350,7 @@ public class Game {
             passTurnInNormalMode();
         }
     }
+    // TODO: 4/29/2018 select unit
 
     public void putUnit(String unitType, int amount, int x, int y) throws MoreThanLimitSoldiersException, InvalidPlaceForSoldiersException {
         if (amount > 5) {
