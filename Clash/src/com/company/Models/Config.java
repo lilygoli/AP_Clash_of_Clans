@@ -158,6 +158,63 @@ public class Config {
         dictionary.put("Healer_CAN_FLY",1);
         dictionary.put("Healer_ALIVE_TIME",10);
 
+
+        dictionary.put("AirDefence_JSON_TYPE" , 10);
+        dictionary.put("AirDefence_COST" , 300);
+        dictionary.put("AirDefence_BUILD_DURATION" , 60);
+        dictionary.put("AirDefence_STRENGTH" , 300);
+        dictionary.put("AirDefence_DAMAGE" , 20);
+        dictionary.put("AirDefence_RADIUS" , 10);
+        dictionary.put("AirDefence_POINTS_GAINED_WHEN_DESTRUCTED" , 3);
+        dictionary.put("AirDefence_RESOURCE_GAINED_WHEN_DESTRUCTED" , 300);
+
+        dictionary.put("ArcherTower_JSON_TYPE" , 8);
+        dictionary.put("ArcherTower_COST" , 300);
+        dictionary.put("ArcherTower_BUILD_DURATION" , 60);
+        dictionary.put("ArcherTower_STRENGTH" , 300);
+        dictionary.put("ArcherTower_DAMAGE" , 20);
+        dictionary.put("ArcherTower_RADIUS" , 10);
+        dictionary.put("ArcherTower_POINTS_GAINED_WHEN_DESTRUCTED" , 3);
+        dictionary.put("ArcherTower_RESOURCE_GAINED_WHEN_DESTRUCTED" , 300);
+
+        dictionary.put("Canon_JSON_TYPE" , 9);
+        dictionary.put("Canon_COST" , 400);
+        dictionary.put("Canon_BUILD_DURATION" , 100);
+        dictionary.put("Canon_STRENGTH" , 400);
+        dictionary.put("Canon_DAMAGE" , 20);
+        dictionary.put("Canon_RADIUS" , 13);
+        dictionary.put("Canon_POINTS_GAINED_WHEN_DESTRUCTED" , 4);
+        dictionary.put("Canon_RESOURCE_GAINED_WHEN_DESTRUCTED" , 400);
+
+        dictionary.put("WizardTower_JSON_TYPE" , 11);
+        dictionary.put("WizardTower_COST" , 500);
+        dictionary.put("WizardTower_BUILD_DURATION" , 120);
+        dictionary.put("WizardTower_STRENGTH" , 700);
+        dictionary.put("WizardTower_DAMAGE" , 20);
+        dictionary.put("WizardTower_RADIUS" , 13);
+        dictionary.put("WizardTower_POINTS_GAINED_WHEN_DESTRUCTED" , 5);
+        dictionary.put("WizardTower_RESOURCE_GAINED_WHEN_DESTRUCTED" , 500);
+
+        dictionary.put("Wall_JSON_TYPE" , 12);
+        dictionary.put("Wall_COST" , 100);
+        dictionary.put("Wall_BUILD_DURATION" , 20);
+        dictionary.put("Wall_STRENGTH" , 100);
+        dictionary.put("Wall_DAMAGE" , 0);
+        dictionary.put("Wall_RADIUS" , 0);
+        dictionary.put("Wall_POINTS_GAINED_WHEN_DESTRUCTED" , 1);
+        dictionary.put("Wall_RESOURCE_GAINED_WHEN_DESTRUCTED" , 100);
+
+        dictionary.put("Trap_JSON_TYPE" , 13);
+        dictionary.put("Trap_COST" , 100);
+        dictionary.put("Trap_BUILD_DURATION" , 40);
+        dictionary.put("Trap_STRENGTH" , 100);
+        dictionary.put("Trap_DAMAGE" , 100);
+        dictionary.put("Trap_RADIUS" , 0);
+        dictionary.put("Trap_POINTS_GAINED_WHEN_DESTRUCTED" , 1);
+        dictionary.put("Trap_RESOURCE_GAINED_WHEN_DESTRUCTED" , 100);
+
+
+
     }
 
     public static HashMap<String, Integer> getDictionary() {
