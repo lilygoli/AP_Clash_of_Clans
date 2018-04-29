@@ -128,14 +128,16 @@ public class Game {
         ArrayList<Cell> buildings = new ArrayList<>();
         for (Cell[] cells : village.getMap()) {
             for (Cell cell : cells) {
-                if (!cell.getClass().isInstance(Grass.class)) {
-                    buildings.add(cell);
+                if (!cell.getClass().getSimpleName().equals("Grass")) {
+                    if (!buildings.contains(cell)) {
+                        buildings.add(cell);
+                    }
                 }
             }
-            Cell.sortTowers(buildings);
-            for (Cell building : buildings) {
-                View.show(building.getName() + building.getNumber());
-            }
+        }
+        Cell.sortTowers(buildings);
+        for (Cell building : buildings) {
+            View.show(building.getName() + " " + building.getNumber());
         }
     }
 

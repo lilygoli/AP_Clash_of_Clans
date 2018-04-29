@@ -18,7 +18,7 @@ public class Controller {
     public void mainCommandAnalyzer() {
         implementStartGame();
         String input = view.getInput();
-        while (input.matches(Regex.SAVING_GAME_REGEX)) {
+        while (!input.matches(Regex.SAVING_GAME_REGEX)) {
             if (Game.getWhereIAm().equals("You are in village")) {
                 switch (input) {
                     case "showBuildings":
