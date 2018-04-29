@@ -19,19 +19,27 @@ import java.util.ArrayList;
 
 public class Game {
     private Resource gainedResource;
-    private String playerName = "";
-    private Village village = new Village();
-    private int time = 0;
-    private boolean isUnderAttackOrDefense = false;
-    private int timePassedInWar = 0;
-    private Game attackedVillage = null;
-    private ArrayList<Game> allAttackedVillages = new ArrayList<Game>();
-    private static String whereIAm = "You are in village";
-    private ArrayList<Soldier> troops = null;
+    private String playerName;
+    private Village village;
+    private int time;
+    private boolean isUnderAttackOrDefense;
+    private int timePassedInWar;
+    private Game attackedVillage;
+    private ArrayList<Game> allAttackedVillages;
+    private static String whereIAm;
+    private ArrayList<Soldier> troops;
 
     {
-        gainedResource.setElixir(0);
-        gainedResource.setGold(0);
+        playerName = "";
+        time = 0;
+        isUnderAttackOrDefense = false;
+        timePassedInWar = 0;
+        attackedVillage = null;
+        allAttackedVillages = new ArrayList<Game>();
+        whereIAm = "You are in village";
+        gainedResource = new Resource(0 , 0);
+        troops = null;
+        village = new Village();
     }
 
     public void setAttackedVillage(Game attackedVillage) {

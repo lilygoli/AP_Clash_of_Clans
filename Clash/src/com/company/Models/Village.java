@@ -26,7 +26,7 @@ public class Village {
     private ArrayList<ElixirMine> elixirMines = new ArrayList<ElixirMine>();
     private ArrayList<GoldStorage> goldStorages = new ArrayList<GoldStorage>();
     private ArrayList<ElixirStorage> elixirStorages = new ArrayList<ElixirStorage>();
-    private MainBuilding mainBuilding = new MainBuilding(0);
+    private MainBuilding mainBuilding;
     private ArrayList<Barrack> barracks = new ArrayList<Barrack>();
     private ArrayList<Camp> camps = new ArrayList<Camp>();
 
@@ -36,6 +36,7 @@ public class Village {
                 map[j][i] = new Grass();
             }
         }
+        mainBuilding = new MainBuilding(0);
         resource.setGold(Config.getDictionary().get("STARTING_GOLD"));
         resource.setElixir(Config.getDictionary().get("STARTING_ELIXIR"));
         map[14][14] = mainBuilding;
