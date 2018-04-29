@@ -16,7 +16,7 @@ public class Controller {
     private View view = new View();
 
     public void mainCommandAnalyzer() {
-        while(game == null) {
+        while (game == null) {
             implementStartGame();
         }
         String input = view.getInput();
@@ -229,55 +229,83 @@ public class Controller {
                     cell.showUpgradeInfo();
                     break;
                 case 3:
-                    Storage storage=(Storage) cell;
-                    if(storage.getClass().getSimpleName().equals("GoldStorage")) {
-                        View.show(storage.getSourcesInfo( new ArrayList<>(game.getVillage().getGoldStorages()), "gold storage"));
-                    }else {
-                        View.show(storage.getSourcesInfo( new ArrayList<>(game.getVillage().getElixirStorages()), "elixir storage"));
+                    Storage storage = (Storage) cell;
+                    if (storage.getClass().getSimpleName().equals("GoldStorage")) {
+                        View.show(storage.getSourcesInfo(new ArrayList<>(game.getVillage().getGoldStorages()), "gold storage"));
+                    } else {
+                        View.show(storage.getSourcesInfo(new ArrayList<>(game.getVillage().getElixirStorages()), "elixir storage"));
                     }
-                case 4://TODO what does upgrade do here?
-                case 5:return;//back
+                    break;
+                case 4:
+                    try {
+                        implementUpgradeCommand(cell);
+                    } catch (NotEnoughResourcesException e) {
+                        e.showMessage();
+                    }
+                    //TODO what does upgrade do here?
+                case 5:
+                    return;//back
             }
         }
     }
+
+    private void implementUpgradeCommand(Cell cell) throws NotEnoughResourcesException {
+        View.show("Do you want to upgrade " + cell.getName() +  " for " + cell.getUpgradeCost() + " golds? [Y/N]");
+        switch (view.getInput()){
+            case "Y":
+                if (cell.getUpgradeCost() > game.getVillage().getResource().getGold()){
+                    throw new NotEnoughResourcesException();
+                }
+                else{
+                    cell.upgrade();
+                    game.getVillage().getResource().setGold(game.getVillage().getResource().getGold() - cell.getUpgradeCost());
+                }
+            case "N":
+                // TODO: 4/29/2018 back or no
+        }
+    }
+
     private void getCommandInMine(int playerChoice, Cell cell) {
-        switch (playerChoice){
+        switch (playerChoice) {
             case 1:
                 cell.showInfoMenu();
                 int choice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
-                getCommandInInfoMenu(choice,cell);
+                getCommandInInfoMenu(choice, cell);
                 break;
             case 2:
-                Mine mine=(Mine)cell;
-                if(mine.getClass().getSimpleName().equals("GoldMine")){
-                    ArrayList<Storage> allGoldStorage=new ArrayList<>(game.getVillage().getGoldStorages());
+                Mine mine = (Mine) cell;
+                if (mine.getClass().getSimpleName().equals("GoldMine")) {
+                    ArrayList<Storage> allGoldStorage = new ArrayList<>(game.getVillage().getGoldStorages());
                     mine.mine(allGoldStorage);
-                }else {
-                    ArrayList<Storage> allElixirStorage=new ArrayList<>(game.getVillage().getElixirStorages());
+                } else {
+                    ArrayList<Storage> allElixirStorage = new ArrayList<>(game.getVillage().getElixirStorages());
                     mine.mine(allElixirStorage);
                 }
                 break;
 
-            case 3: return;//back
+            case 3:
+                return;//back
         }
     }
 
     private void getCommandInCamp(int playerChoice, Cell cell) {
-        switch (playerChoice){
+        switch (playerChoice) {
             case 1:
                 cell.showInfoMenu();
                 int choice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
-                getCommandInCampInfoMenu(choice,(Camp) cell);
+                getCommandInCampInfoMenu(choice, (Camp) cell);
                 break;
             case 2:
-                Camp camp=(Camp)cell;
+                Camp camp = (Camp) cell;
                 View.show(camp.showSoldiers());
                 break;
-            case 3:return;//back
+            case 3:
+                return;//back
         }
     }
-    private void getCommandInCampInfoMenu(int playerChoice,Camp camp){
-        switch (playerChoice){
+
+    private void getCommandInCampInfoMenu(int playerChoice, Camp camp) {
+        switch (playerChoice) {
             case 1:
                 camp.showOverallInfo();
                 break;
@@ -347,7 +375,7 @@ public class Controller {
 
     private void getCommandInDefenceInfoMenu(Cell cell) {
         int choice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
-        switch(choice) {
+        switch (choice) {
             case 1:
                 cell.showOverallInfo();
                 break;

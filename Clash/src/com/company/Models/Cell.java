@@ -143,12 +143,12 @@ public class Cell {
     }
 
     public void showOverallInfo() {
-        Game.setWhereIAm("You are in"+this.getClass().getSimpleName()+"Overall info menu");
+        Game.setWhereIAm("You are in " + this.getClass().getSimpleName()+ " Overall info menu");
         View.show("Level: " + this.getLevel() + "\nHealth: " + this.getStrength());
     }
 
     public void showUpgradeInfo() {
-        Game.setWhereIAm("You are in"+this.getClass().getSimpleName()+"upgrade info menu");
+        Game.setWhereIAm("You are in " + this.getClass().getSimpleName()+ " upgrade info menu");
         View.show("Upgrade Cost: " + this.getUpgradeCost());
     }
 
