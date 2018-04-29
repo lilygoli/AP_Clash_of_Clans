@@ -22,11 +22,12 @@ public class Controller {
             if (Game.getWhereIAm().equals("You are in village")) {
                 switch (input) {
                     case "showBuildings":
-                        game.showBuildings()
-
-                        ;
+                        game.showBuildings();
+                        this.getCommandInBuildings();
                         break;
-
+                    case "resources":
+                        game.statusResources();
+                        break;
                 }
             }
 
