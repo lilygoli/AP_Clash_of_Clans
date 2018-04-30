@@ -77,4 +77,7 @@ public class Camp extends Building {
         return soldiers;
     }
 
+    public void removeSoldier(Soldier soldier) {
+        this.soldiers.remove(soldier);
+    }
 }

@@ -1,5 +1,6 @@
 package com.company.Models;
 
+import com.company.Exception.NoSuchSoldierInCampException;
 import com.company.Exception.NotInWarException;
 import com.company.Exception.InvalidPlaceForSoldiersException;
 import com.company.Exception.MoreThanLimitSoldiersException;
@@ -423,6 +424,19 @@ public class Game {
             }
         }
         return timePassedInWar >= 10000 || troops.size() == 0 || flag == 0 || (attackedVillage.getVillage().getResource().getGold() == 0 && attackedVillage.getVillage().getResource().getElixir() == 0);
+    }
+
+    public void selectUnit(String unitType) throws NoSuchSoldierInCampException {
+        for (Camp camp : village.getCamps()) {
+            for (Soldier soldier : camp.getSoldiers()) {
+                if (soldier.getClass().getName().equals(unitType)) {
+                    troops.add(soldier);
+                    camp.removeSoldier(soldier);
+                    return;
+                }
+            }
+        }
+        throw new NoSuchSoldierInCampException();
     }
 
 }
