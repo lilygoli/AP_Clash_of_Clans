@@ -207,7 +207,7 @@ public class Controller {
             // TODO: 4/30/18 maybe "Start Select" should have been implemented!!!
             String playerChoice = view.getInput("");
             if (playerChoice.equals("End select")) {
-                return;
+                break;
             }
             if (!playerChoice.matches("Select \\w+ \\d+")) {
                 view.show("invalid input. type End select to go to attack");
@@ -224,7 +224,25 @@ public class Controller {
                 }
             }
         }
+        view.showMap(game.getVillage(), 1);
+        String putUnitChoice = view.getInput("Enter the type of the soldier and its coordinates you want to use");
+        while (!putUnitChoice.equals("Go next turn")) {
+            Matcher matcher = makePatternAndMatcher(putUnitChoice, Regex.PUT_UNIT_REGEX);
+            if (matcher.find()) {
+                try {
+                    game.putUnit(matcher.group(1), Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)), Integer.parseInt(matcher.group(4)));
+                } catch (MoreThanLimitSoldiersException e) {
+                    e.showMessage();
+                } catch (InvalidPlaceForSoldiersException e) {
+                    e.showMessage();
+                }
+            }
+            putUnitChoice = view.getInput("Enter the type of the soldier and its coordinates you want to use");
+        }
+        game.passTurn();
+
     }
+    
 
         private String splitClassNameIntoWords (String name){
             StringBuilder result = new StringBuilder();
