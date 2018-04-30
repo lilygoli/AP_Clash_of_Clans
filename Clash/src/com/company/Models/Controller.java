@@ -202,6 +202,30 @@ public class Controller {
 
     }
 
+    public void startAttack() {
+        while(true) {
+            // TODO: 4/30/18 maybe "Start Select" should have been implemented!!!
+            String playerChoice = view.getInput("");
+            if (playerChoice.equals("End select")) {
+                return;
+            }
+            if (!playerChoice.matches("Select \\w+ \\d+")) {
+                view.show("invalid input. type End select to go to attack");
+                continue;
+            }
+            else {
+                String[] splitedPlayerChoice = playerChoice.split(" ");
+                for (int i = 0; i < Integer.parseInt(splitedPlayerChoice[2]); i++) {
+                    try {
+                        game.selectUnit(splitedPlayerChoice[1]);
+                    } catch (NoSuchSoldierInCampException e) {
+                        e.showMessage(splitedPlayerChoice[1]);
+                    }
+                }
+            }
+        }
+    }
+
         private String splitClassNameIntoWords (String name){
             StringBuilder result = new StringBuilder();
             for (int i = 0; i < name.split("(?<!^)(?=[A-Z])").length; i++) {

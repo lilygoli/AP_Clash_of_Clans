@@ -337,9 +337,6 @@ public class Game {
         troops.clear();
     }
 
-    public void startAttack() {
-    }
-
     public void passTurn(){
         if(isUnderAttackOrDefense){
             try {
