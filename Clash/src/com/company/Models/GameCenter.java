@@ -17,7 +17,7 @@ public class GameCenter {
     public Game loadGame(String pathName) throws NotValidFilePathException {
         String[] gameJsonAndName = loadFromFile(pathName);
         YaGson yaGson = new YaGson();
-        Game mainGame = yaGson.fromJson(gameJsonAndName[0], Game.class);
+        Game mainGame = yaGson.fromJson(gameJsonAndName[0].substring(0 , gameJsonAndName[0].length() - 1), Game.class);
         games.add(mainGame);
         return mainGame;
 
@@ -74,6 +74,7 @@ public class GameCenter {
             File file = new File(pathName);
             InputStream stream = new FileInputStream(file);
             int byteCode = stream.read();
+            jsonConvertedToString.append((char) byteCode);
             while (byteCode != -1) {
                 byteCode = stream.read();
                 jsonConvertedToString.append((char) byteCode);
