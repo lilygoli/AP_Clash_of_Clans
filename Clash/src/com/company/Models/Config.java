@@ -169,6 +169,7 @@ public class Config {
         dictionary.put("AirDefence_POINTS_GAINED_WHEN_DESTRUCTED" , 3);
         dictionary.put("AirDefence_GOLD_GAINED_WHEN_DESTRUCTED" , 300);
         dictionary.put("AirDefence_ELIXIR_GAINED_WHEN_DESTRUCTED" , 0);
+        dictionary.put("AirDefence_UPGRADE_COST",100);
 
         dictionary.put("ArcherTower_JSON_TYPE" , 8);
         dictionary.put("ArcherTower_GOLD_COST" , 300);
@@ -180,6 +181,7 @@ public class Config {
         dictionary.put("ArcherTower_POINTS_GAINED_WHEN_DESTRUCTED" , 3);
         dictionary.put("ArcherTower_GOLD_GAINED_WHEN_DESTRUCTED" , 300);
         dictionary.put("ArcherTower_ELIXIR_GAINED_WHEN_DESTRUCTED" , 0);
+        dictionary.put("ArcherTower_UPGRADE_COST",100);
 
 
         dictionary.put("Cannon_JSON_TYPE" , 9);
@@ -192,6 +194,7 @@ public class Config {
         dictionary.put("Cannon_POINTS_GAINED_WHEN_DESTRUCTED" , 4);
         dictionary.put("Cannon_GOLD_GAINED_WHEN_DESTRUCTED" , 400);
         dictionary.put("Cannon_ELIXIR_GAINED_WHEN_DESTRUCTED" , 0);
+        dictionary.put("Cannon_UPGRADE_COST",100);
 
         dictionary.put("WizardTower_JSON_TYPE" , 11);
         dictionary.put("WizardTower_GOLD_COST" , 500);
@@ -203,6 +206,7 @@ public class Config {
         dictionary.put("WizardTower_POINTS_GAINED_WHEN_DESTRUCTED" , 5);
         dictionary.put("WizardTower_GOLD_GAINED_WHEN_DESTRUCTED" , 500);
         dictionary.put("WizardTower_ELIXIR_GAINED_WHEN_DESTRUCTED" , 0);
+        dictionary.put("WizardTower_UPGRADE_COST",100);
 
         dictionary.put("Wall_JSON_TYPE" , 12);
         dictionary.put("Wall_GOLD_COST" , 100);
@@ -214,6 +218,7 @@ public class Config {
         dictionary.put("Wall_POINTS_GAINED_WHEN_DESTRUCTED" , 1);
         dictionary.put("Wall_GOLD_GAINED_WHEN_DESTRUCTED" , 100);
         dictionary.put("Wall_ELIXIR_GAINED_WHEN_DESTRUCTED" , 0);
+        dictionary.put("Wall_UPGRADE_COST",100);
 
         dictionary.put("Trap_JSON_TYPE" , 13);
         dictionary.put("Trap_GOLD_COST" , 100);
@@ -225,6 +230,7 @@ public class Config {
         dictionary.put("Trap_POINTS_GAINED_WHEN_DESTRUCTED" , 1);
         dictionary.put("Trap_GOLD_GAINED_WHEN_DESTRUCTED" , 100);
         dictionary.put("Trap_ELIXIR_GAINED_WHEN_DESTRUCTED" , 0);
+        dictionary.put("Trap_UPGRADE_COST",100);
 
 
     }

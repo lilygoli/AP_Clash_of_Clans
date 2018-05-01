@@ -46,6 +46,7 @@ public class MainBuilding extends Building {
         }
         allBuildings.add(Wall.class.getSimpleName());
         allBuildings.add(Trap.class.getSimpleName());
+        allBuildings.remove("MainBuilding");
         Collections.sort(allBuildings);
         StringBuilder availableBuildings = new StringBuilder();
         int counter = 0;

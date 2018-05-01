@@ -30,7 +30,7 @@ public class Healer extends Soldier {
     }
 
     @Override
-    public void attackTarget(Village village) {
+    public void attackTarget(Village attackerVillage,Village enemyVillage) {
 
     }
 

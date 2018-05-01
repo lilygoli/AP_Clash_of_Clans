@@ -143,6 +143,13 @@ public class Cell {
     public int getElixirGainedWhenDestructed() {
         return Config.getDictionary().get(this.getClass().getSimpleName()+"_ELIXIR_GAINED_WHEN_DESTRUCTED");
     }
+    public int getGoldCost() {
+        return Config.getDictionary().get(this.getClass().getSimpleName()+"_GOLD_COST");
+    }
+
+    public int getElixirCost() {
+        return Config.getDictionary().get(this.getClass().getSimpleName()+"_ELIXIR_COST");
+    }
 
     public void showInfoMenu(){
         Game.setWhereIAm("You are in"+this.getClass().getSimpleName()+"info menu");
@@ -186,9 +193,10 @@ public class Cell {
         towers.addAll(sortedTowers);
     }
 
-    public int getUpgradeCost() {
-        return 1;
+    public int getUpgradeCost(){
+        return Config.getDictionary().get(this.getClass().getSimpleName()+"_UPGRADE_COST");
     }
+
     public void setTimeLeftOfConstruction(int timeLeftOfConstruction) {
         this.timeLeftOfConstruction = timeLeftOfConstruction;
     }
@@ -198,7 +206,6 @@ public class Cell {
     }
 
     public void showMenu() {
-
     }
 
     public int getDamage() {

@@ -122,6 +122,8 @@ public class Controller {
                                 game.getVillage().buildTower(newCell);
                                 newCell.setWorkingBuilder(builder);
                                 builder.setOccupationState(true);
+                                Resource resource=new Resource(game.getVillage().getResource().getGold()-newCell.getGoldCost(),game.getVillage().getResource().getElixir()-newCell.getElixirCost());
+                                game.getVillage().setResource(resource);
                                 implementBuildATowerCommand();
                             }
                             break;
@@ -376,6 +378,8 @@ public class Controller {
                         implementUpgradeCommand(cell);
                     } catch (NotEnoughResourcesException e) {
                         e.showMessage();
+                    } catch (BarrackUpgradeException e) {
+                        e.showMessage();
                     }
                     break;
                     //TODO what does upgrade do here?
@@ -396,13 +400,18 @@ public class Controller {
         }
     }
 
-    private void implementUpgradeCommand(Cell cell) throws NotEnoughResourcesException {
+    private void implementUpgradeCommand(Cell cell) throws NotEnoughResourcesException, BarrackUpgradeException {
         View.show("Do you want to upgrade " + cell.getName() + " for " + cell.getUpgradeCost() + " golds? [Y/N]");
         switch (view.getInput()) {
             case "Y":
                 if (cell.getUpgradeCost() > game.getVillage().getResource().getGold()) {
                     throw new NotEnoughResourcesException();
                 } else {
+                    if(cell.getClass().getSimpleName().equals("Barrack")){
+                        if(game.getVillage().getMainBuilding().getLevel()==cell.getLevel()){
+                            throw new BarrackUpgradeException();
+                        }
+                    }
                     cell.upgrade();
                     game.getVillage().getResource().setGold(game.getVillage().getResource().getGold() - cell.getUpgradeCost());
                 }

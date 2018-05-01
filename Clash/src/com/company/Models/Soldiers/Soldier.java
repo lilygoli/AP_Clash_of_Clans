@@ -233,8 +233,19 @@ public abstract class Soldier {
                     target.setRuined(true);
                     target.setStrength(0);
                     attackerVillage.setScore(attackerVillage.getScore()+target.getPointsGainedWhenDestructed());
-                    Resource resource=new Resource(attackerVillage.getResource().getGold()+target.getGoldGainedWhenDestructed(),attackerVillage.getResource().getElixir()+target.getElixirGainedWhenDestructed());
+                    Resource resource;
+                    if(target.getClass().getSimpleName().equals("GoldStorage")){
+                        Storage storage=(Storage)target;
+                        resource =new Resource(attackerVillage.getResource().getGold() + target.getGoldGainedWhenDestructed()+storage.getResource(), attackerVillage.getResource().getElixir() + target.getElixirGainedWhenDestructed());
+
+                    }else if( target.getClass().getSimpleName().equals("ElixirStorage")){
+                        Storage storage=(Storage)target;
+                        resource =new Resource(attackerVillage.getResource().getGold() + target.getGoldGainedWhenDestructed(), attackerVillage.getResource().getElixir() + target.getElixirGainedWhenDestructed()+storage.getResource());
+                    }else {
+                        resource = new Resource(attackerVillage.getResource().getGold() + target.getGoldGainedWhenDestructed(), attackerVillage.getResource().getElixir() + target.getElixirGainedWhenDestructed());
+                    }
                     attackerVillage.setResource(resource);
+
                 }
             }
 

@@ -12,14 +12,6 @@ private static String[] nameOfChildren=new String[]{"Barrack","Camp","ElixirMine
         super(number,level);
     }
 
-    public int getGoldCost() {
-        return Config.getDictionary().get(this.getClass().getSimpleName()+"_GOLD_COST");
-    }
-
-    public int getElixirCost() {
-        return Config.getDictionary().get(this.getClass().getSimpleName()+"_ELIXIR_COST");
-    }
-
     public int getBuildDuration() {
         return Config.getDictionary().get(this.getClass().getSimpleName()+"_BUILD_DURATION");
     }
@@ -34,10 +26,6 @@ private static String[] nameOfChildren=new String[]{"Barrack","Camp","ElixirMine
     public int getCapacity(){
         return Config.getDictionary().get(this.getClass().getSimpleName()+"_CAPACITY");
     }
-    public int getUpgradeCost(){
-        return Config.getDictionary().get(this.getClass().getSimpleName()+"_UPGRADE_COST");
-    }
-
 
     public static String[] getNameOfChildren() {
         return nameOfChildren;
