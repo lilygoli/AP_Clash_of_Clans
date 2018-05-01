@@ -49,7 +49,7 @@ public class Controller {
         }
         Matcher matcher = makePatternAndMatcher(input, Regex.SAVING_GAME_REGEX);
         if (matcher.find()) {
-            implementFinishGame(matcher.group(0), matcher.group(1));
+            implementFinishGame(matcher.group(1), matcher.group(2));
         }
     }
 
@@ -64,7 +64,7 @@ public class Controller {
             game = gameCenter.makeNewGame();
         } else if (startingCommand.matches("load (.+)")) {
             try {
-                game = gameCenter.loadGame(startingCommand.trim().split("load")[0].trim());
+                game = gameCenter.loadGame(startingCommand.trim().split("load")[1].trim());
             } catch (NotValidFilePathException e) {
                 e.showExceptionMassage();
             }
@@ -328,7 +328,8 @@ public class Controller {
     }
 
     private void getCommandStorage(int playerChoice, Cell cell) {
-        if (playerChoice == 1) {
+        switch (playerChoice){
+            case 1:
             cell.showInfoMenu();
             int choice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
             switch (choice) {
@@ -352,12 +353,22 @@ public class Controller {
                     } catch (NotEnoughResourcesException e) {
                         e.showMessage();
                     }
+                    break;
                     //TODO what does upgrade do here?
                 case 5:
                     game.showBuildings();
                     this.getCommandInBuildings();
                     break;
             }
+            case 2:
+                game.showBuildings();
+                getCommandInBuildings();
+                break;
+            default:
+                View.show("invalid choice");
+                break;
+
+
         }
     }
 
@@ -371,6 +382,7 @@ public class Controller {
                     cell.upgrade();
                     game.getVillage().getResource().setGold(game.getVillage().getResource().getGold() - cell.getUpgradeCost());
                 }
+                break;
             case "N":
                 // TODO: 4/29/2018 back or no
         }
