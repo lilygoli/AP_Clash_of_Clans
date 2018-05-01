@@ -132,6 +132,17 @@ public class Cell {
     public void setRuined(boolean ruined) {
         isRuined = ruined;
     }
+    public int getPointsGainedWhenDestructed() {
+        return Config.getDictionary().get(this.getClass().getSimpleName()+"_POINTS_GAINED_WHEN_DESTRUCTED");
+    }
+
+    public int getGoldGainedWhenDestructed() {
+        return Config.getDictionary().get(this.getClass().getSimpleName()+"_GOLD_GAINED_WHEN_DESTRUCTED");
+    }
+
+    public int getElixirGainedWhenDestructed() {
+        return Config.getDictionary().get(this.getClass().getSimpleName()+"_ELIXIR_GAINED_WHEN_DESTRUCTED");
+    }
 
     public void showInfoMenu(){
         Game.setWhereIAm("You are in"+this.getClass().getSimpleName()+"info menu");

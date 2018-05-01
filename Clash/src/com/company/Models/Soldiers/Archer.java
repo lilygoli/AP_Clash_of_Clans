@@ -4,7 +4,7 @@ import com.company.Models.Cell;
 import com.company.Models.Village;
 
 public class Archer extends Soldier {
-    public void attackTarget(Village enemyVillage){
-        super.attackTarget(enemyVillage , "Defence");
+    public void attackTarget(Village attackerVillage,Village enemyVillage){
+        super.attackTargets(attackerVillage,enemyVillage , "Defence");
     }
 }

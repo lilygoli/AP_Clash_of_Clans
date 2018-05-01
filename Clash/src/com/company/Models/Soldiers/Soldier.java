@@ -57,7 +57,7 @@ public abstract class Soldier {
     }
 
     public int getCost() {
-        return Config.getDictionary().get(this.getClass().getSimpleName() + "ELEXIR_COST");
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "ELIXIR_COST");
     }
 
     public int getBuildDuration() {
@@ -191,7 +191,7 @@ public abstract class Soldier {
     }
 
 
-    public void attackTarget(Village enemyVillage, String favoriteTarget) {
+    public void attackTargets(Village attackerVillage, Village enemyVillage, String favoriteTarget) {
         // TODO: 4/23/2018 add resource decrease
         Cell target;
         switch (favoriteTarget) {
@@ -217,11 +217,11 @@ public abstract class Soldier {
             }
         } else {
             direction = findDirection(enemyVillage, target);
-            moveSoldier(direction, enemyVillage);
+            moveSoldier(attackerVillage,direction, enemyVillage);
         }
     }
 
-    public void moveSoldier(Direction direction, Village enemyVillage) {
+    public void moveSoldier(Village attackerVillage,Direction direction, Village enemyVillage) {
         // TODO: 4/24/2018 check double int
         if (direction == Direction.LEFT) {
             if (enemyVillage.getMap()[(int) (x - 1)][(int) y].getClass().equals(Grass.class) || enemyVillage.getMap()[(int)(x - 1)][(int)y].isRuined() || getCanFly()) {
@@ -232,6 +232,9 @@ public abstract class Soldier {
                 if (target.getStrength() <= 0) {
                     target.setRuined(true);
                     target.setStrength(0);
+                    attackerVillage.setScore(attackerVillage.getScore()+target.getPointsGainedWhenDestructed());
+                    Resource resource=new Resource(attackerVillage.getResource().getGold()+target.getGoldGainedWhenDestructed(),attackerVillage.getResource().getElixir()+target.getElixirGainedWhenDestructed());
+                    attackerVillage.setResource(resource);
                 }
             }
 
@@ -420,5 +423,5 @@ public abstract class Soldier {
     }
 
 
-    public abstract void attackTarget(Village village);
+    public abstract void attackTarget(Village attackerVillage,Village enemyVillage);
 }

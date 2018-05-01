@@ -84,9 +84,6 @@ public class Controller {
         View.show(availableBuildings);
         int numberOfAvailableBuildings = availableBuildings.split("\n").length;
         String playerChoice = view.getInput("Enter your preferred number in the list");
-//        if (playerChoice.equalsIgnoreCase("back")) {
-//            return;//ya back exc throw kone ke too main building menu return kone
-//        }
         if (!playerChoice.matches("\\d+") || Integer.parseInt(playerChoice) > numberOfAvailableBuildings) {
             View.show("invalid Choice");
             implementBuildATowerCommand();
@@ -102,7 +99,7 @@ public class Controller {
         String buildingName = availableBuildings.substring(availableBuildings.indexOf(chosenNumber.toString() + ". "), availableBuildings.indexOf(nextNumber.toString()));
         buildingName = buildingName.split("\\.")[1].trim();
         Builder builder = null;
-        builder = game.getVillage().findFreeBuilder();//kollan bara 3 ta exc tooye tabeye bala bayad exc.showMessage seda konim
+        builder = game.getVillage().findFreeBuilder();
         ArrayList<Cell> cellKinds = new ArrayList<Cell>(Cell.getCellKinds());
         for (Cell cell : Cell.getCellKinds()) {
             if (cell.getClass().getSimpleName().equals(buildingName)) {
@@ -197,22 +194,58 @@ public class Controller {
         switch (Integer.parseInt(view.getInput("Enter your preferred number in the list"))) {
 
             case 1:
-                game.showEnemyMapInfo(game.getAttackedVillage().getVillage());
-
+                View.show(game.showEnemyMapInfo(game.getAttackedVillage().getVillage()));
+            case 2:
+                startAttack();
+                String userInput;
+                do{
+                    userInput=view.getInput();
+                    switch (userInput) {
+                        case "Go next turn":
+                            game.passTurn();
+                        case "put unit":
+                            String unit=view.getInput();
+                            implementPutUnitCommand(unit);
+                            break;
+                        case "status resources":
+                            View.show(game.statusResourcesInWar());
+                        case "status units":
+                            View.show(game.statusUnits());
+                        case "status towers":
+                            View.show(game.statusTowers());
+                        case "status all":
+                            View.show(game.statusAll());
+                    }
+                    Matcher unitMatcher=makePatternAndMatcher(userInput,Regex.STATUS_UNIT_TYPE);
+                    Matcher towerMatcher=makePatternAndMatcher(userInput,Regex.STAUS_TOWER_TYPE);
+                    if(unitMatcher.find()){
+                        View.show(game.statusUnit(unitMatcher.group(1)));
+                    }
+                    if (towerMatcher.find()){
+                        View.show(game.statusTower(towerMatcher.group(1)));
+                    }
+                }
+                while (!userInput.equals("Quit attack") || !game.isWarFinished());
+                    View.show("The war ended with" + game.getGainedResource().getGold() + " gold," + game.getGainedResource().getElixir() + " elixir and" + game.getVillage().getScore() + "scores achieved!");
+                    game.healAfterWar();
 
             case 3: // TODO: 4/29/2018 call back
         }
-//        while (command.equals("Quit attack") || game.isWarFinished()) {
-//            String attackCommand = view.getInput();
-//            switch (attackCommand) {
-//                case "Go next turn":
-//
-//                case "put unit":
-//            }
-//            View.show("The war ended with" + game.getGainedResources().getGold() + " gold," + game.getGainedResources().getElixir() + " elixir and" + game.getScore() + "scores achieved!");
-//            game.healAfterWar
-//        }
 
+
+    }
+
+    private void implementPutUnitCommand(String unit) {
+        Matcher matcher=makePatternAndMatcher(unit, Regex.PUT_UNIT_REGEX);
+        if(matcher.find()){
+            try {
+                game.putUnit(matcher.group(1),Integer.parseInt(matcher.group(2)),Integer.parseInt(matcher.group(3)),Integer.parseInt(matcher.group(4)));
+            } catch (MoreThanLimitSoldiersException e) {
+                e.showMessage();
+            } catch (InvalidPlaceForSoldiersException e) {
+                e.showMessage();
+            }
+        }
     }
 
     public void startAttack() {
@@ -226,12 +259,12 @@ public class Controller {
                 View.show("invalid input. type End select to go to attack");
                 continue;
             } else {
-                String[] splitedPlayerChoice = playerChoice.split(" ");
-                for (int i = 0; i < Integer.parseInt(splitedPlayerChoice[2]); i++) {
+                String[] splitPlayerChoice = playerChoice.split(" ");
+                for (int i = 0; i < Integer.parseInt(splitPlayerChoice[2]); i++) {
                     try {
-                        game.selectUnit(splitedPlayerChoice[1]);
+                        game.selectUnit(splitPlayerChoice[1]);
                     } catch (NoSuchSoldierInCampException e) {
-                        e.showMessage(splitedPlayerChoice[1]);
+                        e.showMessage(splitPlayerChoice[1]);
                     }
                 }
             }
@@ -239,16 +272,7 @@ public class Controller {
         view.showMap(game.getVillage(), 1);
         String putUnitChoice = view.getInput("Enter the type of the soldier and its coordinates you want to use");
         while (!putUnitChoice.equals("Go next turn")) {
-            Matcher matcher = makePatternAndMatcher(putUnitChoice, Regex.PUT_UNIT_REGEX);
-            if (matcher.find()) {
-                try {
-                    game.putUnit(matcher.group(1), Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)), Integer.parseInt(matcher.group(4)));
-                } catch (MoreThanLimitSoldiersException e) {
-                    e.showMessage();
-                } catch (InvalidPlaceForSoldiersException e) {
-                    e.showMessage();
-                }
-            }
+            implementPutUnitCommand(putUnitChoice);
             putUnitChoice = view.getInput("Enter the type of the soldier and its coordinates you want to use");
         }
         game.passTurn();

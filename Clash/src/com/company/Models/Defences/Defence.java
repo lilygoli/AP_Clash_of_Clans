@@ -84,11 +84,5 @@ public abstract class Defence extends Cell {
         return Config.getDictionary().get(this.getClass().getSimpleName() + "_RADIUS");
     }
 
-    public int getPointsGainedWhenDestructed() {
-        return Config.getDictionary().get(this.getClass().getSimpleName() + "_POINTS_GAINED_WHEN_DESTRUCTED");
-    }
 
-    public int getResourceGainedWhenDestructed() {
-        return Config.getDictionary().get(this.getClass().getSimpleName() + "_RESOURCE_GAINED_WHEN_DESTRUCTED");
-    }
 }

@@ -28,18 +28,6 @@ private static String[] nameOfChildren=new String[]{"Barrack","Camp","ElixirMine
         return Config.getDictionary().get(this.getClass().getSimpleName()+"_STRENGTH");
     }
 
-    public int getPointsGainedWhenDestructed() {
-        return Config.getDictionary().get(this.getClass().getSimpleName()+"_POINTS_GAINED_WHEN_DESTRUCTED");
-    }
-
-    public int getGoldGainedWhenDestructed() {
-        return Config.getDictionary().get(this.getClass().getSimpleName()+"_GOLD_GAINED_WHEN_DESTRUCTED");
-    }
-
-    public int getElixirGainedWhenDestructed() {
-        return Config.getDictionary().get(this.getClass().getSimpleName()+"_ELICIR_GAINED_WHEN_DESTRUCTED");
-    }
-
     public int getJsonType() {
         return Config.getDictionary().get(this.getClass().getSimpleName()+"_JSON_TYPE");
     }

@@ -47,6 +47,7 @@ public class Game {
         village = new Village();
     }
 
+
     public void setAttackedVillage(Game attackedVillage) {
         this.attackedVillage = attackedVillage;
     }
@@ -246,7 +247,7 @@ public class Game {
         return finalString.toString();
     }
 
-    public String statusUnit() {
+    public String statusUnits() {
         StringBuilder finalString = new StringBuilder();
         for (Soldier soldier : Soldier.getSoldierSubClasses()) {
             finalString.append(statusUnit(soldier.getClass().getSimpleName())).append("\n");
@@ -275,7 +276,7 @@ public class Game {
     }
 
     public String statusAll() {
-        return statusResourcesInWar() + statusTowers() + statusUnit();
+        return statusResourcesInWar() + statusTowers() + statusUnits();
     }
 
     public void passTurnInWarMode() throws NotInWarException {
@@ -309,7 +310,7 @@ public class Game {
         }
         //Attacker Soldiers part
         for (Soldier soldier : troops) {
-            soldier.attackTarget(this.attackedVillage.getVillage()); // TODO: 4/27/18 باید چند بار کال شه این تابع تو هر ترن
+            soldier.attackTarget(this.getVillage(),this.attackedVillage.getVillage()); // TODO: 4/27/18 باید چند بار کال شه این تابع تو هر ترن
         }
     }
 
