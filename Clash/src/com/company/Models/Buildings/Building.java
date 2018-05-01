@@ -47,9 +47,6 @@ private static String[] nameOfChildren=new String[]{"Barrack","Camp","ElixirMine
         return Config.getDictionary().get(this.getClass().getSimpleName()+"_CAPACITY");
     }
     public int getUpgradeCost(){
-        if (this.getClass().getSimpleName().equals("MainBuilding")){
-            return Config.getDictionary().get(this.getClass().getSimpleName()+"_UPGRADE_POINTS_NEEDED");
-        }
         return Config.getDictionary().get(this.getClass().getSimpleName()+"_UPGRADE_COST");
     }
 

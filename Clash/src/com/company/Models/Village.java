@@ -268,7 +268,7 @@ public class Village {
         }
         Cell.sortTowers(underConstructionTowers);
         for (Cell underConstructionTower : underConstructionTowers) {
-            status.append(underConstructionTower.getName() + " ").append(underConstructionTower.getTimeTillConstruction());
+            status.append(underConstructionTower.getName() + " will be built in ").append(underConstructionTower.getTimeTillConstruction() + " turns");
         }
         return status.toString();
     }
@@ -311,7 +311,7 @@ public class Village {
 
     public String showSourcesInfo() {
         String result = "";
-        result = result + "GOLD:" + resource.getGold() + "\nElixir:" + resource.getElixir() + "\nScore:" + score;
+        result = result + "Gold : " + resource.getGold() + "\nElixir : " + resource.getElixir() + "\nScore : " + score;
         return result;
     }
 

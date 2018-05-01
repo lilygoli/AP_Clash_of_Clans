@@ -50,13 +50,14 @@ public class MainBuilding extends Building {
         StringBuilder availableBuildings = new StringBuilder();
         int counter = 0;
         for (String building : allBuildings) {
-            System.out.println(building);
             if (Config.getDictionary().get(building + "_GOLD_COST") <= gold && Config.getDictionary().get(building + "_ELIXIR_COST") <= elixir) {
                 counter++;
                 availableBuildings.append(Integer.toString(counter)).append(". ").append(building).append("\n");
             }
         }
         availableBuildings = new StringBuilder(availableBuildings.toString().trim());
+        counter++;
+        availableBuildings.append("\n" + counter + ". back");
         return availableBuildings.toString();
     }
 

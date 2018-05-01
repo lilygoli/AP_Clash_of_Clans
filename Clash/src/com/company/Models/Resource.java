@@ -4,8 +4,8 @@ public class Resource {
     private int gold;
     private int elixir;
     public Resource(int gold,int elixir){
-        this.gold=gold;
-        this.elixir=elixir;
+        this.gold = gold;
+        this.elixir = elixir;
     }
 
     public int getGold() {

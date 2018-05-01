@@ -19,7 +19,7 @@ import com.company.View;
 import java.util.ArrayList;
 
 public class Game {
-    private Resource gainedResource;
+    private Resource gainedResource = new Resource(0 , 0);
     private String playerName;
     private Village village;
     private int time;
@@ -43,7 +43,6 @@ public class Game {
         attackedVillage = null;
         allAttackedVillages = new ArrayList<Game>();
         whereIAm = "You are in village";
-        gainedResource = new Resource(0 , 0);
         troops = null;
         village = new Village();
     }
@@ -83,7 +82,7 @@ public class Game {
 
 
     public void showResources() {
-        village.showSourcesInfo();
+        System.out.println(village.showSourcesInfo());
     }
 
     public Village getVillage() {
@@ -229,7 +228,8 @@ public class Game {
         }
     }
 
-    public String statusResources() {
+    public String statusResourcesInWar() {
+        System.out.println(attackedVillage.village.getResource().getGold());
         return "Gold Achieved : " + gainedResource.getGold() + "\n" +
                 "Elixir Achieved : " + gainedResource.getElixir() + "\n" +
                 "Gold Remained In Map : " + (attackedVillage.village.getResource().getGold() - gainedResource.getGold()) + "\n" +
@@ -275,7 +275,7 @@ public class Game {
     }
 
     public String statusAll() {
-        return statusResources() + statusTowers() + statusUnit();
+        return statusResourcesInWar() + statusTowers() + statusUnit();
     }
 
     public void passTurnInWarMode() throws NotInWarException {
