@@ -223,7 +223,7 @@ public class Controller {
                 break;
             }
             if (!playerChoice.matches("Select \\w+ \\d+")) {
-                view.show("invalid input. type End select to go to attack");
+                View.show("invalid input. type End select to go to attack");
                 continue;
             } else {
                 String[] splitedPlayerChoice = playerChoice.split(" ");

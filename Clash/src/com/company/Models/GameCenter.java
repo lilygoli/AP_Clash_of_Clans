@@ -1,7 +1,8 @@
 package com.company.Models;
 
 import com.company.Exception.NotValidFilePathException;
-import com.google.gson.Gson;
+import com.gilecode.yagson.YaGson;
+
 
 import java.io.*;
 import java.util.ArrayList;
@@ -15,8 +16,8 @@ public class GameCenter {
 
     public Game loadGame(String pathName) throws NotValidFilePathException {
         String[] gameJsonAndName = loadFromFile(pathName);
-        Gson gson = new Gson();
-        Game mainGame = gson.fromJson(gameJsonAndName[0], Game.class);
+        YaGson yaGson = new YaGson();
+        Game mainGame = yaGson.fromJson(gameJsonAndName[0], Game.class);
         games.add(mainGame);
         return mainGame;
 
@@ -27,8 +28,8 @@ public class GameCenter {
     }
 
     public void saveGame(Game mainGame, String pathName, String name) {
-        Gson gson = new Gson();
-        String stringJsonOfMainGame = gson.toJson(mainGame);
+        YaGson yaGson = new YaGson();
+        String stringJsonOfMainGame = yaGson.toJson(mainGame);
         mainGame.setPlayerName(name);
         BufferedWriter bufferedWriter = null;
         FileWriter fileWriter = null;
@@ -56,8 +57,8 @@ public class GameCenter {
     public Game loadEnemyMap(String enemyMapPath) throws NotValidFilePathException {
         Game enemyGame = null;
         String[] EnemyJsonAndName = loadFromFile(enemyMapPath);
-        Gson gson = new Gson();
-        EnemyMapJson enemyMapJson = gson.fromJson(EnemyJsonAndName[0], EnemyMapJson.class);
+        YaGson yaGson = new YaGson();
+        EnemyMapJson enemyMapJson = yaGson.fromJson(EnemyJsonAndName[0], EnemyMapJson.class);
         enemyGame = enemyMapJson.ConvertEnemyJsonToGame();
         enemyGame.setPlayerName(EnemyJsonAndName[1]);
         games.add(enemyGame);
