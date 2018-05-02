@@ -141,6 +141,7 @@ public class Controller {
     }
 
     public void implementBuildSoldiers(Barrack barrack) throws unAvailableSoldierException, NotEnoughResourcesException {
+        // TODO: 5/1/2018 back command to barracks command
         StringBuilder result = new StringBuilder();
         int index = 0;
         HashMap<String, Integer> availableSoldiers = barrack.determineAvailableSoldiers(game.getVillage().getResource().getGold(), game.getVillage().getResource().getElixir());

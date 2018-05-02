@@ -9,22 +9,14 @@ import com.company.Models.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public abstract class Soldier {
     private static ArrayList<Soldier> soldierSubClasses;
-    private int cost;
     private int buildDuration;
     private int health;
     private int damage;
-    private int radius;
-    private int maxSpeed;
     private int level;
-    private int addedHealth;
-    private int addedDamage;
-    private int unlockLevel;
-    private double x=-1, y=-1;
-    private boolean canFly;
+    private double x = -1, y = -1;
     private boolean dead;
     private Direction direction;
 
@@ -44,10 +36,10 @@ public abstract class Soldier {
     }
 
     public Soldier(int time){
-        buildDuration = Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION") - time;
+        setBuildDuration(Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION") - time);
         // TODO: 4/26/2018 check
     }
-    public Soldier(){};
+    public Soldier(){}
 
     private final double MOVE_PER_TURN = 1;
     // TODO: 4/26/2018 what is move per turn
@@ -68,11 +60,11 @@ public abstract class Soldier {
         return health;
     }
 
-    public int getDamage() {
+    private int getDamage() {
         return damage;
     }
 
-    public int getRadius() {
+    private int getRadius() {
         return Config.getDictionary().get(this.getClass().getSimpleName() + "_RADIUS");
     }
 
@@ -84,11 +76,11 @@ public abstract class Soldier {
         return level;
     }
 
-    public int getAddedHealth() {
+    private int getAddedHealth() {
         return Config.getDictionary().get(this.getClass().getSimpleName() + "_ADDED_HEALTH");
     }
 
-    public int getAddedDamage() {
+    private int getAddedDamage() {
         return Config.getDictionary().get(this.getClass().getSimpleName() + "_ADDED_DAMAGE");
     }
 
@@ -112,19 +104,11 @@ public abstract class Soldier {
         return dead;
     }
 
-    public Direction getDirection() {
+    private Direction getDirection() {
         return direction;
     }
 
-    public static void setSoldierSubClasses(ArrayList<Soldier> soldierSubClasses) {
-        Soldier.soldierSubClasses = soldierSubClasses;
-    }
-
-    public void setCost(int cost) {
-        this.cost = cost;
-    }
-
-    public void setBuildDuration(int buildDuration) {
+    private void setBuildDuration(int buildDuration) {
         this.buildDuration = buildDuration;
     }
 
@@ -132,32 +116,12 @@ public abstract class Soldier {
         this.health = health;
     }
 
-    public void setDamage(int damage) {
+    private void setDamage(int damage) {
         this.damage = damage;
-    }
-
-    public void setRadius(int radius) {
-        this.radius = radius;
-    }
-
-    public void setMaxSpeed(int maxSpeed) {
-        this.maxSpeed = maxSpeed;
     }
 
     public void setLevel(int level) {
         this.level = level;
-    }
-
-    public void setAddedHealth(int addedHealth) {
-        this.addedHealth = addedHealth;
-    }
-
-    public void setAddedDamage(int addedDamage) {
-        this.addedDamage = addedDamage;
-    }
-
-    public void setUnlockLevel(int unlockLevel) {
-        this.unlockLevel = unlockLevel;
     }
 
     public void setX(double x) {
@@ -168,30 +132,26 @@ public abstract class Soldier {
         this.y = y;
     }
 
-    public void setCanFly(boolean canFly) {
-        this.canFly = canFly;
-    }
-
     public void setDead(boolean dead) {
         this.dead = dead;
     }
 
-    public void setDirection(Direction direction) {
+    private void setDirection(Direction direction) {
         this.direction = direction;
     }
 
     public void upgrade() {
-        damage += addedDamage;
-        health += addedHealth;
-        level++;
+        setDamage(getAddedDamage() + getDamage());
+        setHealth(getHealth()+ getAddedHealth());
+        setLevel(getLevel() + 1);
     }
 
     public void heal() {
-        health = Config.getDictionary().get(this.getClass().getSimpleName() + "_HEALTH") + (level * addedHealth);
+        setHealth(Config.getDictionary().get(this.getClass().getSimpleName() + "_HEALTH") + (getLevel()* getAddedHealth()));
     }
 
 
-    public void attackTargets(Village attackerVillage, Village enemyVillage, String favoriteTarget) {
+    void attackTargets(Village attackerVillage, Village enemyVillage, String favoriteTarget) {
         // TODO: 4/23/2018 add resource decrease
         Cell target;
         switch (favoriteTarget) {
@@ -216,12 +176,12 @@ public abstract class Soldier {
                 target.setStrength(0);
             }
         } else {
-            direction = findDirection(enemyVillage, target);
-            moveSoldier(attackerVillage,direction, enemyVillage);
+            setDirection(findDirection(enemyVillage, target));
+            moveSoldier(attackerVillage,getDirection(), enemyVillage);
         }
     }
 
-    public void moveSoldier(Village attackerVillage,Direction direction, Village enemyVillage) {
+    private void moveSoldier(Village attackerVillage, Direction direction, Village enemyVillage) {
         // TODO: 4/24/2018 check double int
         if (direction == Direction.LEFT) {
             if (enemyVillage.getMap()[(int) (x - 1)][(int) y].getClass().equals(Grass.class) || enemyVillage.getMap()[(int)(x - 1)][(int)y].isRuined() || getCanFly()) {
@@ -234,15 +194,21 @@ public abstract class Soldier {
                     target.setStrength(0);
                     attackerVillage.setScore(attackerVillage.getScore()+target.getPointsGainedWhenDestructed());
                     Resource resource;
-                    if(target.getClass().getSimpleName().equals("GoldStorage")){
-                        Storage storage=(Storage)target;
-                        resource =new Resource(attackerVillage.getResource().getGold() + target.getGoldGainedWhenDestructed()+storage.getResource(), attackerVillage.getResource().getElixir() + target.getElixirGainedWhenDestructed());
+                    switch (target.getClass().getSimpleName()) {
+                        case "GoldStorage": {
+                            Storage storage = (Storage) target;
+                            resource = new Resource(attackerVillage.getResource().getGold() + target.getGoldGainedWhenDestructed() + storage.getResource(), attackerVillage.getResource().getElixir() + target.getElixirGainedWhenDestructed());
 
-                    }else if( target.getClass().getSimpleName().equals("ElixirStorage")){
-                        Storage storage=(Storage)target;
-                        resource =new Resource(attackerVillage.getResource().getGold() + target.getGoldGainedWhenDestructed(), attackerVillage.getResource().getElixir() + target.getElixirGainedWhenDestructed()+storage.getResource());
-                    }else {
-                        resource = new Resource(attackerVillage.getResource().getGold() + target.getGoldGainedWhenDestructed(), attackerVillage.getResource().getElixir() + target.getElixirGainedWhenDestructed());
+                            break;
+                        }
+                        case "ElixirStorage": {
+                            Storage storage = (Storage) target;
+                            resource = new Resource(attackerVillage.getResource().getGold() + target.getGoldGainedWhenDestructed(), attackerVillage.getResource().getElixir() + target.getElixirGainedWhenDestructed() + storage.getResource());
+                            break;
+                        }
+                        default:
+                            resource = new Resource(attackerVillage.getResource().getGold() + target.getGoldGainedWhenDestructed(), attackerVillage.getResource().getElixir() + target.getElixirGainedWhenDestructed());
+                            break;
                     }
                     attackerVillage.setResource(resource);
 
@@ -285,7 +251,7 @@ public abstract class Soldier {
         }
     }
 
-    public Cell findDestinationForArcher(Village enemyVillage) {
+    private Cell findDestinationForArcher(Village enemyVillage) {
         Cell destination = new Cell(0,0);
         double minDistance = 100d;
         for (int i = 0; i < 30; i++) {
@@ -306,7 +272,7 @@ public abstract class Soldier {
         return destination;
     }
 
-    public Cell findDestinationForGiant(Village enemyVillage) {
+    private Cell findDestinationForGiant(Village enemyVillage) {
         Cell destination = new Cell(0,0);
         double minDistance = 100d;
         for (int i = 0; i < 30; i++) {
@@ -327,7 +293,7 @@ public abstract class Soldier {
         return destination;
     }
 
-    public Cell findDestinationForWallBreaker(Village enemyVillage) {
+    private Cell findDestinationForWallBreaker(Village enemyVillage) {
         Cell destination = new Cell(0,0);
         double minDistance = 100d;
         for (int i = 0; i < 30; i++) {
@@ -349,7 +315,7 @@ public abstract class Soldier {
     }
 
     // TODO: 4/18/2018 add healer
-    public Cell findDestinationForAll(Village enemyVillage) {
+    private Cell findDestinationForAll(Village enemyVillage) {
         Cell destination = new Cell(0,0);
         double minDistance = 100d;
         for (int i = 0; i < 30; i++) {
@@ -429,8 +395,8 @@ public abstract class Soldier {
         return lastDir[(int) getX()][(int) getY()];
     }
 
-    public boolean hasReachedDestination(Cell target) {
-        return Math.sqrt(Math.pow(x - target.getX(), 2) + Math.pow(y - target.getY(), 2)) <= radius;
+    private boolean hasReachedDestination(Cell target) {
+        return Math.sqrt(Math.pow(x - target.getX(), 2) + Math.pow(y - target.getY(), 2)) <= getRadius();
     }
 
 
