@@ -4,6 +4,7 @@ import com.company.Exception.*;
 import com.company.Models.Buildings.*;
 import com.company.View;
 
+import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,6 +36,7 @@ public class Controller {
                     case "attack":
                         implementAttackCommand();
                         commandMatched = true;
+                        break;
             }
             if (input.matches(Regex.PASSING_TURN_REGEX)) {
                 Matcher matcher = makePatternAndMatcher(input, Regex.PASSING_TURN_REGEX);
@@ -53,7 +55,7 @@ public class Controller {
         }
         Matcher matcher = makePatternAndMatcher(input, Regex.SAVING_GAME_REGEX);
         if (matcher.find()) {
-            implementFinishGame(matcher.group(1), matcher.group(2));
+                implementFinishGame(matcher.group(1), matcher.group(2));
         }
     }
 
@@ -79,8 +81,8 @@ public class Controller {
 
     }
 
-    private void implementFinishGame(String pathname, String name) {
-        gameCenter.saveGame(game, pathname, name);
+    private void implementFinishGame(String pathname, String name){
+            gameCenter.saveGame(game, pathname, name);
     }
 
     public void implementBuildATowerCommand() throws NotEnoughFreeBuildersException, NotEnoughResourcesException { //name and place to be refactored ... was implemented to complete building a tower//available buildings in barracks command

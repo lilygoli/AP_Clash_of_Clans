@@ -40,8 +40,8 @@ public class GameCenter {
             bufferedWriter.write(stringJsonOfMainGame);
         } catch (IOException e) {
             e.printStackTrace();
-
-        } finally {
+        }
+        finally {
             try {
                 if (bufferedWriter != null)
                     bufferedWriter.close();
