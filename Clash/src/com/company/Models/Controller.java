@@ -453,7 +453,8 @@ public class Controller {
                 }
                 break;
             case "N":
-                // TODO: 4/29/2018 back or no
+                cell.showMenu();
+                getCommandInBuilding(cell);
         }
     }
 
@@ -516,7 +517,8 @@ public class Controller {
                 camp.showCapacityInfo(game.getVillage().getCamps());
                 break;
             case 4:
-                return;//back
+                // TODO: 5/3/2018 back
+                break;
         }
     }
 
