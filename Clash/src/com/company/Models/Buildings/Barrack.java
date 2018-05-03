@@ -86,13 +86,13 @@ public class Barrack extends Building {
 
     }
 
-    public HashMap<String, Integer> determineAvailableSoldiers(int gold, int elixir) {
+    public HashMap<String, Integer> determineAvailableSoldiers( int elixir) {
         HashMap<String, Integer> availableSoldiers = new HashMap<String, Integer>(); //number of soldiers we cannot build is 0
         for (Soldier soldier : Soldier.getSoldierSubClasses()
                 ) {
             if (soldier.getUnlockLevel() <= getLevel()) {
                 int number = 0;
-                number = gold / soldier.getCost();
+                number = elixir / soldier.getCost();
                 availableSoldiers.put(soldier.getClass().getSimpleName(), number);
             } else {
                 availableSoldiers.put(soldier.getClass().getSimpleName(), 0);

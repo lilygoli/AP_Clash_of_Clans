@@ -169,12 +169,12 @@ public class Controller {
         // TODO: 5/1/2018 back command to barracks command
         StringBuilder result = new StringBuilder();
         int index = 0;
-        HashMap<String, Integer> availableSoldiers = barrack.determineAvailableSoldiers(game.getVillage().getResource().getGold(), game.getVillage().getResource().getElixir());
+        HashMap<String, Integer> availableSoldiers = barrack.determineAvailableSoldiers( game.getVillage().getResource().getElixir());
         for (String soldier : availableSoldiers.keySet()) {
             if (availableSoldiers.get(soldier) != 0) {
                 result.append(index).append(". ").append(soldier).append(" Ax").append(availableSoldiers.get(soldier)).append("\n");
             } else {
-                result.append(index).append(". ").append(soldier).append("U").append("\n");
+                result.append(index).append(". ").append(soldier).append(" U").append("\n");
             }
             index++;
         }
@@ -185,6 +185,8 @@ public class Controller {
         } else {
             int soldierAmount = Integer.parseInt(view.getInput("How many of this soldier do you want to build?"));
             barrack.buildSoldier(soldierAmount, playerChoice, availableSoldiers);
+            Resource resource=new Resource(game.getVillage().getResource().getGold(),game.getVillage().getResource().getElixir()-soldierAmount*Config.getDictionary().get(playerChoice+"_ELEXIR_COST"));
+            game.getVillage().setResource(resource);
         }
     }
 
