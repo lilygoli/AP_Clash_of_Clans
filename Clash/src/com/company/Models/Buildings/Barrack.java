@@ -64,6 +64,8 @@ public class Barrack extends Building {
         }
     }
     private void addToConstructionTime(){
+        if(underConstructionSoldiers.get(0).size()==0)
+            return;;
         Soldier soldier=(Soldier)underConstructionSoldiers.get(0).keySet().toArray()[0];
         underConstructionSoldiers.get(0).replace(soldier,underConstructionSoldiers.get(0).get(soldier)+1);
     }
