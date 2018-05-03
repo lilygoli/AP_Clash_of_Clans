@@ -468,8 +468,8 @@ public class Controller {
                 break;
 
             case 3:
-                cell.showMenu();
-                getCommandInBuilding(cell);
+                game.showBuildings();
+                getCommandInBuildings();
                 break;
         }
     }
@@ -488,8 +488,8 @@ public class Controller {
                 getCommandInBuilding(cell);
                 break;
             case 3:
-                cell.showMenu();
-                getCommandInBuilding(cell);
+                game.showBuildings();
+                getCommandInBuildings();
                 break;
         }
     }
@@ -534,8 +534,8 @@ public class Controller {
                 getCommandInBuilding(cell);
                 break;
             case 4:
-                cell.showMenu();
-                getCommandInBuilding(cell);
+                game.showBuildings();
+                getCommandInBuildings();
                 break;
         }
     }
@@ -566,8 +566,8 @@ public class Controller {
                 getCommandInBuilding(cell);
                 break;
             case 3: //back
-                cell.showMenu();
-                getCommandInBuilding(cell);
+                game.showBuildings();
+                getCommandInBuildings();
                 break;
         }
     }
@@ -658,8 +658,8 @@ public class Controller {
                     cell.showUpgradeInfo();
                     break;
                 case 3:
-                    game.getVillage().getMainBuilding().showMenu();
-                    getCommandInBuilding(game.getVillage().getMainBuilding());
+                    cell.showMenu();
+                    getCommandInBuilding(cell);
                     break;
             }
     }
