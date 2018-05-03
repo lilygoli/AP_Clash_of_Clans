@@ -461,11 +461,13 @@ public class Controller {
                     ArrayList<Storage> allElixirStorage = new ArrayList<>(game.getVillage().getElixirStorages());
                     mine.mine(allElixirStorage);
                 }
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
 
             case 3:
-                game.showBuildings();
-                this.getCommandInBuildings();
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
         }
     }
@@ -480,10 +482,12 @@ public class Controller {
             case 2:
                 Camp camp = (Camp) cell;
                 View.show(camp.showSoldiers());
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
             case 3:
-                game.showBuildings();
-                this.getCommandInBuildings();
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
         }
     }
@@ -519,13 +523,17 @@ public class Controller {
                 } catch (NotEnoughResourcesException e) {
                     e.showMessage();
                 }
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
             case 3:
                 View.show(game.getVillage().showBarracksStatus(game.getTime()));
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
             case 4:
-                game.showBuildings();
-                this.getCommandInBuildings();
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
         }
     }
@@ -552,10 +560,12 @@ public class Controller {
                 }
                 damageAndRange.append("Damage: ").append(cell.getDamage()).append("\nDamage Range: ").append(cell.getRange());
                 View.show(damageAndRange.toString());
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
             case 3: //back
-                game.showBuildings();
-                this.getCommandInBuildings();
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
         }
     }
@@ -565,9 +575,13 @@ public class Controller {
         switch (choice) {
             case 1:
                 cell.showOverallInfo();
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
             case 2:
                 cell.showUpgradeInfo();
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
             case 3:
                 StringBuilder damageAndRange = new StringBuilder();
@@ -585,8 +599,11 @@ public class Controller {
                 }
                 damageAndRange.append("Damage: ").append(cell.getDamage()).append("\nDamage Range: ").append(cell.getRange());
                 View.show(damageAndRange.toString());
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
             case 4:
+                cell.showMenu();
                 getCommandInBuilding(cell);
                 break;
         }
@@ -615,16 +632,17 @@ public class Controller {
                         e.showMessage();
                     }
                 }
+                cell.showMenu();
                 break;
 
             case 3:
                 View.show(game.getVillage().showTownHallStatus());
-                game.getVillage().getMainBuilding().showMenu();
-                getCommandInBuilding(game.getVillage().getMainBuilding());
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
             case 4:
-                game.showBuildings();
-                this.getCommandInBuildings();
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
         }
     }
