@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd4373d0-16e4-43f1-a01f-34df3517e604" name="Default" comment="bug fix">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Models/Controller.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Controller.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -15,10 +14,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="525">
-      <file leaf-file-name="Soldier.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Soldier.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
+            <state relative-caret-position="-5907">
               <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding>
                 <element signature="e#406#415#0" expanded="true" />
@@ -45,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Models/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="661" column="47" lean-forward="false" selection-start-line="661" selection-start-column="47" selection-end-line="661" selection-end-column="47" />
+            <state relative-caret-position="611">
+              <caret line="662" column="26" lean-forward="true" selection-start-line="662" selection-start-column="26" selection-end-line="662" selection-end-column="26" />
               <folding>
                 <element signature="e#2886#2887#0" expanded="true" />
                 <element signature="e#2943#2944#0" expanded="true" />
@@ -150,7 +149,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>resource</find>
       <find>res</find>
       <find>game.showr</find>
       <find>MainBuilding</find>
@@ -180,6 +178,7 @@
       <find>MainC</find>
       <find>showMen</find>
       <find>showBuildings</find>
+      <find>Main</find>
     </findStrings>
     <replaceStrings>
       <replace>cell</replace>
@@ -599,12 +598,12 @@
       <workItem from="1525167682764" duration="13241000" />
       <workItem from="1525243256989" duration="4170000" />
       <workItem from="1525316260389" duration="1079000" />
-      <workItem from="1525334891549" duration="7070000" />
+      <workItem from="1525334891549" duration="7296000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70034000" />
+    <option name="totallyTimeSpent" value="70260000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1055,18 +1054,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="661" column="47" lean-forward="false" selection-start-line="661" selection-start-column="47" selection-end-line="661" selection-end-column="47" />
-          <folding>
-            <element signature="e#2886#2887#0" expanded="true" />
-            <element signature="e#2943#2944#0" expanded="true" />
-            <element signature="e#4494#4500#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Models/Buildings/Barrack.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
@@ -1077,7 +1064,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
+        <state relative-caret-position="-5907">
           <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
             <element signature="e#406#415#0" expanded="true" />
@@ -1099,6 +1086,18 @@
             <element signature="e#2233#2234#0" expanded="true" />
             <element signature="e#2540#2541#0" expanded="true" />
             <element signature="e#2639#2640#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="611">
+          <caret line="662" column="26" lean-forward="true" selection-start-line="662" selection-start-column="26" selection-end-line="662" selection-end-column="26" />
+          <folding>
+            <element signature="e#2886#2887#0" expanded="true" />
+            <element signature="e#2943#2944#0" expanded="true" />
+            <element signature="e#4494#4500#0" expanded="true" />
           </folding>
         </state>
       </provider>
