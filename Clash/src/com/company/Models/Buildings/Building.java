@@ -34,8 +34,7 @@ private static String[] nameOfChildren=new String[]{"Barrack","Camp","ElixirMine
 
     public abstract void upgrade();
 
-    public abstract void
-    showMenu();
+    public abstract void showMenu();
 
 
 }

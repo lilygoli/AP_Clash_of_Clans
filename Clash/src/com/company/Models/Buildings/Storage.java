@@ -39,7 +39,7 @@ public class Storage extends Building {
     @Override
     public void showMenu() {
         Game.setWhereIAm("You are in Storage Menu");
-        String menu = "1. Info";
+        String menu = "1. Info\n2. back";
         View.show(menu);
     }
 

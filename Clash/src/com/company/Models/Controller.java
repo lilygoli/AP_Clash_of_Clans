@@ -373,38 +373,45 @@ public class Controller {
     private void getCommandStorage(int playerChoice, Cell cell) {
         switch (playerChoice) {
             case 1:
-                cell.showInfoMenu();
-                int choice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
-                switch (choice) {
-                    case 1:
-                        cell.showOverallInfo();
-                        break;
-                    case 2:
-                        cell.showUpgradeInfo();
-                        break;
-                    case 3:
-                        Storage storage = (Storage) cell;
-                        if (storage.getClass().getSimpleName().equals("GoldStorage")) {
-                            View.show(storage.getSourcesInfo(new ArrayList<>(game.getVillage().getGoldStorages()), "gold storage"));
-                        } else {
-                            View.show(storage.getSourcesInfo(new ArrayList<>(game.getVillage().getElixirStorages()), "elixir storage"));
-                        }
-                        break;
-                    case 4:
-                        try {
-                            implementUpgradeCommand(cell);
-                        } catch (NotEnoughResourcesException e) {
-                            e.showMessage();
-                        } catch (BarrackUpgradeException e) {
-                            e.showMessage();
-                        }
-                        break;
-                    //TODO what does upgrade do here?
-                    case 5:
-                        game.showBuildings();
-                        this.getCommandInBuildings();
-                        break;
-                }
+            cell.showInfoMenu();
+            int choice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
+            switch (choice) {
+                case 1:
+                    cell.showOverallInfo();
+                    cell.showMenu();
+                    getCommandInBuilding(cell);
+                    break;
+                case 2:
+                    cell.showUpgradeInfo();
+                    cell.showMenu();
+                    getCommandInBuilding(cell);
+                    break;
+                case 3:
+                    Storage storage = (Storage) cell;
+                    if (storage.getClass().getSimpleName().equals("GoldStorage")) {
+                        View.show(storage.getSourcesInfo(new ArrayList<>(game.getVillage().getGoldStorages()), "gold storage"));
+                    } else {
+                        View.show(storage.getSourcesInfo(new ArrayList<>(game.getVillage().getElixirStorages()), "elixir storage"));
+                    }
+                    cell.showMenu();
+                    getCommandInBuilding(cell);
+                    break;
+                case 4:
+                    try {
+                        implementUpgradeCommand(cell);
+                    } catch (NotEnoughResourcesException e) {
+                        e.showMessage();
+                    } catch (BarrackUpgradeException e) {
+                        e.showMessage();
+                    }
+                    cell.showMenu();
+                    getCommandInBuilding(cell);
+                    break;
+                case 5:
+                    cell.showMenu();
+                    getCommandInBuilding(cell);
+                    break;
+            }
             case 2:
                 game.showBuildings();
                 getCommandInBuildings();
@@ -588,9 +595,12 @@ public class Controller {
     private void getCommandInMainBuilding(int command, Cell cell) {
         switch (command) {
             case 1:
-                cell.showInfoMenu();
-                int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
-                getCommandInInfoMenu(playerChoice, cell);
+                int playerChoice;
+                do {
+                    cell.showInfoMenu();
+                    playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
+                    getCommandInInfoMenu(playerChoice, cell);
+                }while(playerChoice != 3);
                 break;
             case 2:
                 int flag = 0;
@@ -620,15 +630,17 @@ public class Controller {
     }
 
     private void getCommandInInfoMenu(int playerChoice, Cell cell) {
-        switch (playerChoice) {
-            case 1:
-                cell.showOverallInfo();
-                break;
-            case 2:
-                cell.showUpgradeInfo();
-                break;
-            case 3:
-                return;//back
-        }
+            switch (playerChoice) {
+                case 1:
+                    cell.showOverallInfo();
+                    break;
+                case 2:
+                    cell.showUpgradeInfo();
+                    break;
+                case 3:
+                    game.getVillage().getMainBuilding().showMenu();
+                    getCommandInBuilding(game.getVillage().getMainBuilding());
+                    break;
+            }
     }
 }
