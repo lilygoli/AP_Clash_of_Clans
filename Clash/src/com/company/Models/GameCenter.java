@@ -27,7 +27,7 @@ public class GameCenter {
         return new Game();
     }
 
-    public void saveGame(Game mainGame, String pathName, String name) {
+    public void saveGame(Game mainGame, String pathName, String name) throws NotValidFilePathException {
         YaGson yaGson = new YaGson();
         String stringJsonOfMainGame = yaGson.toJson(mainGame);
         mainGame.setPlayerName(name);
@@ -39,9 +39,9 @@ public class GameCenter {
             bufferedWriter = new BufferedWriter(fileWriter);
             bufferedWriter.write(stringJsonOfMainGame);
         } catch (IOException e) {
-            e.printStackTrace();
-        }
-        finally {
+            throw new NotValidFilePathException();
+
+        } finally {
             try {
                 if (bufferedWriter != null)
                     bufferedWriter.close();

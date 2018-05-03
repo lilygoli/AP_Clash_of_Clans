@@ -81,8 +81,16 @@ public class Controller {
 
     }
 
-    private void implementFinishGame(String pathname, String name){
+    private void implementFinishGame(String pathname, String name) {
+        int flag=1;
+        while (flag==1){
+        try {
             gameCenter.saveGame(game, pathname, name);
+            flag=0;
+        } catch (NotValidFilePathException e) {
+            e.showExceptionMassage();
+        }
+      }
     }
 
     public void implementBuildATowerCommand() throws NotEnoughFreeBuildersException, NotEnoughResourcesException { //name and place to be refactored ... was implemented to complete building a tower//available buildings in barracks command
@@ -160,7 +168,7 @@ public class Controller {
     public void implementBuildSoldiers(Barrack barrack) throws unAvailableSoldierException, NotEnoughResourcesException {
         // TODO: 5/1/2018 back command to barracks command
         StringBuilder result = new StringBuilder();
-        int index = 0;
+        int index = 1;
         HashMap<String, Integer> availableSoldiers = barrack.determineAvailableSoldiers(game.getVillage().getResource().getGold(), game.getVillage().getResource().getElixir());
         for (String soldier : availableSoldiers.keySet()) {
             if (availableSoldiers.get(soldier) != 0) {
@@ -470,8 +478,8 @@ public class Controller {
                 break;
 
             case 3:
-                game.showBuildings();
-                getCommandInBuildings();
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
         }
     }
@@ -490,8 +498,8 @@ public class Controller {
                 getCommandInBuilding(cell);
                 break;
             case 3:
-                game.showBuildings();
-                getCommandInBuildings();
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
         }
     }
@@ -531,13 +539,13 @@ public class Controller {
                 getCommandInBuilding(cell);
                 break;
             case 3:
-                View.show(game.getVillage().showBarracksStatus(game.getTime()));
+                View.show(game.getVillage().showBarracksStatus());
                 cell.showMenu();
                 getCommandInBuilding(cell);
                 break;
             case 4:
-                game.showBuildings();
-                getCommandInBuildings();
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
         }
     }
@@ -568,8 +576,8 @@ public class Controller {
                 getCommandInBuilding(cell);
                 break;
             case 3: //back
-                game.showBuildings();
-                getCommandInBuildings();
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
         }
     }
@@ -655,17 +663,13 @@ public class Controller {
             switch (playerChoice) {
                 case 1:
                     cell.showOverallInfo();
-                    cell.showMenu();
-                    getCommandInBuilding(cell);
                     break;
                 case 2:
                     cell.showUpgradeInfo();
-                    cell.showMenu();
-                    getCommandInBuilding(cell);
                     break;
                 case 3:
-                    cell.showMenu();
-                    getCommandInBuilding(cell);
+                    game.getVillage().getMainBuilding().showMenu();
+                    getCommandInBuilding(game.getVillage().getMainBuilding());
                     break;
             }
     }

@@ -274,16 +274,22 @@ public class Village {
     }
 
 
-    public String showBarracksStatus(int time) {
+    public String showBarracksStatus() {
         StringBuilder result = new StringBuilder();
-        int index = 1;
-        for (Integer timeLeft : sortSoldiersByTimeLeft(time)) {
-            for (Barrack barrack : barracks) {
-                for (HashMap<Soldier, Integer> soldierInitialTime : barrack.getUnderConstructionSoldiers()) {
+        ArrayList<Integer> allTime=new ArrayList<Integer>();
+        for (Integer timeLeft : sortSoldiersByTimeLeft()
+                ) {
+            if(allTime.contains(timeLeft)){
+                continue;
+            }
+            allTime.add(timeLeft);
+            for (Barrack barrack : barracks
+                    ) {
+                for (HashMap<Soldier, Integer> soldierInitialTime : barrack.getUnderConstructionSoldiers()
+                        ) {
                     for (Soldier soldier : soldierInitialTime.keySet()) {
                         if (soldier.getBuildDuration() - soldierInitialTime.get(soldier) == timeLeft) {
-                            result.append(index + ". " + soldier.getClass().getSimpleName()).append(" ").append(timeLeft.toString()).append("\n");
-                            index++;
+                            result.append(soldier.getClass().getSimpleName()).append(" ").append(timeLeft.toString()).append("\n");
                         }
                     }
                 }
@@ -293,7 +299,7 @@ public class Village {
         return result.toString().trim();
     }
 
-    private ArrayList<Integer> sortSoldiersByTimeLeft(int time) {
+    private ArrayList<Integer> sortSoldiersByTimeLeft() {
         ArrayList<Integer> turnsLeft = new ArrayList<Integer>();
         for (Barrack barrack : barracks
                 ) {

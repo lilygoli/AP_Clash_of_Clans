@@ -48,7 +48,6 @@ public class Barrack extends Building {
                         Soldier newSoldier = null;
                         try {
                             newSoldier = soldier.getClass().getDeclaredConstructor(int.class).newInstance(timeDecreasedToMakeASoldier);//depends on the soldier Constructor
-                            //TODO build duration and level should be set by deceasedBuildingDuration and SoldierBuildLevel
                         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                             e.printStackTrace();
                         }
