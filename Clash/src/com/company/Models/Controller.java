@@ -643,8 +643,8 @@ public class Controller {
                 getCommandInBuilding(cell);
                 break;
             case 4:
-                cell.showMenu();
-                getCommandInBuilding(cell);
+                game.showBuildings();
+                getCommandInBuildings();
                 break;
         }
     }
