@@ -134,7 +134,7 @@ public class Game {
         ArrayList<Cell> buildings = new ArrayList<>();
         for (Cell[] cells : village.getMap()) {
             for (Cell cell : cells) {
-                if (!cell.getClass().getSimpleName().equals("Grass")) {
+                if (!cell.getClass().getSimpleName().equals("Grass") && !cell.getUnderConstructionStatus()) {
                     if (!buildings.contains(cell)) {
                         buildings.add(cell);
                     }

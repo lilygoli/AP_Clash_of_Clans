@@ -38,7 +38,7 @@ public class Controller {
             if (input.matches(Regex.PASSING_TURN_REGEX)) {
                 Matcher matcher = makePatternAndMatcher(input, Regex.PASSING_TURN_REGEX);
                 if (matcher.find()) {
-                    for (int turn = 0; turn < Integer.parseInt(matcher.group(0)); turn++) {
+                    for (int turn = 0; turn < Integer.parseInt(matcher.group(1)); turn++) {
                         game.passTurn();
                     }
                 }
@@ -79,7 +79,7 @@ public class Controller {
         gameCenter.saveGame(game, pathname, name);
     }
 
-    public void implementBuildATowerCommand() throws NotEnoughFreeBuildersException, NotEnoughResourcesException, BusyCellException, MarginalTowerException { //name and place to be refactored ... was implemented to complete building a tower//available buildings in barracks command
+    public void implementBuildATowerCommand() throws NotEnoughFreeBuildersException, NotEnoughResourcesException { //name and place to be refactored ... was implemented to complete building a tower//available buildings in barracks command
         String availableBuildings = game.getVillage().getMainBuilding().findAvailableBuildings(game.getVillage().getResource().getGold(), game.getVillage().getResource().getElixir());
         View.show(availableBuildings);
         int numberOfAvailableBuildings = availableBuildings.split("\n").length;
@@ -115,11 +115,22 @@ public class Controller {
                                 throw new NotEnoughResourcesException();
                             } else {
                                 view.showMap(game.getVillage(), 0);
-                                View.show("where do you want to build" + splitClassNameIntoWords(newCell.getClass().getSimpleName()));
-                                String[] coordinates = view.getInput().split("[(,)]");
-                                newCell.setY(Integer.parseInt(coordinates[1]));
-                                newCell.setX(Integer.parseInt(coordinates[2]));
-                                game.getVillage().buildTower(newCell);
+                                int flag=0;
+                                while(flag==0)
+                                try {
+                                    View.show("where do you want to build" + splitClassNameIntoWords(newCell.getClass().getSimpleName()));
+                                    String[] coordinates = view.getInput().split("[(,)]");
+                                    newCell.setY(Integer.parseInt(coordinates[1]));
+                                    newCell.setX(Integer.parseInt(coordinates[2]));
+                                    game.getVillage().buildTower(newCell);
+                                    flag=1;
+                                }catch(MarginalTowerException  e){
+                                    e.showMessage();
+
+                                }catch (BusyCellException e){
+                                    e.showMessage();
+                                }
+
                                 newCell.setWorkingBuilder(builder);
                                 builder.setOccupationState(true);
                                 Resource resource=new Resource(game.getVillage().getResource().getGold()-newCell.getGoldCost(),game.getVillage().getResource().getElixir()-newCell.getElixirCost());
@@ -220,7 +231,7 @@ public class Controller {
                             View.show(game.statusAll());
                     }
                     Matcher unitMatcher=makePatternAndMatcher(userInput,Regex.STATUS_UNIT_TYPE);
-                    Matcher towerMatcher=makePatternAndMatcher(userInput,Regex.STAUS_TOWER_TYPE);
+                    Matcher towerMatcher=makePatternAndMatcher(userInput,Regex.STATUS_TOWER_TYPE);
                     if(unitMatcher.find()){
                         View.show(game.statusUnit(unitMatcher.group(1)));
                     }
@@ -583,10 +594,6 @@ public class Controller {
                     e.showMessage();
                 } catch (NotEnoughResourcesException e) {
                     e.printStackTrace();
-                } catch (BusyCellException e) {
-                    e.showMessage();
-                } catch (MarginalTowerException e) {
-                    e.showMessage();
                 }
                 break;
             case 3:
