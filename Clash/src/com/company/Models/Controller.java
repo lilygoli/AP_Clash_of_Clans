@@ -21,8 +21,7 @@ public class Controller {
         }
         String input = view.getInput();
         while (!input.matches(Regex.SAVING_GAME_REGEX)) {
-            if (Game.getWhereIAm().equals("You are in village")) {
-                switch (input) {
+            switch (input) {
                     case "showBuildings":
                         game.showBuildings();
                         this.getCommandInBuildings();
@@ -30,10 +29,11 @@ public class Controller {
                     case "resources":
                         game.showResources();
                         break;
+                    case "attack":
+                        implementAttackCommand();
                     default:
                         View.show("invalid command please try again");
                         break;
-                }
             }
             if (input.matches(Regex.PASSING_TURN_REGEX)) {
                 Matcher matcher = makePatternAndMatcher(input, Regex.PASSING_TURN_REGEX);
@@ -161,7 +161,7 @@ public class Controller {
         }
     }
 
-    public void implementAttackCommand(String command) {
+    public void implementAttackCommand() {
         StringBuilder result = new StringBuilder("1. load map\n");
         int index = 2;
         for (Game game : game.getAllAttackedVillages()) {
@@ -187,7 +187,7 @@ public class Controller {
             game.getAllAttackedVillages().add(enemyGame);
 
         } else if (choice == index) {
-            // TODO: 4/29/2018 call back
+            mainCommandAnalyzer();
         } else {
             game.setAttackedVillage(game.getAllAttackedVillages().get(choice - 2));
         }
@@ -231,7 +231,7 @@ public class Controller {
                     View.show("The war ended with" + game.getGainedResource().getGold() + " gold," + game.getGainedResource().getElixir() + " elixir and" + game.getVillage().getScore() + "scores achieved!");
                     game.healAfterWar();
 
-            case 3: // TODO: 4/29/2018 call back
+            case 3: mainCommandAnalyzer();
         }
 
 
