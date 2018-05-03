@@ -95,9 +95,9 @@ public class Barrack extends Building {
             if (soldier.getUnlockLevel() <= getLevel()) {
                 int number = 0;
                 number = gold / soldier.getCost();
-                availableSoldiers.put(soldier.getClass().toString().split(" ")[1], number);
+                availableSoldiers.put(soldier.getClass().getSimpleName(), number);
             } else {
-                availableSoldiers.put(soldier.getClass().toString().split(" ")[1], 0);
+                availableSoldiers.put(soldier.getClass().getSimpleName(), 0);
             }
         }
         return availableSoldiers;

@@ -162,13 +162,13 @@ public class Controller {
         HashMap<String, Integer> availableSoldiers = barrack.determineAvailableSoldiers(game.getVillage().getResource().getGold(), game.getVillage().getResource().getElixir());
         for (String soldier : availableSoldiers.keySet()) {
             if (availableSoldiers.get(soldier) != 0) {
-                result.append(index).append(". ").append(soldier).append(" Ax").append(availableSoldiers.get(soldier));
+                result.append(index).append(". ").append(soldier).append(" Ax").append(availableSoldiers.get(soldier)).append("\n");
             } else {
-                result.append(index).append(". ").append(soldier).append("U");
+                result.append(index).append(". ").append(soldier).append("U").append("\n");
             }
             index++;
         }
-            View.show(result.toString());
+            View.show(result.toString().trim());
             String playerChoice = view.getInput("Enter your preferred soldier name in the list");
             if (availableSoldiers.get(playerChoice) == 0) {
                 throw new unAvailableSoldierException();

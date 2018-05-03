@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public abstract class Soldier {
-    private static ArrayList<Soldier> soldierSubClasses;
+    private static ArrayList<Soldier> soldierSubClasses=new ArrayList<Soldier>();
     private int buildDuration;
     private int health;
     private int damage;
@@ -49,7 +49,7 @@ public abstract class Soldier {
     }
 
     public int getCost() {
-        return Config.getDictionary().get(this.getClass().getSimpleName() + "ELIXIR_COST");
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_ELEXIR_COST");
     }
 
     public int getBuildDuration() {
@@ -85,7 +85,7 @@ public abstract class Soldier {
     }
 
     public int getUnlockLevel() {
-        return Config.getDictionary().get(this.getClass().getSimpleName() + "_UNLOCK_LEVEL");
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_UNLOCKLEVEL");
     }
 
     public double getX() {
