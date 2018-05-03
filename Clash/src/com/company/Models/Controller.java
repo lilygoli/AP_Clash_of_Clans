@@ -166,16 +166,18 @@ public class Controller {
             } else {
                 result.append(index).append(". ").append(soldier).append("U");
             }
+            index++;
+        }
             View.show(result.toString());
             String playerChoice = view.getInput("Enter your preferred soldier name in the list");
             if (availableSoldiers.get(playerChoice) == 0) {
                 throw new unAvailableSoldierException();
             } else {
                 int soldierAmount = Integer.parseInt(view.getInput("How many of this soldier do you want to build?"));
-                barrack.buildSoldier(soldierAmount, soldier, availableSoldiers);
+                barrack.buildSoldier(soldierAmount, playerChoice, availableSoldiers);
             }
         }
-    }
+
 
     public void implementAttackCommand() {
         StringBuilder result = new StringBuilder("1. load map\n");
