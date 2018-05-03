@@ -20,18 +20,21 @@ public class Controller {
             implementStartGame();
         }
         String input = view.getInput();
+        boolean commandMatched = false;
         while (!input.matches(Regex.SAVING_GAME_REGEX)) {
             switch (input) {
-                case "showBuildings":
-                    game.showBuildings();
-                    this.getCommandInBuildings();
-                    break;
-                case "resources":
-                    game.showResources();
-                    break;
-                case "attack":
-                    implementAttackCommand();
-                    break;
+                    case "showBuildings":
+                        game.showBuildings();
+                        this.getCommandInBuildings();
+                        commandMatched = true;
+                        break;
+                    case "resources":
+                        game.showResources();
+                        commandMatched = true;
+                        break;
+                    case "attack":
+                        implementAttackCommand();
+                        commandMatched = true;
             }
             if (input.matches(Regex.PASSING_TURN_REGEX)) {
                 Matcher matcher = makePatternAndMatcher(input, Regex.PASSING_TURN_REGEX);
@@ -40,9 +43,12 @@ public class Controller {
                         game.passTurn();
                     }
                 }
+                commandMatched = true;
             }
 
-
+            if (!commandMatched) {
+                View.show("invalid command please try again");
+            }
             input = view.getInput();
         }
         Matcher matcher = makePatternAndMatcher(input, Regex.SAVING_GAME_REGEX);
@@ -106,7 +112,7 @@ public class Controller {
                     Cell newCell = (Cell) spacialBuilding.getDeclaredConstructor(int.class, int.class).newInstance(0, 0);
                     int goldCost = Config.getDictionary().get(newCell.getClass().getSimpleName() + "_GOLD_COST");
                     int elixirCost = Config.getDictionary().get(newCell.getClass().getSimpleName() + "_ELIXIR_COST");
-                    View.show("Do you wat to build " + buildingName + " for " + goldCost + " gold and " + elixirCost + " elixir? [Y/N]");
+                    View.show("Do you want to build " + buildingName + " for " + goldCost + " gold and " + elixirCost + " elixir? [Y/N]");
                     switch (view.getInput()) {
                         case "Y":
                             if (goldCost > game.getVillage().getResource().getGold() || elixirCost > game.getVillage().getResource().getElixir()) {
