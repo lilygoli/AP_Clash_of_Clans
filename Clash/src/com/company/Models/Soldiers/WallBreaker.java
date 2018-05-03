@@ -6,4 +6,8 @@ public class WallBreaker extends Soldier {
     public void attackTarget(Village attackerVillage,Village enemyVillage){
         super.attackTargets(attackerVillage,enemyVillage , "Wall");
     }
+
+    public WallBreaker(int time) {
+        super(time);
+    }
 }

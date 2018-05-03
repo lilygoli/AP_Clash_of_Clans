@@ -6,4 +6,8 @@ public class Giant extends Soldier {
     public void attackTarget(Village attackerVillage,Village enemyVillage) {
         super.attackTargets(attackerVillage,enemyVillage , "Storage");
     }
+
+    public Giant(int time) {
+        super(time);
+    }
 }

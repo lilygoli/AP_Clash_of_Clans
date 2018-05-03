@@ -41,9 +41,8 @@ public class Barrack extends Building {
     public void buildSoldier(int number, String name, HashMap<String, Integer> availableSoldiers) throws
             NotEnoughResourcesException {
 
-        for (Soldier soldier : Soldier.getSoldierSubClasses()
-                ) {
-            if (soldier.getClass().toString().split(" ")[1].equals(name.trim())) {
+        for (Soldier soldier : Soldier.getSoldierSubClasses()) {
+            if (soldier.getClass().getSimpleName().equals(name.trim())) {
                 if (availableSoldiers.get(name) >= number) {
                     for (int i = 0; i < number; i++) {
                         Soldier newSoldier = null;

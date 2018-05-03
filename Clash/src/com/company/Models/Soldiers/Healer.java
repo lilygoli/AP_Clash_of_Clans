@@ -4,6 +4,9 @@ import com.company.Models.Config;
 import com.company.Models.Village;
 
 public class Healer extends Soldier {
+    public Healer(int time) {
+        super(time);
+    }
 
     private int heal;
     private int healAdded;

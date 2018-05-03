@@ -58,7 +58,7 @@ public class GameCenter {
         Game enemyGame = null;
         String[] EnemyJsonAndName = loadFromFile(enemyMapPath);
         YaGson yaGson = new YaGson();
-        EnemyMapJson enemyMapJson = yaGson.fromJson(EnemyJsonAndName[0], EnemyMapJson.class);
+        EnemyMapJson enemyMapJson = yaGson.fromJson(EnemyJsonAndName[0].substring(0 , EnemyJsonAndName[0].length() - 1), EnemyMapJson.class);
         enemyGame = enemyMapJson.ConvertEnemyJsonToGame();
         enemyGame.setPlayerName(EnemyJsonAndName[1]);
         games.add(enemyGame);

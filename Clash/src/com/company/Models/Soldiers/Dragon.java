@@ -10,6 +10,10 @@ public class Dragon extends Soldier {
         super.attackTargets(attackerVillage,enemyVillage, "all");
     }
 
+    public Dragon(int time) {
+        super(time);
+    }
+
     @Override
     public Direction findDirection(Village enemyVillage, Cell destination) {
         if (getX() < destination.getX()){

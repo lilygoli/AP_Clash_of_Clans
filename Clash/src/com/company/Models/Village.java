@@ -276,15 +276,14 @@ public class Village {
 
     public String showBarracksStatus(int time) {
         StringBuilder result = new StringBuilder();
-        for (Integer timeLeft : sortSoldiersByTimeLeft(time)
-                ) {
-            for (Barrack barrack : barracks
-                    ) {
-                for (HashMap<Soldier, Integer> soldierInitialTime : barrack.getUnderConstructionSoldiers()
-                        ) {
+        int index = 1;
+        for (Integer timeLeft : sortSoldiersByTimeLeft(time)) {
+            for (Barrack barrack : barracks) {
+                for (HashMap<Soldier, Integer> soldierInitialTime : barrack.getUnderConstructionSoldiers()) {
                     for (Soldier soldier : soldierInitialTime.keySet()) {
                         if (soldier.getBuildDuration() - soldierInitialTime.get(soldier) == timeLeft) {
-                            result.append(soldier.getClass().toString().split(" ")[1]).append(" ").append(timeLeft.toString()).append("\n");
+                            result.append(index + ". " + soldier.getClass().getSimpleName()).append(" ").append(timeLeft.toString()).append("\n");
+                            index++;
                         }
                     }
                 }

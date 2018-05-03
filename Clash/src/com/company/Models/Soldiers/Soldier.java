@@ -21,12 +21,12 @@ public abstract class Soldier {
     private Direction direction;
 
     static {
-        soldierSubClasses.add(new Archer());
-        soldierSubClasses.add(new Dragon());
-        soldierSubClasses.add(new Giant());
-        soldierSubClasses.add(new Guardian());
-        soldierSubClasses.add(new Healer());
-        soldierSubClasses.add(new WallBreaker());
+        soldierSubClasses.add(new Archer(0));
+        soldierSubClasses.add(new Dragon(0));
+        soldierSubClasses.add(new Giant(0));
+        soldierSubClasses.add(new Guardian(0));
+        soldierSubClasses.add(new Healer(0));
+        soldierSubClasses.add(new WallBreaker(0));
     }
 
     {
