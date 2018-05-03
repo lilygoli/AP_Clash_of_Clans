@@ -653,9 +653,13 @@ public class Controller {
             switch (playerChoice) {
                 case 1:
                     cell.showOverallInfo();
+                    cell.showMenu();
+                    getCommandInBuilding(cell);
                     break;
                 case 2:
                     cell.showUpgradeInfo();
+                    cell.showMenu();
+                    getCommandInBuilding(cell);
                     break;
                 case 3:
                     cell.showMenu();
