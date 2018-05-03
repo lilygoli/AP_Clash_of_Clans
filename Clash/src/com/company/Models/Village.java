@@ -192,7 +192,7 @@ public class Village {
         if (map[tower.getX()][tower.getY()].getClass().getSimpleName().equals("Grass")) {
             map[tower.getX()][tower.getY()] = tower;
             tower.setUnderConstructionStatus(true);
-            tower.setTimeTillConstruction(Config.getDictionary().get(tower.getClass().getSimpleName() + "_BUILD_DURATION"));
+            tower.setTimeLeftOfConstruction(Config.getDictionary().get(tower.getClass().getSimpleName() + "_BUILD_DURATION"));
             switch (tower.getName()) {
                 case "Camp":
                     this.getCamps().add((Camp) tower);
@@ -268,7 +268,7 @@ public class Village {
         }
         Cell.sortTowers(underConstructionTowers);
         for (Cell underConstructionTower : underConstructionTowers) {
-            status.append(underConstructionTower.getName()).append(" will be built in ").append(underConstructionTower.getTimeTillConstruction()).append(" turns");
+            status.append(underConstructionTower.getName()).append(" will be built in ").append(underConstructionTower.getTimeLeftOfConstruction()).append(" turns");
         }
         return status.toString().trim();
     }

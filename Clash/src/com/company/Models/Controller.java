@@ -22,18 +22,16 @@ public class Controller {
         String input = view.getInput();
         while (!input.matches(Regex.SAVING_GAME_REGEX)) {
             switch (input) {
-                    case "showBuildings":
-                        game.showBuildings();
-                        this.getCommandInBuildings();
-                        break;
-                    case "resources":
-                        game.showResources();
-                        break;
-                    case "attack":
-                        implementAttackCommand();
-                    default:
-                        View.show("invalid command please try again");
-                        break;
+                case "showBuildings":
+                    game.showBuildings();
+                    this.getCommandInBuildings();
+                    break;
+                case "resources":
+                    game.showResources();
+                    break;
+                case "attack":
+                    implementAttackCommand();
+                    break;
             }
             if (input.matches(Regex.PASSING_TURN_REGEX)) {
                 Matcher matcher = makePatternAndMatcher(input, Regex.PASSING_TURN_REGEX);
@@ -90,7 +88,7 @@ public class Controller {
             return;
         }
         Integer chosenNumber = Integer.parseInt(playerChoice);
-        if (chosenNumber == numberOfAvailableBuildings){
+        if (chosenNumber == numberOfAvailableBuildings) {
             game.getVillage().getMainBuilding().showMenu();
             getCommandInBuilding(game.getVillage().getMainBuilding());
             return;
@@ -115,25 +113,25 @@ public class Controller {
                                 throw new NotEnoughResourcesException();
                             } else {
                                 view.showMap(game.getVillage(), 0);
-                                int flag=0;
-                                while(flag==0)
-                                try {
-                                    View.show("where do you want to build" + splitClassNameIntoWords(newCell.getClass().getSimpleName()));
-                                    String[] coordinates = view.getInput().split("[(,)]");
-                                    newCell.setY(Integer.parseInt(coordinates[1]));
-                                    newCell.setX(Integer.parseInt(coordinates[2]));
-                                    game.getVillage().buildTower(newCell);
-                                    flag=1;
-                                }catch(MarginalTowerException  e){
-                                    e.showMessage();
+                                int flag = 0;
+                                while (flag == 0)
+                                    try {
+                                        View.show("where do you want to build" + splitClassNameIntoWords(newCell.getClass().getSimpleName()));
+                                        String[] coordinates = view.getInput().split("[(,)]");
+                                        newCell.setY(Integer.parseInt(coordinates[1]));
+                                        newCell.setX(Integer.parseInt(coordinates[2]));
+                                        game.getVillage().buildTower(newCell);
+                                        flag = 1;
+                                    } catch (MarginalTowerException e) {
+                                        e.showMessage();
 
-                                }catch (BusyCellException e){
-                                    e.showMessage();
-                                }
+                                    } catch (BusyCellException e) {
+                                        e.showMessage();
+                                    }
 
                                 newCell.setWorkingBuilder(builder);
                                 builder.setOccupationState(true);
-                                Resource resource=new Resource(game.getVillage().getResource().getGold()-newCell.getGoldCost(),game.getVillage().getResource().getElixir()-newCell.getElixirCost());
+                                Resource resource = new Resource(game.getVillage().getResource().getGold() - newCell.getGoldCost(), game.getVillage().getResource().getElixir() - newCell.getElixirCost());
                                 game.getVillage().setResource(resource);
                                 implementBuildATowerCommand();
                             }
@@ -212,13 +210,13 @@ public class Controller {
             case 2:
                 startAttack();
                 String userInput;
-                do{
-                    userInput=view.getInput();
+                do {
+                    userInput = view.getInput();
                     switch (userInput) {
                         case "Go next turn":
                             game.passTurn();
                         case "put unit":
-                            String unit=view.getInput();
+                            String unit = view.getInput();
                             implementPutUnitCommand(unit);
                             break;
                         case "status resources":
@@ -230,30 +228,31 @@ public class Controller {
                         case "status all":
                             View.show(game.statusAll());
                     }
-                    Matcher unitMatcher=makePatternAndMatcher(userInput,Regex.STATUS_UNIT_TYPE);
-                    Matcher towerMatcher=makePatternAndMatcher(userInput,Regex.STATUS_TOWER_TYPE);
-                    if(unitMatcher.find()){
+                    Matcher unitMatcher = makePatternAndMatcher(userInput, Regex.STATUS_UNIT_TYPE);
+                    Matcher towerMatcher = makePatternAndMatcher(userInput, Regex.STATUS_TOWER_TYPE);
+                    if (unitMatcher.find()) {
                         View.show(game.statusUnit(unitMatcher.group(1)));
                     }
-                    if (towerMatcher.find()){
+                    if (towerMatcher.find()) {
                         View.show(game.statusTower(towerMatcher.group(1)));
                     }
                 }
                 while (!userInput.equals("Quit attack") || !game.isWarFinished());
-                    View.show("The war ended with" + game.getGainedResource().getGold() + " gold," + game.getGainedResource().getElixir() + " elixir and" + game.getVillage().getScore() + "scores achieved!");
-                    game.healAfterWar();
+                View.show("The war ended with" + game.getGainedResource().getGold() + " gold," + game.getGainedResource().getElixir() + " elixir and" + game.getVillage().getScore() + "scores achieved!");
+                game.healAfterWar();
 
-            case 3: mainCommandAnalyzer();
+            case 3:
+                mainCommandAnalyzer();
         }
 
 
     }
 
     private void implementPutUnitCommand(String unit) {
-        Matcher matcher=makePatternAndMatcher(unit, Regex.PUT_UNIT_REGEX);
-        if(matcher.find()){
+        Matcher matcher = makePatternAndMatcher(unit, Regex.PUT_UNIT_REGEX);
+        if (matcher.find()) {
             try {
-                game.putUnit(matcher.group(1),Integer.parseInt(matcher.group(2)),Integer.parseInt(matcher.group(3)),Integer.parseInt(matcher.group(4)));
+                game.putUnit(matcher.group(1), Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)), Integer.parseInt(matcher.group(4)));
             } catch (MoreThanLimitSoldiersException e) {
                 e.showMessage();
             } catch (InvalidPlaceForSoldiersException e) {
@@ -305,7 +304,7 @@ public class Controller {
     private void getCommandInBuildings() {
         String input = view.getInput();
         Matcher matcher = makePatternAndMatcher(input, Regex.SELECT_BUILDING_REGEX);
-        if (input.equals("back")){
+        if (input.equals("back")) {
             Game.setWhereIAm("You are in village");
             mainCommandAnalyzer();
             return;
@@ -330,10 +329,10 @@ public class Controller {
 
     private void getCommandInBuilding(Cell cell) {
         int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
-        if (playerChoice > 5){
+        if (playerChoice > 5) {
             View.show("invalid choice");
             getCommandInBuilding(cell);
-        }else {
+        } else {
             switch (cell.getClass().getSimpleName()) {
                 case ("Barrack"):
                     getCommandInBarrack(playerChoice, cell);
@@ -366,40 +365,40 @@ public class Controller {
     }
 
     private void getCommandStorage(int playerChoice, Cell cell) {
-        switch (playerChoice){
+        switch (playerChoice) {
             case 1:
-            cell.showInfoMenu();
-            int choice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
-            switch (choice) {
-                case 1:
-                    cell.showOverallInfo();
-                    break;
-                case 2:
-                    cell.showUpgradeInfo();
-                    break;
-                case 3:
-                    Storage storage = (Storage) cell;
-                    if (storage.getClass().getSimpleName().equals("GoldStorage")) {
-                        View.show(storage.getSourcesInfo(new ArrayList<>(game.getVillage().getGoldStorages()), "gold storage"));
-                    } else {
-                        View.show(storage.getSourcesInfo(new ArrayList<>(game.getVillage().getElixirStorages()), "elixir storage"));
-                    }
-                    break;
-                case 4:
-                    try {
-                        implementUpgradeCommand(cell);
-                    } catch (NotEnoughResourcesException e) {
-                        e.showMessage();
-                    } catch (BarrackUpgradeException e) {
-                        e.showMessage();
-                    }
-                    break;
+                cell.showInfoMenu();
+                int choice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
+                switch (choice) {
+                    case 1:
+                        cell.showOverallInfo();
+                        break;
+                    case 2:
+                        cell.showUpgradeInfo();
+                        break;
+                    case 3:
+                        Storage storage = (Storage) cell;
+                        if (storage.getClass().getSimpleName().equals("GoldStorage")) {
+                            View.show(storage.getSourcesInfo(new ArrayList<>(game.getVillage().getGoldStorages()), "gold storage"));
+                        } else {
+                            View.show(storage.getSourcesInfo(new ArrayList<>(game.getVillage().getElixirStorages()), "elixir storage"));
+                        }
+                        break;
+                    case 4:
+                        try {
+                            implementUpgradeCommand(cell);
+                        } catch (NotEnoughResourcesException e) {
+                            e.showMessage();
+                        } catch (BarrackUpgradeException e) {
+                            e.showMessage();
+                        }
+                        break;
                     //TODO what does upgrade do here?
-                case 5:
-                    game.showBuildings();
-                    this.getCommandInBuildings();
-                    break;
-            }
+                    case 5:
+                        game.showBuildings();
+                        this.getCommandInBuildings();
+                        break;
+                }
             case 2:
                 game.showBuildings();
                 getCommandInBuildings();
@@ -419,8 +418,8 @@ public class Controller {
                 if (cell.getUpgradeCost() > game.getVillage().getResource().getGold()) {
                     throw new NotEnoughResourcesException();
                 } else {
-                    if(cell.getClass().getSimpleName().equals("Barrack")){
-                        if(game.getVillage().getMainBuilding().getLevel()==cell.getLevel()){
+                    if (cell.getClass().getSimpleName().equals("Barrack")) {
+                        if (game.getVillage().getMainBuilding().getLevel() == cell.getLevel()) {
                             throw new BarrackUpgradeException();
                         }
                     }
@@ -588,14 +587,20 @@ public class Controller {
                 getCommandInInfoMenu(playerChoice, cell);
                 break;
             case 2:
-                try {
-                    implementBuildATowerCommand();
-                } catch (NotEnoughFreeBuildersException e) {
-                    e.showMessage();
-                } catch (NotEnoughResourcesException e) {
-                    e.printStackTrace();
+                int flag = 0;
+                while (flag == 0) {
+                    try {
+                        implementBuildATowerCommand();
+                        flag = 1;
+                    } catch (NotEnoughFreeBuildersException e) {
+                        e.showMessage();
+
+                    } catch (NotEnoughResourcesException e) {
+                        e.showMessage();
+                    }
                 }
                 break;
+
             case 3:
                 View.show(game.getVillage().showTownHallStatus());
                 game.getVillage().getMainBuilding().showMenu();

@@ -13,7 +13,6 @@ public class Cell {
 
     private final String infoMenu = "1. Overall Info\n2. Upgrade Info\n3. Back";
     private boolean isUnderConstruction = false;
-    private int timeTillConstruction;
     private int x;
     private int y;
     private int jsonType;
@@ -101,13 +100,6 @@ public class Cell {
         isUnderConstruction = underConstruction;
     }
 
-    public int getTimeTillConstruction() {
-        return timeTillConstruction;
-    }
-
-    public void setTimeTillConstruction(int timeTillConstruction) {
-        this.timeTillConstruction = timeTillConstruction;
-    }
 
     public int getX() {
         return x;

@@ -19,7 +19,7 @@ import com.company.View;
 import java.util.ArrayList;
 
 public class Game {
-    private Resource gainedResource = new Resource(0 , 0);
+    private Resource gainedResource = new Resource(0, 0);
     private String playerName;
     private Village village;
     private int time;
@@ -310,7 +310,7 @@ public class Game {
         }
         //Attacker Soldiers part
         for (Soldier soldier : troops) {
-            soldier.attackTarget(this.getVillage(),this.attackedVillage.getVillage()); // TODO: 4/27/18 باید چند بار کال شه این تابع تو هر ترن
+            soldier.attackTarget(this.getVillage(), this.attackedVillage.getVillage()); // TODO: 4/27/18 باید چند بار کال شه این تابع تو هر ترن
         }
     }
 
@@ -338,14 +338,14 @@ public class Game {
         troops.clear();
     }
 
-    public void passTurn(){
-        if(isUnderAttackOrDefense){
+    public void passTurn() {
+        if (isUnderAttackOrDefense) {
             try {
                 passTurnInWarMode();
             } catch (NotInWarException e) {
                 //something went wrong
             }
-        }else {
+        } else {
             passTurnInNormalMode();
         }
     }
@@ -366,15 +366,15 @@ public class Game {
                 }
             }
         }
-        int number=0;
+        int number = 0;
         if (sameSoldiersNumber + amount <= 5) {
             for (Soldier soldier : troops
                     ) {
-                if(soldier.getX()==-1 && soldier.getY()==-1 && soldier.getClass().getSimpleName().equalsIgnoreCase(unitType.replace(" ", ""))){
+                if (soldier.getX() == -1 && soldier.getY() == -1 && soldier.getClass().getSimpleName().equalsIgnoreCase(unitType.replace(" ", ""))) {
                     number++;
                     soldier.setX(x);
                     soldier.setY(y);
-                    if(number==amount){
+                    if (number == amount) {
                         break;
                     }
                 }
@@ -383,15 +383,17 @@ public class Game {
 
     }
 
-    private void passTurnInNormalMode(){
+    private void passTurnInNormalMode() {
         time++;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
-                if(village.getMap()[j][i].getUnderConstructionStatus()){
-                    village.getMap()[j][i].setTimeLeftOfConstruction(village.getMap()[j][i].getTimeTillConstruction()-1);
-                    if(village.getMap()[j][i].getTimeLeftOfConstruction()==0){
-                        village.getMap()[j][i].setUnderConstructionStatus(false);
-                        village.getMap()[j][i].getWorkingBuilder().setOccupationState(false);
+                if (!village.getMap()[j][i].getClass().getSimpleName().equals("Grass")) {
+                    if (village.getMap()[j][i].getUnderConstructionStatus()) {
+                        village.getMap()[j][i].setTimeLeftOfConstruction(village.getMap()[j][i].getTimeLeftOfConstruction()- 1);
+                        if (village.getMap()[j][i].getTimeLeftOfConstruction() == 0) {
+                            village.getMap()[j][i].setUnderConstructionStatus(false);
+                            village.getMap()[j][i].getWorkingBuilder().setOccupationState(false);
+                        }
                     }
                 }
             }
