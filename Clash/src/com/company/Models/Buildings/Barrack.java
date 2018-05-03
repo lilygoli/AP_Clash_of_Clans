@@ -64,7 +64,7 @@ public class Barrack extends Building {
         }
     }
     private void addToConstructionTime(){
-        if(underConstructionSoldiers.get(0).size()==0)
+        if(underConstructionSoldiers.size()==0)
             return;;
         Soldier soldier=(Soldier)underConstructionSoldiers.get(0).keySet().toArray()[0];
         underConstructionSoldiers.get(0).replace(soldier,underConstructionSoldiers.get(0).get(soldier)+1);
@@ -72,6 +72,8 @@ public class Barrack extends Building {
 
     public void transferToCamp( ArrayList<Camp> camps) { //should be called in each turn
             addToConstructionTime();
+            if(underConstructionSoldiers.size()==0)
+                return;
             Soldier soldier = (Soldier) underConstructionSoldiers.get(0).keySet().toArray()[0];
             if ( underConstructionSoldiers.get(0).get(soldier) == soldier.getBuildDuration()) {
                 for (Camp camp : camps
