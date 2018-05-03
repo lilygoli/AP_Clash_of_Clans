@@ -185,6 +185,8 @@ public class Controller {
             } else {
                 int soldierAmount = Integer.parseInt(view.getInput("How many of this soldier do you want to build?"));
                 barrack.buildSoldier(soldierAmount, playerChoice, availableSoldiers);
+                Resource resource=new Resource(game.getVillage().getResource().getGold(),game.getVillage().getResource().getElixir()-Config.getDictionary().get(playerChoice+"_ELEXIR_COST"));
+                game.getVillage().setResource(resource);
             }
         }
 
@@ -535,8 +537,8 @@ public class Controller {
                 } catch (NotEnoughResourcesException e) {
                     e.showMessage();
                 }
-                cell.showMenu();
-                getCommandInBuilding(cell);
+                game.showBuildings();
+                getCommandInBuildings();
                 break;
             case 3:
                 View.show(game.getVillage().showBarracksStatus());
@@ -576,8 +578,8 @@ public class Controller {
                 getCommandInBuilding(cell);
                 break;
             case 3: //back
-                cell.showMenu();
-                getCommandInBuilding(cell);
+                game.showBuildings();
+                getCommandInBuildings();
                 break;
         }
     }
@@ -663,13 +665,17 @@ public class Controller {
             switch (playerChoice) {
                 case 1:
                     cell.showOverallInfo();
+                    cell.showMenu();
+                    getCommandInBuilding(cell);
                     break;
                 case 2:
                     cell.showUpgradeInfo();
+                    cell.showMenu();
+                    getCommandInBuilding(cell);
                     break;
                 case 3:
-                    game.getVillage().getMainBuilding().showMenu();
-                    getCommandInBuilding(game.getVillage().getMainBuilding());
+                    cell.showMenu();
+                    getCommandInBuilding(cell);
                     break;
             }
     }
