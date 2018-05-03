@@ -455,7 +455,8 @@ public class Controller {
                 }
                 break;
             case "N":
-                // TODO: 4/29/2018 back or no
+                cell.showMenu();
+                getCommandInBuilding(cell);
         }
     }
 
@@ -480,8 +481,8 @@ public class Controller {
                 break;
 
             case 3:
-                cell.showMenu();
-                getCommandInBuilding(cell);
+                game.showBuildings();
+                getCommandInBuildings();
                 break;
         }
     }
@@ -500,8 +501,8 @@ public class Controller {
                 getCommandInBuilding(cell);
                 break;
             case 3:
-                cell.showMenu();
-                getCommandInBuilding(cell);
+                game.showBuildings();
+                getCommandInBuildings();
                 break;
         }
     }
@@ -518,7 +519,8 @@ public class Controller {
                 camp.showCapacityInfo(game.getVillage().getCamps());
                 break;
             case 4:
-                return;//back
+                // TODO: 5/3/2018 back
+                break;
         }
     }
 
@@ -537,8 +539,8 @@ public class Controller {
                 } catch (NotEnoughResourcesException e) {
                     e.showMessage();
                 }
-                game.showBuildings();
-                getCommandInBuildings();
+                cell.showMenu();
+                getCommandInBuilding(cell);
                 break;
             case 3:
                 View.show(game.getVillage().showBarracksStatus());
@@ -546,8 +548,8 @@ public class Controller {
                 getCommandInBuilding(cell);
                 break;
             case 4:
-                cell.showMenu();
-                getCommandInBuilding(cell);
+                game.showBuildings();
+                getCommandInBuildings();
                 break;
         }
     }
