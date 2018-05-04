@@ -284,6 +284,7 @@ public class Controller {
     }
 
     public void startAttack() {
+        outer:
         while (true) {
             // TODO: 4/30/18 maybe "Start Select" should have been implemented!!!
             String playerChoice = view.getInput("");
@@ -292,7 +293,6 @@ public class Controller {
             }
             if (!playerChoice.matches("Select \\w+ \\d+")) {
                 View.show("invalid input. type End select to go to attack");
-                continue;
             } else {
                 String[] splitPlayerChoice = playerChoice.split(" ");
                 for (int i = 0; i < Integer.parseInt(splitPlayerChoice[2]); i++) {
@@ -300,6 +300,7 @@ public class Controller {
                         game.selectUnit(splitPlayerChoice[1]);
                     } catch (NoSuchSoldierInCampException e) {
                         e.showMessage(splitPlayerChoice[1]);
+                        continue outer;
                     }
                 }
             }
