@@ -57,6 +57,11 @@ public class GameCenter {
     public Game loadEnemyMap(String enemyMapPath) throws NotValidFilePathException {
         Game enemyGame = null;
         String[] EnemyJsonAndName = loadFromFile(enemyMapPath);
+        for (Game game : games) {
+            if(game.getPlayerName().equals(EnemyJsonAndName[1].trim())){
+                return game;
+            }
+        }
         YaGson yaGson = new YaGson();
         EnemyMapJson enemyMapJson = yaGson.fromJson(EnemyJsonAndName[0].substring(0 , EnemyJsonAndName[0].length() - 1), EnemyMapJson.class);
         enemyGame = enemyMapJson.ConvertEnemyJsonToGame();
@@ -79,7 +84,7 @@ public class GameCenter {
                 byteCode = stream.read();
                 jsonConvertedToString.append((char) byteCode);
             }
-            fileNameAndContent[1] = file.getName();
+            fileNameAndContent[1] = file.getName().replaceAll("json|txt","").replace(".","");
             stream.close();
         } catch (IOException e) {
             throw new NotValidFilePathException();

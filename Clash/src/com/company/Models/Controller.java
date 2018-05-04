@@ -4,7 +4,6 @@ import com.company.Exception.*;
 import com.company.Models.Buildings.*;
 import com.company.View;
 
-import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -134,8 +133,8 @@ public class Controller {
                                     try {
                                         View.show("where do you want to build" + splitClassNameIntoWords(newCell.getClass().getSimpleName()));
                                         String[] coordinates = view.getInput().split("[(,)]");
-                                        newCell.setY(Integer.parseInt(coordinates[1]));
-                                        newCell.setX(Integer.parseInt(coordinates[2]));
+                                        newCell.setY(Integer.parseInt(coordinates[2])-1);
+                                        newCell.setX(Integer.parseInt(coordinates[1])-1);
                                         game.getVillage().buildTower(newCell);
                                         flag = 1;
                                     } catch (MarginalTowerException e) {
@@ -165,7 +164,7 @@ public class Controller {
 
     }
 
-    public void implementBuildSoldiers(Barrack barrack) throws unAvailableSoldierException, NotEnoughResourcesException {
+    public void implementBuildSoldiers(Barrack barrack) throws unAvailableSoldierException, NotEnoughResourcesException, NotEnoughCapacityInCampsException {
         // TODO: 5/1/2018 back command to barracks command
         StringBuilder result = new StringBuilder();
         int index = 1;
@@ -184,6 +183,13 @@ public class Controller {
             throw new unAvailableSoldierException();
         } else {
             int soldierAmount = Integer.parseInt(view.getInput("How many of this soldier do you want to build?"));
+            int totalCapacity=0;
+            for (Camp camp : game.getVillage().getCamps()) {
+                totalCapacity+=camp.getCapacity()-camp.getSoldiers().size();
+            }
+            if(game.getVillage().getCamps().size()==0 ||soldierAmount>totalCapacity ){
+                throw new NotEnoughCapacityInCampsException();
+            }
             barrack.buildSoldier(soldierAmount, playerChoice, availableSoldiers);
             Resource resource=new Resource(game.getVillage().getResource().getGold(),game.getVillage().getResource().getElixir()-soldierAmount*Config.getDictionary().get(playerChoice+"_ELEXIR_COST"));
             game.getVillage().setResource(resource);
@@ -192,15 +198,15 @@ public class Controller {
 
 
     public void implementAttackCommand() {
-        StringBuilder result = new StringBuilder("1. load map\n");
+        StringBuilder result = new StringBuilder("1.load map\n");
         int index = 2;
         for (Game game : game.getAllAttackedVillages()) {
             result.append(index).append(".").append(game.getPlayerName()).append("\n");
             index++;
         }
-        result.append(index + ".Back");
+        result.append(index).append(".Back");
         View.show(result.toString());
-        int choice = Integer.parseInt(view.getInput("please enter your preferred path for a saved game or start a new game"));
+        int choice = Integer.parseInt(view.getInput("please enter your preferred path for a saved game or select one from the list"));
         if (choice == 1) {
             boolean flag = false;
             String path = view.getInput("Enter map path");
@@ -212,9 +218,15 @@ public class Controller {
                     flag = true;
                 } catch (NotValidFilePathException e) {
                     e.showExceptionMassage();
+                    path = view.getInput("Enter map path");
+                    if(path.equals("back")|| path.equals("2")){
+                        implementAttackCommand();
+                    }
                 }
             }
-            game.getAllAttackedVillages().add(enemyGame);
+            if(!game.getAllAttackedVillages().contains(enemyGame)){
+                 game.getAllAttackedVillages().add(enemyGame);
+            }
 
         } else if (choice == index) {
             mainCommandAnalyzer();
@@ -237,6 +249,7 @@ public class Controller {
                         case "Go next turn":
                             game.passTurn();
                         case "put unit":
+                            view.showMap(game.getAttackedVillage().getVillage(),1);
                             String unit = view.getInput();
                             implementPutUnitCommand(unit);
                             break;
@@ -274,10 +287,12 @@ public class Controller {
         Matcher matcher = makePatternAndMatcher(unit, Regex.PUT_UNIT_REGEX);
         if (matcher.find()) {
             try {
-                game.putUnit(matcher.group(1), Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)), Integer.parseInt(matcher.group(4)));
+                game.putUnit(matcher.group(1), Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3))-1, Integer.parseInt(matcher.group(4))-1);
             } catch (MoreThanLimitSoldiersException e) {
                 e.showMessage();
             } catch (InvalidPlaceForSoldiersException e) {
+                e.showMessage();
+            } catch (NotEnoughSoldierInTroopsException e) {
                 e.showMessage();
             }
         }
@@ -287,12 +302,12 @@ public class Controller {
         outer:
         while (true) {
             // TODO: 4/30/18 maybe "Start Select" should have been implemented!!!
-            String playerChoice = view.getInput("");
+            String playerChoice = view.getInput("please select units you want to bring to war or type End select to go back to attack.");
             if (playerChoice.equals("End select")) {
                 break;
             }
             if (!playerChoice.matches("Select \\w+ \\d+")) {
-                View.show("invalid input. type End select to go to attack");
+                View.show("invalid input.");
             } else {
                 String[] splitPlayerChoice = playerChoice.split(" ");
                 for (int i = 0; i < Integer.parseInt(splitPlayerChoice[2]); i++) {
@@ -540,6 +555,8 @@ public class Controller {
                 } catch (unAvailableSoldierException e) {
                     e.showMessage();
                 } catch (NotEnoughResourcesException e) {
+                    e.showMessage();
+                } catch (NotEnoughCapacityInCampsException e) {
                     e.showMessage();
                 }
                 cell.showMenu();

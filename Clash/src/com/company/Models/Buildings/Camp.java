@@ -36,7 +36,7 @@ public class Camp extends Building {
         Game.setWhereIAm("You are in Camp capacity info Menu");
         int numberOfSoldiers=0;
         for (Camp camp : camps) {
-            numberOfSoldiers+=soldiers.size();
+            numberOfSoldiers+=camp.getSoldiers().size();
         }
         String capacityInfo="Your camps capacity is "+numberOfSoldiers+"/"+camps.size()*getCapacity()+".";
         View.show(capacityInfo);
@@ -46,7 +46,7 @@ public class Camp extends Building {
         StringBuilder soldierList= new StringBuilder();
         for (Class soldierClass: soldierClasses.keySet()
              ) {
-            soldierList.append(soldierClass.toString().split(" ")[1]).append(" x").append(soldierClasses.get(soldierClass)).append("\n");
+            soldierList.append(soldierClass.getSimpleName()).append(" x").append(soldierClasses.get(soldierClass)).append("\n");
         }
         soldierList = new StringBuilder(soldierList.toString().trim());
         return soldierList.toString();

@@ -4,6 +4,6 @@ import com.company.View;
 
 public class InvalidPlaceForSoldiersException extends Exception{
     public void showMessage(){
-        View.show("You can't put any soldiers here");
+        View.show("You can't put any soldiers here.please choose another place");
     }
 }

@@ -1,9 +1,6 @@
 package com.company.Models;
 
-import com.company.Exception.NoSuchSoldierInCampException;
-import com.company.Exception.NotInWarException;
-import com.company.Exception.InvalidPlaceForSoldiersException;
-import com.company.Exception.MoreThanLimitSoldiersException;
+import com.company.Exception.*;
 import com.company.Models.Buildings.Camp;
 import com.company.Models.Buildings.Grass;
 import com.company.Models.Buildings.MainBuilding;
@@ -351,9 +348,22 @@ public class Game {
     }
     // TODO: 4/29/2018 select unit
 
-    public void putUnit(String unitType, int amount, int x, int y) throws MoreThanLimitSoldiersException, InvalidPlaceForSoldiersException {
+    public void putUnit(String unitType, int amount, int x, int y) throws MoreThanLimitSoldiersException, InvalidPlaceForSoldiersException, NotEnoughSoldierInTroopsException {
+        ArrayList<Soldier> specialSoldierTypeInTroops=new ArrayList<>();
+        for (Soldier soldier : troops) {
+            if(soldier.getClass().getSimpleName().equalsIgnoreCase(unitType.trim().replace(" ",""))){
+                if(soldier.getX()==-1 && soldier.getY()==-1)
+                     specialSoldierTypeInTroops.add(soldier);
+            }
+        }
+        if(amount>specialSoldierTypeInTroops.size()){
+            throw new NotEnoughSoldierInTroopsException();
+        }
         if (amount > 5) {
             throw new MoreThanLimitSoldiersException();
+        }
+        if((x<29 && x>0) || (y<29 && y>0)){
+            throw new InvalidPlaceForSoldiersException();
         }
         int sameSoldiersNumber = 0;
         for (Soldier soldier : troops
@@ -363,22 +373,21 @@ public class Game {
                     sameSoldiersNumber++;
                 } else {
                     throw new InvalidPlaceForSoldiersException();
-                }//TODO marginal places only
+                }
             }
         }
         int number = 0;
         if (sameSoldiersNumber + amount <= 5) {
-            for (Soldier soldier : troops
-                    ) {
-                if (soldier.getX() == -1 && soldier.getY() == -1 && soldier.getClass().getSimpleName().equalsIgnoreCase(unitType.replace(" ", ""))) {
-                    number++;
-                    soldier.setX(x);
-                    soldier.setY(y);
-                    if (number == amount) {
-                        break;
-                    }
+            for (Soldier specialSoldierTypeInTroop : specialSoldierTypeInTroops) {
+                number++;
+                specialSoldierTypeInTroop.setX(x);
+                specialSoldierTypeInTroop.setY(y);
+                if (number == amount) {
+                    break;
                 }
             }
+        }else {
+            throw new InvalidPlaceForSoldiersException();
         }
 
     }
