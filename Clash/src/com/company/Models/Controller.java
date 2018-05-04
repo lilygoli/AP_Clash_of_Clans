@@ -185,9 +185,10 @@ public class Controller {
             int soldierAmount = Integer.parseInt(view.getInput("How many of this soldier do you want to build?"));
             int totalCapacity=0;
             for (Camp camp : game.getVillage().getCamps()) {
-                totalCapacity+=camp.getCapacity()-camp.getSoldiers().size();
+                if(!camp.getUnderConstructionStatus())
+                    totalCapacity+=camp.getCapacity()-camp.getSoldiers().size();
             }
-            if(game.getVillage().getCamps().size()==0 ||soldierAmount>totalCapacity ){
+            if(soldierAmount>totalCapacity ){
                 throw new NotEnoughCapacityInCampsException();
             }
             barrack.buildSoldier(soldierAmount, playerChoice, availableSoldiers);
