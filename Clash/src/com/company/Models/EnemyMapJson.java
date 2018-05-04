@@ -53,6 +53,12 @@ public class EnemyMapJson {
     public Game ConvertEnemyJsonToGame() {
         Game game = new Game();
         game.setVillage(new Village());
+        game.getVillage().getMap()[game.getVillage().getMainBuilding().getX()][game.getVillage().getMainBuilding().getY()]=null;
+        game.getVillage().getMap()[game.getVillage().getElixirStorages().get(0).getX()][game.getVillage().getElixirStorages().get(0).getY()]=null;
+        game.getVillage().getMap()[game.getVillage().getGoldStorages().get(0).getX()][game.getVillage().getGoldStorages().get(0).getY()]=null;
+        game.getVillage().getGoldStorages().remove(0);
+        game.getVillage().getElixirStorages().remove(0);
+        game.getVillage().setMainBuilding(null);
         game.setTime(0);
         game.setAttackStatus(true);
         game.getVillage().setWalls(walls);

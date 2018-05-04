@@ -363,7 +363,7 @@ public class Game {
                     sameSoldiersNumber++;
                 } else {
                     throw new InvalidPlaceForSoldiersException();
-                }
+                }//TODO marginal places only
             }
         }
         int number = 0;

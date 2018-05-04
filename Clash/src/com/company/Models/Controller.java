@@ -168,7 +168,7 @@ public class Controller {
     public void implementBuildSoldiers(Barrack barrack) throws unAvailableSoldierException, NotEnoughResourcesException {
         // TODO: 5/1/2018 back command to barracks command
         StringBuilder result = new StringBuilder();
-        int index = 0;
+        int index = 1;
         HashMap<String, Integer> availableSoldiers = barrack.determineAvailableSoldiers( game.getVillage().getResource().getElixir());
         for (String soldier : availableSoldiers.keySet()) {
             if (availableSoldiers.get(soldier) != 0) {
@@ -227,6 +227,7 @@ public class Controller {
 
             case 1:
                 View.show(game.showEnemyMapInfo(game.getAttackedVillage().getVillage()));
+                break;
             case 2:
                 startAttack();
                 String userInput;
@@ -260,6 +261,7 @@ public class Controller {
                 while (!userInput.equals("Quit attack") || !game.isWarFinished());
                 View.show("The war ended with" + game.getGainedResource().getGold() + " gold," + game.getGainedResource().getElixir() + " elixir and" + game.getVillage().getScore() + "scores achieved!");
                 game.healAfterWar();
+                break;
 
             case 3:
                 mainCommandAnalyzer();

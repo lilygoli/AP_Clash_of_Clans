@@ -15,7 +15,7 @@ public class Cell {
     private boolean isUnderConstruction = false;
     private int x;
     private int y;
-    private int jsonType;
+    private int type;
     private boolean isRuined = false;
     private int level;
     private int strength;
@@ -61,7 +61,7 @@ public class Cell {
     }
 
     public int getJsonType() {
-        return jsonType;
+        return type;
     }
 
     public int getNumber() {
