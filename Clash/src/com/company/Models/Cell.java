@@ -205,6 +205,6 @@ public class Cell {
     }
 
     public int getRange() {
-        return -1;
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_RADIUS");
     }
 }

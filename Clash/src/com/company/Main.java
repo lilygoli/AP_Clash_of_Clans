@@ -18,17 +18,19 @@ newGame
 showBuildings
 MainBuilding 1
 2
-3
+12
 Y
 (10,12)
 13
 4
 back
-turn 101
+turn 121
 showBuildings
 Barrack 1
 2
 
 
 /Users/ashkan/Desktop/Sample_Attack_Map.json
+
+C:\Users\Arad\Desktop\CE\Semester 2\AP\Project\Sample_Attack_Map.json
  */
