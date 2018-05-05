@@ -19,6 +19,7 @@ public class Controller {
     private View view = new View();
 
     public void mainCommandAnalyzer() {
+        Game.setWhereIAm("you are in Main Menu");
         while (game == null) {
             implementStartGame();
         }
@@ -39,6 +40,10 @@ public class Controller {
                     implementAttackCommand();
                     commandMatched = true;
                     break;
+                case "WhereIAm":
+                    View.show(Game.getWhereIAm());
+                    break;
+
             }
             if (input.matches(Regex.PASSING_TURN_REGEX)) {
                 Matcher matcher = makePatternAndMatcher(input, Regex.PASSING_TURN_REGEX);
@@ -167,6 +172,7 @@ public class Controller {
     }
 
     public void implementBuildSoldiers(Barrack barrack) throws unAvailableSoldierException, NotEnoughResourcesException, NotEnoughCapacityInCampsException {
+        Game.setWhereIAm("you are in build soldier Menu");
         StringBuilder result = new StringBuilder();
         int index = 1;
         HashMap<String, Integer> availableSoldiers = barrack.determineAvailableSoldiers(game.getVillage().getResource().getElixir());
@@ -180,6 +186,16 @@ public class Controller {
         }
         View.show(result.toString().trim());
         String playerChoice = view.getInput("Enter your preferred soldier name in the list");
+        if (playerChoice.equals("back")){
+            barrack.showMenu();
+            getCommandInBarrack(barrack);
+        }
+        if (playerChoice.equals("resources")){
+            game.showResources();
+        }
+        if (playerChoice.equals("WhereIAm")){
+            View.show(Game.getWhereIAm());
+        }
         if (availableSoldiers.get(playerChoice) == 0) {
             throw new unAvailableSoldierException();
         } else {
@@ -195,11 +211,13 @@ public class Controller {
             barrack.buildSoldier(soldierAmount, playerChoice, availableSoldiers);
             Resource resource = new Resource(game.getVillage().getResource().getGold(), game.getVillage().getResource().getElixir() - soldierAmount * Config.getDictionary().get(playerChoice + "_ELEXIR_COST"));
             game.getVillage().setResource(resource);
+            implementBuildSoldiers(barrack);
         }
     }
 
 
     public void implementAttackCommand() {
+        Game.setWhereIAm("you are in Attack Menu");
         StringBuilder result = new StringBuilder("1. load map\n");
         int index = 2;
         for (Game game : game.getAllAttackedVillages()) {
@@ -208,8 +226,20 @@ public class Controller {
         }
         result.append(index + ". Back");
         View.show(result.toString());
-        int choice = Integer.parseInt(view.getInput("please enter your preferred path for a saved game or select one from the list"));
-        if (choice == 1) {
+
+        String input = view.getInput("please enter your preferred path for a saved game or select one from the list");
+        if (input.equals("resources")){
+            game.showResources();
+            implementAttackCommand();
+            return;
+        }
+        if (input.equals("WhereIAm")){
+            View.show(Game.getWhereIAm());
+            implementAttackCommand();
+            return;
+        }
+        int playerChoice = Integer.parseInt(input);
+        if (playerChoice == 1) {
             boolean flag = false;
             String path = view.getInput("Enter map path");
             Game enemyGame = null;
@@ -230,23 +260,22 @@ public class Controller {
                 game.getAllAttackedVillages().add(enemyGame);
             }
 
-        } else if (choice == index) {
+        } else if (playerChoice == index) {
             mainCommandAnalyzer();
+            return;
         } else {
-            game.setAttackedVillage(game.getAllAttackedVillages().get(choice - 2));
+            game.setAttackedVillage(game.getAllAttackedVillages().get(playerChoice - 2));
         }
 
-        implementAttackInEnemMap();
+        implementAttackInEnemyMap();
     }
 
-    public void implementAttackInEnemMap() {
-
+    public void implementAttackInEnemyMap() {
         View.show(game.showEnemyMapMenu());
         switch (Integer.parseInt(view.getInput("Enter your preferred number in the list"))) {
-
             case 1:
                 View.show(game.showEnemyMapInfo(game.getAttackedVillage().getVillage()));
-                implementAttackInEnemMap();
+                implementAttackInEnemyMap();
                 break;
             case 2:
                 startAttack();
@@ -346,12 +375,18 @@ public class Controller {
     }
 
     private void getCommandInBuildings() {
+        Game.setWhereIAm("you are in buildings menu");
         String input = view.getInput();
         Matcher matcher = makePatternAndMatcher(input, Regex.SELECT_BUILDING_REGEX);
         if (input.equals("back")) {
-            Game.setWhereIAm("You are in village");
             mainCommandAnalyzer();
             return;
+        }
+        if (input.equals("resources")){
+            game.showResources();
+        }
+        if (input.equals("WhereIAm")){
+            View.show(Game.getWhereIAm());
         }
         if (matcher.find()) {
             int buildingNumber = Integer.parseInt(matcher.group(2));
@@ -407,11 +442,13 @@ public class Controller {
         String input = view.getInput("Enter your preferred number in the list");
         if (input.equals("resources")){
             game.showResources();
+            cell.showMenu();
             getCommandStorage(cell);
             return;
         }
         if (input.equals("WhereIAm")){
             View.show(Game.getWhereIAm());
+            cell.showMenu();
             getCommandStorage(cell);
             return;
         }
@@ -504,11 +541,13 @@ public class Controller {
         String input = view.getInput("Enter your preferred number in the list");
         if (input.equals("resources")){
             game.showResources();
+            cell.showMenu();
             getCommandInMine(cell);
             return;
         }
         if (input.equals("WhereIAm")){
             View.show(Game.getWhereIAm());
+            cell.showMenu();
             getCommandInMine(cell);
             return;
         }
@@ -540,11 +579,13 @@ public class Controller {
         String input = view.getInput("Enter your preferred number in the list");
         if (input.equals("resources")){
             game.showResources();
+            cell.showMenu();
             getCommandInCamp(cell);
             return;
         }
         if (input.equals("WhereIAm")){
             View.show(Game.getWhereIAm());
+            cell.showMenu();
             getCommandInCamp(cell);
             return;
         }
@@ -597,6 +638,7 @@ public class Controller {
                 }
                 getCommandInCampInfoMenu(camp);
             case 5:
+                camp.showMenu();
                 getCommandInCamp(camp);
                 break;
         }
@@ -607,11 +649,13 @@ public class Controller {
         String input = view.getInput("Enter your preferred number in the list");
         if (input.equals("resources")){
             game.showResources();
+            cell.showMenu();
             getCommandInBarrack(cell);
             return;
         }
         if (input.equals("WhereIAm")){
             View.show(Game.getWhereIAm());
+            cell.showMenu();
             getCommandInBarrack(cell);
             return;
         }
@@ -630,10 +674,12 @@ public class Controller {
                 } catch (NotEnoughCapacityInCampsException e) {
                     e.showMessage();
                 }
+                cell.showMenu();
                 getCommandInBarrack(cell);
                 break;
             case 3:
                 View.show(game.getVillage().showBarracksStatus());
+                cell.showMenu();
                 getCommandInBarrack(cell);
                 break;
             case 4:
@@ -642,6 +688,7 @@ public class Controller {
                 break;
             default:
                 View.show("invalid input please try Again");
+                cell.showMenu();
                 getCommandInBarrack(cell);
         }
     }
@@ -651,11 +698,13 @@ public class Controller {
         String input = view.getInput("Enter your preferred number in the list");
         if (input.equals("resources")){
             game.showResources();
+            cell.showMenu();
             getCommandInDefence(cell);
             return;
         }
         if (input.equals("WhereIAm")){
             View.show(Game.getWhereIAm());
+            cell.showMenu();
             getCommandInDefence(cell);
             return;
         }
@@ -755,11 +804,13 @@ public class Controller {
         String input = view.getInput("Enter your preferred number in the list");
         if (input.equals("resources")){
             game.showResources();
+            cell.showMenu();
             getCommandInMainBuilding(cell);
             return;
         }
         if (input.equals("WhereIAm")){
             View.show(Game.getWhereIAm());
+            cell.showMenu();
             getCommandInMainBuilding(cell);
             return;
         }

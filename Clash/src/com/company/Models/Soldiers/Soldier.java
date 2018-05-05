@@ -190,28 +190,7 @@ public abstract class Soldier {
                 Cell target = enemyVillage.getMap()[(int) (x - 1)][(int) y];
                 target.setStrength(target.getStrength() - getDamage());
                 if (target.getStrength() <= 0) {
-                    target.setRuined(true);
-                    target.setStrength(0);
-                    attackerVillage.setScore(attackerVillage.getScore()+target.getPointsGainedWhenDestructed());
-                    Resource resource;
-                    switch (target.getClass().getSimpleName()) {
-                        case "GoldStorage": {
-                            Storage storage = (Storage) target;
-                            resource = new Resource(attackerVillage.getResource().getGold() + target.getGoldGainedWhenDestructed() + storage.getResource(), attackerVillage.getResource().getElixir() + target.getElixirGainedWhenDestructed());
-
-                            break;
-                        }
-                        case "ElixirStorage": {
-                            Storage storage = (Storage) target;
-                            resource = new Resource(attackerVillage.getResource().getGold() + target.getGoldGainedWhenDestructed(), attackerVillage.getResource().getElixir() + target.getElixirGainedWhenDestructed() + storage.getResource());
-                            break;
-                        }
-                        default:
-                            resource = new Resource(attackerVillage.getResource().getGold() + target.getGoldGainedWhenDestructed(), attackerVillage.getResource().getElixir() + target.getElixirGainedWhenDestructed());
-                            break;
-                    }
-                    attackerVillage.setResource(resource);
-
+                    destroyAndLoot(attackerVillage, target);
                 }
             }
 
@@ -222,8 +201,7 @@ public abstract class Soldier {
                 Cell target = enemyVillage.getMap()[(int) (x + 1)][(int) y];
                 target.setStrength(target.getStrength() - getDamage());
                 if (target.getStrength() <= 0) {
-                    target.setRuined(true);
-                    target.setStrength(0);
+                    destroyAndLoot(attackerVillage, target);
                 }
             }
         } else if (direction == Direction.UP) {
@@ -233,8 +211,7 @@ public abstract class Soldier {
                 Cell target = enemyVillage.getMap()[(int) x][(int) (y + 1)];
                 target.setStrength(target.getStrength() - getDamage());
                 if (target.getStrength() <= 0) {
-                    target.setRuined(true);
-                    target.setStrength(0);
+                    destroyAndLoot(attackerVillage, target);
                 }
             }
         } else if (direction == Direction.DOWN) {
@@ -244,11 +221,34 @@ public abstract class Soldier {
                 Cell target = enemyVillage.getMap()[(int) x][(int) (y - 1)];
                 target.setStrength(target.getStrength() - getDamage());
                 if (target.getStrength() <= 0) {
-                    target.setRuined(true);
-                    target.setStrength(0);
+                    destroyAndLoot(attackerVillage, target);
                 }
             }
         }
+    }
+
+    private void destroyAndLoot(Village attackerVillage, Cell target) {
+        target.setRuined(true);
+        target.setStrength(0);
+        attackerVillage.setScore(attackerVillage.getScore()+target.getPointsGainedWhenDestructed());
+        Resource gainedResource;
+        switch (target.getClass().getSimpleName()) {
+            case "GoldStorage": {
+                Storage storage = (Storage) target;
+                gainedResource = new Resource(target.getGoldGainedWhenDestructed() + storage.getResource(),target.getElixirGainedWhenDestructed());
+                break;
+            }
+            case "ElixirStorage": {
+                Storage storage = (Storage) target;
+                gainedResource = new Resource(target.getGoldGainedWhenDestructed(),  target.getElixirGainedWhenDestructed() + storage.getResource());
+                break;
+            }
+            default:
+                gainedResource = new Resource(target.getGoldGainedWhenDestructed(), target.getElixirGainedWhenDestructed());
+                break;
+        }
+        attackerVillage.getGainedResource().setGold(gainedResource.getGold() + attackerVillage.getGainedResource().getGold());
+        attackerVillage.getGainedResource().setElixir(gainedResource.getElixir() + attackerVillage.getGainedResource().getElixir());
     }
 
     private Cell findDestinationForArcher(Village enemyVillage) {

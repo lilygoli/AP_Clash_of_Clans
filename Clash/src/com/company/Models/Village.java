@@ -286,7 +286,7 @@ public class Village {
         }
         Cell.sortTowers(underConstructionTowers);
         for (Cell underConstructionTower : underConstructionTowers) {
-            status.append(underConstructionTower.getName()).append(" will be built in ").append(underConstructionTower.getTimeLeftOfConstruction()).append(" turns");
+            status.append(underConstructionTower.getName()).append(" will be built in ").append(underConstructionTower.getTimeLeftOfConstruction()).append(" turns\n");
         }
         return status.toString().trim();
     }
@@ -307,7 +307,7 @@ public class Village {
                         ) {
                     for (Soldier soldier : soldierInitialTime.keySet()) {
                         if (soldier.getBuildDuration() - soldierInitialTime.get(soldier) == timeLeft) {
-                            result.append(soldier.getClass().getSimpleName()).append(" ").append(timeLeft.toString()).append("\n");
+                            result.append(soldier.getClass().getSimpleName()).append(" Level ").append(soldier.getLevel()).append(" will be built in ").append(timeLeft.toString()).append("\n");
                         }
                     }
                 }
