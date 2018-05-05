@@ -401,6 +401,7 @@ public class Controller {
     }
 
     private void getCommandStorage(Cell cell) {
+        Game.setWhereIAm("you are in Storage Menu");
         int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
         switch (playerChoice) {
             case 1:
@@ -418,6 +419,7 @@ public class Controller {
     }
 
     private void getCommandInStorageInfoMenu(Cell cell) {
+        Game.setWhereIAm("you are in Storage Info Menu");
         cell.showInfoMenu();
         int choice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
         switch (choice) {
@@ -481,6 +483,7 @@ public class Controller {
     }
 
     private void getCommandInMine(Cell cell) {
+        Game.setWhereIAm("you are in Mine Menu");
         int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
         switch (playerChoice) {
             case 1:
@@ -505,6 +508,7 @@ public class Controller {
     }
 
     private void getCommandInCamp(Cell cell) {
+        Game.setWhereIAm("you are in Camp Menu");
         int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
         switch (playerChoice) {
             case 1:
@@ -523,6 +527,7 @@ public class Controller {
     }
 
     private void getCommandInCampInfoMenu(Camp camp) {
+        Game.setWhereIAm("you are in camp Info Menu");
         camp.showInfoMenu();
         int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
         switch (playerChoice) {
@@ -545,6 +550,7 @@ public class Controller {
     }
 
     private void getCommandInBarrack(Cell cell) {
+        Game.setWhereIAm("you are in Barrack Menu");
         int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
         switch (playerChoice) {
             case 1:
@@ -577,6 +583,7 @@ public class Controller {
     }
 
     private void getCommandInDefence(Cell cell) {
+        Game.setWhereIAm("you are in Defence Menu");
         int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
         switch (playerChoice) {
             case 1: //info
@@ -613,6 +620,7 @@ public class Controller {
     }
 
     private void getCommandInDefenceInfoMenu(Cell cell) {
+        Game.setWhereIAm("you are in Defence Info Menu");
         cell.showInfoMenu();
         int choice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
         switch (choice) {
@@ -650,6 +658,7 @@ public class Controller {
     }
 
     private void getCommandInMainBuilding(Cell cell) {
+        Game.setWhereIAm("you are in Main Building Menu");
         int command = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
         switch (command) {
             case 1:
@@ -683,6 +692,7 @@ public class Controller {
     }
 
     private void getCommandInInfoMenu(Cell cell) {
+        Game.setWhereIAm("you are in " + cell.getClass().getSimpleName() +  "Info Menu");
         cell.showInfoMenu();
         int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
         switch (playerChoice) {

@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd4373d0-16e4-43f1-a01f-34df3517e604" name="Default" comment="bug fix">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" afterPath="$PROJECT_DIR$/src/com/company/Main.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Models/Cell.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Cell.java" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Models/Controller.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Controller.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -40,8 +37,8 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Models/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7739">
-              <caret line="640" column="120" lean-forward="true" selection-start-line="640" selection-start-column="120" selection-end-line="640" selection-end-column="120" />
+            <state relative-caret-position="248">
+              <caret line="589" column="16" lean-forward="false" selection-start-line="589" selection-start-column="16" selection-end-line="589" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -209,8 +206,8 @@
         <option value="$PROJECT_DIR$/src/com/company/Models/Buildings/Storage.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/GameCenter.java" />
         <option value="$PROJECT_DIR$/src/com/company/Main.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/Controller.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Cell.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Models/Controller.java" />
       </list>
     </option>
   </component>
@@ -592,12 +589,12 @@
       <workItem from="1525316260389" duration="1079000" />
       <workItem from="1525334891549" duration="8902000" />
       <workItem from="1525354017874" duration="1512000" />
-      <workItem from="1525500703549" duration="3753000" />
+      <workItem from="1525500703549" duration="3958000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79203000" />
+    <option name="totallyTimeSpent" value="79408000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1095,8 +1092,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Models/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7739">
-          <caret line="640" column="120" lean-forward="true" selection-start-line="640" selection-start-column="120" selection-end-line="640" selection-end-column="120" />
+        <state relative-caret-position="248">
+          <caret line="589" column="16" lean-forward="false" selection-start-line="589" selection-start-column="16" selection-end-line="589" selection-end-column="16" />
           <folding />
         </state>
       </provider>
