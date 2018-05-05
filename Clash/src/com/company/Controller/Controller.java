@@ -281,7 +281,7 @@ public class Controller {
                     }
                 }
                 while (!userInput.equals("Quit attack") || !game.isWarFinished());
-                View.show("The war ended with" + game.getGainedResource().getGold() + " gold," + game.getGainedResource().getElixir() + " elixir and" + game.getVillage().getScore() + "scores achieved!");
+                View.show("The war ended with" + game.getVillage().getGainedResource().getGold() + " gold," + game.getVillage().getGainedResource().getElixir() + " elixir and" + game.getVillage().getScore() + "scores achieved!");
                 game.healAfterWar();
                 break;
             case 3:

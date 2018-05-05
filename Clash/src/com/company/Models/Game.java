@@ -17,7 +17,6 @@ import com.company.View.View;
 import java.util.ArrayList;
 
 public class Game {
-    private Resource gainedResource = new Resource(0, 0);
     private String playerName;
     private Village village;
     private int time;
@@ -50,13 +49,7 @@ public class Game {
         this.attackedVillage = attackedVillage;
     }
 
-    public void setGainedResource(Resource gainedResource) {
-        this.gainedResource = gainedResource;
-    }
 
-    public Resource getGainedResource() {
-        return gainedResource;
-    }
 
     public void setTroops(ArrayList<Soldier> troops) {
         this.troops = troops;
@@ -118,13 +111,13 @@ public class Game {
 
     public String showAttackMenu() {
         StringBuilder finalString = new StringBuilder();
-        finalString.append("1.Load Map\n");
+        finalString.append("1. Load Map\n");
         int counter = 2;
         for (Game game : GameCenter.getGames()) {
-            finalString.append(counter).append(".").append(game.playerName).append("\n");
+            finalString.append(counter).append(". ").append(game.playerName).append("\n");
             counter++;
         }
-        finalString.append(counter).append(".Back\n");
+        finalString.append(counter).append(". Back\n");
         return finalString.toString();
     }
 

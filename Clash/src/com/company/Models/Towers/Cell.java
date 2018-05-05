@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Cell {
 
-    private final String infoMenu = "1. Overall Info\n2. Upgrade Info\n 3.Upgrade \n4. Back";
+    private final String infoMenu = "1. Overall Info\n2. Upgrade Info\n3. Upgrade \n4. Back";
     private boolean isUnderConstruction = false;
     private int x;
     private int y;
@@ -173,7 +173,7 @@ public class Cell {
         while(!towers.isEmpty()) {
             Cell min = towers.get(0);
             for (Cell tower : towers) {
-                if (tower.getName().compareTo(min.getName()) < 0) { //TODO شاید باید بزرگتر از ۰ باشه!
+                if (tower.getName().compareTo(min.getName()) < 0) {
                     min = tower;
                 }
                 else if (tower.getName().compareTo(min.getName()) == 0) {

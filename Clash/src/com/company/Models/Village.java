@@ -30,6 +30,7 @@ public class Village {
     private MainBuilding mainBuilding;
     private ArrayList<Barrack> barracks = new ArrayList<Barrack>();
     private ArrayList<Camp> camps = new ArrayList<Camp>();
+    private Resource gainedResource = new Resource(0, 0);
 
     {
         map = new Cell[30][30];
@@ -58,12 +59,27 @@ public class Village {
         elixirStorages.get(0).setResource(500);
     }
 
+    public void setGainedResource(Resource gainedResource) {
+        this.gainedResource = gainedResource;
+    }
+
+    public Resource getGainedResource() {
+        return this.gainedResource;
+    }
+
     public void setResource(Resource resource) {
         this.resource = resource;
     }
 
     public Resource getResource() {
-        return resource;
+        int gold = 0, elixir = 0;
+        for (GoldStorage goldStorage : getGoldStorages()) {
+            gold += goldStorage.getResource();
+        }
+        for (ElixirStorage elixirStorage : getElixirStorages()) {
+            elixir += elixirStorage.getResource();
+        }
+        return new Resource(gold, elixir);
     }
 
     public void setGoldStorages(ArrayList<GoldStorage> goldStorages) {
