@@ -337,6 +337,4 @@ public class Village {
         result = result + "Gold : " + resource.getGold() + "\nElixir : " + resource.getElixir() + "\nScore : " + score;
         return result;
     }
-
-
 }
