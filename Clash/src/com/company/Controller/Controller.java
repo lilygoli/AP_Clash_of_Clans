@@ -39,7 +39,7 @@ public class Controller {
                 case "attack":
                     boolean flag = true;
                     for (Camp camp : game.getVillage().getCamps()) {
-                        if (camp.getSoldiers() != null) {
+                        if (camp.getSoldiers().size()!=0) {
                             flag = false;
                             break;
                         }
@@ -153,7 +153,7 @@ public class Controller {
                                 int flag = 0;
                                 while (flag == 0)
                                     try {
-                                        View.show("where do you want to build" + splitClassNameIntoWords(newCell.getClass().getSimpleName()));
+                                        View.show("where do you want to build " + splitClassNameIntoWords(newCell.getClass().getSimpleName()));
                                         String[] coordinates = view.getInput().split("[(,)]");
                                         newCell.setY(Integer.parseInt(coordinates[2]) - 1);
                                         newCell.setX(Integer.parseInt(coordinates[1]) - 1);
@@ -293,8 +293,9 @@ public class Controller {
                 implementAttackInEnemyMap();
                 break;
             case 2:
+                game.setUnderAttackOrDefense(true);
                 startAttack();
-                view.showAttackMap(game.getAttackedVillage().getVillage(),game.getTroops());
+               // view.showAttackMap(game.getAttackedVillage().getVillage(),game.getTroops());
                 String userInput;
                 do {
                     userInput = view.getInput();
@@ -311,12 +312,16 @@ public class Controller {
                             break;
                         case "status resources":
                             View.show(game.statusResourcesInWar());
+                            break;
                         case "status units":
                             View.show(game.statusUnits());
+                            break;
                         case "status towers":
                             View.show(game.statusTowers());
+                            break;
                         case "status all":
                             View.show(game.statusAll());
+                            break;
                     }
                     Matcher unitMatcher = makePatternAndMatcher(userInput, Regex.STATUS_UNIT_TYPE);
                     Matcher towerMatcher = makePatternAndMatcher(userInput, Regex.STATUS_TOWER_TYPE);
@@ -346,6 +351,7 @@ public class Controller {
                 e.showMessage();
             } catch (InvalidPlaceForSoldiersException e) {
                 e.showMessage();
+                implementPutUnitCommand(view.getInput());
             } catch (NotEnoughSoldierInTroopsException e) {
                 e.showMessage();
             }
@@ -378,14 +384,6 @@ public class Controller {
                 }
             }
         }
-        //view.showAttackMap(game.getVillage(),game.getTroops());
-        //String putUnitChoice = view.getInput("Enter the type of the soldier and its coordinates you want to use");
-        //while (!putUnitChoice.equals("Go next turn")) {
-        //    implementPutUnitCommand(putUnitChoice);
-        //    putUnitChoice = view.getInput("Enter the type of the soldier and its coordinates you want to use");
-        //}
-        //game.passTurn();
-
 
     }
 

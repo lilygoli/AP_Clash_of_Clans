@@ -215,10 +215,10 @@ public class Game {
     public void rebuild() {
         for (Cell[] cells : village.getMap()) {
             for (Cell cell : cells) {
-                if (cell.getClass().isInstance(MainBuilding.class)) {
+                if (cell.getClass().getSimpleName().equals("MainBuilding")) {
                     cell.setStrength(Config.getDictionary().get(this.getClass().getSimpleName() + "_STRENGTH") + cell.getLevel() * 500);
                 }
-                if (!cell.getClass().isInstance(Grass.class) && cell.isRuined()) {
+                if (!cell.getClass().getSimpleName().equals("Grass") && cell.isRuined()) {
                     cell.setRuined(false);
                 }
                 cell.setStrength(Config.getDictionary().get(this.getClass().getSimpleName() + "_STRENGTH"));
@@ -227,7 +227,6 @@ public class Game {
     }
 
     public String statusResourcesInWar() {
-        System.out.println(attackedVillage.village.getResource().getGold());
         return "Gold Achieved : " + village.getGainedResource().getGold() + "\n" +
                 "Elixir Achieved : " + village.getGainedResource().getElixir() + "\n" +
                 "Gold Remained In Map : " + (attackedVillage.village.getResource().getGold() - village.getGainedResource().getGold()) + "\n" +
@@ -307,6 +306,9 @@ public class Game {
         }
         //Attacker Soldiers part
         for (Soldier soldier : troops) {
+            if(soldier.getX()==-1 && soldier.getY()==-1){
+                continue;
+            }
             soldier.attackTarget(this.getVillage(), this.attackedVillage.getVillage()); // TODO: 4/27/18 باید چند بار کال شه این تابع تو هر ترن
         }
     }
@@ -349,7 +351,7 @@ public class Game {
         }
     }
 
-    // TODO: 4/29/2018 select unit
+
 
     public void putUnit(String unitType, int amount, int x, int y) throws MoreThanLimitSoldiersException, InvalidPlaceForSoldiersException, NotEnoughSoldierInTroopsException {
         ArrayList<Soldier> specialSoldierTypeInTroops=new ArrayList<>();
@@ -369,7 +371,7 @@ public class Game {
         if (amount > 5) {
             throw new MoreThanLimitSoldiersException();
         }
-        if((x<29 && x>0) || (y<29 && y>0)){
+        if((x<29 && x>0) && (y<29 && y>0)){
             throw new InvalidPlaceForSoldiersException();
         }
         int sameSoldiersNumber = 0;

@@ -7,7 +7,7 @@ import com.company.Models.Village;
 
 public class Dragon extends Soldier {
     public void attackTarget(Village attackerVillage,Village enemyVillage) {
-        super.attackTargets(attackerVillage,enemyVillage, "all");
+        super.attackTargets(attackerVillage,enemyVillage,findDestination(enemyVillage,getAllValidDestinations()));
     }
 
     public Dragon(int time) {

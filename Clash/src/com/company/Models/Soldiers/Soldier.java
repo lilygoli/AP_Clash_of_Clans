@@ -4,10 +4,10 @@ import com.company.Enums.Direction;
 import com.company.Models.Towers.Buildings.*;
 import com.company.Models.Towers.Cell;
 import com.company.Models.Config;
-import com.company.Models.Towers.Defences.*;
 import com.company.Models.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public abstract class Soldier {
@@ -151,24 +151,8 @@ public abstract class Soldier {
     }
 
 
-    void attackTargets(Village attackerVillage, Village enemyVillage, String favoriteTarget) {
+    void attackTargets(Village attackerVillage, Village enemyVillage,Cell target) {
         // TODO: 4/23/2018 add resource decrease
-        Cell target;
-        switch (favoriteTarget) {
-            case "Storage":
-                target = findDestinationForGiant(enemyVillage);
-                break;
-            case "Defence":
-                target = findDestinationForArcher(enemyVillage);
-                break;
-            case "Wall":
-                target = findDestinationForWallBreaker(enemyVillage);
-                break;
-            default:
-                target = findDestinationForAll(enemyVillage);
-                break;
-        }
-
         if (hasReachedDestination(target)) {
             target.setStrength(target.getStrength() - getDamage());
             if (target.getStrength() <= 0) {
@@ -251,86 +235,37 @@ public abstract class Soldier {
         attackerVillage.getGainedResource().setElixir(gainedResource.getElixir() + attackerVillage.getGainedResource().getElixir());
     }
 
-    private Cell findDestinationForArcher(Village enemyVillage) {
-        Cell destination = new Cell(0,0);
-        double minDistance = 100d;
-        for (int i = 0; i < 30; i++) {
-            for (int j = 0; j < 30; j++) {
-                if (!enemyVillage.getMap()[i][j].isRuined()) {
-                    if (enemyVillage.getMap()[i][j].getClass().isInstance(Defence.class) && !enemyVillage.getMap()[i][j].getClass().isInstance(Wall.class) && !enemyVillage.getMap()[i][j].getClass().isInstance(Trap.class)) {
-                        if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
-                            destination = enemyVillage.getMap()[i][j];
-                            minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
-                        }
-                    }
-                }
-            }
-        }
-        if (Math.abs(minDistance - 100) < 0.01) {
-            return findDestinationForAll(enemyVillage);
-        }
-        return destination;
-    }
-
-    private Cell findDestinationForGiant(Village enemyVillage) {
-        Cell destination = new Cell(0,0);
-        double minDistance = 100d;
-        for (int i = 0; i < 30; i++) {
-            for (int j = 0; j < 30; j++) {
-                if (!enemyVillage.getMap()[i][j].isRuined()) {
-                    if (enemyVillage.getMap()[i][j].getClass().isInstance(Storage.class) || enemyVillage.getMap()[i][j].getClass().isInstance(Mine.class)) {
-                        if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
-                            destination = enemyVillage.getMap()[i][j];
-                            minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
-                        }
-                    }
-                }
-            }
-        }
-        if (Math.abs(minDistance - 100) < 0.01) {
-            return findDestinationForAll(enemyVillage);
-        }
-        return destination;
-    }
-
-    private Cell findDestinationForWallBreaker(Village enemyVillage) {
-        Cell destination = new Cell(0,0);
-        double minDistance = 100d;
-        for (int i = 0; i < 30; i++) {
-            for (int j = 0; j < 30; j++) {
-                if (!enemyVillage.getMap()[i][j].isRuined()) {
-                    if (enemyVillage.getMap()[i][j].getClass().isInstance(Wall.class)) {
-                        if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
-                            destination = enemyVillage.getMap()[i][j];
-                            minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
-                        }
-                    }
-                }
-            }
-        }
-        if (Math.abs(minDistance - 100) < 0.01) {
-            return findDestinationForAll(enemyVillage);
-        }
-        return destination;
-    }
-
     // TODO: 4/18/2018 add healer
-    private Cell findDestinationForAll(Village enemyVillage) {
+    public Cell findDestination(Village enemyVillage,ArrayList<String> validDestinations) {
         Cell destination = new Cell(0,0);
         double minDistance = 100d;
+        int flag=0;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
                 if (!enemyVillage.getMap()[i][j].isRuined()) {
-                    if (!enemyVillage.getMap()[i][j].getClass().isInstance(Grass.class) && !enemyVillage.getMap()[i][j].getClass().isInstance(Trap.class)) {
-                        if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) < minDistance) {
+                    if (validDestinations.contains(enemyVillage.getMap()[i][j].getClass().getSimpleName())) {
+                        if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) <= minDistance) {
                             destination = enemyVillage.getMap()[i][j];
                             minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
+                            flag=1;
                         }
                     }
                 }
             }
         }
+        if (validDestinations.contains("Camp")) {
+            if (flag==0) {
+                return findDestination(enemyVillage,getAllValidDestinations());
+            }
+        }
         return destination;
+    }
+    public ArrayList<String> getAllValidDestinations(){
+        ArrayList<String > allTowers=new ArrayList<>();
+        for (Cell cell : Cell.getCellKinds()) {
+            allTowers.add(cell.getClass().getSimpleName());
+        }
+        return allTowers;
     }
 
     public Direction findDirection(Village enemyVillage, Cell destination) {

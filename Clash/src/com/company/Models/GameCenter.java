@@ -93,7 +93,5 @@ public class GameCenter {
         return fileNameAndContent;
     }
 
-    public static void passTurn(int numOfTurns) {
 
-    }
 }

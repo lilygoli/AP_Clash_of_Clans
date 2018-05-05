@@ -63,7 +63,7 @@ public class View {
             }
             result.append("\n");
         }
-        show(result.toString());
+        show(result.toString().trim());
     }
     // showMenu inja filter e joda dashte bashe
 
