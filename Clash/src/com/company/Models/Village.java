@@ -50,7 +50,8 @@ public class Village {
 
         goldStorages.add(new GoldStorage(1, 0));
         elixirStorages.add(new ElixirStorage(1, 0));
-
+        goldStorages.get(0).setResource(2000);
+        elixirStorages.get(0).setResource(1000);
         Random random = new Random();
         map[random.nextInt(28) + 1][random.nextInt(28) + 1] = goldStorages.get(0);
         map[random.nextInt(28) + 1][random.nextInt(28) + 1] = elixirStorages.get(0);

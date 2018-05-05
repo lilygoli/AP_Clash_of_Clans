@@ -116,7 +116,6 @@ public class Controller {
         buildingName = buildingName.split("\\.")[1].trim();
         Builder builder = null;
         builder = game.getVillage().findFreeBuilder();
-        ArrayList<Cell> cellKinds = new ArrayList<Cell>(Cell.getCellKinds());
         for (Cell cell : Cell.getCellKinds()) {
             if (cell.getClass().getSimpleName().equals(buildingName)) {
                 Class spacialBuilding = cell.getClass();
@@ -470,8 +469,6 @@ public class Controller {
                     implementUpgradeCommand(cell);
                 } catch (NotEnoughResourcesException e) {
                     e.showMessage();
-                } catch (BarrackUpgradeException e) {
-                    e.showMessage();
                 }
                 getCommandInStorageInfoMenu(cell);
                 break;
@@ -485,18 +482,13 @@ public class Controller {
         }
     }
 
-    private void implementUpgradeCommand(Cell cell) throws NotEnoughResourcesException, BarrackUpgradeException {
+    private void implementUpgradeCommand(Cell cell) throws NotEnoughResourcesException{
         View.show("Do you want to upgrade " + cell.getName() + " for " + cell.getUpgradeCost() + " golds? [Y/N]");
         switch (view.getInput()) {
             case "Y":
                 if (cell.getUpgradeCost() > game.getVillage().getResource().getGold()) {
                     throw new NotEnoughResourcesException();
                 } else {
-                    if (cell.getClass().getSimpleName().equals("Barrack")) {
-                        if (game.getVillage().getMainBuilding().getLevel() == cell.getLevel()) {
-                            throw new BarrackUpgradeException();
-                        }
-                    }
                     cell.upgrade();
                     game.getVillage().getResource().setGold(game.getVillage().getResource().getGold() - cell.getUpgradeCost());
                 }
@@ -601,8 +593,6 @@ public class Controller {
                 try {
                     implementUpgradeCommand(camp);
                 } catch (NotEnoughResourcesException e) {
-                    e.showMessage();
-                } catch (BarrackUpgradeException e) {
                     e.showMessage();
                 }
                 getCommandInCampInfoMenu(camp);
@@ -751,8 +741,6 @@ public class Controller {
                     implementUpgradeCommand(cell);
                 } catch (NotEnoughResourcesException e) {
                     e.showMessage();
-                } catch (BarrackUpgradeException e) {
-                    e.showMessage();
                 }
                 getCommandInDefenceInfoMenu(cell);
             case 5:
@@ -843,8 +831,6 @@ public class Controller {
                     try {
                         implementUpgradeCommand(cell);
                     } catch (NotEnoughResourcesException e) {
-                        e.showMessage();
-                    } catch (BarrackUpgradeException e) {
                         e.showMessage();
                     }
                     getCommandInInfoMenu(cell);
