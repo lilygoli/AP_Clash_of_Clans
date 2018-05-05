@@ -135,7 +135,7 @@ public class Controller {
                             if (goldCost > game.getVillage().getResource().getGold() || elixirCost > game.getVillage().getResource().getElixir()) {
                                 throw new NotEnoughResourcesException();
                             } else {
-                                view.showMap(game.getVillage(), 0);
+                                view.showMap(game.getVillage());
                                 int flag = 0;
                                 while (flag == 0)
                                     try {
@@ -287,7 +287,7 @@ public class Controller {
                         case "Go next turn":
                             game.passTurn();
                         case "put unit":
-                            view.showMap(game.getAttackedVillage().getVillage(), 1);
+                            view.showAttackMap(game.getAttackedVillage().getVillage(),game.getTroops());
                             String unit = view.getInput();
                             implementPutUnitCommand(unit);
                             break;
@@ -356,7 +356,7 @@ public class Controller {
                 }
             }
         }
-        view.showMap(game.getVillage(), 1);
+        view.showAttackMap(game.getVillage(),game.getTroops());
         String putUnitChoice = view.getInput("Enter the type of the soldier and its coordinates you want to use");
         while (!putUnitChoice.equals("Go next turn")) {
             implementPutUnitCommand(putUnitChoice);

@@ -31,9 +31,6 @@ public class Game {
     private ArrayList<Game> allAttackedVillages;
     private static String whereIAm;
 
-    public ArrayList<Soldier> getTroops() {
-        return troops;
-    }
 
     private ArrayList<Soldier> troops;
 
@@ -55,6 +52,10 @@ public class Game {
     }
 
 
+
+    public ArrayList<Soldier> getTroops() {
+        return troops;
+    }
 
     public void setTroops(ArrayList<Soldier> troops) {
         this.troops = troops;
@@ -336,7 +337,6 @@ public class Game {
         }
         troops.clear();
     }
-
     public void passTurn() {
         if (isUnderAttackOrDefense) {
             try {
@@ -348,6 +348,7 @@ public class Game {
             passTurnInNormalMode();
         }
     }
+
     // TODO: 4/29/2018 select unit
 
     public void putUnit(String unitType, int amount, int x, int y) throws MoreThanLimitSoldiersException, InvalidPlaceForSoldiersException, NotEnoughSoldierInTroopsException {

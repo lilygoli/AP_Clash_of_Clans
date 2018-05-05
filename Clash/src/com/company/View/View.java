@@ -23,7 +23,7 @@ public class View {
         System.out.println(command);
     }
 
-    public void showMap(Village village, int isInWarFlag) {
+    public void showMap(Village village) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
