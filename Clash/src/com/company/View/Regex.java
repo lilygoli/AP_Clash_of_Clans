@@ -1,4 +1,4 @@
-package com.company.Models;
+package com.company.View;
 
 public class Regex {
     public static final String SAVING_GAME_REGEX  = "save (.+) (.+)";

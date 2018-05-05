@@ -1,6 +1,6 @@
 package com.company.Exception;
 
-import com.company.View;
+import com.company.View.View;
 
 public class BusyCellException  extends Exception{
     public void showMessage(){

@@ -1,4 +1,4 @@
-package com.company.Models.Defences;
+package com.company.Models.Towers.Defences;
 
 import com.company.Models.Soldiers.Soldier;
 

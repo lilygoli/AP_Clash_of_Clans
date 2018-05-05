@@ -3,8 +3,9 @@ package com.company.Models;
 import com.company.Exception.BusyCellException;
 import com.company.Exception.MarginalTowerException;
 import com.company.Exception.NotEnoughFreeBuildersException;
-import com.company.Models.Buildings.*;
-import com.company.Models.Defences.*;
+import com.company.Models.Towers.Buildings.*;
+import com.company.Models.Towers.Cell;
+import com.company.Models.Towers.Defences.*;
 import com.company.Models.Soldiers.Soldier;
 
 import java.util.ArrayList;

@@ -1,7 +1,6 @@
-package com.company;
+package com.company.View;
 
-import com.company.Models.Buildings.Grass;
-import com.company.Models.Cell;
+import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Village;
 
 import java.util.Scanner;

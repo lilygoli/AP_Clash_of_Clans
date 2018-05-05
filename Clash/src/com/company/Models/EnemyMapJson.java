@@ -1,15 +1,10 @@
 package com.company.Models;
 
-import com.company.Models.Buildings.*;
-import com.company.Models.Cell;
-import com.company.Models.Defences.*;
-import com.company.Models.Game;
-import com.company.Models.Resource;
+import com.company.Models.Towers.Buildings.*;
+import com.company.Models.Towers.Cell;
+import com.company.Models.Towers.Defences.*;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Dictionary;
 
 public class EnemyMapJson {
     private static final int mapSize = 30;

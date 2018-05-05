@@ -1,9 +1,9 @@
-package com.company.Models.Buildings;
+package com.company.Models.Towers.Buildings;
 
 import com.company.Exception.NotEnoughResourcesException;
 import com.company.Models.Game;
 import com.company.Models.Soldiers.Soldier;
-import com.company.View;
+import com.company.View.View;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;

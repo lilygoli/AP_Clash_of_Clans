@@ -1,15 +1,14 @@
-package com.company.Models.Buildings;
+package com.company.Models.Towers.Buildings;
 
 import com.company.Models.Builder;
-import com.company.Models.Cell;
+import com.company.Models.Towers.Cell;
 import com.company.Models.Config;
-import com.company.Models.Defences.Trap;
-import com.company.Models.Defences.Wall;
+import com.company.Models.Towers.Defences.Trap;
+import com.company.Models.Towers.Defences.Wall;
 import com.company.Models.Game;
-import com.company.View;
+import com.company.View.View;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 public class MainBuilding extends Building {

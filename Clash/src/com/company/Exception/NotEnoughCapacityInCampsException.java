@@ -1,6 +1,6 @@
 package com.company.Exception;
 
-import com.company.View;
+import com.company.View.View;
 
 public class NotEnoughCapacityInCampsException extends Exception {
     public void showMessage(){

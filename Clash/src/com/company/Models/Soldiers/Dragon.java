@@ -1,7 +1,7 @@
 package com.company.Models.Soldiers;
 
 import com.company.Enums.Direction;
-import com.company.Models.Cell;
+import com.company.Models.Towers.Cell;
 import com.company.Models.Village;
 
 

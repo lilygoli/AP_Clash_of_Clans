@@ -1,9 +1,9 @@
-package com.company.Models.Defences;
-import com.company.Models.Cell;
+package com.company.Models.Towers.Defences;
+import com.company.Models.Towers.Cell;
 import com.company.Models.Config;
 import com.company.Models.Game;
 import com.company.Models.Soldiers.Soldier;
-import com.company.View;
+import com.company.View.View;
 
 import java.util.ArrayList;
 

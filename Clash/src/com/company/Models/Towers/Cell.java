@@ -1,11 +1,14 @@
-package com.company.Models;
+package com.company.Models.Towers;
 
-import com.company.Models.Buildings.*;
-import com.company.Models.Defences.AirDefence;
-import com.company.Models.Defences.ArcherTower;
-import com.company.Models.Defences.Cannon;
-import com.company.Models.Defences.WizardTower;
-import com.company.View;
+import com.company.Models.Builder;
+import com.company.Models.Config;
+import com.company.Models.Game;
+import com.company.Models.Towers.Buildings.*;
+import com.company.Models.Towers.Defences.AirDefence;
+import com.company.Models.Towers.Defences.ArcherTower;
+import com.company.Models.Towers.Defences.Cannon;
+import com.company.Models.Towers.Defences.WizardTower;
+import com.company.View.View;
 
 import java.util.ArrayList;
 
