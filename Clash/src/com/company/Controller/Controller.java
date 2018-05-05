@@ -37,9 +37,23 @@ public class Controller {
                     commandMatched = true;
                     break;
                 case "attack":
-                    implementAttackCommand();
-                    commandMatched = true;
-                    break;
+                    boolean flag = true;
+                    for (Camp camp : game.getVillage().getCamps()) {
+                        if (camp.getSoldiers() != null) {
+                            flag = false;
+                            break;
+                        }
+                    }
+                    if (flag){
+                        View.show("build soldiers in order to attack");
+                        mainCommandAnalyzer();
+                        return;
+                    }
+                    else {
+                        implementAttackCommand();
+                        commandMatched = true;
+                        return;
+                    }
                 case "WhereIAm":
                     View.show(Game.getWhereIAm());
                     commandMatched = true;
@@ -280,12 +294,16 @@ public class Controller {
                 break;
             case 2:
                 startAttack();
+                view.showAttackMap(game.getAttackedVillage().getVillage(),game.getTroops());
                 String userInput;
                 do {
                     userInput = view.getInput();
                     switch (userInput) {
                         case "Go next turn":
                             game.passTurn();
+                            view.showAttackMap(game.getAttackedVillage().getVillage(),game.getTroops());
+                            View.show("-----------------------------------");
+                            break;
                         case "put unit":
                             view.showAttackMap(game.getAttackedVillage().getVillage(),game.getTroops());
                             String unit = view.getInput();
@@ -340,6 +358,10 @@ public class Controller {
             // TODO: 4/30/18 maybe "Start Select" should have been implemented!!!
             String playerChoice = view.getInput("please select units you want to bring to war or type End select to go back to attack.");
             if (playerChoice.equals("End select")) {
+                if (game.getTroops() == null){
+                    View.show("please select units");
+                    continue;
+                }
                 break;
             }
             if (!playerChoice.matches("Select \\w+ \\d+")) {
@@ -356,13 +378,14 @@ public class Controller {
                 }
             }
         }
-        view.showAttackMap(game.getVillage(),game.getTroops());
-        String putUnitChoice = view.getInput("Enter the type of the soldier and its coordinates you want to use");
-        while (!putUnitChoice.equals("Go next turn")) {
-            implementPutUnitCommand(putUnitChoice);
-            putUnitChoice = view.getInput("Enter the type of the soldier and its coordinates you want to use");
-        }
-        game.passTurn();
+        //view.showAttackMap(game.getVillage(),game.getTroops());
+        //String putUnitChoice = view.getInput("Enter the type of the soldier and its coordinates you want to use");
+        //while (!putUnitChoice.equals("Go next turn")) {
+        //    implementPutUnitCommand(putUnitChoice);
+        //    putUnitChoice = view.getInput("Enter the type of the soldier and its coordinates you want to use");
+        //}
+        //game.passTurn();
+
 
     }
 
@@ -666,7 +689,7 @@ public class Controller {
         switch (playerChoice) {
             case 1:
                 getCommandInInfoMenu(cell);
-                break;
+                return;
             case 2:
                 try {
                     implementBuildSoldiers((Barrack) cell);
@@ -679,16 +702,16 @@ public class Controller {
                 }
                 cell.showMenu();
                 getCommandInBarrack(cell);
-                break;
+                return;
             case 3:
                 View.show(game.getVillage().showBarracksStatus());
                 cell.showMenu();
                 getCommandInBarrack(cell);
-                break;
+                return;
             case 4:
                 game.showBuildings();
                 getCommandInBuildings();
-                break;
+                return;
             default:
                 View.show("invalid input please try Again");
                 cell.showMenu();

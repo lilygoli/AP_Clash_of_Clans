@@ -355,8 +355,12 @@ public class Game {
         ArrayList<Soldier> specialSoldierTypeInTroops=new ArrayList<>();
         for (Soldier soldier : troops) {
             if(soldier.getClass().getSimpleName().equalsIgnoreCase(unitType.trim().replace(" ",""))){
-                if(soldier.getX()==-1 && soldier.getY()==-1)
-                     specialSoldierTypeInTroops.add(soldier);
+                if(soldier.getX()==-1 && soldier.getY()==-1) {
+                    specialSoldierTypeInTroops.add(soldier);
+                    if (specialSoldierTypeInTroops.size() == amount){
+                        break;
+                    }
+                }
             }
         }
         if(amount>specialSoldierTypeInTroops.size()){

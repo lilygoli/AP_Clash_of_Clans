@@ -12,5 +12,6 @@ public class Main {
         // TODO: 5/5/2018 show menu when build soldier
         // TODO: 5/5/2018 level sarbaz ha ro chap konim toye barracks status
         // TODO: 5/5/2018 upgrade Expection cell begire
+        //C:\Users\Arad\Desktop\CE\Semester 2\AP\Project\Sample_Attack_Map.json
     }
 }

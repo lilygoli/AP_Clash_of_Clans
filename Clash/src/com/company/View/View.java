@@ -2,6 +2,7 @@ package com.company.View;
 
 import com.company.Models.Soldiers.Soldier;
 import com.company.Models.Towers.Buildings.Grass;
+import com.company.Models.Towers.Buildings.Storage;
 import com.company.Models.Village;
 
 import java.util.ArrayList;
@@ -29,12 +30,11 @@ public class View {
             for (int j = 0; j < 30; j++) {
                 if (i >= 29 || j >= 29 || j <= 0 || i <= 0) {
                     result.append("1");
-                }
-                else {
+                } else {
                     if (village.getMap()[j][i].getClass() == Grass.class) {
                         result.append("0");
                     } else {
-                        result.append("1");
+                        result.append("B");
                     }
                 }
             }
