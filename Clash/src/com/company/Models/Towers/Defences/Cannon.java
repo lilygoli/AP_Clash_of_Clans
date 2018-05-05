@@ -11,6 +11,9 @@ public class Cannon extends Defence {
     }
 
     public Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers) {
+        if (this.getUnderConstructionStatus()) {
+            return null;
+        }
         ArrayList<Integer> validManhattanDistance = new ArrayList<>();
         validManhattanDistance.add(0);
         validManhattanDistance.add(1);

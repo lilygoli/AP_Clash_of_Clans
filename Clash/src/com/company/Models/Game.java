@@ -439,7 +439,10 @@ public class Game {
     public void selectUnit(String unitType) throws NoSuchSoldierInCampException {
         for (Camp camp : village.getCamps()) {
             for (Soldier soldier : camp.getSoldiers()) {
-                if (soldier.getClass().getName().equals(unitType)) {
+                if (soldier.getClass().getSimpleName().equals(unitType)) {
+                    if (troops == null) {
+                        troops = new ArrayList<>();
+                    }
                     troops.add(soldier);
                     camp.removeSoldier(soldier);
                     return;
@@ -448,5 +451,6 @@ public class Game {
         }
         throw new NoSuchSoldierInCampException();
     }
-
 }
+
+

@@ -11,6 +11,9 @@ public class AirDefence extends Defence {
     }
 
     public Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers) {
+        if (this.getUnderConstructionStatus()) {
+            return null;
+        }
         Soldier target = findNearestEnemyInRange(enemySoldiers, true, false);
         if (target != null) {
             target.setHealth(target.getHealth() - this.getDamage());
