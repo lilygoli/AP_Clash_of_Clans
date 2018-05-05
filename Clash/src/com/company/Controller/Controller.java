@@ -359,7 +359,7 @@ public class Controller {
             String buildingName = matcher.group(1).replace(" ", "");
             for (Cell[] cells : game.getVillage().getMap()) {
                 for (Cell cell : cells) {
-                    if (cell.getClass().getSimpleName().equalsIgnoreCase(buildingName)) {
+                    if (cell.getClass().getSimpleName().equalsIgnoreCase(buildingName) && cell.getNumber()==buildingNumber) {
                         cell.showMenu();
                         getCommandInBuilding(cell);
                         return;
@@ -598,6 +598,15 @@ public class Controller {
                 getCommandInCampInfoMenu(camp);
                 break;
             case 4:
+                try {
+                    implementUpgradeCommand(camp);
+                } catch (NotEnoughResourcesException e) {
+                    e.showMessage();
+                } catch (BarrackUpgradeException e) {
+                    e.showMessage();
+                }
+                getCommandInCampInfoMenu(camp);
+            case 5:
                 getCommandInCamp(camp);
                 break;
         }
@@ -738,6 +747,15 @@ public class Controller {
                 getCommandInDefenceInfoMenu(cell);
                 break;
             case 4:
+                try {
+                    implementUpgradeCommand(cell);
+                } catch (NotEnoughResourcesException e) {
+                    e.showMessage();
+                } catch (BarrackUpgradeException e) {
+                    e.showMessage();
+                }
+                getCommandInDefenceInfoMenu(cell);
+            case 5:
                 cell.showMenu();
                 getCommandInBuilding(cell);
                 break;
@@ -814,6 +832,24 @@ public class Controller {
                 getCommandInInfoMenu(cell);
                 break;
             case 3:
+                if (cell.getClass().getSimpleName().equals("Barrack")) {
+                    if (cell.getLevel() + 1 > game.getVillage().getMainBuilding().getLevel()) {
+                        View.show("you should first upgrade your main building.");
+                        getCommandInInfoMenu(cell);
+                        break;
+                    }
+                }
+                else {
+                    try {
+                        implementUpgradeCommand(cell);
+                    } catch (NotEnoughResourcesException e) {
+                        e.showMessage();
+                    } catch (BarrackUpgradeException e) {
+                        e.showMessage();
+                    }
+                    getCommandInInfoMenu(cell);
+                }
+            case 4:
                 cell.showMenu();
                 getCommandInBuilding(cell);
                 break;

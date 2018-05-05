@@ -45,6 +45,9 @@ public class Mine extends Building {
     public void mine(ArrayList<Storage> allRelatedStorage) { //for any mine we should pass the related array of storage
         for (Storage storage : allRelatedStorage
                 ) {
+            if(storage.getUnderConstructionStatus()){
+                continue;
+            }
             if (storage.getCapacity() - storage.getResource() >= resource) {
                 storage.addToStorage(resource);
                 resource = 0;

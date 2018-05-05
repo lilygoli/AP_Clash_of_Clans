@@ -6,7 +6,7 @@ import com.company.View.View;
 import java.util.ArrayList;
 
 public class Storage extends Building {
-    private int capacity = 500;
+    private int capacity=0;
     // TODO: 4/29/2018 what is capacity 500 or 10000
     private int resource;
 

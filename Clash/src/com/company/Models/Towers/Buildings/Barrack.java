@@ -76,6 +76,9 @@ public class Barrack extends Building {
             if ( underConstructionSoldiers.get(0).get(soldier) == soldier.getBuildDuration()) {
                 for (Camp camp : camps
                         ) {
+                    if(camp.getUnderConstructionStatus()){
+                        continue;
+                    }
                     if (camp.getSoldiers().size() < camp.getCapacity()) {
                         camp.getSoldiers().add(soldier);
                         break;

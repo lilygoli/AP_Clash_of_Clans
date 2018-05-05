@@ -29,6 +29,7 @@ public class Config {
         dictionary.put("ElixirMine_UPGRADE_COST",100);
 
         dictionary.put("GoldStorage_GOLD_COST",200);
+        dictionary.put("GoldStorage_CAPACITY",500);
         dictionary.put("GoldStorage_ELIXIR_COST",0);
         dictionary.put("GoldStorage_JSON_TYPE",3);
         dictionary.put("GoldStorage_STRENGTH",300);
@@ -39,6 +40,7 @@ public class Config {
         dictionary.put("GoldStorage_UPGRADE_COST",100);
 
         dictionary.put("ElixirStorage_GOLD_COST",200);
+        dictionary.put("ElixirStorage_CAPACITY",250);
         dictionary.put("ElixirStorage_ELIXIR_COST",0);
         dictionary.put("ElixirStorage_JSON_TYPE",4);
         dictionary.put("ElixirStorage_STRENGTH",300);
