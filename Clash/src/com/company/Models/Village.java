@@ -40,8 +40,6 @@ public class Village {
             }
         }
         mainBuilding = new MainBuilding(0);
-        resource.setGold(Config.getDictionary().get("STARTING_GOLD"));
-        resource.setElixir(Config.getDictionary().get("STARTING_ELIXIR"));
 
         map[14][14] = mainBuilding;
         map[14][15] = mainBuilding;
@@ -56,8 +54,8 @@ public class Village {
         map[random.nextInt(28) + 1][random.nextInt(28) + 1] = goldStorages.get(0);
         map[random.nextInt(28) + 1][random.nextInt(28) + 1] = elixirStorages.get(0);
 
-        goldStorages.get(0).setResource(500);// TODO: 4/29/2018 what int resouce should be
-        elixirStorages.get(0).setResource(500);
+        goldStorages.get(0).setResource(Config.getDictionary().get("STARTING_GOLD"));// TODO: 4/29/2018 what int resouce should be
+        elixirStorages.get(0).setResource(Config.getDictionary().get("STARTING_ELIXIR"));
     }
 
     public void setGainedResource(Resource gainedResource) {
@@ -69,9 +67,59 @@ public class Village {
     }
 
     public void setResource(Resource resource) {
-        this.resource = resource;
+        int excessGold = resource.getGold() - this.resource.getGold();
+        int excessElixir = resource.getElixir() - this.resource.getElixir();
+        setGold(excessGold);
+        setElixir(excessElixir);
     }
 
+    private void setGold(int excessGold) {
+        if (excessGold > 0) {
+            for (GoldStorage goldStorage : goldStorages) {
+                if (goldStorage.getCapacity() - goldStorage.getResource() < excessGold) {
+                    excessGold -= goldStorage.getCapacity() - goldStorage.getResource();
+                    goldStorage.setResource(goldStorage.getCapacity());
+                }else{
+                    goldStorage.setResource(goldStorage.getResource()+excessGold);
+                    break;
+                }
+            }
+        }else{
+            for (GoldStorage goldStorage : goldStorages) {
+                if(goldStorage.getResource()> -(excessGold)){
+                    goldStorage.setResource(goldStorage.getResource()+excessGold);
+                    break;
+                }else{
+                    excessGold+=goldStorage.getResource();
+                    goldStorage.setResource(0);
+                }
+            }
+        }
+    }
+
+    private void setElixir(int excessElixir) {
+        if (excessElixir > 0) {
+            for (ElixirStorage elixirStorage : elixirStorages) {
+                if (elixirStorage.getCapacity() - elixirStorage.getResource() < excessElixir) {
+                    excessElixir -= elixirStorage.getCapacity() - elixirStorage.getResource();
+                    elixirStorage.setResource(elixirStorage.getCapacity());
+                }else{
+                    elixirStorage.setResource(elixirStorage.getResource()+excessElixir);
+                    break;
+                }
+            }
+        }else{
+            for (ElixirStorage elixirStorage : elixirStorages) {
+                if(elixirStorage.getResource()> -(excessElixir)){
+                    elixirStorage.setResource(elixirStorage.getResource()+excessElixir);
+                    break;
+                }else{
+                    excessElixir+=elixirStorage.getResource();
+                    elixirStorage.setResource(0);
+                }
+            }
+        }
+    }
     public Resource getResource() {
         int gold = 0, elixir = 0;
         for (GoldStorage goldStorage : getGoldStorages()) {

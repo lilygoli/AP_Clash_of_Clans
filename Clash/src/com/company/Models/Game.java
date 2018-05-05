@@ -318,6 +318,7 @@ public class Game {
         }
         healSoldiers();
         attackedVillage.rebuild();
+
         Resource resource = new Resource(village.getGainedResource().getGold() + village.getResource().getGold(), village.getGainedResource().getElixir() + village.getResource().getElixir());
         village.setResource(resource);
     }
