@@ -313,6 +313,7 @@ public class Game {
         }
         healSoldiers();
         attackedVillage.rebuild();
+
     }
 
     public void healSoldiers() {
