@@ -42,6 +42,7 @@ public class Controller {
                     break;
                 case "WhereIAm":
                     View.show(Game.getWhereIAm());
+                    commandMatched = true;
                     break;
 
             }
@@ -384,9 +385,11 @@ public class Controller {
         }
         if (input.equals("resources")){
             game.showResources();
+            return;
         }
         if (input.equals("WhereIAm")){
             View.show(Game.getWhereIAm());
+            return;
         }
         if (matcher.find()) {
             int buildingNumber = Integer.parseInt(matcher.group(2));
