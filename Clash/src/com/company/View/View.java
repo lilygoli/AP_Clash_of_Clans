@@ -63,8 +63,8 @@ public class View {
             }
             result.append("\n");
         }
+        show(result.toString());
     }
-    // TODO: 4/25/2018 whereIam va
     // showMenu inja filter e joda dashte bashe
 
 }

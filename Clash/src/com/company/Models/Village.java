@@ -14,7 +14,6 @@ import java.util.Random;
 
 public class Village {
     private Cell[][] map;
-    private Resource resource = new Resource(0, 0);
     private int score = 0;
     private ArrayList<ArcherTower> archerTowers = new ArrayList<ArcherTower>();
     private ArrayList<Cannon> cannons = new ArrayList<Cannon>();
@@ -67,8 +66,8 @@ public class Village {
     }
 
     public void setResource(Resource resource) {
-        int excessGold = resource.getGold() - this.resource.getGold();
-        int excessElixir = resource.getElixir() - this.resource.getElixir();
+        int excessGold = resource.getGold() - this.getResource().getGold();
+        int excessElixir = resource.getElixir() - this.getResource().getElixir();
         setGold(excessGold);
         setElixir(excessElixir);
     }
@@ -382,7 +381,7 @@ public class Village {
 
     public String showSourcesInfo() {
         String result = "";
-        result = result + "Gold : " + resource.getGold() + "\nElixir : " + resource.getElixir() + "\nScore : " + score;
+        result = result + "Gold : " + getResource().getGold() + "\nElixir : " + getResource().getElixir() + "\nScore : " + score;
         return result;
     }
 }
