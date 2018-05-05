@@ -402,7 +402,18 @@ public class Controller {
 
     private void getCommandStorage(Cell cell) {
         Game.setWhereIAm("you are in Storage Menu");
-        int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
+        String input = view.getInput("Enter your preferred number in the list");
+        if (input.equals("resources")){
+            game.showResources();
+            getCommandStorage(cell);
+            return;
+        }
+        if (input.equals("WhereIAm")){
+            View.show(Game.getWhereIAm());
+            getCommandStorage(cell);
+            return;
+        }
+        int playerChoice = Integer.parseInt(input);
         switch (playerChoice) {
             case 1:
                 getCommandInStorageInfoMenu(cell);
@@ -421,8 +432,19 @@ public class Controller {
     private void getCommandInStorageInfoMenu(Cell cell) {
         Game.setWhereIAm("you are in Storage Info Menu");
         cell.showInfoMenu();
-        int choice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
-        switch (choice) {
+        String input = view.getInput("Enter your preferred number in the list");
+        if (input.equals("resources")){
+            game.showResources();
+            getCommandInStorageInfoMenu(cell);
+            return;
+        }
+        if (input.equals("WhereIAm")){
+            View.show(Game.getWhereIAm());
+            getCommandInStorageInfoMenu(cell);
+            return;
+        }
+        int playerChoice = Integer.parseInt(input);
+        switch (playerChoice) {
             case 1:
                 cell.showOverallInfo();
                 getCommandInStorageInfoMenu(cell);
@@ -484,7 +506,18 @@ public class Controller {
 
     private void getCommandInMine(Cell cell) {
         Game.setWhereIAm("you are in Mine Menu");
-        int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
+        String input = view.getInput("Enter your preferred number in the list");
+        if (input.equals("resources")){
+            game.showResources();
+            getCommandInMine(cell);
+            return;
+        }
+        if (input.equals("WhereIAm")){
+            View.show(Game.getWhereIAm());
+            getCommandInMine(cell);
+            return;
+        }
+        int playerChoice = Integer.parseInt(input);
         switch (playerChoice) {
             case 1:
                 getCommandInInfoMenu(cell);
@@ -509,7 +542,18 @@ public class Controller {
 
     private void getCommandInCamp(Cell cell) {
         Game.setWhereIAm("you are in Camp Menu");
-        int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
+        String input = view.getInput("Enter your preferred number in the list");
+        if (input.equals("resources")){
+            game.showResources();
+            getCommandInCamp(cell);
+            return;
+        }
+        if (input.equals("WhereIAm")){
+            View.show(Game.getWhereIAm());
+            getCommandInCamp(cell);
+            return;
+        }
+        int playerChoice = Integer.parseInt(input);
         switch (playerChoice) {
             case 1:
                 getCommandInCampInfoMenu((Camp) cell);
@@ -529,7 +573,14 @@ public class Controller {
     private void getCommandInCampInfoMenu(Camp camp) {
         Game.setWhereIAm("you are in camp Info Menu");
         camp.showInfoMenu();
-        int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
+        String input = view.getInput("Enter your preferred number in the list");
+        if (input.equals("resources")){
+            game.showResources();
+        }
+        if (input.equals("WhereIAm")){
+            View.show(Game.getWhereIAm());
+        }
+        int playerChoice = Integer.parseInt(input);
         switch (playerChoice) {
             case 1:
                 camp.showOverallInfo();
@@ -551,7 +602,18 @@ public class Controller {
 
     private void getCommandInBarrack(Cell cell) {
         Game.setWhereIAm("you are in Barrack Menu");
-        int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
+        String input = view.getInput("Enter your preferred number in the list");
+        if (input.equals("resources")){
+            game.showResources();
+            getCommandInBarrack(cell);
+            return;
+        }
+        if (input.equals("WhereIAm")){
+            View.show(Game.getWhereIAm());
+            getCommandInBarrack(cell);
+            return;
+        }
+        int playerChoice = Integer.parseInt(input);
         switch (playerChoice) {
             case 1:
                 getCommandInInfoMenu(cell);
@@ -584,7 +646,18 @@ public class Controller {
 
     private void getCommandInDefence(Cell cell) {
         Game.setWhereIAm("you are in Defence Menu");
-        int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
+        String input = view.getInput("Enter your preferred number in the list");
+        if (input.equals("resources")){
+            game.showResources();
+            getCommandInDefence(cell);
+            return;
+        }
+        if (input.equals("WhereIAm")){
+            View.show(Game.getWhereIAm());
+            getCommandInDefence(cell);
+            return;
+        }
+        int playerChoice = Integer.parseInt(input);
         switch (playerChoice) {
             case 1: //info
                 getCommandInDefenceInfoMenu(cell);
@@ -622,8 +695,19 @@ public class Controller {
     private void getCommandInDefenceInfoMenu(Cell cell) {
         Game.setWhereIAm("you are in Defence Info Menu");
         cell.showInfoMenu();
-        int choice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
-        switch (choice) {
+        String input = view.getInput("Enter your preferred number in the list");
+        if (input.equals("resources")){
+            game.showResources();
+            getCommandInDefenceInfoMenu(cell);
+            return;
+        }
+        if (input.equals("WhereIAm")){
+            View.show(Game.getWhereIAm());
+            getCommandInDefenceInfoMenu(cell);
+            return;
+        }
+        int playerChoice = Integer.parseInt(input);
+        switch (playerChoice) {
             case 1:
                 cell.showOverallInfo();
                 getCommandInDefenceInfoMenu(cell);
@@ -659,8 +743,19 @@ public class Controller {
 
     private void getCommandInMainBuilding(Cell cell) {
         Game.setWhereIAm("you are in Main Building Menu");
-        int command = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
-        switch (command) {
+        String input = view.getInput("Enter your preferred number in the list");
+        if (input.equals("resources")){
+            game.showResources();
+            getCommandInMainBuilding(cell);
+            return;
+        }
+        if (input.equals("WhereIAm")){
+            View.show(Game.getWhereIAm());
+            getCommandInMainBuilding(cell);
+            return;
+        }
+        int playerChoice = Integer.parseInt(input);
+        switch (playerChoice) {
             case 1:
                 getCommandInInfoMenu(cell);
             case 2:
@@ -694,7 +789,18 @@ public class Controller {
     private void getCommandInInfoMenu(Cell cell) {
         Game.setWhereIAm("you are in " + cell.getClass().getSimpleName() +  "Info Menu");
         cell.showInfoMenu();
-        int playerChoice = Integer.parseInt(view.getInput("Enter your preferred number in the list"));
+        String input = view.getInput("Enter your preferred number in the list");
+        if (input.equals("resources")){
+            game.showResources();
+            getCommandInInfoMenu(cell);
+            return;
+        }
+        if (input.equals("WhereIAm")){
+            View.show(Game.getWhereIAm());
+            getCommandInInfoMenu(cell);
+            return;
+        }
+        int playerChoice = Integer.parseInt(input);
         switch (playerChoice) {
             case 1:
                 cell.showOverallInfo();
