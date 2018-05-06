@@ -50,7 +50,7 @@ public class View {
             outer:
             for (int j = 0; j < 30; j++) {
                 for (Soldier troop : troops) {
-                    if (troop.getX() == i && troop.getY() == j) {
+                    if (troop.getX() == j && troop.getY() == i) {
                         result.append("S");
                         continue outer;
                     }

@@ -238,12 +238,12 @@ public class Game {
         for (Soldier troop : troops) {
             if (troop.getX() != -1 && troop.getY() != -1) {
                 if (troop.getClass().getSimpleName().equals(unitType)) {
-                    finalString.append(unitType).append(" level= ").append(troop.getLevel()).append(" in(").append(troop.getX()).append(",").append(troop.getY()).append(") with health").append(troop.getHealth()).append("\n");
+                    finalString.append(unitType).append(" level= ").append(troop.getLevel()).append(" in(").append(troop.getX()+1).append(",").append(troop.getY()+1).append(") with health").append(troop.getHealth()).append("\n");
                 }
             }
         }
 
-        return finalString.toString();
+        return finalString.toString().trim();
     }
 
     public String statusUnits() {
@@ -251,7 +251,7 @@ public class Game {
         for (Soldier soldier : Soldier.getSoldierSubClasses()) {
             finalString.append(statusUnit(soldier.getClass().getSimpleName())).append("\n");
         }
-        return finalString.toString();
+        return finalString.toString().trim();
     }
 
     public String statusTower(String towerType) {
@@ -259,13 +259,13 @@ public class Game {
         for (Cell[] cells : attackedVillage.village.getMap()) {
             for (Cell cell : cells) {
                 if (cell.getClass().getSimpleName().equals(towerType) && !cell.isRuined()) {
-                    finalString.append(cell.getClass().getSimpleName()).append(" level= ").append(cell.getLevel()).append(" in(").append(cell.getX()).append(",").append(cell.getY()).append(") with health ").append(cell.getStrength()).append("\n");
+                    finalString.append(cell.getClass().getSimpleName()).append(" level= ").append(cell.getLevel()).append(" in(").append(cell.getX()+1).append(",").append(cell.getY()+1).append(") with health ").append(cell.getStrength()).append("\n");
                     if (cell.getClass().getSimpleName().equals("MainBuilding"))
                         return finalString.toString();
                 }
             }
         }
-        return finalString.toString();
+        return finalString.toString().trim();
     }
 
     public String statusTowers() {
@@ -273,11 +273,11 @@ public class Game {
         for (Cell cell : Cell.getCellKinds()) {
             finalString.append(statusTower(cell.getClass().getSimpleName())).append("\n");
         }
-        return finalString.toString();
+        return finalString.toString().trim();
     }
 
     public String statusAll() {
-        return statusResourcesInWar() + statusTowers() + statusUnits();
+        return statusResourcesInWar()+"\n"+ statusTowers()+"\n" + statusUnits();
     }
 
     public void passTurnInWarMode() throws NotInWarException {
@@ -314,7 +314,7 @@ public class Game {
             if(soldier.getX()==-1 && soldier.getY()==-1){
                 continue;
             }
-            soldier.attackTarget(this.getVillage(), this.attackedVillage.getVillage()); // TODO: 4/27/18 باید چند بار کال شه این تابع تو هر ترن
+            soldier.attackTarget(this.getVillage(), this.attackedVillage.getVillage());
         }
     }
 
@@ -426,11 +426,13 @@ public class Game {
         }
         ArrayList<Storage> allElixirStorage = new ArrayList<>(village.getElixirStorages());
         for (ElixirMine elixirMine : village.getElixirMines()) {
-            elixirMine.addToMine(allElixirStorage);
+            if(!elixirMine.getUnderConstructionStatus())
+                elixirMine.addToMine(allElixirStorage);
         }
         ArrayList<Storage> allGoldStorage = new ArrayList<>(village.getGoldStorages());
         for (GoldMine goldMine : village.getGoldMines()) {
-            goldMine.addToMine(allGoldStorage);
+            if(!goldMine.getUnderConstructionStatus())
+                goldMine.addToMine(allGoldStorage);
         }
 
     }

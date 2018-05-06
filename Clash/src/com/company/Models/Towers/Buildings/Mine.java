@@ -52,6 +52,9 @@ public class Mine extends Building {
                 storage.addToStorage(resource);
                 resource = 0;
                 return;
+            }else {
+                resource-=storage.getCapacity()-storage.getResource();
+                storage.setResource(storage.getCapacity());
             }
         }
     }

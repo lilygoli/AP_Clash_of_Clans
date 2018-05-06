@@ -336,6 +336,7 @@ public class Controller {
                 while (!userInput.equals("Quit attack") && !game.isWarFinished());
                 View.show("The war ended with" + game.getVillage().getGainedResource().getGold() + " gold," + game.getVillage().getGainedResource().getElixir() + " elixir and" + game.getVillage().getScore() + "scores achieved!");
                 game.healAfterWar();
+                game.setUnderAttackOrDefense(false);
                 mainCommandAnalyzer();
                 break;
             case 3:

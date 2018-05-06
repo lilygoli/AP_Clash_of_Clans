@@ -158,8 +158,7 @@ public abstract class Soldier {
         if (hasReachedDestination(target)) {
             target.setStrength(target.getStrength() - getDamage());
             if (target.getStrength() <= 0) {
-                target.setRuined(true);
-                target.setStrength(0);
+                destroyAndLoot(attackerVillage, target);
             }
         } else {
             setDirection(findDirection(enemyVillage, target));

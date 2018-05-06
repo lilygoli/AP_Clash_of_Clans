@@ -127,6 +127,10 @@ public class EnemyMapJson {
         GoldMine goldMine = new GoldMine(game.getVillage().getGoldMines().size(), building.getLevel());
         goldMine.setX(building.getX());
         goldMine.setY(building.getY());
+        for (int i = 0; i < building.getLevel(); i++) {
+            goldMine.upgrade();
+        }
+        goldMine.setLevel(building.getLevel());
         game.getVillage().getGoldMines().add(goldMine);
         game.getVillage().getMap()[building.getX()][building.getY()] = goldMine;
     }
@@ -135,6 +139,10 @@ public class EnemyMapJson {
         ElixirMine elixirMine = new ElixirMine(game.getVillage().getElixirMines().size(), building.getLevel());
         elixirMine.setX(building.getX());
         elixirMine.setY(building.getY());
+        for (int i = 0; i < building.getLevel(); i++) {
+            elixirMine.upgrade();
+        }
+        elixirMine.setLevel(building.getLevel());
         game.getVillage().getElixirMines().add(elixirMine);
         game.getVillage().getMap()[building.getX()][building.getY()] = elixirMine;
     }
@@ -145,6 +153,10 @@ public class EnemyMapJson {
         goldStorage.setY(building.getY());
         goldStorage.setResource(goldStorage.getAmount());
         goldStorage.setResource(building.getAmount());
+        for (int i = 0; i < building.getLevel(); i++) {
+            goldStorage.upgrade();
+        }
+        goldStorage.setLevel(building.getLevel());
         game.getVillage().getGoldStorages().add(goldStorage);
         game.getVillage().getMap()[building.getX()][building.getY()] = goldStorage;
     }
@@ -155,6 +167,10 @@ public class EnemyMapJson {
         elixirStorage.setY(building.getY());
         elixirStorage.setResource(building.getAmount());
         elixirStorage.setResource(building.getAmount());
+        for (int i = 0; i < building.getLevel(); i++) {
+            elixirStorage.upgrade();
+        }
+        elixirStorage.setLevel(building.getLevel());
         game.getVillage().getElixirStorages().add(elixirStorage);
         game.getVillage().getMap()[building.getX()][building.getY()] = elixirStorage;
     }
@@ -163,7 +179,10 @@ public class EnemyMapJson {
         MainBuilding mainBuilding = new MainBuilding(building.getLevel());
         mainBuilding.setX(building.getX());
         mainBuilding.setY(building.getY());
-        mainBuilding.setStrength(building.getLevel() * 500 + 1000);
+        for (int i = 0; i < building.getLevel(); i++) {
+            mainBuilding.upgrade();
+        }
+        mainBuilding.setLevel(building.getLevel());
         game.getVillage().setMainBuilding(mainBuilding);
         game.getVillage().getMap()[building.getX()][building.getY()] = mainBuilding;
     }
@@ -172,6 +191,10 @@ public class EnemyMapJson {
         Barrack barrack = new Barrack(game.getVillage().getBarracks().size(), building.getLevel());
         barrack.setX(building.getX());
         barrack.setY(building.getY());
+        for (int i = 0; i < building.getLevel(); i++) {
+            barrack.upgrade();
+        }
+        barrack.setLevel(building.getLevel());
         game.getVillage().getBarracks().add(barrack);
         game.getVillage().getMap()[building.getX()][building.getY()] = barrack;
     }
@@ -180,6 +203,10 @@ public class EnemyMapJson {
         Camp camp = new Camp(game.getVillage().getCamps().size(), building.getLevel());
         camp.setX(building.getX());
         camp.setY(building.getY());
+        for (int i = 0; i < building.getLevel(); i++) {
+            camp.upgrade();
+        }
+        camp.setLevel(building.getLevel());
         game.getVillage().getCamps().add(camp);
         game.getVillage().getMap()[building.getX()][building.getY()] = camp;
     }
@@ -188,6 +215,10 @@ public class EnemyMapJson {
         ArcherTower archerTower = new ArcherTower(game.getVillage().getArcherTowers().size(), building.getLevel());
         archerTower.setX(building.getX());
         archerTower.setY(building.getY());
+        for (int i = 0; i < building.getLevel(); i++) {
+            archerTower.upgrade();
+        }
+        archerTower.setLevel(building.getLevel());
         game.getVillage().getArcherTowers().add(archerTower);
         game.getVillage().getMap()[building.getX()][building.getY()] = archerTower;
     }
@@ -196,6 +227,10 @@ public class EnemyMapJson {
         Cannon cannon = new Cannon(game.getVillage().getCannons().size(), building.getLevel());
         cannon.setX(building.getX());
         cannon.setY(building.getY());
+        for (int i = 0; i < building.getLevel(); i++) {
+            cannon.upgrade();
+        }
+        cannon.setLevel(building.getLevel());
         game.getVillage().getCannons().add(cannon);
         game.getVillage().getMap()[building.getX()][building.getY()] = cannon;
     }
@@ -204,6 +239,10 @@ public class EnemyMapJson {
         AirDefence airDefence = new AirDefence(game.getVillage().getAirDefences().size(), building.getLevel());
         airDefence.setX(building.getX());
         airDefence.setY(building.getY());
+        for (int i = 0; i < building.getLevel(); i++) {
+            airDefence.upgrade();
+        }
+        airDefence.setLevel(building.getLevel());
         game.getVillage().getAirDefences().add(airDefence);
         game.getVillage().getMap()[building.getX()][building.getY()] = airDefence;
     }
@@ -212,6 +251,10 @@ public class EnemyMapJson {
         WizardTower wizardTower = new WizardTower(game.getVillage().getWizardTowers().size(), building.getLevel());
         wizardTower.setX(building.getX());
         wizardTower.setY(building.getY());
+        for (int i = 0; i < building.getLevel(); i++) {
+            wizardTower.upgrade();
+        }
+        wizardTower.setLevel(building.getLevel());
         game.getVillage().getWizardTowers().add(wizardTower);
         game.getVillage().getMap()[building.getX()][building.getY()] = wizardTower;
     }
