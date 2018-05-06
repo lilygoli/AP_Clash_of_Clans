@@ -221,6 +221,7 @@ public class Game {
                 if (!cell.getClass().getSimpleName().equals("Grass") && cell.isRuined()) {
                     cell.setRuined(false);
                 }
+
                 cell.setStrength(Config.getDictionary().get(cell.getClass().getSimpleName() + "_STRENGTH"));
             }
         }
@@ -310,11 +311,13 @@ public class Game {
             wizardTower.findAndShootUnit(this.troops);
         }
         //Attacker Soldiers part
-        for (Soldier soldier : troops) {
-            if(soldier.getX()==-1 && soldier.getY()==-1){
-                continue;
+        for (int i = 0; i < Config.getDictionary().get("KMM"); i++) {
+            for (Soldier soldier : troops) {
+                if (soldier.getX() == -1 && soldier.getY() == -1) {
+                    continue;
+                }
+                soldier.attackTarget(this.getVillage(), this.attackedVillage.getVillage()); // TODO: 4/27/18 باید چند بار کال شه این تابع تو هر ترن
             }
-            soldier.attackTarget(this.getVillage(), this.attackedVillage.getVillage()); // TODO: 4/27/18 باید چند بار کال شه این تابع تو هر ترن
         }
     }
 

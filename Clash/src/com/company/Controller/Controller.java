@@ -592,6 +592,7 @@ public class Controller {
                     ArrayList<Storage> allElixirStorage = new ArrayList<>(game.getVillage().getElixirStorages());
                     mine.mine(allElixirStorage);
                 }
+                cell.showMenu();
                 getCommandInMine(cell);
                 break;
             case 3:
