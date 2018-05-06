@@ -658,13 +658,6 @@ public class Controller {
                 getCommandInCampInfoMenu(camp);
                 break;
             case 4:
-                try {
-                    implementUpgradeCommand(camp);
-                } catch (NotEnoughResourcesException e) {
-                    e.showMessage();
-                }
-                getCommandInCampInfoMenu(camp);
-            case 5:
                 camp.showMenu();
                 getCommandInCamp(camp);
                 break;

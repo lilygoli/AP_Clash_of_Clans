@@ -31,7 +31,7 @@ public class Camp extends Building {
     }
     public void showInfoMenu(){
         Game.setWhereIAm("You are in Camp info menu");
-        String infoMenu = "1. Overall info\n2. Upgrade info\n3. Capacity info\n4. upgrade\n5. Back";
+        String infoMenu = "1. Overall info\n2. Upgrade info\n3. Capacity info\n4. Back";
         View.show(infoMenu);
     }
     public void showCapacityInfo(ArrayList<Camp> camps){
