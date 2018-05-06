@@ -19,6 +19,7 @@ public abstract class Defence extends Cell {
 
     public Defence(int number, int level) {
         super(number,level);
+        damage = Config.getDictionary().get(this.getClass().getSimpleName() + "_DAMAGE");
     }
 
 
@@ -42,9 +43,12 @@ public abstract class Defence extends Cell {
     public abstract Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers); // TODO: 4/23/18 enemy soldier should die sometimes:)
 
     public Soldier findNearestEnemyInRange(ArrayList<Soldier> enemySoldiers, boolean canShootFlyingSoldiers, boolean canShootGroundSoldiers) {
-        double minDistance = -1;
+        double minDistance = Integer.MAX_VALUE;
         Soldier target = null;
         for(Soldier soldier : enemySoldiers) {
+            if (soldier.getX() == -1 || soldier.getY() == -1) {
+                continue;
+            }
             if (soldier.getCanFly()) {
                 if (!canShootFlyingSoldiers) {
                     continue;
