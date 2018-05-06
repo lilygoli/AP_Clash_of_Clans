@@ -5,6 +5,7 @@ import com.company.Models.Config;
 import com.company.Models.Soldiers.Soldier;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class WizardTower extends Defence {
     public WizardTower(int number,int level) {
@@ -22,15 +23,18 @@ public class WizardTower extends Defence {
         validManhattanDistance.add(1);
         Soldier target = findNearestEnemyInRange(enemySoldiers, true, true);
         if (target != null) {
-            for (Soldier enemySoldier : enemySoldiers) {
+            Iterator<Soldier> i = enemySoldiers.iterator();
+            while (i.hasNext()) {
+                Soldier enemySoldier = i.next();
                 Integer manhattanDistance =(int)Math.abs(enemySoldier.getX() - target.getX()) + (int)Math.abs(enemySoldier.getY() - target.getY());
                 if (validManhattanDistance.contains(manhattanDistance)) {
                     enemySoldier.setHealth(enemySoldier.getHealth() - this.getDamage());
                     if (target.getHealth() <= 0) {
-                        enemySoldiers.remove(target);
+                        i.remove();
                     }
                 }
             }
+
         }
         return target;
     }

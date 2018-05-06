@@ -4,6 +4,7 @@ import com.company.Models.Config;
 import com.company.Models.Soldiers.Soldier;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Cannon extends Defence {
     public Cannon(int number,int level) {
@@ -21,16 +22,17 @@ public class Cannon extends Defence {
         validManhattanDistance.add(1);
         Soldier target = findNearestEnemyInRange(enemySoldiers, false, true);
         if (target != null) {
-            for (Soldier enemySoldier : enemySoldiers) {
+            Iterator<Soldier> i = enemySoldiers.iterator();
+            while (i.hasNext()) {
+                Soldier enemySoldier = i.next();
                 if (enemySoldier.getCanFly()) {
                     continue;
                 }
                 Integer manhatanDistance =(int)Math.abs(enemySoldier.getX() - target.getX()) + (int)Math.abs(enemySoldier.getY() - target.getY());
                 if (validManhattanDistance.contains(manhatanDistance)) {
                     enemySoldier.setHealth(enemySoldier.getHealth() - this.getDamage());
-//                    System.out.println(enemySoldier.getHealth());
                     if (enemySoldier.getHealth() <= 0) {
-                        enemySoldiers.remove(target);
+                        i.remove();
                     }
                 }
             }
