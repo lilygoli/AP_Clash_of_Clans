@@ -17,6 +17,7 @@ public class MainBuilding extends Building {
 
     public MainBuilding(int level) {
         super(1, level); // only one should be constructed at the beginning of the game
+        this.setStrength(Config.getDictionary().get(this.getClass().getSimpleName()+"_STRENGTH"));
         Builder firstBuilder = new Builder(1);
         builders.add(firstBuilder);
         this.setTimeLeftOfConstruction(this.getBuildDuration());

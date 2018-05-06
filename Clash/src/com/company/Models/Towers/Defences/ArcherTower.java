@@ -1,5 +1,6 @@
 package com.company.Models.Towers.Defences;
 
+import com.company.Models.Config;
 import com.company.Models.Soldiers.Soldier;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 public class ArcherTower extends Defence {
     public ArcherTower(int number,int level) {
         super(number, level);
+        this.setStrength(Config.getDictionary().get(this.getClass().getSimpleName()+"_STRENGTH"));
         this.setTimeLeftOfConstruction(this.getBuildDuration());
     }
 

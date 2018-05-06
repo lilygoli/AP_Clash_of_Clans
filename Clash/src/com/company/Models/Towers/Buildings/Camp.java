@@ -1,5 +1,6 @@
 package com.company.Models.Towers.Buildings;
 
+import com.company.Models.Config;
 import com.company.Models.Game;
 import com.company.Models.Soldiers.Soldier;
 import com.company.View.View;
@@ -13,6 +14,7 @@ public class Camp extends Building {
 
     public Camp(int number,int level) {
         super(number, level);
+        this.setStrength(Config.getDictionary().get(this.getClass().getSimpleName()+"_STRENGTH"));
         this.setTimeLeftOfConstruction(this.getBuildDuration());
     }
 

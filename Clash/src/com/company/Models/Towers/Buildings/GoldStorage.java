@@ -8,6 +8,7 @@ public class GoldStorage extends Storage {
     }
     public GoldStorage(int number,int level) {
         super(number,level);
+        this.setStrength(Config.getDictionary().get(this.getClass().getSimpleName()+"_STRENGTH"));
         this.setTimeLeftOfConstruction(this.getBuildDuration());
     }
 }
