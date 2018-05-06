@@ -290,7 +290,7 @@ public class Village {
                     this.getGoldMines().add((GoldMine) tower);
                     tower.setNumber(getGoldMines().size());
                     break;
-                case "AirDefense":
+                case "AirDefence":
                     this.getAirDefences().add((AirDefence) tower);
                     tower.setNumber(getAirDefences().size());
                     break;

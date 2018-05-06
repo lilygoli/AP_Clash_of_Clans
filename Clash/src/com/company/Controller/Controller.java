@@ -651,7 +651,7 @@ public class Controller {
                 getCommandInCampInfoMenu(camp);
                 break;
             case 2:
-                camp.showUpgradeInfo();
+                View.show("you can't upgrade this building");
                 getCommandInCampInfoMenu(camp);
                 break;
             case 3:

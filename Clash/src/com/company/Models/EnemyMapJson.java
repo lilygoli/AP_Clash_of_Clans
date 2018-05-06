@@ -48,11 +48,17 @@ public class EnemyMapJson {
     public Game ConvertEnemyJsonToGame() {
         Game game = new Game();
         game.setVillage(new Village());
-        game.getVillage().getMap()[game.getVillage().getMainBuilding().getX()][game.getVillage().getMainBuilding().getY()]= new Grass();
-        game.getVillage().getMap()[game.getVillage().getElixirStorages().get(0).getX()][game.getVillage().getElixirStorages().get(0).getY()] = new Grass();
-        game.getVillage().getMap()[game.getVillage().getGoldStorages().get(0).getX()][game.getVillage().getGoldStorages().get(0).getY()] = new Grass();
-        game.getVillage().getGoldStorages().remove(0);
-        game.getVillage().getElixirStorages().remove(0);
+        MainBuilding mainBuilding = game.getVillage().getMainBuilding();
+        ArrayList<ElixirStorage> elixirStorages = game.getVillage().getElixirStorages();
+        ArrayList<GoldStorage> goldStorages = game.getVillage().getGoldStorages();
+        game.getVillage().getMap()[mainBuilding.getX()][mainBuilding.getY()]= new Grass();
+        game.getVillage().getMap()[elixirStorages.get(0).getX()][elixirStorages.get(0).getY()] = new Grass();
+        game.getVillage().getMap()[goldStorages.get(0).getX()][goldStorages.get(0).getY()] = new Grass();
+
+
+
+        goldStorages.remove(0);
+        elixirStorages.remove(0);
         game.getVillage().setMainBuilding(null);
         game.setTime(0);
         game.setAttackStatus(true);
