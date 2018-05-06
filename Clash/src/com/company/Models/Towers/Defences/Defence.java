@@ -46,7 +46,7 @@ public abstract class Defence extends Cell {
         double minDistance = Integer.MAX_VALUE;
         Soldier target = null;
         for(Soldier soldier : enemySoldiers) {
-            if (soldier.getX() == -1 || soldier.getY() == -1) {
+            if (soldier.getX() == -1 && soldier.getY() == -1) {
                 continue;
             }
             if (soldier.getCanFly()) {

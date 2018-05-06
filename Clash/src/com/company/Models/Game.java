@@ -236,10 +236,13 @@ public class Game {
     public String statusUnit(String unitType) {
         StringBuilder finalString = new StringBuilder();
         for (Soldier troop : troops) {
-            if (troop.getClass().getSimpleName().equals(unitType)) {
-                finalString.append(unitType).append(" level= ").append(troop.getLevel()).append(" in(").append(troop.getX()).append(",").append(troop.getY()).append(") with health").append(troop.getHealth()).append("\n");
+            if (troop.getX() != -1 && troop.getY() != -1) {
+                if (troop.getClass().getSimpleName().equals(unitType)) {
+                    finalString.append(unitType).append(" level= ").append(troop.getLevel()).append(" in(").append(troop.getX()).append(",").append(troop.getY()).append(") with health").append(troop.getHealth()).append("\n");
+                }
             }
         }
+
         return finalString.toString();
     }
 

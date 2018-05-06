@@ -28,8 +28,8 @@ public class Cannon extends Defence {
                 if (enemySoldier.getCanFly()) {
                     continue;
                 }
-                Integer manhatanDistance =(int)Math.abs(enemySoldier.getX() - target.getX()) + (int)Math.abs(enemySoldier.getY() - target.getY());
-                if (validManhattanDistance.contains(manhatanDistance)) {
+                Integer manhattanDistance =(int)Math.abs(enemySoldier.getX() - target.getX()) + (int)Math.abs(enemySoldier.getY() - target.getY());
+                if (validManhattanDistance.contains(manhattanDistance)) {
                     enemySoldier.setHealth(enemySoldier.getHealth() - this.getDamage());
                     if (enemySoldier.getHealth() <= 0) {
                         i.remove();

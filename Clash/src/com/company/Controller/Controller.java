@@ -553,7 +553,8 @@ public class Controller {
                     throw new NotEnoughResourcesException();
                 } else {
                     cell.upgrade();
-                    game.getVillage().getResource().setGold(game.getVillage().getResource().getGold() - cell.getUpgradeCost());
+                    Resource resource=new Resource(game.getVillage().getResource().getGold() - cell.getUpgradeCost(),game.getVillage().getResource().getElixir());
+                    game.getVillage().setResource(resource);
                 }
                 break;
             case "N":
