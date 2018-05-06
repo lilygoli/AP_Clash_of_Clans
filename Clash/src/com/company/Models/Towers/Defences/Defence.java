@@ -59,8 +59,8 @@ public abstract class Defence extends Cell {
                     continue;
                 }
             }
-            double deltaX = (soldier.getX() - this.getX()) * (soldier.getX() - this.getX());
-            double deltaY = (soldier.getY() - this.getY()) * (soldier.getY() - this.getY());
+            double deltaX = (soldier.getX() - this.getX());
+            double deltaY = (soldier.getY() - this.getY());
             double distance = Math.sqrt(deltaX * deltaX - deltaY * deltaY);
             if (distance < minDistance && distance < this.getRadius()) {
                 target = soldier;

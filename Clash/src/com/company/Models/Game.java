@@ -221,8 +221,6 @@ public class Game {
                 if (!cell.getClass().getSimpleName().equals("Grass") && cell.isRuined()) {
                     cell.setRuined(false);
                 }
-
-                System.out.println(cell.getClass().getSimpleName());
                 cell.setStrength(Config.getDictionary().get(cell.getClass().getSimpleName() + "_STRENGTH"));
             }
         }
