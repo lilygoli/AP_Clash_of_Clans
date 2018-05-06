@@ -313,16 +313,16 @@ public class Controller {
                             implementPutUnitCommand(unit);
                             break;
                         case "status resources":
-                            View.show(game.statusResourcesInWar());
+                            View.show(game.statusResourcesInWar().trim());
                             break;
                         case "status units":
-                            View.show(game.statusUnits());
+                            View.show(game.statusUnits().trim());
                             break;
                         case "status towers":
-                            View.show(game.statusTowers());
+                            View.show(game.statusTowers().trim());
                             break;
                         case "status all":
-                            View.show(game.statusAll());
+                            View.show(game.statusAll().trim());
                             break;
                     }
                     Matcher unitMatcher = makePatternAndMatcher(userInput, Regex.STATUS_UNIT_TYPE);
@@ -333,10 +333,14 @@ public class Controller {
                     if (towerMatcher.find()) {
                         View.show(game.statusTower(towerMatcher.group(1)));
                     }
+                    if (userInput.equals("Quit attack") || game.isWarFinished()){
+                        break;
+                    }
                 }
-                while (!userInput.equals("Quit attack") || !game.isWarFinished());
-                View.show("The war ended with" + game.getVillage().getGainedResource().getGold() + " gold," + game.getVillage().getGainedResource().getElixir() + " elixir and" + game.getVillage().getScore() + "scores achieved!");
+                while (true);
+                View.show("The war ended with " + game.getVillage().getGainedResource().getGold() + " gold, " + game.getVillage().getGainedResource().getElixir() + " elixir and " + game.getVillage().getScore() + " scores achieved!");
                 game.healAfterWar();
+                mainCommandAnalyzer();
                 break;
             case 3:
                 implementAttackCommand();

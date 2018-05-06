@@ -216,12 +216,14 @@ public class Game {
         for (Cell[] cells : village.getMap()) {
             for (Cell cell : cells) {
                 if (cell.getClass().getSimpleName().equals("MainBuilding")) {
-                    cell.setStrength(Config.getDictionary().get(this.getClass().getSimpleName() + "_STRENGTH") + cell.getLevel() * 500);
+                    cell.setStrength(Config.getDictionary().get(cell.getClass().getSimpleName() + "_STRENGTH") + cell.getLevel() * 500);
                 }
                 if (!cell.getClass().getSimpleName().equals("Grass") && cell.isRuined()) {
                     cell.setRuined(false);
                 }
-                cell.setStrength(Config.getDictionary().get(this.getClass().getSimpleName() + "_STRENGTH"));
+
+                System.out.println(cell.getClass().getSimpleName());
+                cell.setStrength(Config.getDictionary().get(cell.getClass().getSimpleName() + "_STRENGTH"));
             }
         }
     }
