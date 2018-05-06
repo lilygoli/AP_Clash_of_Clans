@@ -593,6 +593,7 @@ public class Controller {
                     ArrayList<Storage> allElixirStorage = new ArrayList<>(game.getVillage().getElixirStorages());
                     mine.mine(allElixirStorage);
                 }
+                cell.showMenu();
                 getCommandInMine(cell);
                 break;
             case 3:
@@ -651,7 +652,7 @@ public class Controller {
                 getCommandInCampInfoMenu(camp);
                 break;
             case 2:
-                camp.showUpgradeInfo();
+                View.show("you can't upgrade this building");
                 getCommandInCampInfoMenu(camp);
                 break;
             case 3:

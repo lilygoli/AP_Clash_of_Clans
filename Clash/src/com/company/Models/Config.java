@@ -1,5 +1,8 @@
 package com.company.Models;
 
+import com.company.Models.Soldiers.Soldier;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Config {
@@ -234,8 +237,9 @@ public class Config {
         dictionary.put("Trap_ELIXIR_GAINED_WHEN_DESTRUCTED" , 0);
         dictionary.put("Trap_UPGRADE_COST",100);
 
-
+        dictionary.put("KMM" , 6);
     }
+
 
     public static HashMap<String, Integer> getDictionary() {
         return dictionary;

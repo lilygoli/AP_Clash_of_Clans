@@ -43,7 +43,7 @@ public abstract class Soldier {
     public Soldier() {
     }
 
-    private final double MOVE_PER_TURN = 1;
+    private final double MOVE_PER_TURN = getMaxSpeed() / Config.getDictionary().get("KMM");
     // TODO: 4/26/2018 what is move per turn
 
     public static ArrayList<Soldier> getSoldierSubClasses() {
@@ -71,7 +71,7 @@ public abstract class Soldier {
     }
 
     public int getMaxSpeed() {
-        return Config.getDictionary().get(this.getClass().getSimpleName() + "_MAX_SPEED");
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_MAXSPEED");
     }
 
     public int getLevel() {
@@ -154,7 +154,6 @@ public abstract class Soldier {
 
 
     void attackTargets(Village attackerVillage, Village enemyVillage, Cell target) {
-        // TODO: 4/23/2018 add resource decrease
         if (hasReachedDestination(target)) {
             target.setStrength(target.getStrength() - getDamage());
             if (target.getStrength() <= 0) {

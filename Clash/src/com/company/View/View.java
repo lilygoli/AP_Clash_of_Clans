@@ -58,7 +58,7 @@ public class View {
                 if (village.getMap()[j][i].getClass() == Grass.class || village.getMap()[j][i].isRuined()) {
                     result.append("0");
                 } else {
-                    result.append("1");
+                    result.append("B");
                 }
             }
             result.append("\n");

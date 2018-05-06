@@ -115,6 +115,10 @@ public class Cell {
         return y;
     }
 
+    public void setType(int type) {
+        this.type = type;
+    }
+
     public void setY(int y) {
         this.y = y;
     }
