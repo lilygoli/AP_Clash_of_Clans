@@ -29,7 +29,6 @@ public class Cell {
     private int timeLeftOfConstruction;
 
     public Cell(int number,int level){
-        Config.getDictionary().get(this.getClass().getSimpleName()+"_STRENGTH");
         this.level=level;
         this.number=number;
     }

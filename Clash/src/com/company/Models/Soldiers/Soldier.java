@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 public abstract class Soldier {
-    private static ArrayList<Soldier> soldierSubClasses=new ArrayList<Soldier>();
+    private static ArrayList<Soldier> soldierSubClasses = new ArrayList<Soldier>();
     private int buildDuration;
     private int health;
     private int damage;
@@ -32,14 +32,16 @@ public abstract class Soldier {
     {
         health = Config.getDictionary().get(this.getClass().getSimpleName() + "_HEALTH");
         damage = Config.getDictionary().get(this.getClass().getSimpleName() + "_DAMAGE");
-        buildDuration=Config.getDictionary().get(this.getClass().getSimpleName()+"_BUILD_DURATION");
+        buildDuration = Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION");
     }
 
-    public Soldier(int time){
+    public Soldier(int time) {
         setBuildDuration(Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION") - time);
         // TODO: 4/26/2018 check
     }
-    public Soldier(){}
+
+    public Soldier() {
+    }
 
     private final double MOVE_PER_TURN = 1;
     // TODO: 4/26/2018 what is move per turn
@@ -142,16 +144,16 @@ public abstract class Soldier {
 
     public void upgrade() {
         setDamage(getAddedDamage() + getDamage());
-        setHealth(getHealth()+ getAddedHealth());
+        setHealth(getHealth() + getAddedHealth());
         setLevel(getLevel() + 1);
     }
 
     public void heal() {
-        setHealth(Config.getDictionary().get(this.getClass().getSimpleName() + "_HEALTH") + (getLevel()* getAddedHealth()));
+        setHealth(Config.getDictionary().get(this.getClass().getSimpleName() + "_HEALTH") + (getLevel() * getAddedHealth()));
     }
 
 
-    void attackTargets(Village attackerVillage, Village enemyVillage,Cell target) {
+    void attackTargets(Village attackerVillage, Village enemyVillage, Cell target) {
         // TODO: 4/23/2018 add resource decrease
         if (hasReachedDestination(target)) {
             target.setStrength(target.getStrength() - getDamage());
@@ -161,14 +163,14 @@ public abstract class Soldier {
             }
         } else {
             setDirection(findDirection(enemyVillage, target));
-            moveSoldier(attackerVillage,getDirection(), enemyVillage);
+            moveSoldier(attackerVillage, getDirection(), enemyVillage);
         }
     }
 
     private void moveSoldier(Village attackerVillage, Direction direction, Village enemyVillage) {
         // TODO: 4/24/2018 check double int
         if (direction == Direction.LEFT) {
-            if (enemyVillage.getMap()[(int) (x - 1)][(int) y].getClass().equals(Grass.class) || enemyVillage.getMap()[(int)(x - 1)][(int)y].isRuined() || getCanFly()) {
+            if (enemyVillage.getMap()[(int) (x - 1)][(int) y].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) (x - 1)][(int) y].isRuined() || getCanFly()) {
                 x = x - MOVE_PER_TURN;
             } else {
                 Cell target = enemyVillage.getMap()[(int) (x - 1)][(int) y];
@@ -179,7 +181,7 @@ public abstract class Soldier {
             }
 
         } else if (direction == Direction.RIGHT) {
-            if (enemyVillage.getMap()[(int) (x + 1)][(int) y].getClass().equals(Grass.class)  || enemyVillage.getMap()[(int)(x + 1)][(int)y].isRuined() || getCanFly()) {
+            if (enemyVillage.getMap()[(int) (x + 1)][(int) y].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) (x + 1)][(int) y].isRuined() || getCanFly()) {
                 x = x + MOVE_PER_TURN;
             } else {
                 Cell target = enemyVillage.getMap()[(int) (x + 1)][(int) y];
@@ -188,7 +190,7 @@ public abstract class Soldier {
                     destroyAndLoot(attackerVillage, target);
                 }
             }
-        } else if (direction == Direction.UP) {
+        } else if (direction == Direction.DOWN) {
             if (enemyVillage.getMap()[(int) x][(int) (y + 1)].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) x][(int) (y + 1)].isRuined() || getCanFly()) {
                 y = y + MOVE_PER_TURN;
             } else {
@@ -198,7 +200,7 @@ public abstract class Soldier {
                     destroyAndLoot(attackerVillage, target);
                 }
             }
-        } else if (direction == Direction.DOWN) {
+        } else if (direction == Direction.UP) {
             if (enemyVillage.getMap()[(int) x][(int) (y - 1)].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) x][(int) (y - 1)].isRuined() || getCanFly()) {
                 y = y - MOVE_PER_TURN;
             } else {
@@ -214,17 +216,17 @@ public abstract class Soldier {
     private void destroyAndLoot(Village attackerVillage, Cell target) {
         target.setRuined(true);
         target.setStrength(0);
-        attackerVillage.setScore(attackerVillage.getScore()+target.getPointsGainedWhenDestructed());
+        attackerVillage.setScore(attackerVillage.getScore() + target.getPointsGainedWhenDestructed());
         Resource gainedResource;
         switch (target.getClass().getSimpleName()) {
             case "GoldStorage": {
                 Storage storage = (Storage) target;
-                gainedResource = new Resource(target.getGoldGainedWhenDestructed() + storage.getResource(),target.getElixirGainedWhenDestructed());
+                gainedResource = new Resource(target.getGoldGainedWhenDestructed() + storage.getResource(), target.getElixirGainedWhenDestructed());
                 break;
             }
             case "ElixirStorage": {
                 Storage storage = (Storage) target;
-                gainedResource = new Resource(target.getGoldGainedWhenDestructed(),  target.getElixirGainedWhenDestructed() + storage.getResource());
+                gainedResource = new Resource(target.getGoldGainedWhenDestructed(), target.getElixirGainedWhenDestructed() + storage.getResource());
                 break;
             }
             default:
@@ -236,10 +238,10 @@ public abstract class Soldier {
     }
 
     // TODO: 4/18/2018 add healer
-    public Cell findDestination(Village enemyVillage,ArrayList<String> validDestinations) {
-        Cell destination = new Cell(0,0);
+    public Cell findDestination(Village enemyVillage, ArrayList<String> validDestinations) {
+        Cell destination = new Cell(0, 0);
         double minDistance = 100d;
-        int flag=0;
+        int flag = 0;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
                 if (!enemyVillage.getMap()[i][j].isRuined()) {
@@ -247,21 +249,22 @@ public abstract class Soldier {
                         if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) <= minDistance) {
                             destination = enemyVillage.getMap()[i][j];
                             minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
-                            flag=1;
+                            flag = 1;
                         }
                     }
                 }
             }
         }
         if (validDestinations.contains("Camp")) {
-            if (flag==0) {
-                return findDestination(enemyVillage,getAllValidDestinations());
+            if (flag == 0) {
+                return findDestination(enemyVillage, getAllValidDestinations());
             }
         }
         return destination;
     }
-    public ArrayList<String> getAllValidDestinations(){
-        ArrayList<String > allTowers=new ArrayList<>();
+
+    public ArrayList<String> getAllValidDestinations() {
+        ArrayList<String> allTowers = new ArrayList<>();
         for (Cell cell : Cell.getCellKinds()) {
             allTowers.add(cell.getClass().getSimpleName());
         }
@@ -335,5 +338,5 @@ public abstract class Soldier {
     }
 
 
-    public abstract void attackTarget(Village attackerVillage,Village enemyVillage);
+    public abstract void attackTarget(Village attackerVillage, Village enemyVillage);
 }
