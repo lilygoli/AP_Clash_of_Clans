@@ -299,11 +299,11 @@ public abstract class Soldier {
             }
             adjacent[2][0] = x;
             if (y + 1 < 30) {
-                adjacent[2][1] = y;
+                adjacent[2][1] = y + 1;
             }
             adjacent[3][1] = y;
             if (x - 1 >= 0) {
-                adjacent[3][0] = x;
+                adjacent[3][0] = x - 1;
             }
             for (int i = 0; i < 4; i++) {
                 if (adjacent[i][0] != -1 && adjacent[i][1] != -1 && distance[x][y] + 1 + (int) (enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getStrength() / damage) < distance[adjacent[i][0]][adjacent[i][1]]) {

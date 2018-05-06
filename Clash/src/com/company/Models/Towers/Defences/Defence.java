@@ -10,6 +10,12 @@ import java.util.ArrayList;
 public abstract class Defence extends Cell {
     private static final String menuOptions = "1. Info\n2. Target\n3. Back";
     private static final String infoMenuOptions = "1. Overall info\n2. Upgrade info\n3. Attack info\n4. Upgrade\n5. Back";
+    private int strength;
+    private int damage;
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
 
     public Defence(int number, int level) {
         super(number,level);
@@ -19,6 +25,8 @@ public abstract class Defence extends Cell {
     @Override
     public void upgrade() {
         this.setLevel(this.getLevel() + 1);
+        this.strength += 10;
+        this.damage += 1;
     }
 
     public void showMenu() {
@@ -67,11 +75,17 @@ public abstract class Defence extends Cell {
     }
 
     public int getDamage() {
-        return super.getLevel() + Config.getDictionary().get(this.getClass().getSimpleName() + "_DAMAGE");
+        return damage;
+    }
+
+    @Override
+    public void setStrength(int strength) {
+        this.strength = strength;
     }
 
     public int getStrength() {
-        return 10 * super.getLevel() + Config.getDictionary().get(this.getClass().getSimpleName() + "_STRENGTH");
+        return strength;
+
     }
 
 

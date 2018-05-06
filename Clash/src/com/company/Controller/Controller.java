@@ -78,6 +78,8 @@ public class Controller {
         Matcher matcher = makePatternAndMatcher(input, Regex.SAVING_GAME_REGEX);
         if (matcher.find()) {
             implementFinishGame(matcher.group(1), matcher.group(2));
+            System.out.println("Good luck please come Back");
+            System.exit(0);
         }
     }
 
