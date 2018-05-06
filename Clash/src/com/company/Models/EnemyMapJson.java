@@ -143,6 +143,7 @@ public class EnemyMapJson {
         GoldStorage goldStorage = new GoldStorage(game.getVillage().getGoldStorages().size(), building.getLevel());
         goldStorage.setX(building.getX());
         goldStorage.setY(building.getY());
+        goldStorage.setResource(goldStorage.getAmount());
         goldStorage.setResource(building.getAmount());
         game.getVillage().getGoldStorages().add(goldStorage);
         game.getVillage().getMap()[building.getX()][building.getY()] = goldStorage;
@@ -152,6 +153,7 @@ public class EnemyMapJson {
         ElixirStorage elixirStorage = new ElixirStorage(game.getVillage().getElixirStorages().size(), building.getLevel());
         elixirStorage.setX(building.getX());
         elixirStorage.setY(building.getY());
+        elixirStorage.setResource(building.getAmount());
         elixirStorage.setResource(building.getAmount());
         game.getVillage().getElixirStorages().add(elixirStorage);
         game.getVillage().getMap()[building.getX()][building.getY()] = elixirStorage;

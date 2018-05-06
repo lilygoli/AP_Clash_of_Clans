@@ -16,7 +16,7 @@ public abstract class Building extends Cell {
     }
 
     public int getStrength() {
-        return getStrength();
+        return super.getStrength();
     }
 
     public int getJsonType() {

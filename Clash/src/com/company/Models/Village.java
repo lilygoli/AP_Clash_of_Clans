@@ -50,9 +50,16 @@ public class Village {
         goldStorages.get(0).setResource(2000);
         elixirStorages.get(0).setResource(1000);
         Random random = new Random();
-        map[random.nextInt(28) + 1][random.nextInt(28) + 1] = goldStorages.get(0);
-        map[random.nextInt(28) + 1][random.nextInt(28) + 1] = elixirStorages.get(0);
-
+        int XGoldStorage=random.nextInt(28) + 1;
+        int YGoldStorage=random.nextInt(28) + 1;
+        int XElixirStorage=random.nextInt(28) + 1;
+        int YElixirStorage=random.nextInt(28) + 1;
+        map[XGoldStorage][YGoldStorage] = goldStorages.get(0);
+        map[XElixirStorage][YElixirStorage] = elixirStorages.get(0);
+        goldStorages.get(0).setX(XGoldStorage);
+        goldStorages.get(0).setY(YGoldStorage);
+        elixirStorages.get(0).setX(XElixirStorage);
+        elixirStorages.get(0).setY(YElixirStorage);
         goldStorages.get(0).setResource(Config.getDictionary().get("STARTING_GOLD"));// TODO: 4/29/2018 what int resouce should be
         elixirStorages.get(0).setResource(Config.getDictionary().get("STARTING_ELIXIR"));
     }

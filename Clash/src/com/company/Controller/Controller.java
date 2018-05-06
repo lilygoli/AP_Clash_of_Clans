@@ -297,7 +297,6 @@ public class Controller {
             case 2:
                 game.setUnderAttackOrDefense(true);
                 startAttack();
-               // view.showAttackMap(game.getAttackedVillage().getVillage(),game.getTroops());
                 String userInput;
                 do {
                     userInput = view.getInput();
@@ -333,12 +332,9 @@ public class Controller {
                     if (towerMatcher.find()) {
                         View.show(game.statusTower(towerMatcher.group(1)));
                     }
-                    if (userInput.equals("Quit attack") || game.isWarFinished()){
-                        break;
-                    }
                 }
-                while (true);
-                View.show("The war ended with " + game.getVillage().getGainedResource().getGold() + " gold, " + game.getVillage().getGainedResource().getElixir() + " elixir and " + game.getVillage().getScore() + " scores achieved!");
+                while (!userInput.equals("Quit attack") && !game.isWarFinished());
+                View.show("The war ended with" + game.getVillage().getGainedResource().getGold() + " gold," + game.getVillage().getGainedResource().getElixir() + " elixir and" + game.getVillage().getScore() + "scores achieved!");
                 game.healAfterWar();
                 mainCommandAnalyzer();
                 break;

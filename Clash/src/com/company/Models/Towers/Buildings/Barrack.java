@@ -50,6 +50,9 @@ public class Barrack extends Building {
                         Soldier newSoldier = null;
                         try {
                             newSoldier = soldier.getClass().getDeclaredConstructor(int.class).newInstance(timeDecreasedToMakeASoldier);//depends on the soldier Constructor
+                            for (int j = 0; j <soldierBuildLevel ; j++) {
+                                newSoldier.upgrade();
+                            }
                         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                             e.printStackTrace();
                         }

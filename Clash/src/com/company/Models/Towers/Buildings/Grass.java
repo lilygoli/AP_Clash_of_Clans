@@ -3,6 +3,7 @@ package com.company.Models.Towers.Buildings;
 public class Grass extends Building{
     {
         this.setUnderConstructionStatus(false);
+        this.setStrength(0);
     }
 
     public Grass() {

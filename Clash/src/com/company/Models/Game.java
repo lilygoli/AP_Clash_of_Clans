@@ -221,8 +221,6 @@ public class Game {
                 if (!cell.getClass().getSimpleName().equals("Grass") && cell.isRuined()) {
                     cell.setRuined(false);
                 }
-
-                System.out.println(cell.getClass().getSimpleName());
                 cell.setStrength(Config.getDictionary().get(cell.getClass().getSimpleName() + "_STRENGTH"));
             }
         }
@@ -261,7 +259,9 @@ public class Game {
         for (Cell[] cells : attackedVillage.village.getMap()) {
             for (Cell cell : cells) {
                 if (cell.getClass().getSimpleName().equals(towerType) && !cell.isRuined()) {
-                    finalString.append(towerType).append(" level= ").append(cell.getLevel()).append(" in(").append(cell.getX()).append(",").append(cell.getY()).append(") with health").append(cell.getStrength()).append("\n");
+                    finalString.append(cell.getClass().getSimpleName()).append(" level= ").append(cell.getLevel()).append(" in(").append(cell.getX()).append(",").append(cell.getY()).append(") with health ").append(cell.getStrength()).append("\n");
+                    if (cell.getClass().getSimpleName().equals("MainBuilding"))
+                        return finalString.toString();
                 }
             }
         }
