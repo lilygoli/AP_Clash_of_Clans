@@ -1,6 +1,5 @@
 package com.company.Models.Soldiers;
 
-import com.company.Models.Towers.Cell;
 import com.company.Models.Village;
 
 import java.util.ArrayList;
