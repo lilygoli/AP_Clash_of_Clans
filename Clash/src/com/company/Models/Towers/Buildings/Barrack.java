@@ -10,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class Barrack extends Building {
-    private ArrayList<HashMap<Soldier, Integer>> underConstructionSoldiers = new ArrayList<HashMap<Soldier, Integer>>();
+    private ArrayList<HashMap<Soldier, Integer>> underConstructionSoldiers = new ArrayList<>();
     private int timeDecreasedToMakeASoldier = 0;
     private int soldierBuildLevel = 0;
     private boolean canBeUpgraded = true;
@@ -56,7 +56,7 @@ public class Barrack extends Building {
                         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                             e.printStackTrace();
                         }
-                        HashMap<Soldier, Integer> soldierAndTimeUnderConstruction = new HashMap<Soldier, Integer>();
+                        HashMap<Soldier, Integer> soldierAndTimeUnderConstruction = new HashMap<>();
                         soldierAndTimeUnderConstruction.put(newSoldier, 0);
                         underConstructionSoldiers.add(soldierAndTimeUnderConstruction);
                     }
@@ -68,7 +68,7 @@ public class Barrack extends Building {
     }
     private void addToConstructionTime(){
         if(underConstructionSoldiers.size()==0)
-            return;;
+            return;
         Soldier soldier=(Soldier)underConstructionSoldiers.get(0).keySet().toArray()[0];
         underConstructionSoldiers.get(0).replace(soldier,underConstructionSoldiers.get(0).get(soldier)+1);
     }
@@ -95,7 +95,7 @@ public class Barrack extends Building {
     }
 
     public HashMap<String, Integer> determineAvailableSoldiers( int elixir) {
-        HashMap<String, Integer> availableSoldiers = new HashMap<String, Integer>(); //number of soldiers we cannot build is 0
+        HashMap<String, Integer> availableSoldiers = new HashMap<>(); //number of soldiers we cannot build is 0
         for (Soldier soldier : Soldier.getSoldierSubClasses()
                 ) {
             if (soldier.getUnlockLevel() <= getLevel()) {

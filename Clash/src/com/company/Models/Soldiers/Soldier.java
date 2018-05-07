@@ -63,7 +63,7 @@ public abstract class Soldier {
     }
 
     private int getDamage() {
-        return damage;
+        return damage / Config.getDictionary().get("KMM");
     }
 
     private int getRadius() {

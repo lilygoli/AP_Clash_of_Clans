@@ -2,8 +2,6 @@ package com.company.Models;
 
 import com.company.Exception.*;
 import com.company.Models.Towers.Buildings.Camp;
-import com.company.Models.Towers.Buildings.Grass;
-import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Towers.Cell;
 import com.company.Models.Towers.Defences.AirDefence;
 import com.company.Models.Towers.Defences.ArcherTower;
@@ -57,27 +55,17 @@ public class Game {
         return troops;
     }
 
-    public void setTroops(ArrayList<Soldier> troops) {
-        this.troops = troops;
-    }
-
     public void setUnderAttackOrDefense(boolean underAttackOrDefense) {
         isUnderAttackOrDefense = underAttackOrDefense;
     }
-
 
     public boolean isUnderAttackOrDefense() {
         return isUnderAttackOrDefense;
     }
 
-    public void setAllAttackedVillages(ArrayList<Game> allAttackedVillages) {
-        this.allAttackedVillages = allAttackedVillages;
-    }
-
     public ArrayList<Game> getAllAttackedVillages() {
         return allAttackedVillages;
     }
-
 
     public void showResources() {
         System.out.println(village.showSourcesInfo());
@@ -109,10 +97,6 @@ public class Game {
 
     public void setAttackStatus(boolean isUnderAttack) {
         this.isUnderAttackOrDefense = isUnderAttack;
-    }
-
-    public boolean getAttackStatus() {
-        return isUnderAttackOrDefense;
     }
 
     public String showAttackMenu() {
@@ -212,7 +196,7 @@ public class Game {
         View.show(whereIAm);
     }
 
-    public void rebuild() {
+    private void rebuild() {
         for (Cell[] cells : village.getMap()) {
             for (Cell cell : cells) {
                 if (cell.getClass().getSimpleName().equals("MainBuilding")) {
@@ -281,7 +265,7 @@ public class Game {
         return statusResourcesInWar()+"\n"+ statusTowers()+"\n" + statusUnits();
     }
 
-    public void passTurnInWarMode() throws NotInWarException {
+    private void passTurnInWarMode() throws NotInWarException {
         if (this.attackedVillage == null) {
             throw new NotInWarException();
         }
@@ -332,7 +316,7 @@ public class Game {
         village.setResource(resource);
     }
 
-    public void healSoldiers() {
+    private void healSoldiers() {
         for (Soldier troop : troops) {
             troop.heal();
         }
