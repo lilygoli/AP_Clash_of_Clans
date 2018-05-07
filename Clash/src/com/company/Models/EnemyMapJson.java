@@ -191,6 +191,9 @@ public class EnemyMapJson {
         mainBuilding.setLevel(building.getLevel());
         game.getVillage().setMainBuilding(mainBuilding);
         game.getVillage().getMap()[building.getX()][building.getY()] = mainBuilding;
+        game.getVillage().getMap()[building.getX()+1][building.getY()] = mainBuilding;
+        game.getVillage().getMap()[building.getX()][building.getY()+1] = mainBuilding;
+        game.getVillage().getMap()[building.getX()+1][building.getY()+1] = mainBuilding;
     }
 
     private void initializeBarrack(Game game, Cell building) {

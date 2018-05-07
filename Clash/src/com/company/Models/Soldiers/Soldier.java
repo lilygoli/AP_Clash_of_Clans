@@ -220,6 +220,7 @@ public abstract class Soldier {
             case "GoldStorage": {
                 Storage storage = (Storage) target;
                 gainedResource = new Resource(target.getGoldGainedWhenDestructed() + storage.getResource(), target.getElixirGainedWhenDestructed());
+
                 break;
             }
             case "ElixirStorage": {

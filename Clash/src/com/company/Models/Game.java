@@ -214,8 +214,8 @@ public class Game {
     public String statusResourcesInWar() {
         return "Gold Achieved : " + village.getGainedResource().getGold() + "\n" +
                 "Elixir Achieved : " + village.getGainedResource().getElixir() + "\n" +
-                "Gold Remained In Map : " + (attackedVillage.village.getResource().getGold() - village.getGainedResource().getGold()) + "\n" +
-                "Elixir Remained In Map : " + (attackedVillage.village.getResource().getElixir() - village.getGainedResource().getElixir()) + "\n";
+                "Gold Remained In Map : " + (attackedVillage.village.getResource()) + "\n" +
+                "Elixir Remained In Map : " + (attackedVillage.village.getResource()) + "\n";
     }
 
     public String statusUnit(String unitType) {
