@@ -1,13 +1,14 @@
 package com.company.Models.Soldiers;
 
 import com.company.Enums.Direction;
-import com.company.Models.Towers.Buildings.*;
-import com.company.Models.Towers.Cell;
 import com.company.Models.Config;
-import com.company.Models.*;
+import com.company.Models.Resource;
+import com.company.Models.Towers.Buildings.Grass;
+import com.company.Models.Towers.Buildings.Storage;
+import com.company.Models.Towers.Cell;
+import com.company.Models.Village;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 
 public abstract class Soldier {
@@ -171,57 +172,42 @@ public abstract class Soldier {
             if (enemyVillage.getMap()[(int) (x - 1)][(int) y].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) (x - 1)][(int) y].isRuined() || getCanFly()) {
                 x = x - MOVE_PER_TURN;
             } else {
-                if (x - Math.round(x) <= 0.0001 && y - Math.round(y) <= 0.0001) {
                     Cell target = enemyVillage.getMap()[(int) (x - 1)][(int) y];
                     target.setStrength(target.getStrength() - getDamage());
                     if (target.getStrength() <= 0) {
                         destroyAndLoot(attackerVillage, target);
                     }
-                }
-                else
-                    x = x - MOVE_PER_TURN;
             }
 
         } else if (direction == Direction.RIGHT) {
             if (enemyVillage.getMap()[(int) (x + 1)][(int) y].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) (x + 1)][(int) y].isRuined() || getCanFly()) {
                 x = x + MOVE_PER_TURN;
             } else {
-                if (x - Math.round(x) <= 0.0001 && y - Math.round(y) <= 0.0001) {
                     Cell target = enemyVillage.getMap()[(int) (x + 1)][(int) y];
                     target.setStrength(target.getStrength() - getDamage());
                     if (target.getStrength() <= 0) {
                         destroyAndLoot(attackerVillage, target);
                     }
-                }
-                else
-                    x = x+ MOVE_PER_TURN;
             }
         } else if (direction == Direction.DOWN) {
             if (enemyVillage.getMap()[(int) x][(int) (y + 1)].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) x][(int) (y + 1)].isRuined() || getCanFly()) {
                 y = y + MOVE_PER_TURN;
             } else {
-                if (x - Math.round(x) <= 0.0001 && y - Math.round(y) <= 0.0001) {
-                    Cell target = enemyVillage.getMap()[(int) x][(int) (y + 1)];
-                    target.setStrength(target.getStrength() - getDamage());
-                    if (target.getStrength() <= 0) {
-                        destroyAndLoot(attackerVillage, target);
-                    }
+                Cell target = enemyVillage.getMap()[(int) x][(int) (y + 1)];
+                target.setStrength(target.getStrength() - getDamage());
+                if (target.getStrength() <= 0) {
+                    destroyAndLoot(attackerVillage, target);
                 }
-                else
-                    y = y+ MOVE_PER_TURN;
-            }
-        } else if (direction == Direction.UP) {
-            if (enemyVillage.getMap()[(int) x][(int) (y - 1)].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) x][(int) (y - 1)].isRuined() || getCanFly()) {
-                y = y - MOVE_PER_TURN;
-            } else {
-                if (x - Math.round(x) <= 0.0001 && y - Math.round(y) <= 0.0001) {
-                    Cell target = enemyVillage.getMap()[(int) x][(int) (y - 1)];
-                    target.setStrength(target.getStrength() - getDamage());
-                    if (target.getStrength() <= 0) {
-                        destroyAndLoot(attackerVillage, target);
-                    }
-                }else
-                    y = y - MOVE_PER_TURN;
+        }
+    } else if(direction ==Direction.UP)
+
+        if (enemyVillage.getMap()[(int) x][(int) (y - 1)].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) x][(int) (y - 1)].isRuined() || getCanFly()) {
+            y = y - MOVE_PER_TURN;
+        } else {
+            Cell target = enemyVillage.getMap()[(int) x][(int) (y - 1)];
+            target.setStrength(target.getStrength() - getDamage());
+            if (target.getStrength() <= 0) {
+                destroyAndLoot(attackerVillage, target);
             }
         }
     }
@@ -274,7 +260,6 @@ public abstract class Soldier {
                 return findDestination(enemyVillage, getAllValidDestinations());
             }
         }
-        System.out.println(this.getClass().getSimpleName() + " attack " + destination.getClass().getSimpleName() + " in " + destination.getX() +" " + destination.getY());
         return destination;
     }
 
@@ -349,7 +334,7 @@ public abstract class Soldier {
     }
 
     private boolean hasReachedDestination(Cell target) {
-        return Math.sqrt(Math.pow(x - (double)target.getX(), 2.0) + Math.pow(y - (double)target.getY(), 2.0)) <= (double)getRadius() && x - Math.round(x) < 0.0001 && y - Math.round(y) < 0.0001;
+        return Math.sqrt(Math.pow(x - (double) target.getX(), 2.0) + Math.pow(y - (double) target.getY(), 2.0)) <= (double) getRadius();
     }
 
 

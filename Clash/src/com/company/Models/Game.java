@@ -68,7 +68,7 @@ public class Game {
     }
 
     public void showResources() {
-        System.out.println(village.showSourcesInfo());
+        View.show(village.showSourcesInfo());
     }
 
     public Village getVillage() {
