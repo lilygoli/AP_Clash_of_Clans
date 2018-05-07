@@ -43,7 +43,7 @@ public abstract class Defence extends Cell {
     public abstract Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers); // TODO: 4/23/18 enemy soldier should die sometimes:)
 
     public Soldier findNearestEnemyInRange(ArrayList<Soldier> enemySoldiers, boolean canShootFlyingSoldiers, boolean canShootGroundSoldiers) {
-        double minDistance = Double.MAX_VALUE;
+        double minDistance = 10000;
         Soldier target = null;
         if (enemySoldiers.isEmpty())
             return null;
@@ -63,8 +63,8 @@ public abstract class Defence extends Cell {
             }
             double deltaX = (soldier.getX() - this.getX()) ;
             double deltaY = (soldier.getY() - this.getY()) ;
-            double distance = Math.sqrt(deltaX * deltaX - deltaY * deltaY);
-            if (distance < minDistance && distance <= this.getRadius()) {
+            double distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+            if (distance < minDistance && distance <= (double)this.getRadius()) {
                 target = soldier;
                 minDistance = distance;
             }

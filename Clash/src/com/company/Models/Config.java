@@ -1,8 +1,5 @@
 package com.company.Models;
 
-import com.company.Models.Soldiers.Soldier;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Config {

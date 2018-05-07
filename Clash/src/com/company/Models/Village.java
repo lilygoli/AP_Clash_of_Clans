@@ -129,10 +129,12 @@ public class Village {
     public Resource getResource() {
         int gold = 0, elixir = 0;
         for (GoldStorage goldStorage : getGoldStorages()) {
-            gold += goldStorage.getResource();
+            if(!goldStorage.isRuined())
+                gold += goldStorage.getResource();
         }
         for (ElixirStorage elixirStorage : getElixirStorages()) {
-            elixir += elixirStorage.getResource();
+            if(!elixirStorage.isRuined())
+                elixir += elixirStorage.getResource();
         }
         return new Resource(gold, elixir);
     }

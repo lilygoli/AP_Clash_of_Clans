@@ -43,7 +43,7 @@ public abstract class Soldier {
     public Soldier() {
     }
 
-    private final double MOVE_PER_TURN = getMaxSpeed() / Config.getDictionary().get("KMM");
+    private final double MOVE_PER_TURN = 1.0 * getMaxSpeed() / Config.getDictionary().get("KMM");
     // TODO: 4/26/2018 what is move per turn
 
     public static ArrayList<Soldier> getSoldierSubClasses() {
@@ -220,6 +220,7 @@ public abstract class Soldier {
             case "GoldStorage": {
                 Storage storage = (Storage) target;
                 gainedResource = new Resource(target.getGoldGainedWhenDestructed() + storage.getResource(), target.getElixirGainedWhenDestructed());
+
                 break;
             }
             case "ElixirStorage": {
@@ -258,6 +259,7 @@ public abstract class Soldier {
                 return findDestination(enemyVillage, getAllValidDestinations());
             }
         }
+        System.out.println(this.getClass().getSimpleName() + " attack " + destination.getClass().getSimpleName() + " in " + destination.getX() +" " + destination.getY());
         return destination;
     }
 
@@ -332,7 +334,7 @@ public abstract class Soldier {
     }
 
     private boolean hasReachedDestination(Cell target) {
-        return Math.sqrt(Math.pow(x - target.getX(), 2) + Math.pow(y - target.getY(), 2)) <= getRadius();
+        return Math.sqrt(Math.pow(x - (double)target.getX(), 2.0) + Math.pow(y - (double)target.getY(), 2.0)) <= (double)getRadius();
     }
 
 

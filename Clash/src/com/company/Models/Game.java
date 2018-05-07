@@ -214,8 +214,8 @@ public class Game {
     public String statusResourcesInWar() {
         return "Gold Achieved : " + village.getGainedResource().getGold() + "\n" +
                 "Elixir Achieved : " + village.getGainedResource().getElixir() + "\n" +
-                "Gold Remained In Map : " + (attackedVillage.village.getResource().getGold() - village.getGainedResource().getGold()) + "\n" +
-                "Elixir Remained In Map : " + (attackedVillage.village.getResource().getElixir() - village.getGainedResource().getElixir()) + "\n";
+                "Gold Remained In Map : " + (attackedVillage.village.getResource().getGold()) + "\n" +
+                "Elixir Remained In Map : " + (attackedVillage.village.getResource().getElixir()) + "\n";
     }
 
     public String statusUnit(String unitType) {
@@ -302,6 +302,10 @@ public class Game {
                 }
                 soldier.attackTarget(this.getVillage(), this.attackedVillage.getVillage());
             }
+        }
+        for (Soldier troop : troops) {
+            troop.setX((double)Math.round(troop.getX()));
+            troop.setY((double)Math.round(troop.getY()));
         }
     }
 
