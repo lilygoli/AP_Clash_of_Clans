@@ -295,11 +295,13 @@ public class Game {
             wizardTower.findAndShootUnit(this.troops);
         }
         //Attacker Soldiers part
-        for (Soldier soldier : troops) {
-            if(soldier.getX()==-1 && soldier.getY()==-1){
-                continue;
+        for (int i = 0; i < Config.getDictionary().get("KMM"); i++) {
+            for (Soldier soldier : troops) {
+                if (soldier.getX() == -1 && soldier.getY() == -1) {
+                    continue;
+                }
+                soldier.attackTarget(this.getVillage(), this.attackedVillage.getVillage());
             }
-            soldier.attackTarget(this.getVillage(), this.attackedVillage.getVillage());
         }
     }
 

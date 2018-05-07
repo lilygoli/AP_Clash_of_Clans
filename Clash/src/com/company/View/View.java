@@ -51,14 +51,14 @@ public class View {
             for (int j = 0; j < 30; j++) {
                 for (Soldier troop : troops) {
                     if (troop.getX() == j && troop.getY() == i) {
-                        result.append("S ");
+                        result.append(Character.toLowerCase(troop.getClass().getSimpleName().charAt(0)) + " ");
                         continue outer;
                     }
                 }
                 if (village.getMap()[j][i].getClass() == Grass.class || village.getMap()[j][i].isRuined()) {
-                    result.append("0 ");
+                    result.append(". ");
                 } else {
-                    result.append("B ");
+                    result.append(village.getMap()[j][i].getClass().getSimpleName().charAt(0) + " ");
                 }
             }
             result.append("\n");
