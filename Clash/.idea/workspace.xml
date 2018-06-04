@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cd4373d0-16e4-43f1-a01f-34df3517e604" name="Default" comment="Constructing UI package and classes... phase 2 started">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/MainMenu/Background.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/MainMenu/Button.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/MainMenu/ExitButton.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/MainMenu/LoadGameButton.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/MainMenu/NewGameButton.png" />
+    <list default="true" id="cd4373d0-16e4-43f1-a01f-34df3517e604" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" afterPath="$PROJECT_DIR$/src/com/company/Main.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UIs/MainMenuUI.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/MainMenuUI.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -438,7 +431,7 @@
       <workItem from="1526997696371" duration="1718000" />
       <workItem from="1527995683613" duration="1210000" />
       <workItem from="1528000414142" duration="1044000" />
-      <workItem from="1528112564158" duration="2397000" />
+      <workItem from="1528112564158" duration="2408000" />
     </task>
     <task id="LOCAL-00001" summary="bug fix in Defences to shoot enemies">
       <created>1525595424519</created>
@@ -496,11 +489,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528001251693</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Constructing UI package and classes... phase 2 started">
+      <created>1528119005300</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1528119005301</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126364000" />
+    <option name="totallyTimeSpent" value="126375000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
