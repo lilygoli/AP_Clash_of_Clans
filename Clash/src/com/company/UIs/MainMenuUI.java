@@ -21,7 +21,7 @@ public class MainMenuUI extends Application{
         double screenHeight = Screen.getPrimary().getVisualBounds().getHeight();
         primaryStage.setTitle("Clash");
         Group root = new Group();
-        Scene scene = new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),Screen.getPrimary().getVisualBounds().getHeight());
+        Scene scene = new Scene(root, screenWidth,screenHeight);
         primaryStage.setScene(scene);
         primaryStage.show();
         File file = new File("./src/com/company/UIs/MainMenu/menuGif.gif");
