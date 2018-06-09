@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -55,7 +56,8 @@ public class SideBarUI {
             File backFile=new File(ADDRESS+"Back.png");
             Image backImage=new Image(backFile.toURI().toString());
             ImageView backView=new ImageView(backImage);
-            VBox vBox=new VBox(infoView,availableBuildingView,statusView,backView);
+            VBox vBox=new VBox(1,infoView,availableBuildingView,statusView,backView);
+            vBox.relocate(30,10);
             group.getChildren().add(vBox);
     }
 
