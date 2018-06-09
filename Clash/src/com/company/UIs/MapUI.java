@@ -1,6 +1,8 @@
 package com.company.UIs;
 
 import com.company.Controller.Controller;
+import com.company.Models.Towers.Buildings.Grass;
+import com.company.Models.Village;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -38,13 +40,13 @@ public class MapUI extends Application {
         root.getChildren().add(backGroundView);
 
         makeGameBoard(root, scene);
-
         file = new File("./src/com/company/UIs/MapResources/mapBorder.png");
         Image mapBorder = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(),Screen.getPrimary().getVisualBounds().getHeight(), false, true);
         ImageView mapBorderView = new ImageView(mapBorder);
         mapBorderView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() * 1.4);
         mapBorderView.relocate(Screen.getPrimary().getVisualBounds().getWidth() - Screen.getPrimary().getVisualBounds().getHeight() * 1.09, -Screen.getPrimary().getVisualBounds().getHeight() / 5);
         root.getChildren().add(mapBorderView);
+        SideBarUI.makeSideBar(primaryStage,root);
     }
 
     private void makeGameBoard(Group root, Scene scene) throws FileNotFoundException {
@@ -71,14 +73,34 @@ public class MapUI extends Application {
                     root.getChildren().add(imageView);
             }
         }
+        showMap(controller.getGame().getVillage(),root);
     }
+    public void showMap(Village village,Group group) {
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
+                if (village.getMap()[j][i].getClass() == Grass.class) {
+                    continue;
+                } else {
+                    ImageView imageView=getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName());
+                    imageView.setX(mapCoordinates2PixelX(j));
+                    imageView.setY(mapCoordinates2PixelY(i));
+                    group.getChildren().add(imageView);
+                }
+            }
+        }
 
-    private double mapCordinates2PixelX (int x) {
+    }
+    private ImageView getImageOfBuildings(String name){
+        File file=new File(".\\src\\com\\company\\ImagesAndGifs\\Buildings\\"+name+".png");
+        Image buildingImage = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth() / 32,Screen.getPrimary().getVisualBounds().getHeight() / 32, false, true);
+        return new ImageView(buildingImage);
+    }
+    private double mapCoordinates2PixelX(int x) {
         double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
         return Screen.getPrimary().getVisualBounds().getWidth() - (x + 1) * cellWidth;
     }
 
-    private double mapCordinates2PixelY (int y) {
+    private double mapCoordinates2PixelY(int y) {
         double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
         return (y + 1) * cellWidth;
     }
