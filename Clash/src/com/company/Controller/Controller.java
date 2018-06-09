@@ -135,7 +135,6 @@ public class Controller {
 
     public void implementBuildATowerCommand() throws NotEnoughFreeBuildersException, NotEnoughResourcesException { //name and place to be refactored ... was implemented to complete building a tower//available buildings in barracks command
         String availableBuildings = game.getVillage().getMainBuilding().findAvailableBuildings(game.getVillage().getResource().getGold(), game.getVillage().getResource().getElixir());
-        View.show(availableBuildings);
         int numberOfAvailableBuildings = availableBuildings.split("\n").length;
         String playerChoice = view.getInput("Enter your preferred number in the list");
         if (!playerChoice.matches("\\d+") || Integer.parseInt(playerChoice) > numberOfAvailableBuildings) {

@@ -1,19 +1,28 @@
 package com.company.UIs;
 
+import com.company.Controller.Controller;
 import com.company.Models.Towers.Cell;
-import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
-import javafx.stage.Stage;
+
 import java.io.File;
 
 public class SideBarUI {
     private static final String ADDRESS  = "./src/com/company/UIs/SideBarMenuImages/";
+    private static Controller controller;
+
+    public static void setController(Controller controller) {
+        SideBarUI.controller = controller;
+    }
+
     public static void makeSideBar(Group group){
         File sideBarFile=new File("./src/com/company/UIs/SideBarMenuImages/labelLessCroppedMenu.png");
         Image sideBarMenuBackground=new Image(sideBarFile.toURI().toString());
@@ -47,6 +56,25 @@ public class SideBarUI {
             File availableBuildingsFile=new File(ADDRESS+"AvailableBuildings.png");
             Image availableBuildingsImage=new Image(availableBuildingsFile.toURI().toString());
             ImageView availableBuildingView=new ImageView(availableBuildingsImage);
+            availableBuildingView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    makeSideBar(group);
+                    ComboBox<String > comboBox= new ComboBox<>();
+                    String availableBuildings = controller.getGame().getVillage().getMainBuilding().findAvailableBuildings(controller.getGame().getVillage().getResource().getGold(), controller.getGame().getVillage().getResource().getElixir());
+                    comboBox.getItems().addAll(availableBuildings.split("\n"));
+                    comboBox.relocate(80,160);
+                    group.getChildren().add(comboBox);
+                    File backFile=new File(ADDRESS+"back.png");
+                    Image backImage=new Image(backFile.toURI().toString());
+                    ImageView backView=new ImageView(backImage);
+                    backView.setScaleX(0.5);
+                    backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*0.5);
+                    backView.setX(55);
+                    group.getChildren().add(backView);
+
+                }
+            });
             File statusFile=new File(ADDRESS+"Status.png");
             Image statusImage=new Image(statusFile.toURI().toString());
             ImageView statusView=new ImageView(statusImage);
@@ -68,8 +96,8 @@ public class SideBarUI {
         Image SourcesInfoImage=new Image(SourcesInfoFile.toURI().toString());
         ImageView SourcesInfoView=new ImageView(SourcesInfoImage);
         File upgradeFile=new File(ADDRESS+"upgrade.png");
-        Image upgradeImage=new Image(SourcesInfoFile.toURI().toString());
-        ImageView upgradeView=new ImageView(SourcesInfoImage);
+        Image upgradeImage=new Image(upgradeFile.toURI().toString());
+        ImageView upgradeView=new ImageView(upgradeImage);
         File backFile=new File(ADDRESS+"Back.png");
         Image backImage=new Image(backFile.toURI().toString());
         ImageView backView=new ImageView(backImage);
