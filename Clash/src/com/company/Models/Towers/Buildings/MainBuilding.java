@@ -58,7 +58,6 @@ public class MainBuilding extends Building {
         }
         availableBuildings = new StringBuilder(availableBuildings.toString().trim());
         counter++;
-        availableBuildings.append("\n" + counter + ". back");
         return availableBuildings.toString();
     }
 
