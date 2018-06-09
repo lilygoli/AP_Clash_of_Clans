@@ -7,7 +7,7 @@ import javafx.stage.Screen;
 
 public class SceneGestures {
     private static final double MAX_SCALE = 10.0d;
-    private static final double MIN_SCALE = 1d;
+    private static final double MIN_SCALE = 0.8d;
 
     PannableCanvas canvas;
 
@@ -89,23 +89,8 @@ public class SceneGestures {
 
             double x = sceneDragContext.translateAnchorX + event.getSceneX() - sceneDragContext.mouseAnchorX;
             double y = sceneDragContext.translateAnchorY + event.getSceneY() - sceneDragContext.mouseAnchorY;
-            if (x > Screen.getPrimary().getVisualBounds().getWidth()){
-                x = Screen.getPrimary().getVisualBounds().getWidth();
-            }
-//            if (x > canvas.getBoundsInParent().getWidth()){
-//                x  = canvas.getBoundsInParent().getWidth();
-//            }
-//            if (x < 0){
-//                x = 0;
-//            }
-//            if(y > Screen.getPrimary().getVisualBounds().getHeight()){
-//                y = canvas.getHeight();
-//            }
-//            if (y < 0){
-//                y = 0;
-//            }
             canvas.setTranslateY(y);
-            canvas.setTranslateX(0);
+            canvas.setTranslateX(x);
 
             event.consume();
         }

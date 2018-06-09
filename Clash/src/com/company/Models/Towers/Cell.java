@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class Cell {
 
     private final String infoMenu = "1. Overall Info\n2. Upgrade Info\n3. Upgrade \n4. Back";
-    private ImageView image;
+    private transient ImageView image;
     private boolean isUnderConstruction = false;
     private int x;
     private int y;
@@ -32,14 +32,15 @@ public class Cell {
     private Builder workingBuilder;
     private int timeLeftOfConstruction;
 
-    public Cell(int number,int level){
+    public ImageView getImage() {
+        return image;
+    }
+
+    public Cell(int number, int level){
         this.level=level;
         this.number=number;
     }
 
-    public ImageView getImage() {
-        return image;
-    }
 
     public void setImage(ImageView image) {
         this.image = image;
