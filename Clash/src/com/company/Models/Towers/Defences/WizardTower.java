@@ -4,6 +4,7 @@ package com.company.Models.Towers.Defences;
 import com.company.Models.Config;
 import com.company.Models.Soldiers.Soldier;
 
+import javax.swing.text.html.ImageView;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -13,6 +14,7 @@ public class WizardTower extends Defence {
         this.setStrength(Config.getDictionary().get(this.getClass().getSimpleName()+"_STRENGTH"));
         this.setTimeLeftOfConstruction(this.getBuildDuration());
     }
+    
 
     public Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers) {
         if (this.getUnderConstructionStatus()) {

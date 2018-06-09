@@ -109,13 +109,13 @@ public class MapUI extends Application {
                     continue;
                 }else if (village.getMap()[j][i].getClass() == MainBuilding.class) {
                     if(flag==0) {
-                        System.out.println("x " + j + "y " + i);
                         flag = 1;
                         ImageView imageView = getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName());
                         imageView.setX(mapCoordinates2PixelX(i));
                         imageView.setY(mapCoordinates2PixelY(j));
                         imageView.setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / 16);
                         imageView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / 16);
+                        village.getMap()[j][i].setImage(imageView);
                         canvas.getChildren().add(imageView);
                     }
 
@@ -123,6 +123,7 @@ public class MapUI extends Application {
                     ImageView imageView=getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName());
                     imageView.setX(mapCoordinates2PixelX(i));
                     imageView.setY(mapCoordinates2PixelY(j));
+                    village.getMap()[j][i].setImage(imageView);
                     canvas.getChildren().add(imageView);
                 }
             }

@@ -9,12 +9,16 @@ import com.company.Models.Towers.Defences.ArcherTower;
 import com.company.Models.Towers.Defences.Cannon;
 import com.company.Models.Towers.Defences.WizardTower;
 import com.company.View.View;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 
 import java.util.ArrayList;
 
 public class Cell {
 
     private final String infoMenu = "1. Overall Info\n2. Upgrade Info\n3. Upgrade \n4. Back";
+    private ImageView image;
     private boolean isUnderConstruction = false;
     private int x;
     private int y;
@@ -31,6 +35,10 @@ public class Cell {
     public Cell(int number,int level){
         this.level=level;
         this.number=number;
+    }
+
+    public void setImage(ImageView image) {
+        this.image = image;
     }
 
     public Builder getWorkingBuilder() {
