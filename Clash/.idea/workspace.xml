@@ -7,12 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd4373d0-16e4-43f1-a01f-34df3517e604" name="Default" comment="bug fix">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/Cannon.gif" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/ElixirMine.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/ElixirStorage.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/GoldMine.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/MainBuilding.jpg" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/com/company/UIs/SceneGestures.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/SceneGestures.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -683,12 +677,12 @@
       <workItem from="1526285184657" duration="995000" />
       <workItem from="1526365968401" duration="57000" />
       <workItem from="1528270644979" duration="3359000" />
-      <workItem from="1528515450796" duration="12313000" />
+      <workItem from="1528515450796" duration="13234000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133875000" />
+    <option name="totallyTimeSpent" value="134796000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
