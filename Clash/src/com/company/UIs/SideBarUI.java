@@ -56,8 +56,8 @@ public class SideBarUI {
             File backFile=new File(ADDRESS+"Back.png");
             Image backImage=new Image(backFile.toURI().toString());
             ImageView backView=new ImageView(backImage);
-            VBox vBox=new VBox(1,infoView,availableBuildingView,statusView,backView);
-            vBox.relocate(30,10);
+            VBox vBox=new VBox(infoView,availableBuildingView,statusView,backView);
+            vBox.relocate(50,160);
             group.getChildren().add(vBox);
     }
 
