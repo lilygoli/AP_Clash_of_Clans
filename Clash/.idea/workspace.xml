@@ -7,15 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd4373d0-16e4-43f1-a01f-34df3517e604" name="Default" comment="bug fix">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/GuardianGiant/AttackDown.gif" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/GuardianGiant/AttackLeft.gif" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/GuardianGiant/AttackRight.gif" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/GuardianGiant/AttackUp.gif" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/GuardianGiant/MoveDown.gif" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/GuardianGiant/MoveLeft.gif" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/GuardianGiant/MoveRight.gif" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/GuardianGiant/MoveUp.gif" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -90,10 +83,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SceneGestures.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SceneGestures.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SceneGestures.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="643">
+            <state relative-caret-position="841">
               <caret line="100" column="43" lean-forward="false" selection-start-line="100" selection-start-column="43" selection-end-line="100" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -107,6 +100,30 @@
                 <element signature="e#821#822#0" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SideBarUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1889">
+              <caret line="120" column="45" lean-forward="false" selection-start-line="120" selection-start-column="45" selection-end-line="120" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="upgrade question.png" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/upgrade question.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SourcesInfoInsides.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/SourcesInfoInsides.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
@@ -131,10 +148,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>upgrade</find>
-      <find>implementBuildSol</find>
-      <find>Imple</find>
-      <find>implementBuildSoldier</find>
       <find>getCommandInB</find>
       <find>MainCommand</find>
       <find>showBuildings</find>
@@ -161,6 +174,10 @@
       <find>status all</find>
       <find>pas</find>
       <find>Giant</find>
+      <find>Sources</find>
+      <find>UpgradeInfo</find>
+      <find>Mine</find>
+      <find>Status</find>
     </findStrings>
     <replaceStrings>
       <replace>cell</replace>
@@ -169,6 +186,10 @@
       <replace>WiazrdTower</replace>
       <replace>Wall</replace>
       <replace>Trap</replace>
+      <replace>Capacity</replace>
+      <replace>Mine</replace>
+      <replace>BuildSoldier</replace>
+      <replace>BuildSoldiers</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -226,6 +247,7 @@
         <option value="$PROJECT_DIR$/src/com/company/UIs/DragContext.java" />
         <option value="$PROJECT_DIR$/src/com/company/UIs/MapUI.java" />
         <option value="$PROJECT_DIR$/src/com/company/UIs/SceneGestures.java" />
+        <option value="$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java" />
       </list>
     </option>
   </component>
@@ -306,14 +328,6 @@
               <item name="Clash" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="company" type="462c0819:PsiDirectoryNode" />
-              <item name="ImagesAndGifs" type="462c0819:PsiDirectoryNode" />
-              <item name="Buildings" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Clash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Clash" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="company" type="462c0819:PsiDirectoryNode" />
               <item name="Models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -331,6 +345,14 @@
               <item name="company" type="462c0819:PsiDirectoryNode" />
               <item name="UIs" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Clash" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Clash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="company" type="462c0819:PsiDirectoryNode" />
+              <item name="UIs" type="462c0819:PsiDirectoryNode" />
+              <item name="SideBarMenuImages" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -346,7 +368,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="plugin&#9;ACTION&#9;WelcomeScreen.Plugins" />
+    <property name="SearchEverywhereHistoryKey" value="capacity&#9;PSI&#9;JAVA://com.company.Exception.NotEnoughCapacityInCampsException&#10;plugin&#9;ACTION&#9;WelcomeScreen.Plugins" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -368,7 +390,10 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/misc.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/AvailableBuildings.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/Back.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/Status.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/info.png</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
@@ -678,12 +703,12 @@
       <workItem from="1526285184657" duration="995000" />
       <workItem from="1526365968401" duration="57000" />
       <workItem from="1528270644979" duration="3359000" />
-      <workItem from="1528515450796" duration="14071000" />
+      <workItem from="1528515450796" duration="16124000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135633000" />
+    <option name="totallyTimeSpent" value="137686000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -815,11 +840,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Buildings/Barrack.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Regex.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Buildings/MainBuilding.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/company/View.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Defences/Defence.java" />
     <entry file="file://$PROJECT_DIR$/src/com/company/Models/Cell.java" />
     <entry file="file://$PROJECT_DIR$/src/com/company/Models/Controller.java" />
     <entry file="file://$PROJECT_DIR$/src/com/company/Exception/BarrackUpgradeException.java" />
@@ -1215,7 +1235,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SceneGestures.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
+        <state relative-caret-position="841">
           <caret line="100" column="43" lean-forward="false" selection-start-line="100" selection-start-column="43" selection-end-line="100" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1229,6 +1249,37 @@
             <element signature="e#821#822#0" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/SourcesInfoInsides.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/upgrade.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Exception/NotEnoughCapacityInCampsException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1889">
+          <caret line="120" column="45" lean-forward="false" selection-start-line="120" selection-start-column="45" selection-end-line="120" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/upgrade question.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
   </component>

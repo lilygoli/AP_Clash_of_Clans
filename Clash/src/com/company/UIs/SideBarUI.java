@@ -60,6 +60,107 @@ public class SideBarUI {
             vBox.relocate(50,160);
             group.getChildren().add(vBox);
     }
+    public static void makeStorageMenu(Group group , Cell cell){
+        File overAllInfoFile=new File(ADDRESS+"OverAllInfo.png");
+        Image overAllInfoImage=new Image(overAllInfoFile.toURI().toString());
+        ImageView overAllInfoView=new ImageView(overAllInfoImage);
+        File UpgradeInfoFile=new File(ADDRESS+"UpgradeInfo.png");
+        Image UpgradeInfoImage=new Image(UpgradeInfoFile.toURI().toString());
+        ImageView UpgradeInfoView=new ImageView(UpgradeInfoImage);
+        File SourcesInfoFile=new File(ADDRESS+"SourcesInfo.png");
+        Image SourcesInfoImage=new Image(SourcesInfoFile.toURI().toString());
+        ImageView SourcesInfoView=new ImageView(SourcesInfoImage);
+        File upgradeFile=new File(ADDRESS+"upgrade.png");
+        Image upgradeImage=new Image(SourcesInfoFile.toURI().toString());
+        ImageView upgradeView=new ImageView(SourcesInfoImage);
+        File backFile=new File(ADDRESS+"Back.png");
+        Image backImage=new Image(backFile.toURI().toString());
+        ImageView backView=new ImageView(backImage);
+        VBox vBox=new VBox(1,overAllInfoView,UpgradeInfoView,SourcesInfoView,upgradeView ,backView);
+        vBox.relocate(30,10);
+        group.getChildren().add(vBox);
+    }
+
+    public static void makeCampMenu(Group group , Cell cell){
+        File infoFile=new File(ADDRESS+"info.png");
+        Image infoImage=new Image(infoFile.toURI().toString());
+        ImageView infoView=new ImageView(infoImage);
+        File SoldiersFile=new File(ADDRESS+"Soldiers.png");
+        Image SoldiersImage=new Image(SoldiersFile.toURI().toString());
+        ImageView SoldiersView=new ImageView(SoldiersImage);
+        File backFile=new File(ADDRESS+"Back.png");
+        Image backImage=new Image(backFile.toURI().toString());
+        ImageView backView=new ImageView(backImage);
+        VBox vBox=new VBox(1,infoView,SoldiersView,backView);
+        vBox.relocate(30,10);
+        group.getChildren().add(vBox);
+    }
+
+    public static void makeCampInfoMenu(Group group , Cell cell){
+        File overAllInfoFile=new File(ADDRESS+"OverAllInfo.png");
+        Image overAllInfoImage=new Image(overAllInfoFile.toURI().toString());
+        ImageView overAllInfoView=new ImageView(overAllInfoImage);
+        File UpgradeInfoFile=new File(ADDRESS+"UpgradeInfo.png");
+        Image UpgradeInfoImage=new Image(UpgradeInfoFile.toURI().toString());
+        ImageView UpgradeInfoView=new ImageView(UpgradeInfoImage);
+        File CapacityInfoFile=new File(ADDRESS+"CapacityInfo.png");
+        Image CapacityInfoImage=new Image(CapacityInfoFile.toURI().toString());
+        ImageView CapacityInfoView=new ImageView(CapacityInfoImage);
+        File backFile=new File(ADDRESS+"Back.png");
+        Image backImage=new Image(backFile.toURI().toString());
+        ImageView backView=new ImageView(backImage);
+        VBox vBox=new VBox(1,overAllInfoView,UpgradeInfoView,CapacityInfoView,backView);
+        vBox.relocate(30,10);
+        group.getChildren().add(vBox);
+    }
+
+    public static void makeMineMenu(Group group , Cell cell){
+        File infoFile=new File(ADDRESS+"info.png");
+        Image infoImage=new Image(infoFile.toURI().toString());
+        ImageView infoView=new ImageView(infoImage);
+        File MineFile=new File(ADDRESS+"Mine.png");
+        Image MineImage=new Image(MineFile.toURI().toString());
+        ImageView MineView=new ImageView(MineImage);
+        File backFile=new File(ADDRESS+"Back.png");
+        Image backImage=new Image(backFile.toURI().toString());
+        ImageView backView=new ImageView(backImage);
+        VBox vBox=new VBox(1,infoView,MineView,backView);
+        vBox.relocate(30,10);
+        group.getChildren().add(vBox);
+    }
+
+    public static void makeMineAndBarracksInfoMenu(Group group , Cell cell){
+        File overAllInfoFile=new File(ADDRESS+"OverAllInfo.png");
+        Image overAllInfoImage=new Image(overAllInfoFile.toURI().toString());
+        ImageView overAllInfoView=new ImageView(overAllInfoImage);
+        File UpgradeInfoFile=new File(ADDRESS+"UpgradeInfo.png");
+        Image UpgradeInfoImage=new Image(UpgradeInfoFile.toURI().toString());
+        ImageView UpgradeInfoView=new ImageView(UpgradeInfoImage);
+        File backFile=new File(ADDRESS+"Back.png");
+        Image backImage=new Image(backFile.toURI().toString());
+        ImageView backView=new ImageView(backImage);
+        VBox vBox=new VBox(1,overAllInfoView,UpgradeInfoView,backView);
+        vBox.relocate(30,10);
+        group.getChildren().add(vBox);
+    }
+
+    public static void makeBarrackMenu(Group group , Cell cell){
+        File infoFile=new File(ADDRESS+"info.png");
+        Image infoImage=new Image(infoFile.toURI().toString());
+        ImageView infoView=new ImageView(infoImage);
+        File BuildSoldiersFile=new File(ADDRESS+"BuildSoldiers.png");
+        Image BuildSoldiersImage=new Image(BuildSoldiersFile.toURI().toString());
+        ImageView BuildSoldiersView=new ImageView(BuildSoldiersImage);
+        File statusFile=new File(ADDRESS+"Status.png");
+        Image statusImage=new Image(statusFile.toURI().toString());
+        ImageView statusView=new ImageView(statusImage);
+        File backFile=new File(ADDRESS+"Back.png");
+        Image backImage=new Image(backFile.toURI().toString());
+        ImageView backView=new ImageView(backImage);
+        VBox vBox=new VBox(1,infoView,BuildSoldiersView,statusView,backView);
+        vBox.relocate(30,10);
+        group.getChildren().add(vBox);
+    }
 
     public static void makeBuildingMenu(Group group, Cell cell) {
         switch (cell.getClass().getSimpleName()) {
