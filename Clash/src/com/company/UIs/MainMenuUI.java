@@ -25,18 +25,17 @@ public class MainMenuUI extends Application{
         Scene scene = new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),Screen.getPrimary().getVisualBounds().getHeight());
         primaryStage.setScene(scene);
         primaryStage.show();
-        File file = new File("/Users/ashkan/Desktop/AP_7/Clash/src/com/company/ImagesAndGifs/MainMenu/Background.png");
+        File file = new File("./src/com/company/UIs/MainMenu/menuGif.gif");
         Image backGround = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(),Screen.getPrimary().getVisualBounds().getHeight(), false, true);
         ImageView backGroundView = new ImageView(backGround);
         root.getChildren().add(backGroundView);
-
-        file = new File("/Users/ashkan/Desktop/AP_7/Clash/src/com/company/ImagesAndGifs/MainMenu/NewGameButton.png");
+        file = new File("./src/com/company/UIs/MainMenu/NewGameButton.png");
         Image newGame = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth() / 4.5,Screen.getPrimary().getVisualBounds().getHeight() / 5, false, true);
         ImageView newGameView = new ImageView(newGame);
-        file = new File("/Users/ashkan/Desktop/AP_7/Clash/src/com/company/ImagesAndGifs/MainMenu/LoadGameButton.png");
+        file = new File("./src/com/company/UIs/MainMenu/LoadGameButton.png");
         Image loadGame = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth() / 4.5,Screen.getPrimary().getVisualBounds().getHeight() / 5, false, true);
         ImageView loadGameView = new ImageView(loadGame);
-        file = new File("/Users/ashkan/Desktop/AP_7/Clash/src/com/company/ImagesAndGifs/MainMenu/ExitButton.png");
+        file = new File("./src/com/company/UIs/MainMenu/ExitButton.png");
         Image exitGame = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth() / 4.5,Screen.getPrimary().getVisualBounds().getHeight() / 5, false, true);
         ImageView exitGameView = new ImageView(exitGame);
 
