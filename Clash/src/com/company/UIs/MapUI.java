@@ -28,6 +28,9 @@ import java.io.FileNotFoundException;
 import java.util.Random;
 
 public class MapUI extends Application {
+    private static int buildX;
+    private static int buildY;
+
     private Controller controller = new Controller();
 
     public Controller getController() {
@@ -100,6 +103,15 @@ public class MapUI extends Application {
                     imageView.setFitHeight(scene.getHeight() / 32);
                     imageView.setFitWidth(scene.getHeight() / 32);
                     canvas.getChildren().add(imageView);
+                int finalI = i;
+                int finalJ = j;
+                imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            buildX = 31 - finalI;
+                            buildY = finalJ - 1;
+                        }
+                    });
             }
         }
         showMap(controller.getGame().getVillage(),canvas, root);
