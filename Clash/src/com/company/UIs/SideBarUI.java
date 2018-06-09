@@ -8,11 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
-import java.awt.*;
 import java.io.File;
 
 public class SideBarUI {
@@ -37,7 +34,7 @@ public class SideBarUI {
         Image saveImage=new Image(saveFile.toURI().toString());
         ImageView saveView=new ImageView(saveImage);
         saveView.setX(sideBarStartingX+30);
-        saveView.setY(Screen.getPrimary().getVisualBounds().getHeight()-250);
+        saveView.setY(Screen.getPrimary().getVisualBounds().getHeight()*6/10);
         saveView.setScaleX(0.5);
         group.getChildren().add(sideBarBackgroundImageView);
         group.getChildren().add(borderImageView);
