@@ -14,7 +14,7 @@ public class SideBarUI {
         File sideBarFile=new File(".\\src\\com\\company\\UIs\\SideBarMenuImages\\labelLessCroppedMenu.png");
         Image sideBarMenuBackground=new Image(sideBarFile.toURI().toString());
         ImageView sideBarBackgroundImageView=new ImageView(sideBarMenuBackground);
-        Double sideBarStartingX=-sideBarMenuBackground.getWidth()/16+Screen.getPrimary().getVisualBounds().getWidth()-Screen.getPrimary().getVisualBounds().getHeight()-sideBarBackgroundImageView.getImage().getWidth();
+        Double sideBarStartingX=-sideBarMenuBackground.getWidth()/16;
         File borderFile=new File(".\\src\\com\\company\\UIs\\SideBarMenuImages\\upperBorder.png");
         Image borderImage=new Image(borderFile.toURI().toString());
         ImageView borderImageView=new ImageView(borderImage);
