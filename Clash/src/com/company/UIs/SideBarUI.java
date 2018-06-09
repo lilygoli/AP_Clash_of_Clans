@@ -1,32 +1,32 @@
 package com.company.UIs;
 
-import javafx.application.Application;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
-import javafx.scene.Scene;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import java.io.File;
+
 public class SideBarUI {
-    public void makeSideBar(Stage primaryStage,Group group){
-        Image sideBarMenuBackground=new Image("labelLessCroppedMenu.png");
+    public static void makeSideBar(Stage primaryStage,Group group){
+        File sideBarFile=new File(".\\src\\com\\company\\UIs\\SideBarMenuImages\\labelLessCroppedMenu.png");
+        Image sideBarMenuBackground=new Image(sideBarFile.toURI().toString());
         ImageView sideBarBackgroundImageView=new ImageView(sideBarMenuBackground);
-        Image borderImage=new Image("upperBorder2.png");
+        Double sideBarStartingX=-sideBarMenuBackground.getWidth()/16+Screen.getPrimary().getVisualBounds().getWidth()-Screen.getPrimary().getVisualBounds().getHeight()-sideBarBackgroundImageView.getImage().getWidth();
+        File borderFile=new File(".\\src\\com\\company\\UIs\\SideBarMenuImages\\upperBorder.png");
+        Image borderImage=new Image(borderFile.toURI().toString());
         ImageView borderImageView=new ImageView(borderImage);
         borderImageView.setScaleX(0.6);
         borderImageView.setScaleY(0.8);
-        borderImageView.setY(30);
-        borderImageView.setX(10);
+        borderImageView.setY(40);
+        borderImageView.setX(sideBarStartingX+20);
         sideBarBackgroundImageView.fitHeightProperty().bind(primaryStage.heightProperty());
         sideBarBackgroundImageView.setScaleY(0.95);
-        Circle circle=new Circle(260,50,2);
-        sideBarBackgroundImageView.setX(-sideBarMenuBackground.getWidth()/16+Screen.getPrimary().getVisualBounds().getWidth()-Screen.getPrimary().getVisualBounds().getHeight());
+        sideBarBackgroundImageView.setX(sideBarStartingX);
         sideBarBackgroundImageView.setY(-20);
         group.getChildren().add(sideBarBackgroundImageView);
         group.getChildren().add(borderImageView);
-        group.getChildren().add(circle);
     }
 }
