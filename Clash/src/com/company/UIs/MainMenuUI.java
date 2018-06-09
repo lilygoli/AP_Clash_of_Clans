@@ -7,7 +7,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
@@ -25,22 +24,28 @@ public class MainMenuUI extends Application{
         Scene scene = new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),Screen.getPrimary().getVisualBounds().getHeight());
         primaryStage.setScene(scene);
         primaryStage.show();
-        File file = new File("/Users/ashkan/Desktop/AP_7/Clash/src/com/company/ImagesAndGifs/MainMenu/Background.png");
+        File file = new File("./src/com/company/UIs/MainMenu/menuGif.gif");
         Image backGround = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(),Screen.getPrimary().getVisualBounds().getHeight(), false, true);
         ImageView backGroundView = new ImageView(backGround);
         root.getChildren().add(backGroundView);
 
-        file = new File("/Users/ashkan/Desktop/AP_7/Clash/src/com/company/ImagesAndGifs/MainMenu/NewGameButton.png");
-        Image newGame = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth() / 4.5,Screen.getPrimary().getVisualBounds().getHeight() / 5, false, true);
+        file = new File("./src/com/company/UIs/MainMenu/NewGameButton.png");
+        Image newGame = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth() / 6,Screen.getPrimary().getVisualBounds().getHeight() / 6.5, false, true);
         ImageView newGameView = new ImageView(newGame);
-        file = new File("/Users/ashkan/Desktop/AP_7/Clash/src/com/company/ImagesAndGifs/MainMenu/LoadGameButton.png");
-        Image loadGame = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth() / 4.5,Screen.getPrimary().getVisualBounds().getHeight() / 5, false, true);
+        file = new File("./src/com/company/UIs/MainMenu/LoadGameButton.png");
+        Image loadGame = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth() / 6,Screen.getPrimary().getVisualBounds().getHeight() / 6.5, false, true);
         ImageView loadGameView = new ImageView(loadGame);
-        file = new File("/Users/ashkan/Desktop/AP_7/Clash/src/com/company/ImagesAndGifs/MainMenu/ExitButton.png");
-        Image exitGame = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth() / 4.5,Screen.getPrimary().getVisualBounds().getHeight() / 5, false, true);
+        loadGameView.setScaleX(0.95);
+        file = new File("./src/com/company/UIs/MainMenu/ExitButton.png");
+        Image exitGame = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth() / 6,Screen.getPrimary().getVisualBounds().getHeight() / 6.5, false, true);
         ImageView exitGameView = new ImageView(exitGame);
+        exitGameView.setScaleX(1.05);
 
-        makeEventHandlers(screenWidth, newGame, newGameView, loadGameView, exitGameView);
+
+        makeEventHandlersForHover(screenWidth, newGame, newGameView, loadGameView, exitGameView);
+        makeEventHandlersForClick(screenWidth, newGame, newGameView, loadGameView, exitGameView, primaryStage);
+
+
 
         VBox menuButtons = new VBox();
         menuButtons.setPrefWidth(screenWidth / 2);
@@ -49,7 +54,7 @@ public class MainMenuUI extends Application{
         menuButtons.getChildren().add(exitGameView);
         menuButtons.alignmentProperty().setValue(Pos.CENTER);
 
-        menuButtons.relocate(screenWidth / 4, screenHeight / 5);
+        menuButtons.relocate(screenWidth / 4, screenHeight / 3.5);
 
         root.getChildren().add(menuButtons);
 
@@ -58,7 +63,21 @@ public class MainMenuUI extends Application{
         primaryStage.show();
     }
 
-    private void makeEventHandlers(double screenWidth, Image newGame, ImageView newGameView, ImageView loadGameView, ImageView exitGameView) {
+    private void makeEventHandlersForClick(double screenWidth, Image newGame, ImageView newGameView, ImageView loadGameView, ImageView exitGameView, Stage primaryStage) {
+        newGameView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                MapUI mapUI = new MapUI();
+                try {
+                    mapUI.start(primaryStage);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void makeEventHandlersForHover(double screenWidth, Image newGame, ImageView newGameView, ImageView loadGameView, ImageView exitGameView) {
         newGameView.setOnMouseMoved(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -68,7 +87,7 @@ public class MainMenuUI extends Application{
         newGameView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                newGameView.setFitWidth(screenWidth / 4.5);
+                newGameView.setFitWidth(screenWidth / 6);
             }
         });
         loadGameView.setOnMouseMoved(new EventHandler<MouseEvent>() {
@@ -80,7 +99,7 @@ public class MainMenuUI extends Application{
         loadGameView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                loadGameView.setFitWidth(screenWidth / 4.5);
+                loadGameView.setFitWidth(screenWidth / 6);
             }
         });
         exitGameView.setOnMouseMoved(new EventHandler<MouseEvent>() {
@@ -92,7 +111,7 @@ public class MainMenuUI extends Application{
         exitGameView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                exitGameView.setFitWidth(screenWidth / 4.5);
+                exitGameView.setFitWidth(screenWidth / 6);
             }
         });
     }
