@@ -57,10 +57,6 @@ public class SceneGestures {
             // note: pivot value must be untransformed, i. e. without scaling
             canvas.setPivot(fy * dx, fy * dy);
 
-            if (canvas.getTranslateY() > Screen.getPrimary().getVisualBounds().getHeight()){
-                canvas.setTranslateY(2);
-            }
-
             event.consume();
         }
 
