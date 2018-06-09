@@ -5,10 +5,19 @@ import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Village;
 import javafx.application.Application;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -31,26 +40,37 @@ public class MapUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Group root = new Group();
-        Scene scene = new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(),Screen.getPrimary().getVisualBounds().getHeight());
+        Scene scene = new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight());
         primaryStage.setScene(scene);
+        PannableCanvas canvas = new PannableCanvas();
+
 
         File file = new File("./src/com/company/UIs/MapResources/MapBackGround.jpg");
-        Image backGround = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(),Screen.getPrimary().getVisualBounds().getHeight(), false, true);
+        Image backGround = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight(), false, true);
         ImageView backGroundView = new ImageView(backGround);
         backGroundView.setOpacity(0.7);
         root.getChildren().add(backGroundView);
 
-        makeGameBoard(root, scene);
+        makeGameBoard(root ,scene , canvas);
+
         file = new File("./src/com/company/UIs/MapResources/mapBorder.png");
-        Image mapBorder = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(),Screen.getPrimary().getVisualBounds().getHeight(), false, true);
+        Image mapBorder = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight(), false, true);
         ImageView mapBorderView = new ImageView(mapBorder);
         mapBorderView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() * 1.4);
         mapBorderView.relocate(Screen.getPrimary().getVisualBounds().getWidth() - Screen.getPrimary().getVisualBounds().getHeight() * 1.09, -Screen.getPrimary().getVisualBounds().getHeight() / 5);
-        root.getChildren().add(mapBorderView);
-        SideBarUI.makeSideBar(primaryStage,root);
+        canvas.getChildren().add(mapBorderView);
+        SideBarUI.makeSideBar(primaryStage , root);
+
+        root.getChildren().add(canvas);
+        SceneGestures sceneGestures = new SceneGestures(canvas);
+        scene.addEventFilter(ScrollEvent.ANY, sceneGestures.getOnScrollEventHandler());
+        scene.addEventFilter(MouseEvent.MOUSE_PRESSED, sceneGestures.getOnMousePressedEventHandler());
+        scene.addEventFilter(MouseEvent.MOUSE_DRAGGED, sceneGestures.getOnMouseDraggedEventHandler());
+
     }
 
-    private void makeGameBoard(Group root, Scene scene) throws FileNotFoundException {
+
+    private void makeGameBoard(Group root , Scene scene , PannableCanvas canvas) throws FileNotFoundException {
         Random random = new Random();
         boolean flag;
         FileInputStream fileInputStream;
@@ -71,12 +91,12 @@ public class MapUI extends Application {
                     imageView.relocate(scene.getWidth() - ((i + 1) * Screen.getPrimary().getVisualBounds().getHeight() / 32) , j * Screen.getPrimary().getVisualBounds().getHeight() / 32);
                     imageView.setFitHeight(scene.getHeight() / 32);
                     imageView.setFitWidth(scene.getHeight() / 32);
-                    root.getChildren().add(imageView);
+                    canvas.getChildren().add(imageView);
             }
         }
-        showMap(controller.getGame().getVillage(),root);
+        showMap(controller.getGame().getVillage(),canvas);
     }
-    public void showMap(Village village,Group group) {
+    public void showMap(Village village,PannableCanvas canvas) {
         int flag=0;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
@@ -91,21 +111,21 @@ public class MapUI extends Application {
                         imageView.setY(mapCoordinates2PixelY(j));
                         imageView.setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / 16);
                         imageView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / 16);
-                        group.getChildren().add(imageView);
+                        canvas.getChildren().add(imageView);
                     }
 
                 } else {
                     ImageView imageView=getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName());
                     imageView.setX(mapCoordinates2PixelX(i));
                     imageView.setY(mapCoordinates2PixelY(j));
-                    group.getChildren().add(imageView);
+                    canvas.getChildren().add(imageView);
                 }
             }
         }
 
     }
     private ImageView getImageOfBuildings(String name){
-        File file=new File(".\\src\\com\\company\\ImagesAndGifs\\Buildings\\"+name+".jpg");
+        File file=new File("./src/com/company/ImagesAndGifs/Buildings/"+name+".jpg");
         Image buildingImage = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getHeight() / 32,Screen.getPrimary().getVisualBounds().getHeight() / 32, false, true);
         return new ImageView(buildingImage);
     }
