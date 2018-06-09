@@ -89,6 +89,9 @@ public class SceneGestures {
 
             double x = sceneDragContext.translateAnchorX + event.getSceneX() - sceneDragContext.mouseAnchorX;
             double y = sceneDragContext.translateAnchorY + event.getSceneY() - sceneDragContext.mouseAnchorY;
+            if (x > Screen.getPrimary().getVisualBounds().getWidth()){
+                x = Screen.getPrimary().getVisualBounds().getWidth();
+            }
 //            if (x > canvas.getBoundsInParent().getWidth()){
 //                x  = canvas.getBoundsInParent().getWidth();
 //            }
@@ -101,9 +104,8 @@ public class SceneGestures {
 //            if (y < 0){
 //                y = 0;
 //            }
-
-            canvas.setTranslateX(x);
             canvas.setTranslateY(y);
+            canvas.setTranslateX(0);
 
             event.consume();
         }
