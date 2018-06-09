@@ -102,7 +102,7 @@ public class SideBarUI {
         Image backImage=new Image(backFile.toURI().toString());
         ImageView backView=new ImageView(backImage);
         VBox vBox=new VBox(1,overAllInfoView,UpgradeInfoView,SourcesInfoView,upgradeView ,backView);
-        vBox.relocate(30,10);
+        vBox.relocate(50,160);
         group.getChildren().add(vBox);
     }
 
@@ -117,7 +117,7 @@ public class SideBarUI {
         Image backImage=new Image(backFile.toURI().toString());
         ImageView backView=new ImageView(backImage);
         VBox vBox=new VBox(1,infoView,SoldiersView,backView);
-        vBox.relocate(30,10);
+        vBox.relocate(50,160);
         group.getChildren().add(vBox);
     }
 
@@ -135,7 +135,7 @@ public class SideBarUI {
         Image backImage=new Image(backFile.toURI().toString());
         ImageView backView=new ImageView(backImage);
         VBox vBox=new VBox(1,overAllInfoView,UpgradeInfoView,CapacityInfoView,backView);
-        vBox.relocate(30,10);
+        vBox.relocate(50,160);
         group.getChildren().add(vBox);
     }
 
@@ -150,7 +150,7 @@ public class SideBarUI {
         Image backImage=new Image(backFile.toURI().toString());
         ImageView backView=new ImageView(backImage);
         VBox vBox=new VBox(1,infoView,MineView,backView);
-        vBox.relocate(30,10);
+        vBox.relocate(50,160);
         group.getChildren().add(vBox);
     }
 
@@ -165,7 +165,7 @@ public class SideBarUI {
         Image backImage=new Image(backFile.toURI().toString());
         ImageView backView=new ImageView(backImage);
         VBox vBox=new VBox(1,overAllInfoView,UpgradeInfoView,backView);
-        vBox.relocate(30,10);
+        vBox.relocate(50,160);
         group.getChildren().add(vBox);
     }
 
@@ -183,7 +183,7 @@ public class SideBarUI {
         Image backImage=new Image(backFile.toURI().toString());
         ImageView backView=new ImageView(backImage);
         VBox vBox=new VBox(1,infoView,BuildSoldiersView,statusView,backView);
-        vBox.relocate(30,10);
+        vBox.relocate(50,160);
         group.getChildren().add(vBox);
     }
 
@@ -199,6 +199,19 @@ public class SideBarUI {
             case "Trap":
             case "WizardTower":
                 makeDefencesMenu(group, cell);
+                break;
+            case "Barrack":
+                makeBarrackMenu(group, cell);
+                break;
+            case "GoldMine":
+            case "ElixirMine":
+                makeMineMenu(group, cell);
+                break;
+            case "Camp":
+                makeCampMenu(group, cell);
+            case "GoldStorage":
+            case "ElixirStorage":
+                makeStorageMenu(group, cell);
                 break;
         }
     }

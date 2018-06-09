@@ -12,6 +12,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -27,6 +28,8 @@ import java.io.FileNotFoundException;
 import java.util.Random;
 
 public class MapUI extends Application {
+    private Controller controller = new Controller();
+
     public Controller getController() {
         return controller;
     }
@@ -34,8 +37,6 @@ public class MapUI extends Application {
     public void setController(Controller controller) {
         this.controller = controller;
     }
-
-    private Controller controller = new Controller();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
