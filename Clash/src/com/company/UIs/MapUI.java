@@ -72,7 +72,7 @@ public class MapUI extends Application {
         scene.addEventFilter(MouseEvent.MOUSE_PRESSED, sceneGestures.getOnMousePressedEventHandler());
         scene.addEventFilter(MouseEvent.MOUSE_DRAGGED, sceneGestures.getOnMouseDraggedEventHandler());
 
-        SideBarUI.makeSideBar(primaryStage,root);
+        SideBarUI.makeSideBar(root);
     }
 
 

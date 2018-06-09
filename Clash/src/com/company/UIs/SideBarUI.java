@@ -16,8 +16,8 @@ import java.awt.*;
 import java.io.File;
 
 public class SideBarUI {
-    private static final String ADDRESS  = ".\\src\\com\\company\\UIs\\SideBarMenuImages\\";
-    public static void makeSideBar(Stage primaryStage,Group group){
+    private static final String ADDRESS  = "./src/com/company/UIs/SideBarMenuImages/";
+    public static void makeSideBar(Group group){
         File sideBarFile=new File("./src/com/company/UIs/SideBarMenuImages/labelLessCroppedMenu.png");
         Image sideBarMenuBackground=new Image(sideBarFile.toURI().toString());
         ImageView sideBarBackgroundImageView=new ImageView(sideBarMenuBackground);
@@ -29,7 +29,7 @@ public class SideBarUI {
         borderImageView.setScaleY(0.8);
         borderImageView.setY(40);
         borderImageView.setX(sideBarStartingX+20);
-        sideBarBackgroundImageView.fitHeightProperty().bind(primaryStage.heightProperty());
+        sideBarBackgroundImageView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
         sideBarBackgroundImageView.setScaleY(0.95);
         sideBarBackgroundImageView.setX(sideBarStartingX);
         sideBarBackgroundImageView.setY(-20);
@@ -163,11 +163,33 @@ public class SideBarUI {
     }
 
     public static void makeBuildingMenu(Group group, Cell cell) {
+        makeSideBar(group);
         switch (cell.getClass().getSimpleName()) {
             case "MainBuilding":
                 makeMainBuildingMenu(group);
                 break;
-
+            case "AirDefence":
+            case "ArcherTower":
+            case "Cannon":
+            case "Trap":
+            case "WizardTower":
+                makeDefencesMenu(group, cell);
+                break;
         }
+    }
+
+    private static void makeDefencesMenu(Group group, Cell cell) {
+        File infoFile=new File(ADDRESS+"info.png");
+        Image infoImage=new Image(infoFile.toURI().toString());
+        ImageView infoView=new ImageView(infoImage);
+        File target=new File(ADDRESS+"Target.png");
+        Image targetImage=new Image(target.toURI().toString());
+        ImageView targetView=new ImageView(targetImage);
+        File backFile=new File(ADDRESS+"Back.png");
+        Image backImage=new Image(backFile.toURI().toString());
+        ImageView backView=new ImageView(backImage);
+        VBox vBox=new VBox(infoView, targetView, backView);
+        vBox.relocate(50,160);
+        group.getChildren().add(vBox);
     }
 }
