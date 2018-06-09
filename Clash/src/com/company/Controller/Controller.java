@@ -18,6 +18,22 @@ public class Controller {
     private GameCenter gameCenter = new GameCenter();
     private View view = new View();
 
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public GameCenter getGameCenter() {
+        return gameCenter;
+    }
+
+    public void setGameCenter(GameCenter gameCenter) {
+        this.gameCenter = gameCenter;
+    }
+
     public void mainCommandAnalyzer() {
         Game.setWhereIAm("you are in Main Menu");
         while (game == null) {

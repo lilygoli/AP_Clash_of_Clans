@@ -1,5 +1,9 @@
 package com.company.UIs;
 
+import com.company.Controller.Controller;
+import com.company.Models.Towers.Buildings.Grass;
+import com.company.Models.Towers.Buildings.MainBuilding;
+import com.company.Models.Village;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -14,6 +18,16 @@ import java.io.FileNotFoundException;
 import java.util.Random;
 
 public class MapUI extends Application {
+    public Controller getController() {
+        return controller;
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
+
+    private Controller controller = new Controller();
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         Group root = new Group();
@@ -27,13 +41,13 @@ public class MapUI extends Application {
         root.getChildren().add(backGroundView);
 
         makeGameBoard(root, scene);
-
         file = new File("./src/com/company/UIs/MapResources/mapBorder.png");
         Image mapBorder = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(),Screen.getPrimary().getVisualBounds().getHeight(), false, true);
         ImageView mapBorderView = new ImageView(mapBorder);
         mapBorderView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() * 1.4);
         mapBorderView.relocate(Screen.getPrimary().getVisualBounds().getWidth() - Screen.getPrimary().getVisualBounds().getHeight() * 1.09, -Screen.getPrimary().getVisualBounds().getHeight() / 5);
         root.getChildren().add(mapBorderView);
+        SideBarUI.makeSideBar(primaryStage,root);
     }
 
     private void makeGameBoard(Group root, Scene scene) throws FileNotFoundException {
@@ -54,11 +68,54 @@ public class MapUI extends Application {
                 }
                     Image image = new Image(fileInputStream);
                     ImageView imageView = new ImageView(image);
-                    imageView.relocate(scene.getWidth() - ((i + 1) * scene.getHeight() / 32) , j * scene.getHeight() / 32);
+                    imageView.relocate(scene.getWidth() - ((i + 1) * Screen.getPrimary().getVisualBounds().getHeight() / 32) , j * Screen.getPrimary().getVisualBounds().getHeight() / 32);
                     imageView.setFitHeight(scene.getHeight() / 32);
                     imageView.setFitWidth(scene.getHeight() / 32);
                     root.getChildren().add(imageView);
             }
         }
+        showMap(controller.getGame().getVillage(),root);
+    }
+    public void showMap(Village village,Group group) {
+        int flag=0;
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
+                if (village.getMap()[j][i].getClass() == Grass.class) {
+                    continue;
+                }else if (village.getMap()[j][i].getClass() == MainBuilding.class) {
+                    if(flag==0) {
+                        System.out.println("x " + j + "y " + i);
+                        flag = 1;
+                        ImageView imageView = getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName());
+                        imageView.setX(mapCoordinates2PixelX(i));
+                        imageView.setY(mapCoordinates2PixelY(j));
+                        imageView.setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / 16);
+                        imageView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / 16);
+                        group.getChildren().add(imageView);
+                    }
+
+                } else {
+                    ImageView imageView=getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName());
+                    imageView.setX(mapCoordinates2PixelX(i));
+                    imageView.setY(mapCoordinates2PixelY(j));
+                    group.getChildren().add(imageView);
+                }
+            }
+        }
+
+    }
+    private ImageView getImageOfBuildings(String name){
+        File file=new File(".\\src\\com\\company\\ImagesAndGifs\\Buildings\\"+name+".jpg");
+        Image buildingImage = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getHeight() / 32,Screen.getPrimary().getVisualBounds().getHeight() / 32, false, true);
+        return new ImageView(buildingImage);
+    }
+    private double mapCoordinates2PixelX(int x) {
+        double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
+        return Screen.getPrimary().getVisualBounds().getWidth() - (x + 3) * cellWidth;
+    }
+
+    private double mapCoordinates2PixelY(int y) {
+        double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
+        return (y + 1) * cellWidth;
     }
 }
