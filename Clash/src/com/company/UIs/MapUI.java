@@ -53,13 +53,18 @@ public class MapUI extends Application {
 
         makeGameBoard(root ,scene , canvas);
 
-        file = new File("./src/com/company/UIs/MapResources/mapBorder.png");
-        Image mapBorder = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight(), false, true);
-        ImageView mapBorderView = new ImageView(mapBorder);
-        mapBorderView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() * 1.4);
-        mapBorderView.relocate(Screen.getPrimary().getVisualBounds().getWidth() - Screen.getPrimary().getVisualBounds().getHeight() * 1.09, -Screen.getPrimary().getVisualBounds().getHeight() / 5);
-        canvas.getChildren().add(mapBorderView);
-        SideBarUI.makeSideBar(primaryStage , root);
+//        file = new File("./src/com/company/UIs/MapResources/mapBorder.png");
+//        Image mapBorder = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight(), false, true);
+//        ImageView mapBorderView = new ImageView(mapBorder);
+//        mapBorderView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() * 1.2);
+//        mapBorderView.relocate(Screen.getPrimary().getVisualBounds().getWidth() - Screen.getPrimary().getVisualBounds().getHeight() * 1.09, -Screen.getPrimary().getVisualBounds().getHeight() / 5.9);
+//        canvas.getChildren().add(mapBorderView);
+//        SideBarUI.makeSideBar(primaryStage , root);
+//        mapBorderView.setScaleY(0.9);
+//        mapBorderView.setScaleX(0.93);
+//        mapBorderView.relocate(Screen.getPrimary().getVisualBounds().getWidth() - Screen.getPrimary().getVisualBounds().getHeight() * 1.15, -Screen.getPrimary().getVisualBounds().getHeight() / 5);
+
+        showMap(controller.getGame().getVillage(),canvas, root);
 
         root.getChildren().add(canvas);
         SceneGestures sceneGestures = new SceneGestures(canvas);
@@ -67,10 +72,6 @@ public class MapUI extends Application {
         scene.addEventFilter(MouseEvent.MOUSE_PRESSED, sceneGestures.getOnMousePressedEventHandler());
         scene.addEventFilter(MouseEvent.MOUSE_DRAGGED, sceneGestures.getOnMouseDraggedEventHandler());
 
-        mapBorderView.setScaleY(0.9);
-        mapBorderView.setScaleX(0.93);
-        mapBorderView.relocate(Screen.getPrimary().getVisualBounds().getWidth() - Screen.getPrimary().getVisualBounds().getHeight() * 1.15, -Screen.getPrimary().getVisualBounds().getHeight() / 5);
-        showMap(controller.getGame().getVillage(),canvas);
         SideBarUI.makeSideBar(primaryStage,root);
     }
 
@@ -86,6 +87,7 @@ public class MapUI extends Application {
                     fileInputStream = new FileInputStream("./src/com/company/ImagesAndGifs/Brown.png");
                 }
                 else if (flag){
+                    double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
                     fileInputStream = new FileInputStream("./src/com/company/ImagesAndGifs/darkGreen.png");
                 }
                 else{
@@ -99,9 +101,9 @@ public class MapUI extends Application {
                     canvas.getChildren().add(imageView);
             }
         }
-        showMap(controller.getGame().getVillage(),canvas);
+        showMap(controller.getGame().getVillage(),canvas, root);
     }
-    public void showMap(Village village,PannableCanvas canvas) {
+    public void showMap(Village village,PannableCanvas canvas, Group root) {
         int flag=0;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
@@ -116,6 +118,14 @@ public class MapUI extends Application {
                         imageView.setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / 16);
                         imageView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / 16);
                         village.getMap()[j][i].setImage(imageView);
+                        int finalI = i;
+                        int finalJ = j;
+                        imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                SideBarUI.makeBuildingMenu(root, village.getMap()[finalJ][finalI]);
+                            }
+                        });
                         canvas.getChildren().add(imageView);
                     }
 
@@ -124,6 +134,14 @@ public class MapUI extends Application {
                     imageView.setX(mapCoordinates2PixelX(i));
                     imageView.setY(mapCoordinates2PixelY(j));
                     village.getMap()[j][i].setImage(imageView);
+                    int finalI = i;
+                    int finalJ = j;
+                    imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            SideBarUI.makeBuildingMenu(root, village.getMap()[finalJ][finalI]);
+                        }
+                    });
                     canvas.getChildren().add(imageView);
                 }
             }
@@ -131,7 +149,7 @@ public class MapUI extends Application {
 
     }
     private ImageView getImageOfBuildings(String name){
-        File file=new File("./src/com/company/ImagesAndGifs/Buildings/"+name+".jpg");
+        File file=new File("./src/com/company/ImagesAndGifs/Buildings/"+name+".png");
         Image buildingImage = new Image(file.toURI().toString());
         ImageView imageView= new ImageView(buildingImage);
         imageView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / 32);
@@ -146,5 +164,17 @@ public class MapUI extends Application {
     private double mapCoordinates2PixelY(int y) {
         double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
         return (y + 1) * cellWidth;
+    }
+
+    private int pixel2MapCoordinatesX(double x) {
+        double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
+        x = x - Screen.getPrimary().getVisualBounds().getWidth();
+        x = - x / cellWidth;
+        return (int)(x - 3);
+    }
+
+    private int pixel2MapCoordinatesY(double y) {
+        double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
+        return (int) (y / cellWidth - 1);
     }
 }

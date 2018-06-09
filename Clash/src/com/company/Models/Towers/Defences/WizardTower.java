@@ -14,7 +14,6 @@ public class WizardTower extends Defence {
         this.setStrength(Config.getDictionary().get(this.getClass().getSimpleName()+"_STRENGTH"));
         this.setTimeLeftOfConstruction(this.getBuildDuration());
     }
-    
 
     public Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers) {
         if (this.getUnderConstructionStatus()) {

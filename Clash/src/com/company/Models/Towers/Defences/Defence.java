@@ -4,6 +4,8 @@ import com.company.Models.Config;
 import com.company.Models.Game;
 import com.company.Models.Soldiers.Soldier;
 import com.company.View.View;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 
@@ -21,7 +23,6 @@ public abstract class Defence extends Cell {
         super(number,level);
         damage = Config.getDictionary().get(this.getClass().getSimpleName() + "_DAMAGE");
     }
-
 
     @Override
     public void upgrade() {

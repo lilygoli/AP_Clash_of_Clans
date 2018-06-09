@@ -59,8 +59,6 @@ public class MainMenuUI extends Application{
 
         root.getChildren().add(menuButtons);
 
-
-
         primaryStage.show();
     }
 
