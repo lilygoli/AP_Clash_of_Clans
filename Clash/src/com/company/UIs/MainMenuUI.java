@@ -1,5 +1,6 @@
 package com.company.UIs;
 
+import com.company.Models.Game;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -68,6 +69,8 @@ public class MainMenuUI extends Application{
             @Override
             public void handle(MouseEvent event) {
                 MapUI mapUI = new MapUI();
+                Game game = mapUI.getController().getGameCenter().makeNewGame();
+                mapUI.getController().setGame(game);
                 try {
                     mapUI.start(primaryStage);
                 } catch (Exception e) {

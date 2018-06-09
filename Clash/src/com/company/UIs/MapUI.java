@@ -1,5 +1,6 @@
 package com.company.UIs;
 
+import com.company.Controller.Controller;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -14,6 +15,16 @@ import java.io.FileNotFoundException;
 import java.util.Random;
 
 public class MapUI extends Application {
+    public Controller getController() {
+        return controller;
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
+
+    private Controller controller = new Controller();
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         Group root = new Group();
@@ -54,11 +65,21 @@ public class MapUI extends Application {
                 }
                     Image image = new Image(fileInputStream);
                     ImageView imageView = new ImageView(image);
-                    imageView.relocate(scene.getWidth() - ((i + 1) * scene.getHeight() / 32) , j * scene.getHeight() / 32);
+                    imageView.relocate(scene.getWidth() - ((i + 1) * Screen.getPrimary().getVisualBounds().getHeight() / 32) , j * Screen.getPrimary().getVisualBounds().getHeight() / 32);
                     imageView.setFitHeight(scene.getHeight() / 32);
                     imageView.setFitWidth(scene.getHeight() / 32);
                     root.getChildren().add(imageView);
             }
         }
+    }
+
+    private double mapCordinates2PixelX (int x) {
+        double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
+        return Screen.getPrimary().getVisualBounds().getWidth() - (x + 1) * cellWidth;
+    }
+
+    private double mapCordinates2PixelY (int y) {
+        double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
+        return (y + 1) * cellWidth;
     }
 }
