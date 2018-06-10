@@ -1,6 +1,8 @@
 package com.company.UIs;
 
 import com.company.Models.Game;
+import com.company.Models.Towers.Defences.ArcherTower;
+import com.company.Models.Towers.Defences.Cannon;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -68,6 +70,9 @@ public class MainMenuUI extends Application{
             public void handle(MouseEvent event) {
                 MapUI mapUI = new MapUI();
                 Game game = mapUI.getController().getGameCenter().makeNewGame();
+                /////////////////////todo delete this part
+                game.getVillage().getMap()[10][10] = new ArcherTower(100, 0);
+                ////////////////////
                 mapUI.getController().setGame(game);
                 try {
                     mapUI.start(primaryStage);

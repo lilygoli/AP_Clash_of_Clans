@@ -210,6 +210,89 @@ public class SideBarUI {
         VBox vBox = new VBox(infoView, targetView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
+        backView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                makeSideBar(group);
+            }
+        });
+        infoView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                makeDefencesInfoMenu(group, cell);
+            }
+        });
+    }
+
+    private static void makeDefencesInfoMenu(Group group, Cell cell) {
+        makeSideBar(group);
+        File overallInfoFile=new File(ADDRESS+"OverAllInfo.png");
+        Image overallInfoImage=new Image(overallInfoFile.toURI().toString());
+        ImageView overallInfoView=new ImageView(overallInfoImage);
+        File upgradeInfoFile=new File(ADDRESS+"UpgradeInfo.png");
+        Image upgradeInfoImage=new Image(upgradeInfoFile.toURI().toString());
+        ImageView upgradeInfoView=new ImageView(upgradeInfoImage);
+        File attackInfoFile=new File(ADDRESS+"Attack Info.png");
+        Image attackInfoImage=new Image(attackInfoFile.toURI().toString());
+        ImageView attackInfoView=new ImageView(attackInfoImage);
+        File upgradeFile=new File(ADDRESS+"upgrade.png");
+        Image upgradeImage=new Image(upgradeFile.toURI().toString());
+        ImageView upgradeView=new ImageView(upgradeImage);
+        File backFile=new File(ADDRESS+"Back.png");
+        Image backImage=new Image(backFile.toURI().toString());
+        ImageView backView=new ImageView(backImage);
+        VBox vBox=new VBox(overallInfoView, upgradeInfoView, attackInfoView, upgradeView, backView);
+        vBox.relocate(50,160);
+        group.getChildren().add(vBox);
+
+        backView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                makeSideBar(group);
+                makeDefencesMenu(group, cell);
+            }
+        });
+        overallInfoView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                makeSideBar(group);
+                makeDefencesOverallInfoMenu(group, cell);
+            }
+        });
+        upgradeInfoView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                makeSideBar(group);
+                makeDefencesUpgradeInfoMenu(group, cell);
+            }
+        });
+        attackInfoView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                makeSideBar(group);
+                makeDefencesAttackInfoMenu(group, cell);
+            }
+        });
+        upgradeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                makeSideBar(group);
+                makeDefencesUpgradeMenu(group, cell);
+            }
+        });
+    }
+
+    private static void makeDefencesUpgradeMenu(Group group, Cell cell) {
+    }
+
+    private static void makeDefencesAttackInfoMenu(Group group, Cell cell) {
+    }
+
+    private static void makeDefencesUpgradeInfoMenu(Group group, Cell cell) {
+    }
+
+    private static void makeDefencesOverallInfoMenu(Group group, Cell cell) {
+        
     }
 
     public static void implementBuildATowerCommand(String buildingName,Group group)  {
