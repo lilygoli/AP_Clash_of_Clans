@@ -3,23 +3,18 @@ package com.company.UIs;
 import com.company.Controller.Controller;
 import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
+import com.company.Models.Towers.Defences.AirDefence;
 import com.company.Models.Village;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -27,19 +22,50 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.Random;
 
 public class MapUI extends Application {
     private static int buildX;
     private static int buildY;
     private PannableCanvas canvas = new PannableCanvas();
+    private static HashMap<String ,Image> gifsOfTowers=new HashMap<>();
+
+    private Controller controller = new Controller();
+// to be moved to a new thread
+    static {
+        File AirDefenceFile=new File("./src/com/company/ImagesAndGifs/Buildings/AirDefenceLoading.gif");
+        gifsOfTowers.put("AirDefence",new Image(AirDefenceFile.toURI().toString()));
+        File ArcherTowerFile=new File("./src/com/company/ImagesAndGifs/Buildings/ArcherTowerLoading.gif");
+        gifsOfTowers.put("ArcherTower",new Image(ArcherTowerFile.toURI().toString()));
+        File CampFile=new File("./src/com/company/ImagesAndGifs/Buildings/CampLoading.gif");
+        gifsOfTowers.put("Camp",new Image(CampFile.toURI().toString()));
+        File CannonFile=new File("./src/com/company/ImagesAndGifs/Buildings/CannonLoading.gif");
+        gifsOfTowers.put("Cannon",new Image(CannonFile.toURI().toString()));
+        File ElixirMineFile=new File("./src/com/company/ImagesAndGifs/Buildings/ElixirMineLoading.gif");
+        gifsOfTowers.put("ElixirMine",new Image(ElixirMineFile.toURI().toString()));
+        File ElixirStorageFile=new File("./src/com/company/ImagesAndGifs/Buildings/ElixirStorageLoading.gif");
+        gifsOfTowers.put("ElixirStorage",new Image(ElixirStorageFile.toURI().toString()));
+        File GoldMineFile=new File("./src/com/company/ImagesAndGifs/Buildings/GoldMineLoading.gif");
+        gifsOfTowers.put("GoldMine",new Image(GoldMineFile.toURI().toString()));
+        File GoldStorageFile=new File("./src/com/company/ImagesAndGifs/Buildings/GoldStorageLoading.gif");
+        gifsOfTowers.put("GoldStorage",new Image(GoldStorageFile.toURI().toString()));
+        File WallFile=new File("./src/com/company/ImagesAndGifs/Buildings/WallLoading.gif");
+        gifsOfTowers.put("Wall",new Image(WallFile.toURI().toString()));
+        File WizardTowerFile=new File("./src/com/company/ImagesAndGifs/Buildings/WizardTower.gif");
+        gifsOfTowers.put("WizardTower",new Image(WizardTowerFile.toURI().toString()));
+}
+    public static int getBuildX() {
+        return buildX;
+    }
 
     public PannableCanvas getCanvas() {
         return canvas;
     }
 
-
-    private Controller controller = new Controller();
+    public static int getBuildY() {
+        return buildY;
+    }
 
     public Controller getController() {
         return controller;
@@ -75,7 +101,7 @@ public class MapUI extends Application {
 //        mapBorderView.setScaleX(0.93);
 //        mapBorderView.relocate(Screen.getPrimary().getVisualBounds().getWidth() - Screen.getPrimary().getVisualBounds().getHeight() * 1.15, -Screen.getPrimary().getVisualBounds().getHeight() / 5);
 
-        showMap(controller.getGame().getVillage(), root);
+        showMapInVillage(controller.getGame().getVillage(), root);
 
         root.getChildren().add(canvas);
         SceneGestures sceneGestures = new SceneGestures(canvas);
@@ -112,102 +138,105 @@ public class MapUI extends Application {
                     canvas.getChildren().add(imageView);
                 int finalI = i;
                 int finalJ = j;
-                imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            buildX = 31 - finalI;
-                            buildY = finalJ - 1;
-                        }
-                    });
+                imageView.setOnMouseClicked(event -> {
+                    buildX = finalI -2;
+                    buildY = finalJ - 1;
+                });
             }
         }
-        showMap(controller.getGame().getVillage(),root);
     }
-    public void showMap(Village village, Group root) {
-        int flag=0;
-        for (int i = 0; i < 30; i++) {
-            for (int j = 0; j < 30; j++) {
-                if (village.getMap()[j][i].getClass() == Grass.class) {
-                    continue;
-                }else if (village.getMap()[j][i].getClass() == MainBuilding.class) {
-                    if(flag==0) {
-                        flag = 1;
-                        ImageView imageView = getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName());
-                        imageView.setX(mapCoordinates2PixelX(i));
-                        imageView.setY(mapCoordinates2PixelY(j));
-                        imageView.setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / 16);
-                        imageView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / 16);
-                        village.getMap()[j][i].setImage(imageView);
-                        int finalI = i;
-                        int finalJ = j;
-                        imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent event) {
-                                SideBarUI.makeBuildingMenu(root, village.getMap()[finalJ][finalI]);
-                                imageView.requestFocus();
-                            }
-                        });
-                        DropShadow ds = new DropShadow( 20, Color.AQUA );
-                        imageView.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue ) ->
-                        {
-                            if ( newValue )
-                            {
-                                imageView.setEffect( ds );
-                            }
-                            else
-                            {
-                                imageView.setEffect( null );
-                            }
-                        });
-                        canvas.getChildren().add(imageView);
-                    }
+    public void showMapInVillage(Village village, Group root) {
 
-                } else {
-                    ImageView imageView=getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName());
-                    imageView.setX(mapCoordinates2PixelX(i));
-                    imageView.setY(mapCoordinates2PixelY(j));
-                    village.getMap()[j][i].setImage(imageView);
-                    int finalI = i;
-                    int finalJ = j;
-                    imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            SideBarUI.makeBuildingMenu(root, village.getMap()[finalJ][finalI]);
-                            imageView.requestFocus();
+        AnimationTimer animationTimer=new AnimationTimer(){
+
+            private long lastUpdate = 0 ;
+            @Override
+            public void handle(long now) {
+                if (now - lastUpdate >= 1000000000) {
+                    int flag = 0;
+                    for (int i = 0; i < 30; i++) {
+                        for (int j = 0; j < 30; j++) {
+                            if (village.getMap()[j][i].getClass() == Grass.class) {
+                                continue;
+                            } else if (village.getMap()[j][i].getClass() == MainBuilding.class) {
+                                if (flag == 0) {
+                                    flag = 1;
+                                    ImageView imageView = makeImageForMap(i, j, village,root,".png");
+                                    imageView.setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / 16);
+                                    imageView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / 16);
+                                    village.getMap()[j][i].setImage(imageView);
+                                    canvas.getChildren().add(imageView);
+                                }
+
+                            } else {
+                                if(village.getMap()[j][i].getUnderConstructionStatus()){
+                                    ImageView imageView = makeImageForMap(i, j, village, root,".gif");
+                                    village.getMap()[j][i].setImage(imageView);
+                                    canvas.getChildren().add(imageView);
+                                }else {
+                                    ImageView imageView = makeImageForMap(i, j, village, root,".png");
+                                    village.getMap()[j][i].setImage(imageView);
+                                    canvas.getChildren().add(imageView);
+                                }
+                            }
                         }
-                    });
-                    DropShadow ds = new DropShadow( 20, Color.AQUA );
-                    imageView.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue ) ->
-                    {
-                        if ( newValue )
-                        {
-                            imageView.setEffect( ds );
-                        }
-                        else
-                        {
-                            imageView.setEffect( null );
-                        }
-                    });
-                    canvas.getChildren().add(imageView);
+                    }
+                    lastUpdate = now ;
                 }
             }
-        }
-
+        };
+        animationTimer.start();
     }
-    private ImageView getImageOfBuildings(String name){
-        File file=new File("./src/com/company/ImagesAndGifs/Buildings/"+name+".png");
-        Image buildingImage = new Image(file.toURI().toString());
+
+    private ImageView makeImageForMap(int i, int j, Village village,Group root,String type) {
+        ImageView imageView = getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),type);
+        imageView.setX(mapCoordinates2PixelX(j));
+        imageView.setY(mapCoordinates2PixelY(i));
+        int finalI = i;
+        int finalJ = j;
+        imageView.setOnMouseClicked(event -> {
+            SideBarUI.makeBuildingsMenu(root, village.getMap()[finalJ][finalI]);
+            imageView.requestFocus();
+        });
+        addGlowToBuildings(imageView);
+        return imageView;
+    }
+
+
+    private void addGlowToBuildings(ImageView imageView) {
+        DropShadow ds = new DropShadow( 20, Color.AQUA );
+        imageView.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue ) ->
+        {
+            if ( newValue )
+            {
+                imageView.setEffect( ds );
+            }
+            else
+            {
+                imageView.setEffect( null );
+            }
+        });
+    }
+
+    private static ImageView getImageOfBuildings(String name,String type){
+        Image buildingImage;
+        if(type.equals(".png")) {
+            File file = new File("./src/com/company/ImagesAndGifs/Buildings/" + name + type);
+             buildingImage= new Image(file.toURI().toString());
+        }else {
+             buildingImage= gifsOfTowers.get(name);
+        }
         ImageView imageView= new ImageView(buildingImage);
         imageView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / 32);
         imageView.setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / 32);
         return  imageView;
     }
-    private double mapCoordinates2PixelX(int x) {
+    private static double mapCoordinates2PixelX(int x) {
         double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
         return Screen.getPrimary().getVisualBounds().getWidth() - (x + 3) * cellWidth;
     }
 
-    private double mapCoordinates2PixelY(int y) {
+    private static double mapCoordinates2PixelY(int y) {
         double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
         return (y + 1) * cellWidth;
     }

@@ -134,72 +134,6 @@ public class Controller {
     }
 
     public void implementBuildATowerCommand() throws NotEnoughFreeBuildersException, NotEnoughResourcesException { //name and place to be refactored ... was implemented to complete building a tower//available buildings in barracks command
-        String availableBuildings = game.getVillage().getMainBuilding().findAvailableBuildings(game.getVillage().getResource().getGold(), game.getVillage().getResource().getElixir());
-        int numberOfAvailableBuildings = availableBuildings.split("\n").length;
-        String playerChoice = view.getInput("Enter your preferred number in the list");
-        if (!playerChoice.matches("\\d+") || Integer.parseInt(playerChoice) > numberOfAvailableBuildings) {
-            View.show("invalid Choice");
-            implementBuildATowerCommand();
-            return;
-        }
-        Integer chosenNumber = Integer.parseInt(playerChoice);
-        if (chosenNumber == numberOfAvailableBuildings) {
-            game.getVillage().getMainBuilding().showMenu();
-            getCommandInBuilding(game.getVillage().getMainBuilding());
-            return;
-        }
-        Integer nextNumber = chosenNumber + 1;
-        String buildingName = availableBuildings.substring(availableBuildings.indexOf(chosenNumber.toString() + ". "), availableBuildings.indexOf(nextNumber.toString()));
-        buildingName = buildingName.split("\\.")[1].trim();
-        Builder builder = null;
-        builder = game.getVillage().findFreeBuilder();
-        for (Cell cell : Cell.getCellKinds()) {
-            if (cell.getClass().getSimpleName().equals(buildingName)) {
-                Class spacialBuilding = cell.getClass();
-                try {
-                    Cell newCell = (Cell) spacialBuilding.getDeclaredConstructor(int.class, int.class).newInstance(0, 0);
-                    int goldCost = Config.getDictionary().get(newCell.getClass().getSimpleName() + "_GOLD_COST");
-                    int elixirCost = Config.getDictionary().get(newCell.getClass().getSimpleName() + "_ELIXIR_COST");
-                    View.show("Do you want to build " + buildingName + " for " + goldCost + " gold and " + elixirCost + " elixir? [Y/N]");
-                    switch (view.getInput()) {
-                        case "Y":
-                            if (goldCost > game.getVillage().getResource().getGold() || elixirCost > game.getVillage().getResource().getElixir()) {
-                                throw new NotEnoughResourcesException();
-                            } else {
-                                view.showMap(game.getVillage());
-                                int flag = 0;
-                                while (flag == 0)
-                                    try {
-                                        View.show("where do you want to build " + splitClassNameIntoWords(newCell.getClass().getSimpleName()));
-                                        String[] coordinates = view.getInput().split("[(,)]");
-                                        newCell.setY(Integer.parseInt(coordinates[2]) - 1);
-                                        newCell.setX(Integer.parseInt(coordinates[1]) - 1);
-                                        game.getVillage().buildTower(newCell);
-                                        flag = 1;
-                                    } catch (MarginalTowerException e) {
-                                        e.showMessage();
-
-                                    } catch (BusyCellException e) {
-                                        e.showMessage();
-                                    }
-
-                                newCell.setWorkingBuilder(builder);
-                                builder.setOccupationState(true);
-                                Resource resource = new Resource(game.getVillage().getResource().getGold() - newCell.getGoldCost(), game.getVillage().getResource().getElixir() - newCell.getElixirCost());
-                                game.getVillage().setResource(resource);
-                                implementBuildATowerCommand();
-                            }
-                            break;
-                        case "N": {
-                            implementBuildATowerCommand();
-                            return;
-                        }
-                    }
-                } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
 
     }
 
@@ -547,7 +481,7 @@ public class Controller {
                 try {
                     implementUpgradeCommand(cell);
                 } catch (NotEnoughResourcesException e) {
-                    e.showMessage();
+                  //  e.showMessage();
                 }
                 getCommandInStorageInfoMenu(cell);
                 break;
@@ -707,7 +641,7 @@ public class Controller {
                 } catch (unAvailableSoldierException e) {
                     e.showMessage();
                 } catch (NotEnoughResourcesException e) {
-                    e.showMessage();
+                   // e.showMessage();
                 } catch (NotEnoughCapacityInCampsException e) {
                     e.showMessage();
                 }
@@ -826,7 +760,7 @@ public class Controller {
                 try {
                     implementUpgradeCommand(cell);
                 } catch (NotEnoughResourcesException e) {
-                    e.showMessage();
+                   // e.showMessage();
                 }
                 getCommandInDefenceInfoMenu(cell);
             case 5:
@@ -862,10 +796,10 @@ public class Controller {
                         implementBuildATowerCommand();
                         flag = 1;
                     } catch (NotEnoughFreeBuildersException e) {
-                        e.showMessage();
+                        //e.showMessage();
 
                     } catch (NotEnoughResourcesException e) {
-                        e.showMessage();
+                        //e.showMessage();
                     }
                 }
                 cell.showMenu();
@@ -919,7 +853,7 @@ public class Controller {
                     try {
                         implementUpgradeCommand(cell);
                     } catch (NotEnoughResourcesException e) {
-                        e.showMessage();
+                        //e.showMessage();
                     }
                     getCommandInInfoMenu(cell);
                 }

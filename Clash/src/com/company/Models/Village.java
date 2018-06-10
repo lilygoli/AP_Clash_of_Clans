@@ -50,10 +50,18 @@ public class Village {
         goldStorages.get(0).setResource(2000);
         elixirStorages.get(0).setResource(1000);
         Random random = new Random();
-        int XGoldStorage=random.nextInt(28) + 1;
-        int YGoldStorage=random.nextInt(28) + 1;
-        int XElixirStorage=random.nextInt(28) + 1;
-        int YElixirStorage=random.nextInt(28) + 1;
+        int XGoldStorage;
+        int YGoldStorage;
+        do {
+            XGoldStorage = random.nextInt(28) + 1;
+            YGoldStorage = random.nextInt(28) + 1;
+        }while ((13<XGoldStorage && XGoldStorage<16) || (13<YGoldStorage && YGoldStorage<16));
+        int XElixirStorage;
+        int YElixirStorage;
+        do {
+             YElixirStorage= random.nextInt(28) + 1;
+             XElixirStorage= random.nextInt(28) + 1;
+        }while ((13<XElixirStorage && XElixirStorage<16) || (13<YElixirStorage && YElixirStorage<16));
         map[XGoldStorage][YGoldStorage] = goldStorages.get(0);
         map[XElixirStorage][YElixirStorage] = elixirStorages.get(0);
         goldStorages.get(0).setX(XGoldStorage);
