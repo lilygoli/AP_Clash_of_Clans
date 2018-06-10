@@ -7,12 +7,14 @@ import com.company.Models.Village;
 import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -30,6 +32,12 @@ import java.util.Random;
 public class MapUI extends Application {
     private static int buildX;
     private static int buildY;
+    private PannableCanvas canvas = new PannableCanvas();
+
+    public PannableCanvas getCanvas() {
+        return canvas;
+    }
+
 
     private Controller controller = new Controller();
 
@@ -46,7 +54,6 @@ public class MapUI extends Application {
         Group root = new Group();
         Scene scene = new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight());
         primaryStage.setScene(scene);
-        PannableCanvas canvas = new PannableCanvas();
 
 
         File file = new File("./src/com/company/UIs/MapResources/MapBackGround.jpg");
@@ -55,7 +62,7 @@ public class MapUI extends Application {
         backGroundView.setOpacity(0.7);
         root.getChildren().add(backGroundView);
 
-        makeGameBoard(root ,scene , canvas);
+        makeGameBoard(root ,scene);
 
 //        file = new File("./src/com/company/UIs/MapResources/mapBorder.png");
 //        Image mapBorder = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight(), false, true);
@@ -68,7 +75,7 @@ public class MapUI extends Application {
 //        mapBorderView.setScaleX(0.93);
 //        mapBorderView.relocate(Screen.getPrimary().getVisualBounds().getWidth() - Screen.getPrimary().getVisualBounds().getHeight() * 1.15, -Screen.getPrimary().getVisualBounds().getHeight() / 5);
 
-        showMap(controller.getGame().getVillage(),canvas, root);
+        showMap(controller.getGame().getVillage(), root);
 
         root.getChildren().add(canvas);
         SceneGestures sceneGestures = new SceneGestures(canvas);
@@ -80,7 +87,7 @@ public class MapUI extends Application {
     }
 
 
-    private void makeGameBoard(Group root , Scene scene , PannableCanvas canvas) throws FileNotFoundException {
+    private void makeGameBoard(Group root , Scene scene) throws FileNotFoundException {
         Random random = new Random();
         boolean flag;
         FileInputStream fileInputStream;
@@ -114,9 +121,9 @@ public class MapUI extends Application {
                     });
             }
         }
-        showMap(controller.getGame().getVillage(),canvas, root);
+        showMap(controller.getGame().getVillage(),root);
     }
-    public void showMap(Village village,PannableCanvas canvas, Group root) {
+    public void showMap(Village village, Group root) {
         int flag=0;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
@@ -137,6 +144,19 @@ public class MapUI extends Application {
                             @Override
                             public void handle(MouseEvent event) {
                                 SideBarUI.makeBuildingMenu(root, village.getMap()[finalJ][finalI]);
+                                imageView.requestFocus();
+                            }
+                        });
+                        DropShadow ds = new DropShadow( 20, Color.AQUA );
+                        imageView.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue ) ->
+                        {
+                            if ( newValue )
+                            {
+                                imageView.setEffect( ds );
+                            }
+                            else
+                            {
+                                imageView.setEffect( null );
                             }
                         });
                         canvas.getChildren().add(imageView);
@@ -153,6 +173,19 @@ public class MapUI extends Application {
                         @Override
                         public void handle(MouseEvent event) {
                             SideBarUI.makeBuildingMenu(root, village.getMap()[finalJ][finalI]);
+                            imageView.requestFocus();
+                        }
+                    });
+                    DropShadow ds = new DropShadow( 20, Color.AQUA );
+                    imageView.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue ) ->
+                    {
+                        if ( newValue )
+                        {
+                            imageView.setEffect( ds );
+                        }
+                        else
+                        {
+                            imageView.setEffect( null );
                         }
                     });
                     canvas.getChildren().add(imageView);
