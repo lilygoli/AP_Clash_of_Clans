@@ -200,7 +200,6 @@ public class MapUI extends Application {
 
     private void setOnClickImages(int i,int j,Group root){
         controller.getGame().getVillage().getMap()[j][i].getImage().setOnMouseClicked(event -> {
-            System.out.println(controller.getGame().getVillage().getMap()[j][i].getClass().getSimpleName());
             SideBarUI.makeBuildingsMenu(root, controller.getGame().getVillage().getMap()[j][i]);
             controller.getGame().getVillage().getMap()[j][i].getImage().requestFocus();
         });
