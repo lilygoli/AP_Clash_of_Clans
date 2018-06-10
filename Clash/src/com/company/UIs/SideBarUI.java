@@ -308,6 +308,7 @@ public class SideBarUI {
                 Class spacialBuilding = cell.getClass();
                 try {
                     Cell newCell = (Cell) spacialBuilding.getDeclaredConstructor(int.class, int.class).newInstance(0, 0);
+                    setOnClickImages(group, newCell);
                     int goldCost = Config.getDictionary().get(newCell.getClass().getSimpleName() + "_GOLD_COST");
                     int elixirCost = Config.getDictionary().get(newCell.getClass().getSimpleName() + "_ELIXIR_COST");
                     makeLabels(group,"Do you want to build\n" + buildingName + "\nfor " + goldCost + " gold and " + elixirCost + " elixir?",0.27);
@@ -344,6 +345,14 @@ public class SideBarUI {
                 }
             }
         }
+    }
+
+    private static void setOnClickImages(Group group, Cell newCell) {
+        newCell.getImage().setOnMouseClicked(event -> {
+            System.out.println(newCell.getClass().getSimpleName());
+            SideBarUI.makeBuildingsMenu(group, newCell);
+            newCell.getImage().requestFocus();
+        });
     }
 
     private static void makeLabels(Group group, String message,double yCoefficient) {

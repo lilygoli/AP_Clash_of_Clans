@@ -8,7 +8,10 @@ import com.company.Models.Towers.Defences.AirDefence;
 import com.company.Models.Towers.Defences.ArcherTower;
 import com.company.Models.Towers.Defences.Cannon;
 import com.company.Models.Towers.Defences.WizardTower;
+import com.company.Models.Village;
+import com.company.UIs.SideBarUI;
 import com.company.View.View;
+import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -18,7 +21,7 @@ import java.util.ArrayList;
 public class Cell {
 
     private final String infoMenu = "1. Overall Info\n2. Upgrade Info\n3. Upgrade \n4. Back";
-    private transient ImageView image;
+    private transient ImageView image=new ImageView();
     private boolean isUnderConstruction = false;
     private int x;
     private int y;
@@ -42,8 +45,8 @@ public class Cell {
     }
 
 
-    public void setImage(ImageView image) {
-        this.image = image;
+    public void setImage(Image image) {
+        this.image.setImage(image);
     }
 
     public Builder getWorkingBuilder() {
