@@ -10,6 +10,7 @@ import com.company.Models.Config;
 import com.company.Models.Resource;
 import com.company.Models.Towers.Cell;
 
+import com.company.View.View;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -309,6 +310,7 @@ public class SideBarUI {
                 break;
             case "Camp":
                 makeCampMenu(group, cell);
+                break;
             case "GoldStorage":
             case "ElixirStorage":
                 makeStorageMenu(group, cell);
@@ -333,6 +335,12 @@ public class SideBarUI {
             @Override
             public void handle(MouseEvent event) {
                 makeDefencesInfoMenu(group, cell);
+            }
+        });
+        targetView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                makeDefencesAttackInfoMenu(group, cell);
             }
         });
     }
@@ -399,13 +407,43 @@ public class SideBarUI {
     }
 
     private static void makeDefencesAttackInfoMenu(Group group, Cell cell) {
+        makeSideBar(group);
+        ImageView attacklInfoInsides= getImageView("attackInfoInsides.png");
+        attacklInfoInsides.setX(UIConstants.INFOMENU_STARTING_X);
+        attacklInfoInsides.setY(UIConstants.MENU_VBOX_STARTING_Y);
+        group.getChildren().add(attacklInfoInsides);
+
+        String damage = "";
+        if (cell.getClass().getSimpleName().equals("ArcherTower")) {
+            damage = "Ground units";
+        }
+        if (cell.getClass().getSimpleName().equals("AirDefence")) {
+            damage = "Flying units";
+        }
+        if (cell.getClass().getSimpleName().equals("Cannon")) {
+            damage = "Ground units";
+        }
+        if (cell.getClass().getSimpleName().equals("WizardTower")) {
+            damage = "Ground & Flying units";
+        }
+        makeLabels(group,damage,0.25,true);
+        makeLabels(group,Integer.toString(cell.getDamage()),0.3,true);
+        makeLabels(group,Integer.toString(cell.getRange()),0.35,true);
+        ImageView backView = getImageView("Back.png");
+        backView.setX(UIConstants.BUTTON_STARTING_X);
+        backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
+        group.getChildren().add(backView);
+        backView.setOnMouseClicked(backEvent -> {
+            makeDefaultInfoMenu(group,cell);
+        });
     }
 
     private static void makeDefencesUpgradeInfoMenu(Group group, Cell cell) {
+        showUpgradeInfo(group, cell);
     }
 
     private static void makeDefencesOverallInfoMenu(Group group, Cell cell) {
-        
+        showOverallInfo(group, cell);
     }
 
     private static void implementBuildATowerCommand(String buildingName, Group group)  {
@@ -475,7 +513,7 @@ public class SideBarUI {
             label.relocate(UIConstants.LABELS_STARTING_X, Screen.getPrimary().getVisualBounds().getHeight() * yCoefficient);
         }
         label.setTextFill(Color.BROWN);
-        label.setFont(Font.font("Vivaldi",18));
+        label.setFont(Font.font("Tahoma",18));
         group.getChildren().add(label);
     }
 
