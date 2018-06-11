@@ -170,7 +170,7 @@ public class SideBarUI {
         Label label=new Label(Integer.toString(storage.getResource()));
         label.relocate(UIConstants.INFO_LABEL_STARTING_X  - 40, Screen.getPrimary().getVisualBounds().getHeight() * 0.365);
         label.setTextFill(Color.BROWN);
-        label.setFont(Font.font("Vivaldi",18));
+        label.setFont(Font.font("Papyrus",18));
         group.getChildren().add(label);
         ImageView backView = getImageView("Back.png");
         backView.setX(UIConstants.BUTTON_STARTING_X);
@@ -567,7 +567,7 @@ public class SideBarUI {
             label.relocate(UIConstants.LABELS_STARTING_X, Screen.getPrimary().getVisualBounds().getHeight() * yCoefficient);
         }
         label.setTextFill(Color.BROWN);
-        label.setFont(Font.font("Tahoma",18));
+        label.setFont(Font.font("Papyrus",18));
         group.getChildren().add(label);
     }
 

@@ -71,6 +71,8 @@ public class MainMenuUI extends Application{
                 MapUI mapUI = new MapUI();
                 Game game = mapUI.getController().getGameCenter().makeNewGame();
                 mapUI.getController().setGame(game);
+                Thread gameLogic = new Thread(new PassTurnThread(mapUI.getController()));
+                gameLogic.start();
                 try {
                     mapUI.start(primaryStage);
                 } catch (Exception e) {
