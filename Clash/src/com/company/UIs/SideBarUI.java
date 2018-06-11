@@ -1,10 +1,7 @@
 package com.company.UIs;
 
 import com.company.Controller.Controller;
-import com.company.Exception.BusyCellException;
-import com.company.Exception.MarginalTowerException;
-import com.company.Exception.NotEnoughFreeBuildersException;
-import com.company.Exception.NotEnoughResourcesException;
+import com.company.Exception.*;
 import com.company.Models.Builder;
 import com.company.Models.Config;
 import com.company.Models.Resource;
@@ -24,6 +21,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -59,6 +57,21 @@ public class SideBarUI {
         borderImageView.setY(40);
         borderImageView.setX(sideBarStartingX + 20);
         ImageView saveView = getImageView("save.png");
+        saveView.setOnMouseClicked(event -> {
+
+                makeSideBar(group);
+                TextField pathTextField=new TextField("enter path");
+                TextField nameTextField= new TextField("enter name");
+                Button saveButton=new Button("save");
+                saveButton.setOnMouseClicked(event1 -> {
+                    try {
+                        controller.getGameCenter().saveGame(controller.getGame(), pathTextField.getText(), nameTextField.getText());
+                    } catch (NotValidFilePathException e) {
+                        e.showExceptionMassage();
+                    }
+                });
+
+        });
         saveView.setX(sideBarStartingX + 30);
         saveView.setY(Screen.getPrimary().getVisualBounds().getHeight() * 6 / 10);
         saveView.setScaleX(0.5);
@@ -67,7 +80,17 @@ public class SideBarUI {
         makeResourceLabels(group,sideBarStartingX);
         group.getChildren().add(saveView);
     }
+    public static void makeStartingMenu(Group group){
+        makeSideBar(group);
+        ImageView attackImage = getImageView("Attack.png");
+        attackImage.setScaleX(0.6);
+        attackImage.setScaleY(0.8);
+        attackImage.setY(UIConstants.ATTACK_STARTING_Y);
+        attackImage.setX(UIConstants.ATTACK_STARTING_X);
+        group.getChildren().add(attackImage);
+        attackImage.setOnMouseClicked(event -> {});
 
+    }
     private static void makeResourceLabels(Group group,Double sideBarStartingX) {
         Label gold= new Label(Integer.toString(controller.getGame().getVillage().getResource().getGold()));
         gold.relocate(sideBarStartingX+140,65);
@@ -105,7 +128,7 @@ public class SideBarUI {
         });
         ImageView backView = getImageView("Back.png");
         backView.setOnMouseClicked(event -> {
-            makeSideBar(group);
+            makeStartingMenu(group);
         });
         VBox vBox = new VBox(infoView, availableBuildingView, statusView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
@@ -163,7 +186,7 @@ public class SideBarUI {
         });
         ImageView backView = getImageView("Back.png");
         backView.setOnMouseClicked(event -> {
-            makeBuildingsMenu(group , cell);
+            makeStartingMenu(group);
         });
         VBox vBox = new VBox(1, overAllInfoView, UpgradeInfoView, SourcesInfoView, upgradeView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
@@ -209,7 +232,7 @@ public class SideBarUI {
         });
         ImageView backView = getImageView("Back.png");
         backView.setOnMouseClicked(event -> {
-            makeSideBar(group);
+            makeStartingMenu(group);
         });
         VBox vBox = new VBox(1, infoView, SoldiersView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
@@ -289,7 +312,7 @@ public class SideBarUI {
         });
         ImageView backView = getImageView("Back.png");
         backView.setOnMouseClicked(event -> {
-          makeSideBar(group);
+          makeStartingMenu(group);
         });
         VBox vBox = new VBox(1, infoView, mineView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
@@ -428,12 +451,34 @@ public class SideBarUI {
     public static void makeBarrackMenu(Group group, Cell cell) {
         makeSideBar(group);
         ImageView infoView = getImageView("info.png");
+        infoView.setOnMouseClicked(event -> {
+            makeDefaultInfoMenu(group,cell);
+        });
         ImageView BuildSoldiersView = getImageView("BuildSoldiers.png");
         ImageView statusView = getImageView("Status.png");
+        statusView.setOnMouseClicked(event -> {
+            makeStatusBarracks(group, cell);
+        });
         ImageView backView = getImageView("Back.png");
+        backView.setOnMouseClicked(event -> {
+            makeStartingMenu(group);
+        });
         VBox vBox = new VBox(1, infoView, BuildSoldiersView, statusView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
+    }
+
+    private static void makeStatusBarracks(Group group, Cell cell) {
+        makeSideBar(group);
+        makeLabels(group,controller.getGame().getVillage().showBarracksStatus(),0.2,false);
+        ImageView backView = getImageView("back.png");
+        backView.setScaleX(0.5);
+        backView.setY(Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.BACK_BUTTON_Y_COEFFICIENT);
+        backView.setX(UIConstants.BUTTON_STARTING_X);
+        backView.setOnMouseClicked(backEvent -> {
+            makeBarrackMenu(group,cell);
+        });
+        group.getChildren().add(backView);
     }
 
     public static void makeBuildingsMenu(Group group, Cell cell) {
@@ -476,7 +521,7 @@ public class SideBarUI {
         backView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                makeSideBar(group);
+                makeStartingMenu(group);
             }
         });
         infoView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -608,7 +653,6 @@ public class SideBarUI {
                 try {
                     MapUI.setIsInBuildMenu(true);
                     Cell newCell = (Cell) spacialBuilding.getDeclaredConstructor(int.class, int.class).newInstance(0, 0);
-                    setOnClickImages(group, newCell);
                     int goldCost = Config.getDictionary().get(newCell.getClass().getSimpleName() + "_GOLD_COST");
                     int elixirCost = Config.getDictionary().get(newCell.getClass().getSimpleName() + "_ELIXIR_COST");
                     makeLabels(group,"Do you want to build\n" + buildingName + "\nfor " + goldCost + " gold and " + elixirCost + " elixir?",0.27,false);
@@ -648,12 +692,6 @@ public class SideBarUI {
         }
     }
 
-    private static void setOnClickImages(Group group, Cell newCell) {
-        newCell.getImage().setOnMouseClicked(event -> {
-            SideBarUI.makeBuildingsMenu(group, newCell);
-            newCell.getImage().requestFocus();
-        });
-    }
 
     private static void makeLabels(Group group, String message,double yCoefficient,boolean isInfoLabel) {
         Label label=new Label(message);

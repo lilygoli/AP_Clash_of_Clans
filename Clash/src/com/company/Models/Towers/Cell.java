@@ -34,7 +34,14 @@ public class Cell {
     private int number;
     private Builder workingBuilder;
     private int timeLeftOfConstruction;
+    private boolean isEventSet=false;
 
+    public boolean isEventSet() {
+        return isEventSet;
+    }
+    public boolean getEventSet(){
+        return isEventSet;
+    }
     public ImageView getImage() {
         return image;
     }
@@ -46,6 +53,9 @@ public class Cell {
 
 
     public void setImage(Image image) {
+        if(this.image==null){
+            this.image=new ImageView();
+        }
         this.image.setImage(image);
     }
 

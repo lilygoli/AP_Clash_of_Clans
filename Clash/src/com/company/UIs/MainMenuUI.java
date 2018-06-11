@@ -1,6 +1,8 @@
 package com.company.UIs;
 
+import com.company.Exception.NotValidFilePathException;
 import com.company.Models.Game;
+import com.company.Models.GameCenter;
 import com.company.Models.Towers.Defences.ArcherTower;
 import com.company.Models.Towers.Defences.Cannon;
 import javafx.application.Application;
@@ -8,6 +10,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -30,7 +34,6 @@ public class MainMenuUI extends Application{
         File file = new File("./src/com/company/UIs/MainMenu/menuGif.gif");
         Image backGround = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(),Screen.getPrimary().getVisualBounds().getHeight(), false, true);
         ImageView backGroundView = new ImageView(backGround);
-        backGroundView = new ImageView(backGround);
         root.getChildren().add(backGroundView);
 
         file = new File("./src/com/company/UIs/MainMenu/NewGameButton.png");
@@ -47,7 +50,7 @@ public class MainMenuUI extends Application{
 
 
         makeEventHandlersForHover(screenWidth, newGame, newGameView, loadGameView, exitGameView);
-        makeEventHandlersForClick(screenWidth, newGame, newGameView, loadGameView, exitGameView, primaryStage);
+        makeEventHandlersForClick(screenWidth,screenHeight,root, newGameView, loadGameView, exitGameView, primaryStage);
 
 
 
@@ -65,7 +68,7 @@ public class MainMenuUI extends Application{
         primaryStage.show();
     }
 
-    private void makeEventHandlersForClick(double screenWidth, Image newGame, ImageView newGameView, ImageView loadGameView, ImageView exitGameView, Stage primaryStage) {
+    private void makeEventHandlersForClick(double screenWidth,double screenHeight,Group root, ImageView newGameView, ImageView loadGameView, ImageView exitGameView, Stage primaryStage) {
         newGameView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -80,6 +83,40 @@ public class MainMenuUI extends Application{
                     e.printStackTrace();
                 }
             }
+        });
+        loadGameView.setOnMouseClicked(event -> {
+                File file = new File("./src/com/company/UIs/MainMenu/menuGif.gif");
+                Image backGround = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(),Screen.getPrimary().getVisualBounds().getHeight(), false, true);
+                ImageView backGroundView = new ImageView(backGround);
+                root.getChildren().add(backGroundView);
+                TextField textField=new TextField("please enter your preferred path");
+                textField.relocate(screenWidth / 2.5, screenHeight / 2);
+                root.getChildren().add(textField);
+                Button button= new Button("load");
+                button.relocate(screenWidth / 2.5, screenHeight / 1.7);
+                root.getChildren().add(button);
+                button.setOnMouseClicked(event1 -> {
+                    MapUI mapUI = new MapUI();
+                    Game game = null;
+                    try {
+                        game = mapUI.getController().getGameCenter().loadGame(textField.getText());
+                        mapUI.getController().setGame(game);
+                        Thread gameLogic = new Thread(new PassTurnThread(mapUI.getController()));
+                        gameLogic.start();
+                        try {
+                            mapUI.start(primaryStage);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } catch (NotValidFilePathException e) {
+                        e.printStackTrace();
+                    }
+
+                });
+
+        });
+        exitGameView.setOnMouseClicked(event -> {
+            primaryStage.close();
         });
     }
 
