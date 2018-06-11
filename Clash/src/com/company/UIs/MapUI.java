@@ -30,6 +30,11 @@ public class MapUI extends Application {
     private static int buildY;
     private PannableCanvas canvas = new PannableCanvas();
     private static HashMap<String ,Image> gifsOfTowers=new HashMap<>();
+    private static boolean isInBuildMenu=false;
+
+    public static void setIsInBuildMenu(boolean isInBuildMenu) {
+        MapUI.isInBuildMenu=isInBuildMenu;
+    }
 
     private Controller controller = new Controller();
 // to be moved to a new thread
@@ -142,10 +147,11 @@ public class MapUI extends Application {
                 int finalI = i;
                 int finalJ = j;
                 imageView.setOnMouseClicked(event -> {
-                    buildX = finalI -2;
+                    buildX = finalI - 2;
                     buildY = finalJ - 1;
                 });
             }
+
         }
     }
     public void showMapInVillage(Village village, Group root) {

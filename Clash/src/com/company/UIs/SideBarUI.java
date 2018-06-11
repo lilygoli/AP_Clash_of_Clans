@@ -537,12 +537,13 @@ public class SideBarUI {
             if (cell.getClass().getSimpleName().equals(buildingName)) {
                 Class spacialBuilding = cell.getClass();
                 try {
+                    MapUI.setIsInBuildMenu(true);
                     Cell newCell = (Cell) spacialBuilding.getDeclaredConstructor(int.class, int.class).newInstance(0, 0);
                     setOnClickImages(group, newCell);
                     int goldCost = Config.getDictionary().get(newCell.getClass().getSimpleName() + "_GOLD_COST");
                     int elixirCost = Config.getDictionary().get(newCell.getClass().getSimpleName() + "_ELIXIR_COST");
                     makeLabels(group,"Do you want to build\n" + buildingName + "\nfor " + goldCost + " gold and " + elixirCost + " elixir?",0.27,false);
-                    makeLabels(group,"if yes,\nplease select the spot you want\nto build your building on",0.365,false);
+                    makeLabels(group,"if yes,\nplease select the spot you want\nto build your building on",0.39,false);
                     ImageView buildView = getImageView("Build.png");
                     buildView.setX(UIConstants.BUTTON_STARTING_X);
                     buildView.setY(Screen.getPrimary().getVisualBounds().getHeight()*0.55);
@@ -560,6 +561,7 @@ public class SideBarUI {
                                 finalBuilder.setOccupationState(true);
                                 Resource resource = new Resource(controller.getGame().getVillage().getResource().getGold() - newCell.getGoldCost(), controller.getGame().getVillage().getResource().getElixir() - newCell.getElixirCost());
                                 controller.getGame().getVillage().setResource(resource);
+                                MapUI.setIsInBuildMenu(false);
                                 makeMainBuildingMenu(group);
                             } catch (MarginalTowerException e) {
                                 new Timeline( new KeyFrame(Duration.seconds(2), new KeyValue(e.getImageView().imageProperty(), null))).play();
@@ -592,7 +594,7 @@ public class SideBarUI {
             label.relocate(UIConstants.LABELS_STARTING_X, Screen.getPrimary().getVisualBounds().getHeight() * yCoefficient);
         }
         label.setTextFill(Color.BROWN);
-        label.setFont(Font.font("Papyrus",18));
+        label.setFont(Font.font("Papyrus",16));
         group.getChildren().add(label);
     }
 
