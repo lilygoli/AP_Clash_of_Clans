@@ -112,7 +112,7 @@ public class Controller {
             try {
                 game = gameCenter.loadGame(startingCommand.trim().split("load")[1].trim());
             } catch (NotValidFilePathException e) {
-                e.showExceptionMassage();
+                e.printStackTrace();
             }
         } else {
             View.show("please enter your preferred path for a saved game or start a new game");
@@ -128,7 +128,7 @@ public class Controller {
                 gameCenter.saveGame(game, pathname, name);
                 flag = 0;
             } catch (NotValidFilePathException e) {
-                e.showExceptionMassage();
+                e.printStackTrace();
             }
         }
     }
@@ -215,7 +215,7 @@ public class Controller {
                     game.setAttackedVillage(enemyGame);
                     flag = true;
                 } catch (NotValidFilePathException e) {
-                    e.showExceptionMassage();
+                    e.printStackTrace();
                     path = view.getInput("Enter map path");
                     if (path.equals("back") || path.equals("2")) {
                         implementAttackCommand();
@@ -300,42 +300,42 @@ public class Controller {
             try {
                 game.putUnit(matcher.group(1), Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)) - 1, Integer.parseInt(matcher.group(4)) - 1);
             } catch (MoreThanLimitSoldiersException e) {
-                e.showMessage();
+                e.printStackTrace();
             } catch (InvalidPlaceForSoldiersException e) {
-                e.showMessage();
+                e.printStackTrace();
                 implementPutUnitCommand(view.getInput());
             } catch (NotEnoughSoldierInTroopsException e) {
-                e.showMessage();
+                e.printStackTrace();
             }
         }
     }
 
     public void startAttack() {
-        outer:
-        while (true) {
-            // TODO: 4/30/18 maybe "Start Select" should have been implemented!!!
-            String playerChoice = view.getInput("please select units you want to bring to war or type End select to go back to attack.");
-            if (playerChoice.equals("End select")) {
-                if (game.getTroops() == null){
-                    View.show("please select units");
-                    continue;
-                }
-                break;
-            }
-            if (!playerChoice.matches("Select \\w+ \\d+")) {
-                View.show("invalid input.");
-            } else {
-                String[] splitPlayerChoice = playerChoice.split(" ");
-                for (int i = 0; i < Integer.parseInt(splitPlayerChoice[2]); i++) {
-                    try {
-                        game.selectUnit(splitPlayerChoice[1]);
-                    } catch (NoSuchSoldierInCampException e) {
-                        e.showMessage(splitPlayerChoice[1]);
-                        continue outer;
-                    }
-                }
-            }
-        }
+//        outer:
+//        while (true) {
+//            // TODO: 4/30/18 maybe "Start Select" should have been implemented!!!
+//            String playerChoice = view.getInput("please select units you want to bring to war or type End select to go back to attack.");
+//            if (playerChoice.equals("End select")) {
+//                if (game.getTroops() == null){
+//                    View.show("please select units");
+//                    continue;
+//                }
+//                break;
+//            }
+//            if (!playerChoice.matches("Select \\w+ \\d+")) {
+//                View.show("invalid input.");
+//            } else {
+//                String[] splitPlayerChoice = playerChoice.split(" ");
+//                for (int i = 0; i < Integer.parseInt(splitPlayerChoice[2]); i++) {
+//                    try {
+//                        game.selectUnit(splitPlayerChoice[1]);
+//                    } catch (NoSuchSoldierInCampException e) {
+//                        e.printStackTrace(splitPlayerChoice[1]);
+//                        continue outer;
+//                    }
+//                }
+//            }
+//        }
 
     }
 
@@ -481,7 +481,7 @@ public class Controller {
                 try {
                     implementUpgradeCommand(cell);
                 } catch (NotEnoughResourcesException e) {
-                  //  e.showMessage();
+                  //  e.printStackTrace();
                 }
                 getCommandInStorageInfoMenu(cell);
                 break;
@@ -639,11 +639,11 @@ public class Controller {
                 try {
                     implementBuildSoldiers((Barrack) cell);
                 } catch (unAvailableSoldierException e) {
-                    e.showMessage();
+                    e.printStackTrace();
                 } catch (NotEnoughResourcesException e) {
-                   // e.showMessage();
+                   // e.printStackTrace();
                 } catch (NotEnoughCapacityInCampsException e) {
-                    e.showMessage();
+                    e.printStackTrace();
                 }
                 cell.showMenu();
                 getCommandInBarrack(cell);
@@ -760,7 +760,7 @@ public class Controller {
                 try {
                     implementUpgradeCommand(cell);
                 } catch (NotEnoughResourcesException e) {
-                   // e.showMessage();
+                   // e.printStackTrace();
                 }
                 getCommandInDefenceInfoMenu(cell);
             case 5:
@@ -796,10 +796,10 @@ public class Controller {
                         implementBuildATowerCommand();
                         flag = 1;
                     } catch (NotEnoughFreeBuildersException e) {
-                        //e.showMessage();
+                        //e.printStackTrace();
 
                     } catch (NotEnoughResourcesException e) {
-                        //e.showMessage();
+                        //e.printStackTrace();
                     }
                 }
                 cell.showMenu();
@@ -853,7 +853,7 @@ public class Controller {
                     try {
                         implementUpgradeCommand(cell);
                     } catch (NotEnoughResourcesException e) {
-                        //e.showMessage();
+                        //e.printStackTrace();
                     }
                     getCommandInInfoMenu(cell);
                 }

@@ -137,17 +137,41 @@ public class MapUI extends Application {
                 else{
                     fileInputStream = new FileInputStream("./src/com/company/ImagesAndGifs/lightGreen.png");
                 }
-                    Image image = new Image(fileInputStream);
-                    ImageView imageView = new ImageView(image);
-                    imageView.relocate(scene.getWidth() - ((i + 1) * Screen.getPrimary().getVisualBounds().getHeight() / 32) , j * Screen.getPrimary().getVisualBounds().getHeight() / 32);
-                    imageView.setFitHeight(scene.getHeight() / 32);
-                    imageView.setFitWidth(scene.getHeight() / 32);
-                    canvas.getChildren().add(imageView);
+                Image image = new Image(fileInputStream);
+                ImageView imageView = new ImageView(image);
+                imageView.relocate(scene.getWidth() - ((i + 1) * Screen.getPrimary().getVisualBounds().getHeight() / 32) , j * Screen.getPrimary().getVisualBounds().getHeight() / 32);
+                imageView.setFitHeight(scene.getHeight() / 32);
+                imageView.setFitWidth(scene.getHeight() / 32);
+                canvas.getChildren().add(imageView);
+
+                imageView.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue ) ->
+                {
+
+                        if (newValue) {
+                            if (isInBuildMenu) {
+                                try {
+                                    FileInputStream fileInputStream2 = new FileInputStream("./src/com/company/ImagesAndGifs/red.png");
+                                    imageView.setImage(new Image(fileInputStream2));
+                                } catch (FileNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        } else {
+                                try {
+                                    FileInputStream fileInputStream2 = new FileInputStream("./src/com/company/ImagesAndGifs/lightGreen.png");
+                                    imageView.setImage(new Image(fileInputStream2));
+                                } catch (FileNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+                        }
+
+                });
                 int finalI = i;
                 int finalJ = j;
                 imageView.setOnMouseClicked(event -> {
                     buildX = finalI - 2;
                     buildY = finalJ - 1;
+                    imageView.requestFocus();
                 });
             }
 
@@ -157,7 +181,7 @@ public class MapUI extends Application {
 
         AnimationTimer animationTimer=new AnimationTimer(){
 
-            private long lastUpdate = 0 ;
+            private long lastUpdate = 0;
             @Override
             public void handle(long now) {
                 if (now - lastUpdate >= 1000000000) {

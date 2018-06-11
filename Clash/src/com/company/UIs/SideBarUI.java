@@ -4,10 +4,9 @@ import com.company.Controller.Controller;
 import com.company.Exception.*;
 import com.company.Models.Builder;
 import com.company.Models.Config;
+import com.company.Models.Game;
 import com.company.Models.Resource;
-import com.company.Models.Towers.Buildings.Camp;
-import com.company.Models.Towers.Buildings.Storage;
-import com.company.Models.Towers.Buildings.Mine;
+import com.company.Models.Towers.Buildings.*;
 import com.company.Models.Towers.Buildings.Storage;
 import com.company.Models.Towers.Cell;
 
@@ -15,6 +14,8 @@ import com.company.View.View;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 
@@ -22,9 +23,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -34,6 +37,7 @@ import javafx.util.Duration;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SideBarUI {
     private static final String ADDRESS = "./src/com/company/UIs/SideBarMenuImages/";
@@ -44,7 +48,6 @@ public class SideBarUI {
     }
 
     public static void makeSideBar(Group group) {
-
         ImageView sideBarBackgroundImageView =getImageView("labelLessCroppedMenu.png");
         Double sideBarStartingX = -sideBarBackgroundImageView.getImage().getWidth() / 16;
         sideBarBackgroundImageView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
@@ -466,6 +469,13 @@ public class SideBarUI {
         VBox vBox = new VBox(1, infoView, BuildSoldiersView, statusView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
+
+        BuildSoldiersView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                barrackBuildSoldierMenu(group, cell);
+            }
+        });
     }
 
     private static void makeStatusBarracks(Group group, Cell cell) {
@@ -664,7 +674,7 @@ public class SideBarUI {
                     Builder finalBuilder = builder;
                     buildView.setOnMouseClicked(event -> {
                         if (goldCost > controller.getGame().getVillage().getResource().getGold() || elixirCost > controller.getGame().getVillage().getResource().getElixir()) {
-                             group.getChildren().add(new NotEnoughResourcesException().getImageView());
+                            group.getChildren().add(new NotEnoughResourcesException().getImageView());
                     } else {
                             try {
                                 newCell.setY(MapUI.getBuildY());
@@ -705,4 +715,118 @@ public class SideBarUI {
         group.getChildren().add(label);
     }
 
+    private static void barrackBuildSoldierMenu(Group group, Cell cell) {
+        makeSideBar(group);
+        File archerFile=new File("./src/com/company/ImagesAndGifs/Soldiers/Archer/ArcherPortrait.jpg");
+        Image archerImage = new Image(archerFile.toURI().toString());
+        ImageView archerView = new ImageView(archerImage);
+        archerView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
+        archerView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
+        File dragonFile=new File("./src/com/company/ImagesAndGifs/Soldiers/Dragon/DragonPortrait.jpg");
+        Image dragonImage = new Image(dragonFile.toURI().toString());
+        ImageView dragonView = new ImageView(dragonImage);
+        dragonView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
+        dragonView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
+        File giantFile=new File("./src/com/company/ImagesAndGifs/Soldiers/Giant/GiantPortrait.jpg");
+        Image giantImage = new Image(giantFile.toURI().toString());
+        ImageView giantView = new ImageView(giantImage);
+        giantView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
+        giantView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
+        File guardianFile=new File("./src/com/company/ImagesAndGifs/Soldiers/Guardian/GuardianPortrait.jpg");
+        Image guardianImage = new Image(guardianFile.toURI().toString());
+        ImageView guardianView = new ImageView(guardianImage);
+        guardianView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
+        guardianView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
+
+        addBuildSoldier(group, cell, archerView, "Archer");
+        addBuildSoldier(group, cell, dragonView, "Dragon");
+        addBuildSoldier(group, cell, giantView, "Giant");
+        addBuildSoldier(group, cell, guardianView, "Guardian");
+
+        opacityOnHover(archerView);
+        opacityOnHover(dragonView);
+        opacityOnHover(giantView);
+        opacityOnHover(guardianView);
+
+        HBox soldiers1 = new HBox(1,archerView, dragonView);
+        HBox soldiers2 = new HBox(1,giantView, guardianView);
+        //todo add healer, wallBreaker Portrait
+        File backFile=new File(ADDRESS+"Back.png");
+        Image backImage=new Image(backFile.toURI().toString());
+        ImageView backView=new ImageView(backImage);
+        backView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                makeBarrackMenu(group, cell);
+            }
+        });
+
+        VBox allSoldiers = new VBox(1, soldiers1, soldiers2, backView);
+        allSoldiers.relocate(50, 160);
+
+        group.getChildren().addAll(allSoldiers);
+    }
+
+    private static void opacityOnHover(ImageView imageView) {
+        imageView.setOnMouseMoved(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageView.setOpacity(0.6);
+            }
+        });
+        imageView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageView.setOpacity(1);
+            }
+        });
+    }
+
+    private static void addBuildSoldier(Group group, Cell cell, ImageView imageView, String name) {
+        imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    implementBuildSoldier(group, cell, name);
+                    barrackBuildSoldierMenu(group, cell);
+                } catch (NotEnoughResourcesException e) {
+                    new Timeline( new KeyFrame(Duration.seconds(2), new KeyValue(e.getImageView().imageProperty(), null))).play();
+                    group.getChildren().add(e.getImageView());
+                } catch (NotEnoughCapacityInCampsException e) {
+                    new Timeline( new KeyFrame(Duration.seconds(2), new KeyValue(e.getImageView().imageProperty(), null))).play();
+                    group.getChildren().add(e.getImageView());
+                } catch (unAvailableSoldierException e) {
+                    new Timeline( new KeyFrame(Duration.seconds(2), new KeyValue(e.getImageView().imageProperty(), null))).play();
+                    group.getChildren().add(e.getImageView());
+                }
+            }
+        });
+    }
+
+    private static void implementBuildSoldier(Group group, Cell cell, String playerChoice) throws NotEnoughResourcesException, NotEnoughCapacityInCampsException, unAvailableSoldierException {
+        Barrack barrack = (Barrack) cell;
+        HashMap<String, Integer> availableSoldiers = barrack.determineAvailableSoldiers(controller.getGame().getVillage().getResource().getElixir());
+        if (playerChoice.equals("resources")){
+            controller.getGame().showResources();
+        }
+        if (playerChoice.equals("WhereIAm")){
+            View.show(Game.getWhereIAm());
+        }
+        if (availableSoldiers.get(playerChoice) == 0) {
+            throw new unAvailableSoldierException();
+        } else {
+            int soldierAmount = 1;
+            int totalCapacity = 0;
+            for (Camp camp : controller.getGame().getVillage().getCamps()) {
+                if (!camp.getUnderConstructionStatus())
+                    totalCapacity += camp.getCapacity() - camp.getSoldiers().size();
+            }
+            if (soldierAmount > totalCapacity) {
+                throw new NotEnoughCapacityInCampsException();
+            }
+            barrack.buildSoldier(soldierAmount, playerChoice, availableSoldiers);
+            Resource resource = new Resource(controller.getGame().getVillage().getResource().getGold(), controller.getGame().getVillage().getResource().getElixir() - soldierAmount * Config.getDictionary().get(playerChoice + "_ELEXIR_COST"));
+            controller.getGame().getVillage().setResource(resource);
+        }
+    }
 }

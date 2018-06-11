@@ -15,10 +15,11 @@ public class MoreThanLimitSoldiersException extends Exception {
         return imageView;
     }
 
-    public void showMessage(){
+    {
      File file = new File("./src/com/company/UIs/SideBarMenuImages/MoreThanLimitSoldiersException.png");
      Image backGround = new Image(file.toURI().toString());
      imageView = new ImageView(backGround);
-     imageView.relocate(UIConstants.BUTTON_STARTING_X,  Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.EXCEPTION_BUTTON_Y_COEFFICIENT);
- }
+     //imageView.relocate(UIConstants.BUTTON_STARTING_X,  Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.EXCEPTION_BUTTON_Y_COEFFICIENT);
+        imageView.relocate(UIConstants.BUTTON_STARTING_X,  Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.EXCEPTION_BUTTON_Y_COEFFICIENT);
+    }
 }
