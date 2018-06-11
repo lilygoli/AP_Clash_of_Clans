@@ -461,11 +461,11 @@ public class Controller {
         int playerChoice = Integer.parseInt(input);
         switch (playerChoice) {
             case 1:
-                cell.showOverallInfo();
+                //cell.showOverallInfo();
                 getCommandInStorageInfoMenu(cell);
                 break;
             case 2:
-                cell.showUpgradeInfo();
+                //cell.showUpgradeInfo();
                 getCommandInStorageInfoMenu(cell);
                 break;
             case 3:
@@ -597,7 +597,7 @@ public class Controller {
         int playerChoice = Integer.parseInt(input);
         switch (playerChoice) {
             case 1:
-                camp.showOverallInfo();
+               // camp.showOverallInfo();
                 getCommandInCampInfoMenu(camp);
                 break;
             case 2:
@@ -731,11 +731,11 @@ public class Controller {
         int playerChoice = Integer.parseInt(input);
         switch (playerChoice) {
             case 1:
-                cell.showOverallInfo();
+               // cell.showOverallInfo();
                 getCommandInDefenceInfoMenu(cell);
                 break;
             case 2:
-                cell.showUpgradeInfo();
+               // cell.showUpgradeInfo();
                 getCommandInDefenceInfoMenu(cell);
                 break;
             case 3:
@@ -834,11 +834,11 @@ public class Controller {
         int playerChoice = Integer.parseInt(input);
         switch (playerChoice) {
             case 1:
-                cell.showOverallInfo();
+               // cell.showOverallInfo();
                 getCommandInInfoMenu(cell);
                 break;
             case 2:
-                cell.showUpgradeInfo();
+               // cell.showUpgradeInfo();
                 getCommandInInfoMenu(cell);
                 break;
             case 3:

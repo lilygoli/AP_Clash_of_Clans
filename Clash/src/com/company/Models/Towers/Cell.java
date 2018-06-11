@@ -174,15 +174,6 @@ public class Cell {
         return this.getClass().getSimpleName();
     }
 
-    public void showOverallInfo() {
-        Game.setWhereIAm("You are in " + this.getClass().getSimpleName()+ " Overall info menu");
-        View.show("Level: " + this.getLevel() + "\nHealth: " + this.getStrength());
-    }
-
-    public void showUpgradeInfo() {
-        Game.setWhereIAm("You are in " + this.getClass().getSimpleName()+ " upgrade info menu");
-        View.show("Upgrade Cost: " + this.getUpgradeCost());
-    }
 
     public static void sortTowers(ArrayList<Cell> towers) {
         if (towers.isEmpty()) {

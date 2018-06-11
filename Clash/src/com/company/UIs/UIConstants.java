@@ -6,4 +6,6 @@ public class UIConstants {
     public static final double EXCEPTION_BUTTON_Y_COEFFICIENT = 0.45;
     public static final int MENU_VBOX_STARTING_Y = 160;
     public static final int LABELS_STARTING_X = 40;
+    public static final double INFOMENU_STARTING_X =30 ;
+    public static final double INFO_LABEL_STARTING_X = 200;
 }
