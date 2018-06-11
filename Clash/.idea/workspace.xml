@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd4373d0-16e4-43f1-a01f-34df3517e604" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/ArcherTower.png" afterPath="$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/ArcherTower.png" />
       <change beforePath="$PROJECT_DIR$/src/com/company/UIs/MainMenuUI.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/MainMenuUI.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/Attack info.png" afterPath="$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/Attack info.png" />
       <change beforePath="$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -27,8 +24,18 @@
       <file leaf-file-name="MapUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MapUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-480">
-              <caret line="184" column="17" lean-forward="false" selection-start-line="184" selection-start-column="17" selection-end-line="184" selection-end-column="17" />
+            <state relative-caret-position="377">
+              <caret line="170" column="13" lean-forward="false" selection-start-line="170" selection-start-column="13" selection-end-line="170" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/company/Controller/Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="513" column="5" lean-forward="true" selection-start-line="513" selection-start-column="5" selection-end-line="513" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -37,8 +44,8 @@
       <file leaf-file-name="MainMenuUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MainMenuUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-702">
-              <caret line="28" column="22" lean-forward="false" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="22" />
+            <state relative-caret-position="225">
+              <caret line="72" column="52" lean-forward="true" selection-start-line="72" selection-start-column="52" selection-end-line="72" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -54,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SideBarUI.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SideBarUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="284" column="73" lean-forward="false" selection-start-line="284" selection-start-column="73" selection-end-line="284" selection-end-column="73" />
+            <state relative-caret-position="31">
+              <caret line="328" column="14" lean-forward="true" selection-start-line="328" selection-start-column="14" selection-end-line="328" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1318#1319#0" expanded="true" />
@@ -83,8 +90,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>enemyMapj</find>
-      <find>implement</find>
       <find>implementAtta</find>
       <find>findDirec</find>
       <find>save</find>
@@ -113,6 +118,8 @@
       <find>overallInfo</find>
       <find>upgrade</find>
       <find>makeLabel</find>
+      <find>&quot;Viv</find>
+      <find>implementUpgrade</find>
     </findStrings>
     <replaceStrings>
       <replace>cell</replace>
@@ -219,9 +226,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -304,6 +309,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -315,149 +322,6 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="SearchEverywhereHistoryKey" value="Cell&#9;FILE&#9;file:///Users/ashkan/Desktop/AP_7/Clash/src/com/company/Models/Towers/Cell.java&#10;plugin&#9;ACTION&#9;WelcomeScreen.Plugins" />
     <property name="extract.method.default.visibility" value="private" />
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/misc.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Controller/Controller.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Exception/BusyCellException.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Exception/InvalidPlaceForSoldiersException.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Exception/MarginalTowerException.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Exception/MoreThanLimitSoldiersException.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Exception/NoSuchSoldierInCampException.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Exception/NotEnoughCapacityInCampsException.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Exception/NotEnoughFreeBuildersException.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Exception/NotEnoughResourcesException.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Exception/NotEnoughSoldierInTroopsException.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Exception/NotValidFilePathException.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Exception/unAvailableSoldierException.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/ArcherTower.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/WizardTower.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Models/Towers/Buildings/MainBuilding.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Models/Village.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/MapUI.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/BusyCellException.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/NotEnoughFreeBuildersException.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/AirDefence.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/AirDefenceLoading.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/ArcherTowerLoading.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/CampLoading.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/CannonLoading.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/ElixirMineLoading.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/ElixirStorageLoading.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/GoldMineLoading.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/GoldStorageLoading.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/WallLoading.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/WizardTowerLoading.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/UIConstants.java</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/AirDefense.png</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -655,7 +519,9 @@
       <workItem from="1528535982686" duration="3740000" />
       <workItem from="1528540005985" duration="4737000" />
       <workItem from="1528600460010" duration="697000" />
-      <workItem from="1528605721989" duration="2910000" />
+      <workItem from="1528605721989" duration="2983000" />
+      <workItem from="1528638894227" duration="180000" />
+      <workItem from="1528689643534" duration="498000" />
     </task>
     <task id="LOCAL-00001" summary="bug fix in Defences to shoot enemies">
       <created>1525595424519</created>
@@ -811,11 +677,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528601011546</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="one layer defences menu">
+      <created>1528632724560</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1528632724560</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="155334000" />
+    <option name="totallyTimeSpent" value="156085000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -828,7 +701,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -838,12 +710,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3675937" sideWeight="0.5071531" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12696493" sideWeight="0.49284694" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12575574" sideWeight="0.49284694" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18621524" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30329043" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23748212" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26118502" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922825" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -921,7 +793,8 @@
     <MESSAGE value="buildX and buildY listeners and variables" />
     <MESSAGE value="Build button" />
     <MESSAGE value="click focus set on towers" />
-    <option name="LAST_COMMIT_MESSAGE" value="click focus set on towers" />
+    <MESSAGE value="one layer defences menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="one layer defences menu" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1164,17 +1037,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Controller/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-445">
-          <caret line="136" column="77" lean-forward="false" selection-start-line="136" selection-start-column="77" selection-end-line="136" selection-end-column="77" />
-          <folding>
-            <element signature="e#585#586#0" expanded="false" />
-            <element signature="e#612#613#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/border.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1375,26 +1237,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MainMenuUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-702">
-          <caret line="28" column="22" lean-forward="false" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MapUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-480">
-          <caret line="184" column="17" lean-forward="false" selection-start-line="184" selection-start-column="17" selection-end-line="184" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="284" column="73" lean-forward="false" selection-start-line="284" selection-start-column="73" selection-end-line="284" selection-end-column="73" />
+        <state relative-caret-position="31">
+          <caret line="328" column="14" lean-forward="true" selection-start-line="328" selection-start-column="14" selection-end-line="328" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1318#1319#0" expanded="true" />
@@ -1404,6 +1250,30 @@
             <element signature="e#9968#9969#0" expanded="true" />
             <element signature="e#10033#10034#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MainMenuUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="72" column="52" lean-forward="true" selection-start-line="72" selection-start-column="52" selection-end-line="72" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MapUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="170" column="13" lean-forward="false" selection-start-line="170" selection-start-column="13" selection-end-line="170" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Controller/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="513" column="5" lean-forward="true" selection-start-line="513" selection-start-column="5" selection-end-line="513" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
