@@ -14,6 +14,7 @@ public class MarginalTowerException extends Exception {
         File file = new File("./src/com/company/UIs/SideBarMenuImages/BusyCellException.png");
         Image backGround = new Image(file.toURI().toString());
         imageView = new ImageView(backGround);
+        //imageView.relocate(UIConstants.BUTTON_STARTING_X,  Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.EXCEPTION_BUTTON_Y_COEFFICIENT);
         imageView.relocate(UIConstants.BUTTON_STARTING_X,  Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.EXCEPTION_BUTTON_Y_COEFFICIENT);
     }
     public ImageView getImageView() {

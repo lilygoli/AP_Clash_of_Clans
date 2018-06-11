@@ -4,7 +4,7 @@ import com.company.Controller.Controller;
 
 public class PassTurnThread implements Runnable {
     Controller controller = new Controller();
-    public static final int deltaT = 100;
+    public static final int deltaT = 10;
 
     public PassTurnThread(Controller controller) {
         this.controller = controller;

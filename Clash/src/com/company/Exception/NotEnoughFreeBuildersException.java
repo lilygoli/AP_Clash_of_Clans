@@ -14,7 +14,8 @@ public class NotEnoughFreeBuildersException extends Exception {
         File file = new File("./src/com/company/UIs/SideBarMenuImages/NotEnoughFreeBuildersException.png");
         Image backGround = new Image(file.toURI().toString());
         imageView = new ImageView(backGround);
-        imageView.relocate(UIConstants.BUTTON_STARTING_X, Screen.getPrimary().getVisualBounds().getHeight() *0.4);
+        //imageView.relocate(UIConstants.BUTTON_STARTING_X, Screen.getPrimary().getVisualBounds().getHeight() *0.4);
+        imageView.relocate(UIConstants.BUTTON_STARTING_X,  Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.EXCEPTION_BUTTON_Y_COEFFICIENT);
     }
 
     public ImageView getImageView() {

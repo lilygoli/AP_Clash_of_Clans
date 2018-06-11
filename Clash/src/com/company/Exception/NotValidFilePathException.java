@@ -10,10 +10,16 @@ import java.io.File;
 
 public class NotValidFilePathException extends Exception {
     ImageView imageView = new ImageView();
-    public void showExceptionMassage(){
+
+    public ImageView getImageView() {
+        return imageView;
+    }
+
+    {
         File file = new File("./src/com/company/UIs/SideBarMenuImages/NotValidFilePathException.png");
         Image backGround = new Image(file.toURI().toString());
         imageView = new ImageView(backGround);
+        //imageView.relocate(UIConstants.BUTTON_STARTING_X,  Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.EXCEPTION_BUTTON_Y_COEFFICIENT);
         imageView.relocate(UIConstants.BUTTON_STARTING_X,  Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.EXCEPTION_BUTTON_Y_COEFFICIENT);
     }
 }

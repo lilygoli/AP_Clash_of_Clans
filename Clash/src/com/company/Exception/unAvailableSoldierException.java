@@ -10,10 +10,16 @@ import java.io.File;
 
 public class unAvailableSoldierException extends Exception {
     ImageView imageView = new ImageView();
-    public void showMessage(){
-        File file = new File("./src/com/company/UIs/SideBarMenuImages/unAvailableSoldierException.png");
+
+    public ImageView getImageView() {
+        return imageView;
+    }
+
+    {
+        File file = new File("./src/com/company/UIs/SideBarMenuImages/NotEnoughResourcesException.png");
         Image backGround = new Image(file.toURI().toString());
         imageView = new ImageView(backGround);
+        //imageView.relocate(UIConstants.BUTTON_STARTING_X,  Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.EXCEPTION_BUTTON_Y_COEFFICIENT);
         imageView.relocate(UIConstants.BUTTON_STARTING_X,  Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.EXCEPTION_BUTTON_Y_COEFFICIENT);
     }
 }
