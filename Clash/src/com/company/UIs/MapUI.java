@@ -38,6 +38,7 @@ public class MapUI extends Application {
 
     private Controller controller = new Controller();
 // to be moved to a new thread
+// TODO: 6/11/2018 giant kill gif add and healer and wallbreaker and guardian giant kill add
     static {
         File AirDefenceFile=new File("./src/com/company/ImagesAndGifs/Buildings/AirDefenceLoading.gif");
         gifsOfTowers.put("AirDefence",new Image(AirDefenceFile.toURI().toString()));

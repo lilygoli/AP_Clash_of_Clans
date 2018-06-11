@@ -30,6 +30,7 @@ public class MainMenuUI extends Application{
         File file = new File("./src/com/company/UIs/MainMenu/menuGif.gif");
         Image backGround = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(),Screen.getPrimary().getVisualBounds().getHeight(), false, true);
         ImageView backGroundView = new ImageView(backGround);
+        backGroundView = new ImageView(backGround);
         root.getChildren().add(backGroundView);
 
         file = new File("./src/com/company/UIs/MainMenu/NewGameButton.png");

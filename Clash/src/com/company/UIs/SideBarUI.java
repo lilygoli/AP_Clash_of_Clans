@@ -8,6 +8,7 @@ import com.company.Exception.NotEnoughResourcesException;
 import com.company.Models.Builder;
 import com.company.Models.Config;
 import com.company.Models.Resource;
+import com.company.Models.Towers.Buildings.Camp;
 import com.company.Models.Towers.Buildings.Storage;
 import com.company.Models.Towers.Buildings.Mine;
 import com.company.Models.Towers.Buildings.Storage;
@@ -172,7 +173,13 @@ public class SideBarUI {
     private static void showSourcesInfo(Group group, Cell cell) {
         Storage storage = (Storage)cell;
         makeSideBar(group);
-        ImageView sourcesInfoInsides= getImageView("sourcesInfoInsides.png");
+        ImageView sourcesInfoInsides;
+        if (storage.getClass().getSimpleName().equals("GoldStorage")) {
+            sourcesInfoInsides = getImageView("sourcesInfoInsides2.png");
+        }
+        else{
+            sourcesInfoInsides = getImageView("sourcesInfoInsides.png");
+        }
         sourcesInfoInsides.setX(UIConstants.INFOMENU_STARTING_X);
         sourcesInfoInsides.setY(UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(sourcesInfoInsides);
@@ -193,22 +200,73 @@ public class SideBarUI {
     public static void makeCampMenu(Group group, Cell cell) {
         makeSideBar(group);
         ImageView infoView = getImageView("info.png");
+        infoView.setOnMouseClicked(event -> {
+            makeCampInfoMenu(group , cell);
+        });
         ImageView SoldiersView = getImageView("Soldiers.png");
+        SoldiersView.setOnMouseClicked(event -> {
+            makeSoldiersMenu(group , cell);
+        });
         ImageView backView = getImageView("Back.png");
+        backView.setOnMouseClicked(event -> {
+            makeSideBar(group);
+        });
         VBox vBox = new VBox(1, infoView, SoldiersView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
     }
 
+    private static void makeSoldiersMenu(Group group, Cell cell) {
+        Camp camp = (Camp)cell;
+        makeSideBar(group);
+        makeLabels(group,camp.showSoldiers().trim(),0.2,false);
+        ImageView backView = getImageView("Back.png");
+        backView.setX(UIConstants.BUTTON_STARTING_X);
+        backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
+        group.getChildren().add(backView);
+        backView.setOnMouseClicked(backEvent -> {
+            makeCampMenu(group  ,cell);
+        });
+    }
+
     public static void makeCampInfoMenu(Group group, Cell cell) {
         makeSideBar(group);
         ImageView overAllInfoView = getImageView("OverAllInfo.png");
+        overAllInfoView.setOnMouseClicked(event -> {
+            showOverallInfo(group , cell);
+        });
         ImageView UpgradeInfoView = getImageView("UpgradeInfo.png");
+        UpgradeInfoView.setOnMouseClicked(event -> {
+            showUpgradeInfo(group , cell);
+        });
         ImageView CapacityInfoView = getImageView("CapacityInfo.png");
+        CapacityInfoView.setOnMouseClicked(event -> {
+            showCampCapacityInfo(group , cell);
+        });
         ImageView backView = getImageView("Back.png");
+        backView.setOnMouseClicked(event -> {
+            makeCampMenu(group , cell);
+        });
         VBox vBox = new VBox(1, overAllInfoView, UpgradeInfoView, CapacityInfoView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
+    }
+
+    private static void showCampCapacityInfo(Group group, Cell cell) {
+        Camp camp = (Camp)cell;
+        makeSideBar(group);
+        ImageView campCapacity= getImageView("campCapacity.png");
+        campCapacity.setX(UIConstants.INFOMENU_STARTING_X);
+        campCapacity.setY(UIConstants.MENU_VBOX_STARTING_Y);
+        group.getChildren().add(campCapacity);
+        makeLabels(group,Integer.toString(camp.getCapacity()),0.39,true);
+        ImageView backView = getImageView("Back.png");
+        backView.setX(UIConstants.BUTTON_STARTING_X);
+        backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
+        group.getChildren().add(backView);
+        backView.setOnMouseClicked(backEvent -> {
+            makeCampInfoMenu(group  ,cell);
+        });
     }
 
     public static void makeMineMenu(Group group, Cell cell) {
@@ -332,6 +390,17 @@ public class SideBarUI {
             case "GoldStorage" :
             case "ElixirStorage" :
                 makeStorageMenu(group , cell);
+                break;
+            case "Camp":
+                makeCampInfoMenu(group ,cell);
+                break;
+            case "Cannon":
+            case "ArcherTower":
+            case "WizardTower":
+            case "AirDefence":
+            case "Trap":
+            case "Wall":
+                makeDefencesMenu(group , cell);
                 break;
             default:
                 makeDefaultInfoMenu(group,cell);
