@@ -8,6 +8,7 @@ import com.company.Exception.NotEnoughResourcesException;
 import com.company.Models.Builder;
 import com.company.Models.Config;
 import com.company.Models.Resource;
+import com.company.Models.Towers.Buildings.Storage;
 import com.company.Models.Towers.Cell;
 
 import com.company.View.View;
@@ -77,16 +78,7 @@ public class SideBarUI {
         });
         ImageView statusView = getImageView("Status.png");
         statusView.setOnMouseClicked(event -> {
-            makeSideBar(group);
-            makeLabels(group,controller.getGame().getVillage().showTownHallStatus().trim(),0.2,false);
-            ImageView backView = getImageView("back.png");
-            backView.setScaleX(0.5);
-            backView.setY(Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.BACK_BUTTON_Y_COEFFICIENT);
-            backView.setX(UIConstants.BUTTON_STARTING_X);
-            backView.setOnMouseClicked(backEvent -> {
-                makeSideBar(group);
-            });
-            group.getChildren().add(backView);
+            makeMainBuildingStatusMenu(group);
         });
         ImageView backView = getImageView("Back.png");
         backView.setOnMouseClicked(event -> {
@@ -95,6 +87,19 @@ public class SideBarUI {
         VBox vBox = new VBox(infoView, availableBuildingView, statusView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
+    }
+
+    private static void makeMainBuildingStatusMenu(Group group) {
+        makeSideBar(group);
+        makeLabels(group,controller.getGame().getVillage().showTownHallStatus().trim(),0.2,false);
+        ImageView backView = getImageView("back.png");
+        backView.setScaleX(0.5);
+        backView.setY(Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.BACK_BUTTON_Y_COEFFICIENT);
+        backView.setX(UIConstants.BUTTON_STARTING_X);
+        backView.setOnMouseClicked(backEvent -> {
+            makeMainBuildingMenu(group);
+        });
+        group.getChildren().add(backView);
     }
 
     private static ImageView getImageView(String imageName) {
@@ -131,13 +136,49 @@ public class SideBarUI {
     public static void makeStorageMenu(Group group, Cell cell) {
         makeSideBar(group);
         ImageView overAllInfoView = getImageView("OverAllInfo.png");
+        overAllInfoView.setOnMouseClicked(event -> {
+            showOverallInfo(group , cell);
+        });
         ImageView UpgradeInfoView = getImageView("UpgradeInfo.png");
+        UpgradeInfoView.setOnMouseClicked(event -> {
+            showUpgradeInfo(group , cell);
+        });
         ImageView SourcesInfoView = getImageView("SourcesInfo.png");
+        SourcesInfoView.setOnMouseClicked(event -> {
+            showSourcesInfo(group , cell);
+        });
         ImageView upgradeView = getImageView("Upgrade.png");
+        upgradeView.setOnMouseClicked(event -> {
+            implementUpgradeBuildings(group , cell);
+        });
         ImageView backView = getImageView("Back.png");
+        backView.setOnMouseClicked(event -> {
+            makeBuildingsMenu(group , cell);
+        });
         VBox vBox = new VBox(1, overAllInfoView, UpgradeInfoView, SourcesInfoView, upgradeView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
+    }
+
+    private static void showSourcesInfo(Group group, Cell cell) {
+        Storage storage = (Storage)cell;
+        makeSideBar(group);
+        ImageView sourcesInfoInsides= getImageView("sourcesInfoInsides.png");
+        sourcesInfoInsides.setX(UIConstants.INFOMENU_STARTING_X);
+        sourcesInfoInsides.setY(UIConstants.MENU_VBOX_STARTING_Y);
+        group.getChildren().add(sourcesInfoInsides);
+        Label label=new Label(Integer.toString(storage.getResource()));
+        label.relocate(UIConstants.INFO_LABEL_STARTING_X  - 40, Screen.getPrimary().getVisualBounds().getHeight() * 0.365);
+        label.setTextFill(Color.BROWN);
+        label.setFont(Font.font("Vivaldi",18));
+        group.getChildren().add(label);
+        ImageView backView = getImageView("Back.png");
+        backView.setX(UIConstants.BUTTON_STARTING_X);
+        backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
+        group.getChildren().add(backView);
+        backView.setOnMouseClicked(backEvent -> {
+            backSwitchCaseFunction(group, cell);
+        });
     }
 
     public static void makeCampMenu(Group group, Cell cell) {
@@ -229,7 +270,7 @@ public class SideBarUI {
                 cell.upgrade();
                 Resource resource = new Resource(controller.getGame().getVillage().getResource().getGold() - cell.getUpgradeCost(), controller.getGame().getVillage().getResource().getElixir());
                 controller.getGame().getVillage().setResource(resource);
-                makeDefaultInfoMenu(group,cell);
+                backSwitchCaseFunction(group, cell);
             }
         });
         ImageView backView = getImageView("back.png");
@@ -237,7 +278,7 @@ public class SideBarUI {
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.BACK_BUTTON_Y_COEFFICIENT);
         backView.setX(UIConstants.BUTTON_STARTING_X);
         backView.setOnMouseClicked(event -> {
-            makeDefaultInfoMenu(group,cell);
+            backSwitchCaseFunction(group, cell);
         });
         group.getChildren().add(backView);
     }
@@ -256,8 +297,20 @@ public class SideBarUI {
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
         group.getChildren().add(backView);
         backView.setOnMouseClicked(backEvent -> {
-            makeDefaultInfoMenu(group,cell);
+            backSwitchCaseFunction(group, cell);
         });
+    }
+
+    private static void backSwitchCaseFunction(Group group, Cell cell) {
+        switch (cell.getClass().getSimpleName()){
+            case "GoldStorage" :
+            case "ElixirStorage" :
+                makeStorageMenu(group , cell);
+                break;
+            default:
+                makeDefaultInfoMenu(group,cell);
+                break;
+        }
     }
 
     private static void showOverallInfo(Group group, Cell cell) {
@@ -273,7 +326,7 @@ public class SideBarUI {
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
         group.getChildren().add(backView);
         backView.setOnMouseClicked(backEvent -> {
-            makeDefaultInfoMenu(group,cell);
+            backSwitchCaseFunction(group, cell);
         });
     }
 
@@ -499,6 +552,7 @@ public class SideBarUI {
     }
 
     private static void setOnClickImages(Group group, Cell newCell) {
+        System.out.println(newCell.getClass().getSimpleName());
         newCell.getImage().setOnMouseClicked(event -> {
             SideBarUI.makeBuildingsMenu(group, newCell);
             newCell.getImage().requestFocus();

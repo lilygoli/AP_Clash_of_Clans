@@ -3,11 +3,15 @@ package com.company.UIs;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 
 public class SceneGestures {
     private static final double MAX_SCALE = 10.0d;
     private static final double MIN_SCALE = 0.8d;
+    private static final boolean canZoom = true;
+
 
     PannableCanvas canvas;
 
@@ -85,6 +89,12 @@ public class SceneGestures {
 
             double x = sceneDragContext.translateAnchorX + event.getSceneX() - sceneDragContext.mouseAnchorX;
             double y = sceneDragContext.translateAnchorY + event.getSceneY() - sceneDragContext.mouseAnchorY;
+//            Circle circle = new Circle(x , y , 10);
+//            circle.setFill(Color.RED);
+//            canvas.getChildren().add(circle);
+//            if (x < 0){
+//                x = 0;
+//            }
             canvas.setTranslateY(y);
             canvas.setTranslateX(x);
 
