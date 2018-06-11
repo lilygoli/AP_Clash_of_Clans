@@ -11,6 +11,7 @@ import com.company.Models.Towers.Defences.WizardTower;
 import com.company.Models.Village;
 import com.company.UIs.SideBarUI;
 import com.company.View.View;
+import com.gilecode.yagson.com.google.gson.annotations.Expose;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 public class Cell {
 
     private final String infoMenu = "1. Overall Info\n2. Upgrade Info\n3. Upgrade \n4. Back";
-    private transient ImageView image=new ImageView();
+    @Expose private ImageView image=new ImageView();
     private boolean isUnderConstruction = false;
     private int x;
     private int y;

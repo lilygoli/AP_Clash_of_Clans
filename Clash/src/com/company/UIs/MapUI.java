@@ -230,9 +230,11 @@ public class MapUI extends Application {
         addGlowToBuildings(village.getMap()[j][i].getImage());
         village.getMap()[j][i].getImage().setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / size);
         village.getMap()[j][i].getImage().setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / size);
-        if(canvas.getChildren().contains(village.getMap()[j][i].getImage())){
-            canvas.getChildren().remove(village.getMap()[j][i].getImage());}
-        canvas.getChildren().add(village.getMap()[j][i].getImage());
+//            if (canvas.getChildren().contains(village.getMap()[j][i].getImage())) {
+//                canvas.getChildren().remove(village.getMap()[j][i].getImage());
+//            }
+//            canvas.getChildren().add(village.getMap()[j][i].getImage());
+       //todo what is wrong 
     }
 
 

@@ -61,16 +61,21 @@ public class SideBarUI {
         borderImageView.setX(sideBarStartingX + 20);
         ImageView saveView = getImageView("save.png");
         saveView.setOnMouseClicked(event -> {
-
                 makeSideBar(group);
                 TextField pathTextField=new TextField("enter path");
+                pathTextField.relocate(UIConstants.BUTTON_STARTING_X,200);
                 TextField nameTextField= new TextField("enter name");
+                nameTextField.relocate(UIConstants.BUTTON_STARTING_X,220);
                 Button saveButton=new Button("save");
+                saveButton.relocate(UIConstants.BUTTON_STARTING_X,230);
+                group.getChildren().add(pathTextField);
+                group.getChildren().add(nameTextField);
+                group.getChildren().add(saveButton);
                 saveButton.setOnMouseClicked(event1 -> {
                     try {
                         controller.getGameCenter().saveGame(controller.getGame(), pathTextField.getText(), nameTextField.getText());
                     } catch (NotValidFilePathException e) {
-                        e.showExceptionMassage();
+                       // e.showExceptionMassage();
                     }
                 });
 
