@@ -3,8 +3,6 @@ package com.company.UIs;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 
 public class SceneGestures {
@@ -33,14 +31,14 @@ public class SceneGestures {
         return onMouseDraggedEventHandler;
     }
 
-    /**
-     * Mouse wheel handler: zoom to pivot point
-     */
     private EventHandler<ScrollEvent> onScrollEventHandler = new EventHandler<ScrollEvent>() {
 
         @Override
         public void handle(ScrollEvent event) {
 
+            if (event.getX() < Screen.getPrimary().getVisualBounds().getWidth() - Screen.getPrimary().getVisualBounds().getHeight()){
+                return;
+            }
             double delta = 1.05;
             double scale = canvas.getScale(); // currently we only use Y, same value is used for X
             double oldScale = scale;
@@ -69,7 +67,7 @@ public class SceneGestures {
     private EventHandler<MouseEvent> onMousePressedEventHandler = new EventHandler<MouseEvent>() {
 
         public void handle(MouseEvent event) {
-            if (!event.isPrimaryButtonDown())
+            if (!event.isPrimaryButtonDown() || event.getX() < Screen.getPrimary().getVisualBounds().getWidth() - Screen.getPrimary().getVisualBounds().getHeight())
                 return;
 
             sceneDragContext.mouseAnchorX = event.getSceneX();
@@ -84,7 +82,7 @@ public class SceneGestures {
     private EventHandler<MouseEvent> onMouseDraggedEventHandler = new EventHandler<MouseEvent>() {
         public void handle(MouseEvent event) {
 
-            if (!event.isPrimaryButtonDown())
+            if (!event.isPrimaryButtonDown() || event.getX() < Screen.getPrimary().getVisualBounds().getWidth() - Screen.getPrimary().getVisualBounds().getHeight())
                 return;
 
             double x = sceneDragContext.translateAnchorX + event.getSceneX() - sceneDragContext.mouseAnchorX;

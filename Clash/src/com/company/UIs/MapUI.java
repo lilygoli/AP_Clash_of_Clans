@@ -145,8 +145,7 @@ public class MapUI extends Application {
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(10, 10, 10, 10));
         grid.setVgap(10);
-        grid.setHgap(70);
-
+        grid.setHgap(20);
 
         GridPane.setConstraints(caption, 0, 1);
         grid.getChildren().add(caption);
@@ -167,7 +166,7 @@ public class MapUI extends Application {
         GridPane.setConstraints(deltaTValue, 2, 1);
         grid.getChildren().add(deltaTValue);
 
-        grid.relocate(Screen.getPrimary().getVisualBounds().getWidth() * 0.72, Screen.getPrimary().getVisualBounds().getHeight() * 0.88);
+        grid.relocate(Screen.getPrimary().getVisualBounds().getWidth() * 0.17, Screen.getPrimary().getVisualBounds().getHeight() * 0.88);
 
         root.getChildren().add(grid);
         SideBarUI.makeStartingMenu(root);

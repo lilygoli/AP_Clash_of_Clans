@@ -27,9 +27,11 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -63,20 +65,35 @@ public class SideBarUI {
         saveView.setOnMouseClicked(event -> {
                 makeSideBar(group);
                 TextField pathTextField=new TextField("enter path");
-                pathTextField.relocate(UIConstants.BUTTON_STARTING_X,200);
                 TextField nameTextField= new TextField("enter name");
-                nameTextField.relocate(UIConstants.BUTTON_STARTING_X,220);
                 Button saveButton=new Button("save");
-                saveButton.relocate(UIConstants.BUTTON_STARTING_X,230);
-                group.getChildren().add(pathTextField);
-                group.getChildren().add(nameTextField);
-                group.getChildren().add(saveButton);
+                pathTextField.setBackground(Background.EMPTY);
+                pathTextField.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
+                pathTextField.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        pathTextField.setText("");
+                    }
+                });
+                nameTextField.setBackground(Background.EMPTY);
+                nameTextField.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
+                nameTextField.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        nameTextField.setText("");
+                    }
+                });
+                saveButton.setStyle("-fx-background-color: rgba(143,99,29,0.87)");
+                VBox vBox = new VBox(10 , pathTextField , nameTextField , saveButton);
+                vBox.relocate(UIConstants.BUTTON_STARTING_X + 10 , Screen.getPrimary().getVisualBounds().getHeight() * 0.2);
+                group.getChildren().add(vBox);
                 saveButton.setOnMouseClicked(event1 -> {
                     try {
                         MapUI.getShowMapAnimationTimer().stop();
                         controller.getGameCenter().saveGame(controller.getGame(), pathTextField.getText(), nameTextField.getText());
                     } catch (NotValidFilePathException e) {
-                       // e.showExceptionMassage();
+                        new Timeline(new KeyFrame(Duration.seconds(2), new KeyValue(e.getImageView().imageProperty(), null))).play();
+                        group.getChildren().add(e.getImageView());
                     }
                 });
 
@@ -152,14 +169,17 @@ public class SideBarUI {
 
     private static void showAvailableBuildings(Group group) {
         makeSideBar(group);
-        makeLabels(group,"choose your preferred building",0.19,false);
+        makeLabels(group,"choose your preferred building",0.17,false);
         ComboBox<String> comboBox = new ComboBox<>();
+        comboBox.setBackground(Background.EMPTY);
+        comboBox.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
         String availableBuildings = controller.getGame().getVillage().getMainBuilding().findAvailableBuildings(controller.getGame().getVillage().getResource().getGold(), controller.getGame().getVillage().getResource().getElixir());
         comboBox.getItems().addAll(availableBuildings.split("\n"));
         comboBox.relocate(70, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(comboBox);
         Button selectButton=new Button("select");
-        selectButton.relocate(200,UIConstants.MENU_VBOX_STARTING_Y);
+        selectButton.setStyle("-fx-background-color: #a5862e");
+        selectButton.relocate(200,UIConstants.MENU_VBOX_STARTING_Y + 3);
         selectButton.setOnMouseClicked(event -> {
             showAvailableBuildings(group);
             implementBuildATowerCommand(comboBox.getValue(),group);
@@ -216,7 +236,7 @@ public class SideBarUI {
         sourcesInfoInsides.setY(UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(sourcesInfoInsides);
         Label label=new Label(Integer.toString(storage.getResource()));
-        label.relocate(UIConstants.INFO_LABEL_STARTING_X  - 40, Screen.getPrimary().getVisualBounds().getHeight() * 0.365);
+        label.relocate(UIConstants.INFO_LABEL_STARTING_X  - 45, Screen.getPrimary().getVisualBounds().getHeight() * 0.355);
         label.setTextFill(Color.BROWN);
         label.setFont(Font.font("Papyrus",18));
         group.getChildren().add(label);
@@ -317,7 +337,6 @@ public class SideBarUI {
                 ArrayList<Storage> allElixirStorage = new ArrayList<>(controller.getGame().getVillage().getElixirStorages());
                 mine.mine(allElixirStorage);
             }
-            makeSideBar(group);
         });
         ImageView backView = getImageView("Back.png");
         backView.setOnMouseClicked(event -> {
@@ -369,7 +388,7 @@ public class SideBarUI {
         Label cost = new Label(Integer.toString(cell.getUpgradeCost()));
         cost.setTextFill(Color.BROWN);
         cost.setScaleX(1.2);
-        cost.relocate(UIConstants.BUTTON_STARTING_X + 70, Screen.getPrimary().getVisualBounds().getHeight() * 0.38);
+        cost.relocate(UIConstants.BUTTON_STARTING_X + 60, Screen.getPrimary().getVisualBounds().getHeight() * 0.375);
         ImageView upgrade = getImageView("Upgrade.png");
         upgrade.setScaleX(0.6);
         upgrade.setX(UIConstants.BUTTON_STARTING_X);
@@ -407,7 +426,7 @@ public class SideBarUI {
         UpgradeCost.setX(UIConstants.INFOMENU_STARTING_X);
         UpgradeCost.setY(UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(UpgradeCost);
-        makeLabels(group,Integer.toString(cell.getUpgradeCost()),0.35,true);
+        makeLabels(group,Integer.toString(cell.getUpgradeCost()),0.32,true);
         ImageView backView = getImageView("Back.png");
         backView.setX(UIConstants.BUTTON_STARTING_X);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
@@ -432,7 +451,7 @@ public class SideBarUI {
             case "AirDefence":
             case "Trap":
             case "Wall":
-                makeDefencesMenu(group , cell);
+                makeDefencesInfoMenu(group , cell);
                 break;
             default:
                 makeDefaultInfoMenu(group,cell);
@@ -446,8 +465,8 @@ public class SideBarUI {
         overallInfoInsides.setX(UIConstants.INFOMENU_STARTING_X);
         overallInfoInsides.setY(UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(overallInfoInsides);
-        makeLabels(group,Integer.toString(cell.getLevel()),0.39,true);
-        makeLabels(group,Integer.toString(cell.getStrength()),0.3,true);
+        makeLabels(group,Integer.toString(cell.getLevel()),0.36,true);
+        makeLabels(group,Integer.toString(cell.getStrength()),0.27,true);
         ImageView backView = getImageView("Back.png");
         backView.setX(UIConstants.BUTTON_STARTING_X);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
@@ -528,6 +547,7 @@ public class SideBarUI {
     }
 
     private static void makeDefencesMenu(Group group, Cell cell) {
+        makeSideBar(group);
         ImageView infoView = getImageView("info.png");
         ImageView targetView = getImageView("Target.png");
         ImageView backView = getImageView("Back.png");
@@ -578,41 +598,44 @@ public class SideBarUI {
         backView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                makeSideBar(group);
-                makeDefencesMenu(group, cell);
+                //makeSideBar(group);
+                //makeDefencesMenu(group, cell);
+                makeDefencesMenu(group , cell);
             }
         });
         overallInfoView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                makeSideBar(group);
+                //makeSideBar(group);
                 makeDefencesOverallInfoMenu(group, cell);
             }
         });
         upgradeInfoView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                makeSideBar(group);
+                //makeSideBar(group);
                 makeDefencesUpgradeInfoMenu(group, cell);
             }
         });
         attackInfoView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                makeSideBar(group);
+                //makeSideBar(group);
                 makeDefencesAttackInfoMenu(group, cell);
             }
         });
         upgradeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                makeSideBar(group);
+                //makeSideBar(group);
                 makeDefencesUpgradeMenu(group, cell);
             }
         });
     }
 
     private static void makeDefencesUpgradeMenu(Group group, Cell cell) {
+        makeSideBar(group);
+
     }
 
     private static void makeDefencesAttackInfoMenu(Group group, Cell cell) {
@@ -643,15 +666,17 @@ public class SideBarUI {
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
         group.getChildren().add(backView);
         backView.setOnMouseClicked(backEvent -> {
-            makeDefaultInfoMenu(group,cell);
+            makeDefencesMenu(group , cell);
         });
     }
 
     private static void makeDefencesUpgradeInfoMenu(Group group, Cell cell) {
+        makeSideBar(group);
         showUpgradeInfo(group, cell);
     }
 
     private static void makeDefencesOverallInfoMenu(Group group, Cell cell) {
+        makeSideBar(group);
         showOverallInfo(group, cell);
     }
 
@@ -712,9 +737,9 @@ public class SideBarUI {
     private static void makeLabels(Group group, String message,double yCoefficient,boolean isInfoLabel) {
         Label label=new Label(message);
         if(isInfoLabel) {
-            label.relocate(UIConstants.INFO_LABEL_STARTING_X, Screen.getPrimary().getVisualBounds().getHeight() * yCoefficient);
+            label.relocate(UIConstants.INFO_LABEL_STARTING_X + 10, Screen.getPrimary().getVisualBounds().getHeight() * yCoefficient);
         }else{
-            label.relocate(UIConstants.LABELS_STARTING_X, Screen.getPrimary().getVisualBounds().getHeight() * yCoefficient);
+            label.relocate(UIConstants.LABELS_STARTING_X + 10, Screen.getPrimary().getVisualBounds().getHeight() * yCoefficient);
         }
         label.setTextFill(Color.BROWN);
         label.setFont(Font.font("Papyrus",16));

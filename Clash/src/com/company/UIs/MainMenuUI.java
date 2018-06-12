@@ -14,8 +14,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -90,10 +93,38 @@ public class MainMenuUI extends Application{
                 ImageView backGroundView = new ImageView(backGround);
                 root.getChildren().add(backGroundView);
                 TextField textField=new TextField("please enter your preferred path");
-                textField.relocate(screenWidth / 2.5, screenHeight / 2);
+                textField.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        textField.setText("");
+                    }
+                });
+                textField.setMinWidth(500);
+                textField.setMaxWidth(500);
+                textField.setFont(Font.font(30));
+                textField.setBackground(Background.EMPTY);
+                textField.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
+                textField.relocate(screenWidth / 3.3, screenHeight / 2.5);
                 root.getChildren().add(textField);
                 Button button= new Button("load");
-                button.relocate(screenWidth / 2.5, screenHeight / 1.7);
+                button.relocate(screenWidth / 2.3, screenHeight / 1.8);
+                button.setMaxWidth(150);
+                button.setMinWidth(150);
+                button.setFont(Font.font(30));
+                button.setBackground(Background.EMPTY);
+                button.setStyle("-fx-border-radius: 10; -fx-border-width:3;  -fx-border-color: #a5862e;-fx-background-color: #a5862e");
+                button.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        button.setStyle("-fx-border-radius: 10; -fx-border-width:3;  -fx-border-color: #8f631d;-fx-background-color: #8f631d");
+                    }
+                });
+                button.setOnMouseExited(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        button.setStyle("-fx-border-radius: 10; -fx-border-width:3;  -fx-border-color: #a5862e;-fx-background-color: #a5862e");
+                    }
+                });
                 root.getChildren().add(button);
                 button.setOnMouseClicked(event1 -> {
                     MapUI mapUI = new MapUI();
