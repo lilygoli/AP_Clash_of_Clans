@@ -32,6 +32,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -42,7 +43,6 @@ import java.util.HashMap;
 public class SideBarUI {
     private static final String ADDRESS = "./src/com/company/UIs/SideBarMenuImages/";
     private static Controller controller;
-
     public static void setController(Controller controller) {
         SideBarUI.controller = controller;
     }
@@ -73,6 +73,7 @@ public class SideBarUI {
                 group.getChildren().add(saveButton);
                 saveButton.setOnMouseClicked(event1 -> {
                     try {
+                        MapUI.getShowMapAnimationTimer().stop();
                         controller.getGameCenter().saveGame(controller.getGame(), pathTextField.getText(), nameTextField.getText());
                     } catch (NotValidFilePathException e) {
                        // e.showExceptionMassage();

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class Cell {
 
     private final String infoMenu = "1. Overall Info\n2. Upgrade Info\n3. Upgrade \n4. Back";
-    @Expose private ImageView image=new ImageView();
+    private transient ImageView image=new ImageView();
     private boolean isUnderConstruction = false;
     private int x;
     private int y;
@@ -35,14 +35,15 @@ public class Cell {
     private int number;
     private Builder workingBuilder;
     private int timeLeftOfConstruction;
-    private boolean isEventSet=false;
+    private transient boolean isEventSet=false;
 
-    public boolean isEventSet() {
-        return isEventSet;
+    public void setIsEventSet(boolean isEventSet) {
+         this.isEventSet=isEventSet;
     }
     public boolean getEventSet(){
         return isEventSet;
     }
+
     public ImageView getImage() {
         return image;
     }

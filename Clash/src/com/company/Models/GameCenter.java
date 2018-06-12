@@ -5,9 +5,11 @@ import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Towers.Cell;
 import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.YaGsonBuilder;
 
 
 import java.io.*;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 
 public class GameCenter {
@@ -31,7 +33,7 @@ public class GameCenter {
     }
 
     public void saveGame(Game mainGame, String pathName, String name) throws NotValidFilePathException {
-        YaGson yaGson = new YaGson();
+        YaGson yaGson = new YaGsonBuilder().excludeFieldsWithModifiers(Modifier.TRANSIENT).create();
         String stringJsonOfMainGame = yaGson.toJson(mainGame);
         mainGame.setPlayerName(name);
         BufferedWriter bufferedWriter = null;

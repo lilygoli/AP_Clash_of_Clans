@@ -28,6 +28,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import java.beans.Transient;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -37,9 +38,10 @@ import java.util.Random;
 public class MapUI extends Application {
     private static int buildX;
     private static int buildY;
-    private PannableCanvas canvas = new PannableCanvas();
+    private static PannableCanvas canvas = new PannableCanvas();
     private static HashMap<String ,Image> gifsOfTowers=new HashMap<>();
     private static boolean isInBuildMenu=false;
+    private static AnimationTimer showMapAnimationTimer;
 
     public static void setIsInBuildMenu(boolean isInBuildMenu) {
         MapUI.isInBuildMenu=isInBuildMenu;
@@ -76,7 +78,11 @@ public class MapUI extends Application {
         return buildX;
     }
 
-    public PannableCanvas getCanvas() {
+    public static AnimationTimer getShowMapAnimationTimer() {
+        return showMapAnimationTimer;
+    }
+
+    public static PannableCanvas getCanvas() {
         return canvas;
     }
 
@@ -229,9 +235,10 @@ public class MapUI extends Application {
     }
     public void showMapInVillage(Village village, Group root) {
 
-        AnimationTimer animationTimer=new AnimationTimer(){
+       showMapAnimationTimer=new AnimationTimer(){
 
             private long lastUpdate = 0;
+
             @Override
             public void handle(long now) {
                 if (now - lastUpdate >= 1000000000) {
@@ -246,6 +253,7 @@ public class MapUI extends Application {
                                     village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png"));
                                     if(!village.getMap()[j][i].getEventSet()){
                                         setOnClickImages(14, 14, root);
+                                        village.getMap()[j][i].setIsEventSet(true);
                                     }
                                     putBuildingImageInMap(i, j, village,16);
                                 }
@@ -255,12 +263,14 @@ public class MapUI extends Application {
                                     village.getMap()[j][i].setImage( getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".gif"));
                                     if(!village.getMap()[j][i].getEventSet()){
                                         setOnClickImages(i, j, root);
+                                        village.getMap()[j][i].setIsEventSet(true);
                                     }
                                     putBuildingImageInMap(i, j, village,32);
                                 }else {
                                     village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png"));
                                     if(!village.getMap()[j][i].getEventSet()){
                                         setOnClickImages(i, j, root);
+                                        village.getMap()[j][i].setIsEventSet(true);
                                     }
                                     putBuildingImageInMap(i, j, village,32);
                                 }
@@ -271,7 +281,7 @@ public class MapUI extends Application {
                 }
             }
         };
-        animationTimer.start();
+        showMapAnimationTimer.start();
     }
 
     private void putBuildingImageInMap(int i, int j, Village village,int size) {
@@ -280,10 +290,11 @@ public class MapUI extends Application {
         addGlowToBuildings(village.getMap()[j][i].getImage());
         village.getMap()[j][i].getImage().setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / size);
         village.getMap()[j][i].getImage().setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / size);
-//            if (canvas.getChildren().contains(village.getMap()[j][i].getImage())) {
-//                canvas.getChildren().remove(village.getMap()[j][i].getImage());
-//            }
-//            canvas.getChildren().add(village.getMap()[j][i].getImage());
+
+            if (canvas.getChildren().contains(village.getMap()[j][i].getImage())) {
+                canvas.getChildren().remove(village.getMap()[j][i].getImage());
+            }
+            canvas.getChildren().add(village.getMap()[j][i].getImage());
        //todo what is wrong
     }
 
