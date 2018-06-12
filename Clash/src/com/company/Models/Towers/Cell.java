@@ -44,7 +44,7 @@ public class Cell {
         return isEventSet;
     }
 
-    public ImageView getImage() {
+    public ImageView getImageView() {
         return image;
     }
 

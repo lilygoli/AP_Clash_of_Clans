@@ -3,32 +3,27 @@ package com.company.UIs;
 import com.company.Controller.Controller;
 import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
-import com.company.Models.Towers.Defences.AirDefence;
 import com.company.Models.Village;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.Slider;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-import java.beans.Transient;
+import java.beans.EventHandler;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -184,7 +179,6 @@ public class MapUI extends Application {
                     fileInputStream = new FileInputStream("./src/com/company/ImagesAndGifs/Brown.png");
                 }
                 else if (flag){
-                    double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
                     fileInputStream = new FileInputStream("./src/com/company/ImagesAndGifs/darkGreen.png");
                 }
                 else{
@@ -202,14 +196,12 @@ public class MapUI extends Application {
                     {
 
                         if (newValue) {
-                            if (isInBuildMenu) {
                                 try {
                                     FileInputStream fileInputStream2 = new FileInputStream("./src/com/company/ImagesAndGifs/red.png");
                                     imageView.setImage(new Image(fileInputStream2));
                                 } catch (FileNotFoundException e) {
                                     e.printStackTrace();
                                 }
-                            }
                         } else {
                             try {
                                 FileInputStream fileInputStream2 = new FileInputStream("./src/com/company/ImagesAndGifs/lightGreen.png");
@@ -224,9 +216,11 @@ public class MapUI extends Application {
                 int finalI = i;
                 int finalJ = j;
                 imageView.setOnMouseClicked(event -> {
-                    buildX = finalI - 2;
-                    buildY = finalJ - 1;
-                    imageView.requestFocus();
+                    if(isInBuildMenu) {
+                        buildX = finalI - 2;
+                        buildY = finalJ - 1;
+                        imageView.requestFocus();
+                    }
                 });
             }
 
@@ -284,24 +278,24 @@ public class MapUI extends Application {
     }
 
     private void putBuildingImageInMap(int i, int j, Village village,int size) {
-        village.getMap()[j][i].getImage().setX(mapCoordinates2PixelX(j));
-        village.getMap()[j][i].getImage().setY(mapCoordinates2PixelY(i));
-        addGlowToBuildings(village.getMap()[j][i].getImage());
-        village.getMap()[j][i].getImage().setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / size);
-        village.getMap()[j][i].getImage().setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / size);
+        village.getMap()[j][i].getImageView().setX(mapCoordinates2PixelX(j));
+        village.getMap()[j][i].getImageView().setY(mapCoordinates2PixelY(i));
+        addGlowToBuildings(village.getMap()[j][i].getImageView());
+        village.getMap()[j][i].getImageView().setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / size);
+        village.getMap()[j][i].getImageView().setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / size);
 
-            if (canvas.getChildren().contains(village.getMap()[j][i].getImage())) {
-                canvas.getChildren().remove(village.getMap()[j][i].getImage());
+            if (canvas.getChildren().contains(village.getMap()[j][i].getImageView())) {
+                canvas.getChildren().remove(village.getMap()[j][i].getImageView());
             }
-            canvas.getChildren().add(village.getMap()[j][i].getImage());
+            canvas.getChildren().add(village.getMap()[j][i].getImageView());
        //todo what is wrong
     }
 
 
     private void setOnClickImages(int i,int j,Group root){
-        controller.getGame().getVillage().getMap()[j][i].getImage().setOnMouseClicked(event -> {
+        controller.getGame().getVillage().getMap()[j][i].getImageView().setOnMouseClicked(event -> {
             SideBarUI.makeBuildingsMenu(root, controller.getGame().getVillage().getMap()[j][i]);
-            controller.getGame().getVillage().getMap()[j][i].getImage().requestFocus();
+            controller.getGame().getVillage().getMap()[j][i].getImageView().requestFocus();
         });
     }
 
