@@ -7,14 +7,23 @@ import com.company.Models.Towers.Defences.AirDefence;
 import com.company.Models.Village;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.Slider;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -119,6 +128,44 @@ public class MapUI extends Application {
         scene.addEventFilter(MouseEvent.MOUSE_DRAGGED, sceneGestures.getOnMouseDraggedEventHandler());
         SideBarUI.setController(controller);
         SideBarUI.makeSideBar(root);
+
+        makeSlider(root);
+    }
+
+    private void makeSlider(Group root) {
+        int maxDeltaT = UIConstants.DELTA_T;
+        final Slider deltaTSlider = new Slider(0, maxDeltaT, maxDeltaT);
+        final Label caption = new Label("Delta T");
+        final Label deltaTValue = new Label(Double.toString(deltaTSlider.getValue()));
+
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10, 10, 10, 10));
+        grid.setVgap(10);
+        grid.setHgap(70);
+
+
+        GridPane.setConstraints(caption, 0, 1);
+        grid.getChildren().add(caption);
+
+
+        deltaTSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> ov,
+                                Number old_val, Number new_val) {
+                deltaTValue.setText(String.format("%d", (int) Math.floor((Double) new_val)));
+                UIConstants.DELTA_T = (int) Math.floor((Double) new_val);
+            }
+        });
+
+        GridPane.setConstraints(deltaTSlider, 1, 1);
+        grid.getChildren().add(deltaTSlider);
+
+
+        GridPane.setConstraints(deltaTValue, 2, 1);
+        grid.getChildren().add(deltaTValue);
+
+        grid.relocate(Screen.getPrimary().getVisualBounds().getWidth() * 0.72, Screen.getPrimary().getVisualBounds().getHeight() * 0.88);
+
+        root.getChildren().add(grid);
     }
 
 
@@ -146,8 +193,9 @@ public class MapUI extends Application {
                 imageView.setFitWidth(scene.getHeight() / 32);
                 canvas.getChildren().add(imageView);
 
-                imageView.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue ) ->
-                {
+                if (!(i <= 1 || i >= 32 || j == 0 || j == 31)) {
+                    imageView.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) ->
+                    {
 
                         if (newValue) {
                             if (isInBuildMenu) {
@@ -159,15 +207,16 @@ public class MapUI extends Application {
                                 }
                             }
                         } else {
-                                try {
-                                    FileInputStream fileInputStream2 = new FileInputStream("./src/com/company/ImagesAndGifs/lightGreen.png");
-                                    imageView.setImage(new Image(fileInputStream2));
-                                } catch (FileNotFoundException e) {
-                                    e.printStackTrace();
-                                }
+                            try {
+                                FileInputStream fileInputStream2 = new FileInputStream("./src/com/company/ImagesAndGifs/lightGreen.png");
+                                imageView.setImage(new Image(fileInputStream2));
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
                         }
 
-                });
+                    });
+                }
                 int finalI = i;
                 int finalJ = j;
                 imageView.setOnMouseClicked(event -> {

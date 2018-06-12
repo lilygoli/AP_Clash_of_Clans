@@ -8,4 +8,5 @@ public class UIConstants {
     public static final int LABELS_STARTING_X = 40;
     public static final double INFOMENU_STARTING_X =30 ;
     public static final double INFO_LABEL_STARTING_X = 200;
+    public static int DELTA_T = 1000;
 }
