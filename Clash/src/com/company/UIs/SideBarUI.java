@@ -337,6 +337,7 @@ public class SideBarUI {
                 ArrayList<Storage> allElixirStorage = new ArrayList<>(controller.getGame().getVillage().getElixirStorages());
                 mine.mine(allElixirStorage);
             }
+            makeMineMenu(group, cell);
         });
         ImageView backView = getImageView("Back.png");
         backView.setOnMouseClicked(event -> {
@@ -635,7 +636,7 @@ public class SideBarUI {
 
     private static void makeDefencesUpgradeMenu(Group group, Cell cell) {
         makeSideBar(group);
-
+        implementUpgradeBuildings(group, cell);
     }
 
     private static void makeDefencesAttackInfoMenu(Group group, Cell cell) {
