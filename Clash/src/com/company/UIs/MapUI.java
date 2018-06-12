@@ -67,8 +67,10 @@ public class MapUI extends Application {
         gifsOfTowers.put("GoldStorage",new Image(GoldStorageFile.toURI().toString()));
         File WallFile=new File("./src/com/company/ImagesAndGifs/Buildings/WallLoading.gif");
         gifsOfTowers.put("Wall",new Image(WallFile.toURI().toString()));
-        File WizardTowerFile=new File("./src/com/company/ImagesAndGifs/Buildings/WizardTower.gif");
+        File WizardTowerFile=new File("./src/com/company/ImagesAndGifs/Buildings/WizardTowerLoading.gif");
         gifsOfTowers.put("WizardTower",new Image(WizardTowerFile.toURI().toString()));
+        File BarrackFile=new File("./src/com/company/ImagesAndGifs/Buildings/BarrackLoading.gif");
+        gifsOfTowers.put("Barrack",new Image(BarrackFile.toURI().toString()));
 }
     public static int getBuildX() {
         return buildX;
@@ -96,15 +98,11 @@ public class MapUI extends Application {
         Scene scene = new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight());
         primaryStage.setScene(scene);
 
-
         File file = new File("./src/com/company/UIs/MapResources/MapBackGround.jpg");
         Image backGround = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight(), false, true);
         ImageView backGroundView = new ImageView(backGround);
         backGroundView.setOpacity(0.7);
         root.getChildren().add(backGroundView);
-        setOnClickImages(14, 14, root);
-        setOnClickImages(controller.getGame().getVillage().getElixirStorages().get(0).getY(), controller.getGame().getVillage().getElixirStorages().get(0).getX(), root);
-        setOnClickImages(controller.getGame().getVillage().getGoldStorages().get(0).getY(), controller.getGame().getVillage().getGoldStorages().get(0).getX(), root);
 
         makeGameBoard(root ,scene);
 
@@ -166,6 +164,7 @@ public class MapUI extends Application {
         grid.relocate(Screen.getPrimary().getVisualBounds().getWidth() * 0.72, Screen.getPrimary().getVisualBounds().getHeight() * 0.88);
 
         root.getChildren().add(grid);
+        SideBarUI.makeStartingMenu(root);
     }
 
 
@@ -245,15 +244,24 @@ public class MapUI extends Application {
                                 if (flag == 0) {
                                     flag = 1;
                                     village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png"));
+                                    if(!village.getMap()[j][i].getEventSet()){
+                                        setOnClickImages(14, 14, root);
+                                    }
                                     putBuildingImageInMap(i, j, village,16);
                                 }
 
                             } else {
                                 if(village.getMap()[j][i].getUnderConstructionStatus()){
                                     village.getMap()[j][i].setImage( getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".gif"));
+                                    if(!village.getMap()[j][i].getEventSet()){
+                                        setOnClickImages(i, j, root);
+                                    }
                                     putBuildingImageInMap(i, j, village,32);
                                 }else {
                                     village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png"));
+                                    if(!village.getMap()[j][i].getEventSet()){
+                                        setOnClickImages(i, j, root);
+                                    }
                                     putBuildingImageInMap(i, j, village,32);
                                 }
                             }
@@ -272,9 +280,11 @@ public class MapUI extends Application {
         addGlowToBuildings(village.getMap()[j][i].getImage());
         village.getMap()[j][i].getImage().setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / size);
         village.getMap()[j][i].getImage().setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / size);
-        if(canvas.getChildren().contains(village.getMap()[j][i].getImage())){
-            canvas.getChildren().remove(village.getMap()[j][i].getImage());}
-        canvas.getChildren().add(village.getMap()[j][i].getImage());
+//            if (canvas.getChildren().contains(village.getMap()[j][i].getImage())) {
+//                canvas.getChildren().remove(village.getMap()[j][i].getImage());
+//            }
+//            canvas.getChildren().add(village.getMap()[j][i].getImage());
+       //todo what is wrong
     }
 
 
