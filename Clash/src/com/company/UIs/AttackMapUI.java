@@ -11,6 +11,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -82,64 +84,62 @@ public class AttackMapUI {
                 imageView.setOnMouseClicked(event -> {
                         attackX = finalI - 2;
                         attackY = finalJ - 1;
-                        imageView.requestFocus();
                 });
             }
 
         }
+        SceneGestures sceneGestures = new SceneGestures(canvas);
+        scene.addEventFilter(ScrollEvent.ANY, sceneGestures.getOnScrollEventHandler());
+        scene.addEventFilter(MouseEvent.MOUSE_PRESSED, sceneGestures.getOnMousePressedEventHandler());
+        scene.addEventFilter(MouseEvent.MOUSE_DRAGGED, sceneGestures.getOnMouseDraggedEventHandler());
+        root.getChildren().add(canvas);
         showMapInAttack(root);
     }
 
     public static void showMapInAttack(Group root) {
         Village village = controller.getGame().getAttackedVillage().getVillage();
 
-        showMapAnimationTimer=new AnimationTimer(){
-
-            private long lastUpdate = 0;
-
-            @Override
-            public void handle(long now) {
-                if (now - lastUpdate >= 1000000000) {
-                    int flag = 0;
-                    for (int i = 0; i < 30; i++) {
-                        for (int j = 0; j < 30; j++) {
-                            if (village.getMap()[j][i].getClass() == Grass.class) {
-                                continue;
-                            } else if (village.getMap()[j][i].getClass() == MainBuilding.class) {
-                                if (flag == 0) {
-                                    flag = 1;
-                                    village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png"));
-                                    if(!village.getMap()[j][i].getEventSet()){
-                                        MapUI.setOnClickImages(14, 14, root);
-                                        village.getMap()[j][i].setIsEventSet(true);
-                                    }
-                                    putBuildingImageInMap(i, j, village,16);
-                                }
-
-                            } else {
-                                if(village.getMap()[j][i].getUnderConstructionStatus()){
-                                    village.getMap()[j][i].setImage( getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".gif"));
-                                    if(!village.getMap()[j][i].getEventSet()){
-                                        MapUI.setOnClickImages(i, j, root);
-                                        village.getMap()[j][i].setIsEventSet(true);
-                                    }
-                                    putBuildingImageInMap(i, j, village,32);
-                                }else {
-                                    village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png"));
-                                    if(!village.getMap()[j][i].getEventSet()){
-                                        MapUI.setOnClickImages(i, j, root);
-                                        village.getMap()[j][i].setIsEventSet(true);
-                                    }
-                                    putBuildingImageInMap(i, j, village,32);
-                                }
+            int flag = 0;
+            for (int i = 0; i < 30; i++) {
+                for (int j = 0; j < 30; j++) {
+                    if (village.getMap()[j][i].getClass() == Grass.class) {
+                        continue;
+                    } else if (village.getMap()[j][i].getClass() == MainBuilding.class) {
+                        if (flag == 0) {
+                            flag = 1;
+                            village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png"));
+                            if(!village.getMap()[j][i].getEventSet()){
+                                setOnClickImages(14, 14, root);
+                                village.getMap()[j][i].setIsEventSet(true);
                             }
+                            putBuildingImageInMap(i, j, village,16, canvas);
+                        }
+
+                    } else {
+                        if(village.getMap()[j][i].getUnderConstructionStatus()){
+                            village.getMap()[j][i].setImage( getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".gif"));
+                            if(!village.getMap()[j][i].getEventSet()){
+                                AttackMapUI.setOnClickImages(i, j, root);
+                                village.getMap()[j][i].setIsEventSet(true);
+                            }
+                            putBuildingImageInMap(i, j, village,32, canvas);
+                        }else {
+                            village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png"));
+                            if(!village.getMap()[j][i].getEventSet()){
+                                AttackMapUI.setOnClickImages(i, j, root);
+                                village.getMap()[j][i].setIsEventSet(true);
+                            }
+                            putBuildingImageInMap(i, j, village,32, canvas);
                         }
                     }
-                    lastUpdate = now ;
                 }
             }
-        };
-        showMapAnimationTimer.start();
+    }
+
+    public static void setOnClickImages(int i, int j, Group root) {
+        controller.getGame().getAttackedVillage().getVillage().getMap()[j][i].getImageView().setOnMouseClicked(event -> {
+            controller.getGame().getAttackedVillage().getVillage().getMap()[j][i].getImageView().requestFocus();
+        });
     }
 
     public static FileInputStream makeGrasses(boolean flag, int i, int j) throws FileNotFoundException {

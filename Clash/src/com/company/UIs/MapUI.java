@@ -254,7 +254,7 @@ public class MapUI extends Application {
                                         setOnClickImages(14, 14, root);
                                         village.getMap()[j][i].setIsEventSet(true);
                                     }
-                                    putBuildingImageInMap(i, j+1, village,16);
+                                    putBuildingImageInMap(i, j+1, village,16,canvas);
                                 }
 
                             } else {
@@ -264,14 +264,14 @@ public class MapUI extends Application {
                                         setOnClickImages(i, j, root);
                                         village.getMap()[j][i].setIsEventSet(true);
                                     }
-                                    putBuildingImageInMap(i, j, village,32);
+                                    putBuildingImageInMap(i, j, village,32, canvas);
                                 }else {
                                     village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png"));
                                     if(!village.getMap()[j][i].getEventSet()){
                                         setOnClickImages(i, j, root);
                                         village.getMap()[j][i].setIsEventSet(true);
                                     }
-                                    putBuildingImageInMap(i, j, village,32);
+                                    putBuildingImageInMap(i, j, village,32,canvas);
                                 }
                             }
                         }
@@ -283,7 +283,7 @@ public class MapUI extends Application {
         showMapAnimationTimer.start();
     }
 
-    public static void putBuildingImageInMap(int i, int j, Village village, int size) {
+    public static void putBuildingImageInMap(int i, int j, Village village, int size, PannableCanvas canvas) {
         village.getMap()[j][i].getImageView().setX(mapCoordinates2PixelX(j));
         village.getMap()[j][i].getImageView().setY(mapCoordinates2PixelY(i));
         addGlowToBuildings(village.getMap()[j][i].getImageView());
