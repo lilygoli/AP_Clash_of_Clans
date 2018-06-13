@@ -2,6 +2,7 @@ package com.company.UIs;
 
 import com.company.Controller.Controller;
 import com.company.Models.Soldiers.Soldier;
+import com.company.Models.Towers.Buildings.Camp;
 import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Village;
@@ -17,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Arc;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -30,6 +32,7 @@ import java.util.Random;
 
 import static com.company.UIs.MapUI.getImageOfBuildings;
 import static com.company.UIs.MapUI.putBuildingImageInMap;
+import static com.company.UIs.SideBarUI.makeSideBar;
 import static com.company.UIs.MapUI.setIsInBuildMenu;
 import static com.company.UIs.SideBarUI.opacityOnHover;
 
@@ -140,6 +143,14 @@ public class AttackMapUI {
     }
 
     private static void implementPutUnit(Group group) {
+        makeSideBar(group , true);
+        if (controller.getGame().getTroops() == null){
+            ArrayList<Soldier> troops = new ArrayList<>();
+            controller.getGame().setTroops(troops);
+        }
+        for (Camp camp : controller.getGame().getVillage().getCamps()) {
+            controller.getGame().getTroops().addAll(camp.getSoldiers());
+        }
         ImageView archerView = new ImageView(MapUI.getGifsOfTowers().get("ArcherPortrait"));
         archerView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
         archerView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
