@@ -151,10 +151,10 @@ public class SideBarUI {
         comboBox.setMaxWidth(300);
         comboBox.setMaxWidth(300);
         comboBox.getItems().addAll(eneMyMapsList.toString().split("\n"));
-        comboBox.relocate(70, UIConstants.MENU_VBOX_STARTING_Y);
+        comboBox.relocate(90, UIConstants.MENU_VBOX_STARTING_Y);
         Button selectButton=new Button("select");
         selectButton.setStyle("-fx-background-color: #a5862e");
-        selectButton.relocate(200,UIConstants.MENU_VBOX_STARTING_Y + 3);
+        selectButton.relocate(120,UIConstants.MENU_VBOX_STARTING_Y + 50);
         selectButton.setOnMouseClicked(event1 -> {
             loadEnemyMap(group, comboBox);
         });
@@ -173,11 +173,11 @@ public class SideBarUI {
     private static void loadEnemyMap(Group group, ComboBox<String> comboBox) {
         if (comboBox.getValue().equals("1. load map")) {
             TextField textField= new TextField("please enter path");
-            textField.relocate(UIConstants.BUTTON_STARTING_X,200);
+            textField.relocate(UIConstants.BUTTON_STARTING_X,400);
             group.getChildren().add(textField);
             Button loadButton=new Button("load");
             group.getChildren().add(loadButton);
-            loadButton.relocate(200,200);
+            loadButton.relocate(200,400);
             loadButton.setStyle("-fx-background-color: #a5862e");
             loadButton.setOnMouseClicked(event2 ->{
                 Game enemyGame = null;
