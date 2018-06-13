@@ -81,6 +81,10 @@ public class MapUI extends Application {
         gifsOfTowers.put("GiantPortrait", new Image(giantFile.toURI().toString()));
         File guardianFile=new File("./src/com/company/ImagesAndGifs/Soldiers/Guardian/GuardianPortrait.jpg");
         gifsOfTowers.put("GuardianPortrait", new Image(guardianFile.toURI().toString()));
+        File healerFile=new File("./src/com/company/ImagesAndGifs/Soldiers/Healer/HealerPortrait.jpg");
+        gifsOfTowers.put("HealerPortrait", new Image(healerFile.toURI().toString()));
+        File wallBreakerFile=new File("./src/com/company/ImagesAndGifs/Soldiers/WallBreaker/WallBreakerPortrait.jpg");
+        gifsOfTowers.put("WallBreakerPortrait", new Image(wallBreakerFile.toURI().toString()));
     }
 
     public static int getBuildX() {

@@ -858,20 +858,31 @@ public class SideBarUI {
         ImageView guardianView = new ImageView(MapUI.getGifsOfTowers().get("GuardianPortrait"));
         guardianView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
         guardianView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
+        ImageView wallBreakerView = new ImageView(MapUI.getGifsOfTowers().get("WallBreakerPortrait"));
+        wallBreakerView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
+        wallBreakerView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
+        ImageView healerView = new ImageView(MapUI.getGifsOfTowers().get("HealerPortrait"));
+        healerView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
+        healerView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
 
         addBuildSoldier(group, cell, archerView, "Archer");
         addBuildSoldier(group, cell, dragonView, "Dragon");
         addBuildSoldier(group, cell, giantView, "Giant");
         addBuildSoldier(group, cell, guardianView, "Guardian");
+        addBuildSoldier(group, cell, wallBreakerView, "WallBreaker");
+        addBuildSoldier(group, cell, wallBreakerView, "Healer");
 
         opacityOnHover(archerView);
         opacityOnHover(dragonView);
         opacityOnHover(giantView);
         opacityOnHover(guardianView);
+        opacityOnHover(wallBreakerView);
+        opacityOnHover(healerView);
 
         HBox soldiers1 = new HBox(1,archerView, dragonView);
         HBox soldiers2 = new HBox(1,giantView, guardianView);
-        //todo add healer, wallBreaker Portrait
+        HBox soldiers3 = new HBox(1,healerView, wallBreakerView);
+
         File backFile=new File(ADDRESS+"Back.png");
         Image backImage=new Image(backFile.toURI().toString());
         ImageView backView=new ImageView(backImage);
@@ -882,13 +893,13 @@ public class SideBarUI {
             }
         });
 
-        VBox allSoldiers = new VBox(1, soldiers1, soldiers2, backView);
+        VBox allSoldiers = new VBox(1, soldiers1, soldiers2, soldiers3, backView);
         allSoldiers.relocate(50, 160);
 
         group.getChildren().addAll(allSoldiers);
     }
 
-    private static void opacityOnHover(ImageView imageView) {
+    public static void opacityOnHover(ImageView imageView) {
         imageView.setOnMouseMoved(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
