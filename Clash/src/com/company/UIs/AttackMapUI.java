@@ -116,7 +116,13 @@ public class AttackMapUI {
             implementPutUnit(group);
         });
         ImageView back= SideBarUI.getImageView("Back.png");
-        back.setOnMouseClicked(event -> {});
+        back.setOnMouseClicked(event -> {
+            try {
+                MapUI.start(primaryStage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
         VBox vBox= new VBox(attackMap,back);
         vBox.relocate(UIConstants.BUTTON_STARTING_X,UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);

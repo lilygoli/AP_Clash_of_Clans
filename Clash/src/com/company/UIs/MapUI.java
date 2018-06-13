@@ -30,7 +30,7 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Random;
 
-public class MapUI extends Application {
+public class MapUI  {
     private static int buildX;
     private static int buildY;
     private static PannableCanvas canvas = new PannableCanvas();
@@ -111,8 +111,8 @@ public class MapUI extends Application {
         this.controller = controller;
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+
+    public static void start(Stage primaryStage) throws Exception {
         Group root = new Group();
         Scene scene = new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight());
         primaryStage.setScene(scene);
@@ -144,13 +144,11 @@ public class MapUI extends Application {
         scene.addEventFilter(MouseEvent.MOUSE_PRESSED, sceneGestures.getOnMousePressedEventHandler());
         scene.addEventFilter(MouseEvent.MOUSE_DRAGGED, sceneGestures.getOnMouseDraggedEventHandler());
         SideBarUI.setController(controller);
-        SideBarUI.makeSideBar(root,false);
-
         makeSlider(root);
         SideBarUI.makeStartingMenu(root,primaryStage);
     }
 
-    private void makeSlider(Group root) {
+    private static void makeSlider(Group root) {
         int maxDeltaT = UIConstants.DELTA_T;
         final Slider deltaTSlider = new Slider(0, maxDeltaT, maxDeltaT);
         final Label caption = new Label("Delta T");
@@ -186,7 +184,7 @@ public class MapUI extends Application {
     }
 
 
-    private void makeGameBoard(Group root , Scene scene) throws FileNotFoundException {
+    private static void makeGameBoard(Group root , Scene scene) throws FileNotFoundException {
         Random random = new Random();
         boolean flag;
         FileInputStream fileInputStream;
@@ -236,7 +234,7 @@ public class MapUI extends Application {
 
         }
     }
-    public void showMapInVillage(Village village, Group root) {
+    public static void showMapInVillage(Village village, Group root) {
 
        showMapAnimationTimer=new AnimationTimer(){
 
