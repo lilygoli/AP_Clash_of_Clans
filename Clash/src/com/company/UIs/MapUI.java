@@ -42,33 +42,47 @@ public class MapUI extends Application {
         MapUI.isInBuildMenu=isInBuildMenu;
     }
 
+    public static HashMap<String, Image> getGifsOfTowers() {
+        return gifsOfTowers;
+    }
+
     private Controller controller = new Controller();
 // to be moved to a new thread
 // TODO: 6/11/2018 giant kill gif add and healer and wallbreaker and guardian giant kill add
+
     static {
-        File AirDefenceFile=new File("./src/com/company/ImagesAndGifs/Buildings/AirDefenceLoading.gif");
-        gifsOfTowers.put("AirDefence",new Image(AirDefenceFile.toURI().toString()));
-        File ArcherTowerFile=new File("./src/com/company/ImagesAndGifs/Buildings/ArcherTowerLoading.gif");
-        gifsOfTowers.put("ArcherTower",new Image(ArcherTowerFile.toURI().toString()));
-        File CampFile=new File("./src/com/company/ImagesAndGifs/Buildings/CampLoading.gif");
-        gifsOfTowers.put("Camp",new Image(CampFile.toURI().toString()));
-        File CannonFile=new File("./src/com/company/ImagesAndGifs/Buildings/CannonLoading.gif");
-        gifsOfTowers.put("Cannon",new Image(CannonFile.toURI().toString()));
-        File ElixirMineFile=new File("./src/com/company/ImagesAndGifs/Buildings/ElixirMineLoading.gif");
-        gifsOfTowers.put("ElixirMine",new Image(ElixirMineFile.toURI().toString()));
-        File ElixirStorageFile=new File("./src/com/company/ImagesAndGifs/Buildings/ElixirStorageLoading.gif");
-        gifsOfTowers.put("ElixirStorage",new Image(ElixirStorageFile.toURI().toString()));
-        File GoldMineFile=new File("./src/com/company/ImagesAndGifs/Buildings/GoldMineLoading.gif");
-        gifsOfTowers.put("GoldMine",new Image(GoldMineFile.toURI().toString()));
-        File GoldStorageFile=new File("./src/com/company/ImagesAndGifs/Buildings/GoldStorageLoading.gif");
-        gifsOfTowers.put("GoldStorage",new Image(GoldStorageFile.toURI().toString()));
-        File WallFile=new File("./src/com/company/ImagesAndGifs/Buildings/WallLoading.gif");
-        gifsOfTowers.put("Wall",new Image(WallFile.toURI().toString()));
-        File WizardTowerFile=new File("./src/com/company/ImagesAndGifs/Buildings/WizardTowerLoading.gif");
-        gifsOfTowers.put("WizardTower",new Image(WizardTowerFile.toURI().toString()));
-        File BarrackFile=new File("./src/com/company/ImagesAndGifs/Buildings/BarrackLoading.gif");
-        gifsOfTowers.put("Barrack",new Image(BarrackFile.toURI().toString()));
-}
+        File AirDefenceFile = new File("./src/com/company/ImagesAndGifs/Buildings/AirDefenceLoading.gif");
+        gifsOfTowers.put("AirDefence", new Image(AirDefenceFile.toURI().toString()));
+        File ArcherTowerFile = new File("./src/com/company/ImagesAndGifs/Buildings/ArcherTowerLoading.gif");
+        gifsOfTowers.put("ArcherTower", new Image(ArcherTowerFile.toURI().toString()));
+        File CampFile = new File("./src/com/company/ImagesAndGifs/Buildings/CampLoading.gif");
+        gifsOfTowers.put("Camp", new Image(CampFile.toURI().toString()));
+        File CannonFile = new File("./src/com/company/ImagesAndGifs/Buildings/CannonLoading.gif");
+        gifsOfTowers.put("Cannon", new Image(CannonFile.toURI().toString()));
+        File ElixirMineFile = new File("./src/com/company/ImagesAndGifs/Buildings/ElixirMineLoading.gif");
+        gifsOfTowers.put("ElixirMine", new Image(ElixirMineFile.toURI().toString()));
+        File ElixirStorageFile = new File("./src/com/company/ImagesAndGifs/Buildings/ElixirStorageLoading.gif");
+        gifsOfTowers.put("ElixirStorage", new Image(ElixirStorageFile.toURI().toString()));
+        File GoldMineFile = new File("./src/com/company/ImagesAndGifs/Buildings/GoldMineLoading.gif");
+        gifsOfTowers.put("GoldMine", new Image(GoldMineFile.toURI().toString()));
+        File GoldStorageFile = new File("./src/com/company/ImagesAndGifs/Buildings/GoldStorageLoading.gif");
+        gifsOfTowers.put("GoldStorage", new Image(GoldStorageFile.toURI().toString()));
+        File WallFile = new File("./src/com/company/ImagesAndGifs/Buildings/WallLoading.gif");
+        gifsOfTowers.put("Wall", new Image(WallFile.toURI().toString()));
+        File WizardTowerFile = new File("./src/com/company/ImagesAndGifs/Buildings/WizardTowerLoading.gif");
+        gifsOfTowers.put("WizardTower", new Image(WizardTowerFile.toURI().toString()));
+        File BarrackFile = new File("./src/com/company/ImagesAndGifs/Buildings/BarrackLoading.gif");
+        gifsOfTowers.put("Barrack", new Image(BarrackFile.toURI().toString()));
+        File archerFile = new File("./src/com/company/ImagesAndGifs/Soldiers/Archer/ArcherPortrait.jpg");
+        gifsOfTowers.put("ArcherPortrait", new Image(archerFile.toURI().toString()));
+        File dragonFile=new File("./src/com/company/ImagesAndGifs/Soldiers/Dragon/DragonPortrait.jpg");
+        gifsOfTowers.put("DragonPortrait", new Image(dragonFile.toURI().toString()));
+        File giantFile=new File("./src/com/company/ImagesAndGifs/Soldiers/Giant/GiantPortrait.jpg");
+        gifsOfTowers.put("GiantPortrait", new Image(giantFile.toURI().toString()));
+        File guardianFile=new File("./src/com/company/ImagesAndGifs/Soldiers/Guardian/GuardianPortrait.jpg");
+        gifsOfTowers.put("GuardianPortrait", new Image(guardianFile.toURI().toString()));
+    }
+
     public static int getBuildX() {
         return buildX;
     }
@@ -175,15 +189,7 @@ public class MapUI extends Application {
         for (int i = 33; i >= 0; i--) {
             for (int j = 0; j < 32; j++) {
                 flag = random.nextBoolean();
-                if (i <= 1 || i >= 32 || j == 0 || j == 31){
-                    fileInputStream = new FileInputStream("./src/com/company/ImagesAndGifs/Brown.png");
-                }
-                else if (flag){
-                    fileInputStream = new FileInputStream("./src/com/company/ImagesAndGifs/darkGreen.png");
-                }
-                else{
-                    fileInputStream = new FileInputStream("./src/com/company/ImagesAndGifs/lightGreen.png");
-                }
+                fileInputStream = AttackMapUI.makeGrasses(flag, i, j);
                 Image image = new Image(fileInputStream);
                 ImageView imageView = new ImageView(image);
                 imageView.relocate(scene.getWidth() - ((i + 1) * Screen.getPrimary().getVisualBounds().getHeight() / 32) , j * Screen.getPrimary().getVisualBounds().getHeight() / 32);
@@ -277,7 +283,7 @@ public class MapUI extends Application {
         showMapAnimationTimer.start();
     }
 
-    private void putBuildingImageInMap(int i, int j, Village village,int size) {
+    public static void putBuildingImageInMap(int i, int j, Village village, int size) {
         village.getMap()[j][i].getImageView().setX(mapCoordinates2PixelX(j));
         village.getMap()[j][i].getImageView().setY(mapCoordinates2PixelY(i));
         addGlowToBuildings(village.getMap()[j][i].getImageView());
@@ -292,7 +298,7 @@ public class MapUI extends Application {
     }
 
 
-    private void setOnClickImages(int i,int j,Group root){
+    public static void setOnClickImages(int i, int j, Group root){
         controller.getGame().getVillage().getMap()[j][i].getImageView().setOnMouseClicked(event -> {
             SideBarUI.makeBuildingsMenu(root, controller.getGame().getVillage().getMap()[j][i]);
             controller.getGame().getVillage().getMap()[j][i].getImageView().requestFocus();
@@ -314,7 +320,7 @@ public class MapUI extends Application {
         });
     }
 
-    private static Image getImageOfBuildings(String name,String type){
+    public static Image getImageOfBuildings(String name, String type){
         Image buildingImage;
         if(type.equals(".png")) {
             File file = new File("./src/com/company/ImagesAndGifs/Buildings/" + name + type);

@@ -35,6 +35,7 @@ import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class SideBarUI {
     private static final String ADDRESS = "./src/com/company/UIs/SideBarMenuImages/";
@@ -110,7 +111,6 @@ public class SideBarUI {
         attackImage.setX(UIConstants.ATTACK_STARTING_X);
         group.getChildren().add(attackImage);
         attackImage.setOnMouseClicked(event -> {});
-
     }
     private static void makeResourceLabels(Group group,Double sideBarStartingX) {
         Label gold= new Label(Integer.toString(controller.getGame().getVillage().getResource().getGold()));
@@ -745,24 +745,16 @@ public class SideBarUI {
 
     private static void barrackBuildSoldierMenu(Group group, Cell cell) {
         makeSideBar(group);
-        File archerFile=new File("./src/com/company/ImagesAndGifs/Soldiers/Archer/ArcherPortrait.jpg");
-        Image archerImage = new Image(archerFile.toURI().toString());
-        ImageView archerView = new ImageView(archerImage);
+        ImageView archerView = new ImageView(MapUI.getGifsOfTowers().get("ArcherPortrait"));
         archerView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
         archerView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
-        File dragonFile=new File("./src/com/company/ImagesAndGifs/Soldiers/Dragon/DragonPortrait.jpg");
-        Image dragonImage = new Image(dragonFile.toURI().toString());
-        ImageView dragonView = new ImageView(dragonImage);
+        ImageView dragonView = new ImageView(MapUI.getGifsOfTowers().get("DragonPortrait"));
         dragonView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
         dragonView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
-        File giantFile=new File("./src/com/company/ImagesAndGifs/Soldiers/Giant/GiantPortrait.jpg");
-        Image giantImage = new Image(giantFile.toURI().toString());
-        ImageView giantView = new ImageView(giantImage);
+        ImageView giantView = new ImageView(MapUI.getGifsOfTowers().get("GiantPortrait"));
         giantView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
         giantView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
-        File guardianFile=new File("./src/com/company/ImagesAndGifs/Soldiers/Guardian/GuardianPortrait.jpg");
-        Image guardianImage = new Image(guardianFile.toURI().toString());
-        ImageView guardianView = new ImageView(guardianImage);
+        ImageView guardianView = new ImageView(MapUI.getGifsOfTowers().get("GuardianPortrait"));
         guardianView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
         guardianView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
 

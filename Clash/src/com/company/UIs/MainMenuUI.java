@@ -29,6 +29,16 @@ import javafx.util.Duration;
 import java.io.File;
 
 public class MainMenuUI extends Application{
+    private static Thread gameLogic;
+
+    public static Thread getGameLogic() {
+        return gameLogic;
+    }
+
+    public static void setGameLogic(Thread gameLogic) {
+        MainMenuUI.gameLogic = gameLogic;
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
@@ -82,7 +92,7 @@ public class MainMenuUI extends Application{
                 MapUI mapUI = new MapUI();
                 Game game = mapUI.getController().getGameCenter().makeNewGame();
                 mapUI.getController().setGame(game);
-                Thread gameLogic = new Thread(new PassTurnThread(mapUI.getController()));
+                MainMenuUI.gameLogic = new Thread(new PassTurnThread(mapUI.getController()));
                 gameLogic.start();
                 try {
                     mapUI.start(primaryStage);
