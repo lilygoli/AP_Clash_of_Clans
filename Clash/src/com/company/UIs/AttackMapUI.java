@@ -104,14 +104,12 @@ public class AttackMapUI {
     }
 
     private static void makeAttackStartingSideBar(Group group) {
-        SideBarUI.makeSideBar(group);
-        ImageView mapInfo= SideBarUI.getImageView("MapInfo.png");
-        mapInfo.setOnMouseClicked(event -> {});
+        SideBarUI.makeSideBar(group,true);
         ImageView attackMap= SideBarUI.getImageView("AttackMap.png");
         attackMap.setOnMouseClicked(event -> {});
         ImageView back= SideBarUI.getImageView("Back.png");
         back.setOnMouseClicked(event -> {});
-        VBox vBox= new VBox(mapInfo,attackMap,back);
+        VBox vBox= new VBox(attackMap,back);
         vBox.relocate(UIConstants.BUTTON_STARTING_X,UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
     }

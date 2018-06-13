@@ -47,21 +47,22 @@ public class SideBarUI {
         SideBarUI.controller = controller;
     }
 
-    public static void makeSideBar(Group group) {
+    public static void makeSideBar(Group group, boolean isInEnemyMap) {
         ImageView sideBarBackgroundImageView =getImageView("labelLessCroppedMenu.png");
         Double sideBarStartingX = -sideBarBackgroundImageView.getImage().getWidth() / 16;
         sideBarBackgroundImageView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
         sideBarBackgroundImageView.setScaleY(0.95);
         sideBarBackgroundImageView.setX(sideBarStartingX);
         sideBarBackgroundImageView.setY(-20);
-        ImageView borderImageView = getImageView("upperBorder.png");
-        borderImageView.setScaleX(0.6);
-        borderImageView.setScaleY(0.8);
-        borderImageView.setY(40);
-        borderImageView.setX(sideBarStartingX + 20);
+            ImageView borderImageView = getImageView("upperBorder.png");
+            borderImageView.setScaleX(0.6);
+            borderImageView.setScaleY(0.8);
+            borderImageView.setY(40);
+            borderImageView.setX(sideBarStartingX + 20);
+
         ImageView saveView = getImageView("save.png");
         saveView.setOnMouseClicked(event -> {
-                makeSideBar(group);
+                makeSideBar(group,false);
                 TextField pathTextField=new TextField("enter path");
                 TextField nameTextField= new TextField("enter name");
                 Button saveButton=new Button("save");
@@ -101,13 +102,16 @@ public class SideBarUI {
         saveView.setY(Screen.getPrimary().getVisualBounds().getHeight() * 6 / 10);
         saveView.setScaleX(0.5);
         group.getChildren().add(sideBarBackgroundImageView);
-        group.getChildren().add(borderImageView);
-        makeResourceLabels(group,sideBarStartingX);
-        group.getChildren().add(saveView);
+        if(!isInEnemyMap) {
+            group.getChildren().add(borderImageView);
+            makeResourceLabels(group,sideBarStartingX);
+            group.getChildren().add(saveView);
+        }
+
     }
     public static void makeStartingMenu(Group group, Stage stage){
         primaryStage=stage;
-        makeSideBar(group);
+        makeSideBar(group,false);
         ImageView attackImage = getImageView("Attack.png");
         attackImage.setOnMouseClicked(event -> {
             makeLoadEnemyMapMenu(group);
@@ -122,7 +126,7 @@ public class SideBarUI {
     }
 
     private static void makeLoadEnemyMapMenu(Group group) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         StringBuilder eneMyMapsList = new StringBuilder("1. load map\n");
         int index = 2;
         for (Game game : controller.getGame().getAllAttackedVillages()) {
@@ -196,7 +200,7 @@ public class SideBarUI {
     }
 
     public static void makeMainBuildingMenu(Group group) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         ImageView infoView = getImageView("info.png");
         infoView.setOnMouseClicked(event -> {
             makeDefaultInfoMenu(group,controller.getGame().getVillage().getMap()[14][14]);
@@ -207,7 +211,7 @@ public class SideBarUI {
         });
         ImageView statusView = getImageView("Status.png");
         statusView.setOnMouseClicked(event -> {
-            makeSideBar(group);
+            makeSideBar(group,false);
             makeLabels(group,controller.getGame().getVillage().showTownHallStatus().trim(),0.2,false);
             ImageView backView = getImageView("back.png");
             backView.setScaleX(0.5);
@@ -234,7 +238,7 @@ public class SideBarUI {
     }
 
     private static void showAvailableBuildings(Group group) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         makeLabels(group,"choose your preferred building",0.17,false);
         ComboBox<String> comboBox = new ComboBox<>();
         comboBox.setBackground(Background.EMPTY);
@@ -262,7 +266,7 @@ public class SideBarUI {
     }
 
     public static void makeStorageMenu(Group group, Cell cell) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         ImageView overAllInfoView = getImageView("OverAllInfo.png");
         overAllInfoView.setOnMouseClicked(event -> {
             showOverallInfo(group , cell);
@@ -290,7 +294,7 @@ public class SideBarUI {
 
     private static void showSourcesInfo(Group group, Cell cell) {
         Storage storage = (Storage)cell;
-        makeSideBar(group);
+        makeSideBar(group,false);
         ImageView sourcesInfoInsides;
         if (storage.getClass().getSimpleName().equals("GoldStorage")) {
             sourcesInfoInsides = getImageView("sourcesInfoInsides2.png");
@@ -316,7 +320,7 @@ public class SideBarUI {
     }
 
     public static void makeCampMenu(Group group, Cell cell) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         ImageView infoView = getImageView("info.png");
         infoView.setOnMouseClicked(event -> {
             makeCampInfoMenu(group , cell);
@@ -336,7 +340,7 @@ public class SideBarUI {
 
     private static void makeSoldiersMenu(Group group, Cell cell) {
         Camp camp = (Camp)cell;
-        makeSideBar(group);
+        makeSideBar(group,false);
         makeLabels(group,camp.showSoldiers().trim(),0.2,false);
         ImageView backView = getImageView("Back.png");
         backView.setX(UIConstants.BUTTON_STARTING_X);
@@ -348,7 +352,7 @@ public class SideBarUI {
     }
 
     public static void makeCampInfoMenu(Group group, Cell cell) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         ImageView overAllInfoView = getImageView("OverAllInfo.png");
         overAllInfoView.setOnMouseClicked(event -> {
             showOverallInfo(group , cell);
@@ -372,7 +376,7 @@ public class SideBarUI {
 
     private static void showCampCapacityInfo(Group group, Cell cell) {
         Camp camp = (Camp)cell;
-        makeSideBar(group);
+        makeSideBar(group,false);
         ImageView campCapacity= getImageView("campCapacity.png");
         campCapacity.setX(UIConstants.INFOMENU_STARTING_X);
         campCapacity.setY(UIConstants.MENU_VBOX_STARTING_Y);
@@ -388,7 +392,7 @@ public class SideBarUI {
     }
 
     public static void makeMineMenu(Group group, Cell cell) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         ImageView infoView = getImageView("info.png");
         infoView.setOnMouseClicked(event -> {
             makeDefaultInfoMenu(group,cell);
@@ -415,7 +419,7 @@ public class SideBarUI {
     }
 
     private static void makeDefaultInfoMenu(Group group, Cell cell) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         ImageView overallInfoView = getImageView("OverAllInfo.png");
         overallInfoView.setOnMouseClicked(event -> {
             showOverallInfo(group, cell);
@@ -448,7 +452,7 @@ public class SideBarUI {
                 return;
             }
         }
-        makeSideBar(group);
+        makeSideBar(group,false);
         ImageView upgradeQuestion = getImageView("UpgradeQuestion.png");
         upgradeQuestion.setY(Screen.getPrimary().getVisualBounds().getHeight() * 0.3);
         upgradeQuestion.setX(UIConstants.BUTTON_STARTING_X);
@@ -487,7 +491,7 @@ public class SideBarUI {
 
 
     private static void showUpgradeInfo(Group group, Cell cell) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         ImageView UpgradeCost= getImageView("UpgradeCost.png");
         UpgradeCost.setScaleX(0.6);
         UpgradeCost.setX(UIConstants.INFOMENU_STARTING_X);
@@ -527,7 +531,7 @@ public class SideBarUI {
     }
 
     private static void showOverallInfo(Group group, Cell cell) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         ImageView overallInfoInsides= getImageView("OverallInfoInsides.png");
         overallInfoInsides.setX(UIConstants.INFOMENU_STARTING_X);
         overallInfoInsides.setY(UIConstants.MENU_VBOX_STARTING_Y);
@@ -544,7 +548,7 @@ public class SideBarUI {
     }
 
     public static void makeBarrackMenu(Group group, Cell cell) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         ImageView infoView = getImageView("info.png");
         infoView.setOnMouseClicked(event -> {
             makeDefaultInfoMenu(group,cell);
@@ -571,7 +575,7 @@ public class SideBarUI {
     }
 
     private static void makeStatusBarracks(Group group, Cell cell) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         makeLabels(group,controller.getGame().getVillage().showBarracksStatus(),0.2,false);
         ImageView backView = getImageView("back.png");
         backView.setScaleX(0.5);
@@ -584,7 +588,7 @@ public class SideBarUI {
     }
 
     public static void makeBuildingsMenu(Group group, Cell cell) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         switch (cell.getClass().getSimpleName()) {
             case "MainBuilding":
                 makeMainBuildingMenu(group);
@@ -614,7 +618,7 @@ public class SideBarUI {
     }
 
     private static void makeDefencesMenu(Group group, Cell cell) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         ImageView infoView = getImageView("info.png");
         ImageView targetView = getImageView("Target.png");
         ImageView backView = getImageView("Back.png");
@@ -642,7 +646,7 @@ public class SideBarUI {
     }
 
     private static void makeDefencesInfoMenu(Group group, Cell cell) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         File overallInfoFile=new File(ADDRESS+"OverAllInfo.png");
         Image overallInfoImage=new Image(overallInfoFile.toURI().toString());
         ImageView overallInfoView=new ImageView(overallInfoImage);
@@ -701,12 +705,12 @@ public class SideBarUI {
     }
 
     private static void makeDefencesUpgradeMenu(Group group, Cell cell) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         implementUpgradeBuildings(group, cell);
     }
 
     private static void makeDefencesAttackInfoMenu(Group group, Cell cell) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         ImageView attacklInfoInsides= getImageView("attackInfoInsides.png");
         attacklInfoInsides.setX(UIConstants.INFOMENU_STARTING_X);
         attacklInfoInsides.setY(UIConstants.MENU_VBOX_STARTING_Y);
@@ -738,12 +742,12 @@ public class SideBarUI {
     }
 
     private static void makeDefencesUpgradeInfoMenu(Group group, Cell cell) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         showUpgradeInfo(group, cell);
     }
 
     private static void makeDefencesOverallInfoMenu(Group group, Cell cell) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         showOverallInfo(group, cell);
     }
 
@@ -815,7 +819,7 @@ public class SideBarUI {
     }
 
     private static void barrackBuildSoldierMenu(Group group, Cell cell) {
-        makeSideBar(group);
+        makeSideBar(group,false);
         ImageView archerView = new ImageView(MapUI.getGifsOfTowers().get("ArcherPortrait"));
         archerView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
         archerView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
