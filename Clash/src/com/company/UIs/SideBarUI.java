@@ -870,7 +870,7 @@ public class SideBarUI {
         addBuildSoldier(group, cell, giantView, "Giant");
         addBuildSoldier(group, cell, guardianView, "Guardian");
         addBuildSoldier(group, cell, wallBreakerView, "WallBreaker");
-        addBuildSoldier(group, cell, wallBreakerView, "Healer");
+        addBuildSoldier(group, cell, healerView, "Healer");
 
         opacityOnHover(archerView);
         opacityOnHover(dragonView);
@@ -938,12 +938,6 @@ public class SideBarUI {
     private static void implementBuildSoldier(Group group, Cell cell, String playerChoice) throws NotEnoughResourcesException, NotEnoughCapacityInCampsException, unAvailableSoldierException {
         Barrack barrack = (Barrack) cell;
         HashMap<String, Integer> availableSoldiers = barrack.determineAvailableSoldiers(controller.getGame().getVillage().getResource().getElixir());
-        if (playerChoice.equals("resources")){
-            controller.getGame().showResources();
-        }
-        if (playerChoice.equals("WhereIAm")){
-            View.show(Game.getWhereIAm());
-        }
         if (availableSoldiers.get(playerChoice) == 0) {
             throw new unAvailableSoldierException();
         } else {

@@ -296,7 +296,6 @@ public class MapUI  {
                 canvas.getChildren().remove(village.getMap()[j][i].getImageView());
             }
             canvas.getChildren().add(village.getMap()[j][i].getImageView());
-       //todo what is wrong
     }
 
 
@@ -332,12 +331,12 @@ public class MapUI  {
         }
         return  buildingImage;
     }
-    private static double mapCoordinates2PixelX(int x) {
+    public static double mapCoordinates2PixelX(int x) {
         double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
         return Screen.getPrimary().getVisualBounds().getWidth() - (x + 3) * cellWidth;
     }
 
-    private static double mapCoordinates2PixelY(int y) {
+    public static double mapCoordinates2PixelY(int y) {
         double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
         return (y + 1) * cellWidth;
     }

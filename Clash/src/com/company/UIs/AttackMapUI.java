@@ -28,9 +28,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import static com.company.UIs.MapUI.getImageOfBuildings;
+import static com.company.UIs.MapUI.mapCoordinates2PixelY;
 import static com.company.UIs.MapUI.putBuildingImageInMap;
 import static com.company.UIs.SideBarUI.makeSideBar;
 import static com.company.UIs.SideBarUI.opacityOnHover;
@@ -43,6 +45,7 @@ public class AttackMapUI {
     private static AnimationTimer showEnemyMapAnimationTimer;
     private static Stage primaryStage;
     private static HashMap<String ,Image> soldiersGif=new HashMap<>();
+    private static String choosenSoldierName = "";
 
     public static HashMap<String, Image> getSoldiersGif() {
         return soldiersGif;
@@ -100,6 +103,17 @@ public class AttackMapUI {
                 imageView.setOnMouseClicked(event -> {
                         attackX = finalI - 2;
                         attackY = finalJ - 1;
+                        if (choosenSoldierName.equals("")){
+
+                        }
+                        else{
+                            for (Soldier soldier : controller.getGame().getTroops()) {
+                                if (soldier.getClass().getSimpleName().equals(choosenSoldierName)){
+                                    putSoldiersImageInMap(attackY , attackX , controller.getGame().getAttackedVillage().getVillage() , 32 , canvas , soldiersGif.get(choosenSoldierName + "MoveUp"));
+                                    break;
+                                }
+                            }
+                        }
                 });
             }
 
@@ -160,12 +174,12 @@ public class AttackMapUI {
         healerView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
         healerView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
 
-        addClickListener(archerView, group);
-        addClickListener(dragonView, group);
-        addClickListener(giantView, group);
-        addClickListener(guardianView, group);
-        addClickListener(wallBreakerView, group);
-        addClickListener(healerView, group);
+        addClickListener(archerView,  "Archer");
+        addClickListener(dragonView,  "Dragon");
+        addClickListener(giantView,  "Giant");
+        addClickListener(guardianView, "Guardian");
+        addClickListener(wallBreakerView,  "WallBreaker");
+        addClickListener(healerView, "Healer");
 
         HBox label1 = new HBox(100, makeTroopsLabel(group, "Archer"), makeTroopsLabel(group, "Dragon"));
         HBox label2 = new HBox(100, makeTroopsLabel(group, "Giant"), makeTroopsLabel(group, "Guardian"));
@@ -205,11 +219,11 @@ public class AttackMapUI {
         return label;
     }
 
-    private static void addClickListener(ImageView imageView, Group group) {
+    private static void addClickListener(ImageView imageView, String name) {
         imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                choosenSoldierName = name;
             }
         });
     }
@@ -285,5 +299,19 @@ public class AttackMapUI {
             fileInputStream = new FileInputStream("./src/com/company/ImagesAndGifs/lightGreen.png");
         }
         return fileInputStream;
+    }
+
+    public static void putSoldiersImageInMap(int i, int j, Village village, int size, PannableCanvas canvas , Image image) {
+        village.getMap()[j][i].getImageView().setImage(image);
+        village.getMap()[j][i].getImageView().setX(MapUI.mapCoordinates2PixelX(j));
+        village.getMap()[j][i].getImageView().setY(mapCoordinates2PixelY(i));
+        //addGlowToBuildings(village.getMap()[j][i].getImageView());
+        village.getMap()[j][i].getImageView().setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / size);
+        village.getMap()[j][i].getImageView().setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / size);
+
+        if (canvas.getChildren().contains(village.getMap()[j][i].getImageView())) {
+            canvas.getChildren().remove(village.getMap()[j][i].getImageView());
+        }
+        canvas.getChildren().add(village.getMap()[j][i].getImageView());
     }
 }
