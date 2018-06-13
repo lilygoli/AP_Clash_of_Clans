@@ -877,7 +877,7 @@ public class SideBarUI {
         addBuildSoldier(group, cell, giantView, "Giant");
         addBuildSoldier(group, cell, guardianView, "Guardian");
         addBuildSoldier(group, cell, wallBreakerView, "WallBreaker");
-        addBuildSoldier(group, cell, wallBreakerView, "Healer");
+        addBuildSoldier(group, cell, healerView, "Healer");
 
         opacityOnHover(archerView);
         opacityOnHover(dragonView);

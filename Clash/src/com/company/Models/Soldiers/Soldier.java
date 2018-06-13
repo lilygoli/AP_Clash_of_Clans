@@ -107,7 +107,7 @@ public abstract class Soldier {
         return dead;
     }
 
-    private Direction getDirection() {
+    public Direction getDirection() {
         return direction;
     }
 
