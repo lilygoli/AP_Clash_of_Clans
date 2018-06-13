@@ -156,28 +156,24 @@ public class SideBarUI {
     private static void loadEnemyMap(Group group, ComboBox<String> comboBox) {
         if (comboBox.getValue().equals("1. load map")) {
             TextField textField= new TextField("please enter path");
-            textField.relocate(UIConstants.BUTTON_STARTING_X,180);
+            textField.relocate(UIConstants.BUTTON_STARTING_X,200);
             group.getChildren().add(textField);
             Button loadButton=new Button("load");
             group.getChildren().add(loadButton);
-            loadButton.relocate(UIConstants.BUTTON_STARTING_X,180);
+            loadButton.relocate(200,200);
+            loadButton.setStyle("-fx-background-color: #a5862e");
             loadButton.setOnMouseClicked(event2 ->{
-                boolean flag = false;
                 Game enemyGame = null;
-                while (!flag) {
                     try {
                         enemyGame = controller.getGameCenter().loadEnemyMap(textField.getText());
                         controller.getGame().setAttackedVillage(enemyGame);
-                        flag = true;
                         AttackMapUI.makeAttackGameBoard(primaryStage,controller);
                     } catch (NotValidFilePathException e) {
-                        NotValidFilePathException exception = new NotValidFilePathException();
-                        new Timeline(new KeyFrame(Duration.seconds(2), new KeyValue(exception.getImageView().imageProperty(), null))).play();
-                        group.getChildren().add(exception.getImageView());
+                        new Timeline(new KeyFrame(Duration.seconds(2), new KeyValue(e.getImageView().imageProperty(), null))).play();
+                        group.getChildren().add(e.getImageView());
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                }
                 if (!controller.getGame().getAllAttackedVillages().contains(enemyGame)) {
                     controller.getGame().getAllAttackedVillages().add(enemyGame);
                 }
@@ -231,7 +227,7 @@ public class SideBarUI {
         group.getChildren().add(vBox);
     }
 
-    private static ImageView getImageView(String imageName) {
+    public static ImageView getImageView(String imageName) {
         File infoFile = new File(ADDRESS + imageName);
         Image infoImage = new Image(infoFile.toURI().toString());
         return new ImageView(infoImage);
@@ -255,7 +251,7 @@ public class SideBarUI {
             implementBuildATowerCommand(comboBox.getValue(),group);
         });
         group.getChildren().add(selectButton);
-        ImageView backView = getImageView("back.png");
+        ImageView backView = getImageView("Back.png");
         backView.setScaleX(0.5);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.BACK_BUTTON_Y_COEFFICIENT);
         backView.setX(UIConstants.BUTTON_STARTING_X);

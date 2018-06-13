@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -29,7 +30,7 @@ public class AttackMapUI {
     private static int attackX, attackY;
     private static PannableCanvas canvas = new PannableCanvas();
     private static Controller controller;
-    private static AnimationTimer showMapAnimationTimer;
+    private static AnimationTimer showEnemyMapAnimationTimer;
     private static Stage primaryStage;
     private static HashMap<String ,Image> soldiersGif=new HashMap<>();
 
@@ -99,6 +100,20 @@ public class AttackMapUI {
         scene.addEventFilter(MouseEvent.MOUSE_DRAGGED, sceneGestures.getOnMouseDraggedEventHandler());
         root.getChildren().add(canvas);
         showMapInAttack(root);
+        makeAttackStartingSideBar(root);
+    }
+
+    private static void makeAttackStartingSideBar(Group group) {
+        SideBarUI.makeSideBar(group);
+        ImageView mapInfo= SideBarUI.getImageView("MapInfo.png");
+        mapInfo.setOnMouseClicked(event -> {});
+        ImageView attackMap= SideBarUI.getImageView("AttackMap.png");
+        attackMap.setOnMouseClicked(event -> {});
+        ImageView back= SideBarUI.getImageView("Back.png");
+        back.setOnMouseClicked(event -> {});
+        VBox vBox= new VBox(mapInfo,attackMap,back);
+        vBox.relocate(UIConstants.BUTTON_STARTING_X,UIConstants.MENU_VBOX_STARTING_Y);
+        group.getChildren().add(vBox);
     }
 
     public static void showMapInAttack(Group root) {
