@@ -457,6 +457,10 @@ public class Game {
         }
         throw new NoSuchSoldierInCampException();
     }
+
+    public void setTroops(ArrayList<Soldier> troops) {
+        this.troops=troops;
+    }
 }
 
 
