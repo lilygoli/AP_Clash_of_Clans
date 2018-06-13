@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -149,7 +150,9 @@ public class AttackMapUI {
         addClickListener(wallBreakerView, group);
         addClickListener(healerView, group);
 
-//        makeTroopsLabel(group, "Archer");
+        HBox label1 = new HBox(100, makeTroopsLabel(group, "Archer"), makeTroopsLabel(group, "Dragon"));
+        HBox label2 = new HBox(100, makeTroopsLabel(group, "Giant"), makeTroopsLabel(group, "Guardian"));
+        HBox label3 = new HBox(100, makeTroopsLabel(group, "Healer"), makeTroopsLabel(group, "WallBreaker"));
 
         opacityOnHover(archerView);
         opacityOnHover(dragonView);
@@ -172,15 +175,18 @@ public class AttackMapUI {
             }
         });
 
-        VBox allSoldiers = new VBox(1, soldiers1, soldiers2, soldiers3, backView);
+        VBox allSoldiers = new VBox(1, soldiers1, label1, soldiers2, label2, soldiers3, label3, backView);
         allSoldiers.relocate(50, 160);
 
         group.getChildren().addAll(allSoldiers);
     }
 
-//    private static Label makeTroopsLabel(Group group, String name) {
-//
-//    }
+    private static Label makeTroopsLabel(Group group, String name) {
+        Label label = new Label("X" + Integer.toString(numberOfTroops(name)));
+        label.setFont(Font.font("Papyrus"));
+        ;
+        return label;
+    }
 
     private static void addClickListener(ImageView imageView, Group group) {
         imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -193,6 +199,9 @@ public class AttackMapUI {
 
     private static int numberOfTroops(String name) {
         int counter = 0;
+        if (controller.getGame().getTroops() == null) {
+            return 0;
+        }
         for (Soldier soldier : controller.getGame().getTroops()) {
             if (soldier.getClass().getSimpleName().equals(name)) {
                 counter++;
