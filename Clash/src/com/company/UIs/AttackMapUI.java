@@ -7,12 +7,15 @@ import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Village;
 import javafx.animation.AnimationTimer;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -20,13 +23,16 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
 import static com.company.UIs.MapUI.getImageOfBuildings;
 import static com.company.UIs.MapUI.putBuildingImageInMap;
+import static com.company.UIs.SideBarUI.opacityOnHover;
 
 public class AttackMapUI {
+    private static final String ADDRESS = "./src/com/company/UIs/SideBarMenuImages/";
     private static int attackX, attackY;
     private static PannableCanvas canvas = new PannableCanvas();
     private static Controller controller;
@@ -106,12 +112,93 @@ public class AttackMapUI {
     private static void makeAttackStartingSideBar(Group group) {
         SideBarUI.makeSideBar(group,true);
         ImageView attackMap= SideBarUI.getImageView("AttackMap.png");
-        attackMap.setOnMouseClicked(event -> {});
+        attackMap.setOnMouseClicked(event -> {
+            implementPutUnit(group);
+        });
         ImageView back= SideBarUI.getImageView("Back.png");
         back.setOnMouseClicked(event -> {});
         VBox vBox= new VBox(attackMap,back);
         vBox.relocate(UIConstants.BUTTON_STARTING_X,UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
+    }
+
+    private static void implementPutUnit(Group group) {
+        ImageView archerView = new ImageView(MapUI.getGifsOfTowers().get("ArcherPortrait"));
+        archerView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
+        archerView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
+        ImageView dragonView = new ImageView(MapUI.getGifsOfTowers().get("DragonPortrait"));
+        dragonView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
+        dragonView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
+        ImageView giantView = new ImageView(MapUI.getGifsOfTowers().get("GiantPortrait"));
+        giantView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
+        giantView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
+        ImageView guardianView = new ImageView(MapUI.getGifsOfTowers().get("GuardianPortrait"));
+        guardianView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
+        guardianView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
+        ImageView wallBreakerView = new ImageView(MapUI.getGifsOfTowers().get("WallBreakerPortrait"));
+        wallBreakerView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
+        wallBreakerView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
+        ImageView healerView = new ImageView(MapUI.getGifsOfTowers().get("HealerPortrait"));
+        healerView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth() / 15);
+        healerView.setFitHeight(Screen.getPrimary().getVisualBounds().getWidth() / 13);
+
+        addClickListener(archerView, group);
+        addClickListener(dragonView, group);
+        addClickListener(giantView, group);
+        addClickListener(guardianView, group);
+        addClickListener(wallBreakerView, group);
+        addClickListener(healerView, group);
+
+//        makeTroopsLabel(group, "Archer");
+
+        opacityOnHover(archerView);
+        opacityOnHover(dragonView);
+        opacityOnHover(giantView);
+        opacityOnHover(guardianView);
+        opacityOnHover(wallBreakerView);
+        opacityOnHover(healerView);
+
+        HBox soldiers1 = new HBox(1,archerView, dragonView);
+        HBox soldiers2 = new HBox(1,giantView, guardianView);
+        HBox soldiers3 = new HBox(1,healerView, wallBreakerView);
+
+        File backFile=new File(ADDRESS+"Back.png");
+        Image backImage=new Image(backFile.toURI().toString());
+        ImageView backView=new ImageView(backImage);
+        backView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                // TODO: 6/13/18 Exit
+            }
+        });
+
+        VBox allSoldiers = new VBox(1, soldiers1, soldiers2, soldiers3, backView);
+        allSoldiers.relocate(50, 160);
+
+        group.getChildren().addAll(allSoldiers);
+    }
+
+//    private static Label makeTroopsLabel(Group group, String name) {
+//
+//    }
+
+    private static void addClickListener(ImageView imageView, Group group) {
+        imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+
+            }
+        });
+    }
+
+    private static int numberOfTroops(String name) {
+        int counter = 0;
+        for (Soldier soldier : controller.getGame().getTroops()) {
+            if (soldier.getClass().getSimpleName().equals(name)) {
+                counter++;
+            }
+        }
+        return counter;
     }
 
     public static void showMapInAttack(Group root) {
