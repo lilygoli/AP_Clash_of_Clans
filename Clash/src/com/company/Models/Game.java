@@ -306,6 +306,7 @@ public class Game {
         for (Soldier troop : troops) {
             troop.setX((double)Math.round(troop.getX()));
             troop.setY((double)Math.round(troop.getY()));
+            System.out.println("war" + troop.getX() + " " + troop.getY());
         }
     }
 

@@ -7,6 +7,8 @@ import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.Storage;
 import com.company.Models.Towers.Cell;
 import com.company.Models.Village;
+import com.company.UIs.MapUI;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -20,7 +22,7 @@ public abstract class Soldier {
     private double x = -1, y = -1;
     private boolean dead;
     private Direction direction;
-
+    private ImageView imageView = new ImageView();
     static {
         soldierSubClasses.add(new Archer(0));
         soldierSubClasses.add(new Dragon(0));
@@ -42,6 +44,14 @@ public abstract class Soldier {
     }
 
     public Soldier() {
+    }
+
+    public ImageView getImageView() {
+        return imageView;
+    }
+
+    public void setImageView(ImageView imageView) {
+        this.imageView = imageView;
     }
 
     private final double MOVE_PER_TURN = 1.0 * getMaxSpeed() / Config.getDictionary().get("KMM");
@@ -129,10 +139,14 @@ public abstract class Soldier {
 
     public void setX(double x) {
         this.x = x;
+        this.imageView.relocate(MapUI.mapCoordinates2PixelX((int)this.x), MapUI.mapCoordinates2PixelY((int)this.y));
+        System.out.println(x + " " + y);
     }
 
     public void setY(double y) {
         this.y = y;
+        this.imageView.relocate(MapUI.mapCoordinates2PixelX((int)this.x), MapUI.mapCoordinates2PixelY((int)this.y));
+        System.out.println(x + " " + y);
     }
 
     public void setDead(boolean dead) {

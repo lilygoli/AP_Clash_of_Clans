@@ -7,7 +7,9 @@ import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Village;
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -109,8 +111,8 @@ public class AttackMapUI {
                         }
                         else{
                             for (Soldier soldier : controller.getGame().getTroops()) {
-                                if (soldier.getClass().getSimpleName().equals(choosenSoldierName)){
-                                    putSoldiersImageInMap(attackY , attackX , controller.getGame().getAttackedVillage().getVillage() , 32 , canvas , soldiersGif.get(choosenSoldierName + "MoveUp"));
+                                if (soldier.getClass().getSimpleName().equals(choosenSoldierName)  && soldier.getX() == -1){
+                                    putSoldiersImageInMap(attackY , attackX , 32 , canvas , soldiersGif.get(choosenSoldierName + "MoveUp"), soldier);
                                     break;
                                 }
                             }
@@ -132,9 +134,18 @@ public class AttackMapUI {
         SideBarUI.makeSideBar(group,true);
         ImageView attackMap= SideBarUI.getImageView("AttackMap.png");
         attackMap.setOnMouseClicked(event -> {
-            MainMenuUI.getGameLogic().stop();
-            controller.getGame().setUnderAttackOrDefense(true);
-            MainMenuUI.getGameLogic().start();
+//            MainMenuUI.getGameLogic().stop();
+//            controller.getGame().setUnderAttackOrDefense(true);
+
+//            Task task = new Task() {
+//                @Override
+//                protected Object call() throws Exception {
+//                    MainMenuUI.getGameLogic().start();
+//                    return null;
+//                }
+//            };
+//            new Thread(task).start();
+
             implementPutUnit(group);
         });
         ImageView back= SideBarUI.getImageView("Back.png");
@@ -162,6 +173,7 @@ public class AttackMapUI {
             ArrayList<Soldier> troops = new ArrayList<>();
             controller.getGame().setTroops(troops);
         }
+        controller.getGame().setUnderAttackOrDefense(true);
         for (Camp camp : controller.getGame().getVillage().getCamps()) {
             controller.getGame().getTroops().addAll(camp.getSoldiers());
         }
@@ -311,17 +323,21 @@ public class AttackMapUI {
         return fileInputStream;
     }
 
-    public static void putSoldiersImageInMap(int i, int j, Village village, int size, PannableCanvas canvas , Image image) {
-        village.getMap()[j][i].getImageView().setImage(image);
-        village.getMap()[j][i].getImageView().setX(MapUI.mapCoordinates2PixelX(j));
-        village.getMap()[j][i].getImageView().setY(mapCoordinates2PixelY(i));
+    public static void putSoldiersImageInMap(int i, int j, int size, PannableCanvas canvas, Image image, Soldier soldier) {
+        soldier.getImageView().setImage(image);
+        soldier.getImageView().setX(MapUI.mapCoordinates2PixelX(j));
+        soldier.getImageView().setY(mapCoordinates2PixelY(i));
         //addGlowToBuildings(village.getMap()[j][i].getImageView());
-        village.getMap()[j][i].getImageView().setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / size);
-        village.getMap()[j][i].getImageView().setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / size);
+        soldier.getImageView().setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / size);
+        soldier.getImageView().setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / size);
 
-        if (canvas.getChildren().contains(village.getMap()[j][i].getImageView())) {
-            canvas.getChildren().remove(village.getMap()[j][i].getImageView());
+        if (canvas.getChildren().contains(soldier.getImageView())) {
+            canvas.getChildren().remove(soldier.getImageView());
         }
-        canvas.getChildren().add(village.getMap()[j][i].getImageView());
+
+        soldier.setX(j);
+        soldier.setY(i);
+
+        canvas.getChildren().add(soldier.getImageView());
     }
 }

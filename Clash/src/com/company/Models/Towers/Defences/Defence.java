@@ -46,7 +46,7 @@ public abstract class Defence extends Cell {
     public Soldier findNearestEnemyInRange(ArrayList<Soldier> enemySoldiers, boolean canShootFlyingSoldiers, boolean canShootGroundSoldiers) {
         double minDistance = 10000;
         Soldier target = null;
-        if (enemySoldiers.isEmpty())
+        if (enemySoldiers == null || enemySoldiers.isEmpty())
             return null;
         for(Soldier soldier : enemySoldiers) {
             if (soldier.getX() == -1 && soldier.getY() == -1) {
