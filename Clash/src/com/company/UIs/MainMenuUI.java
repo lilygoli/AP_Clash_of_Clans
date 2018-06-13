@@ -5,6 +5,9 @@ import com.company.Models.Game;
 import com.company.Models.GameCenter;
 import com.company.Models.Towers.Defences.ArcherTower;
 import com.company.Models.Towers.Defences.Cannon;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -21,6 +24,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 
@@ -140,7 +144,11 @@ public class MainMenuUI extends Application{
                             e.printStackTrace();
                         }
                     } catch (NotValidFilePathException e) {
-                        e.printStackTrace();
+                        NotValidFilePathException exception = new NotValidFilePathException();
+                        exception.getImageView().setX(Screen.getPrimary().getVisualBounds().getWidth()/2-exception.getImageView().getImage().getWidth()*2);
+                        exception.getImageView().setY(exception.getImageView().getY()+70);
+                        new Timeline(new KeyFrame(Duration.seconds(4), new KeyValue(exception.getImageView().imageProperty(), null))).play();
+                        root.getChildren().add(exception.getImageView());
                     }
 
                 });

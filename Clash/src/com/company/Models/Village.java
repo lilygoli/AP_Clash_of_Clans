@@ -350,7 +350,7 @@ public class Village {
         }
         Cell.sortTowers(underConstructionTowers);
         for (Cell underConstructionTower : underConstructionTowers) {
-            status.append(underConstructionTower.getName()).append(" will be built in ").append(underConstructionTower.getTimeLeftOfConstruction()).append(" turns\n");
+            status.append(underConstructionTower.getName()).append(" will be built in\n").append(underConstructionTower.getTimeLeftOfConstruction()).append(" turns\n");
         }
         return status.toString().trim();
     }
