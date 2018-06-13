@@ -96,6 +96,7 @@ public class SideBarUI {
                     try {
                         MapUI.getShowMapAnimationTimer().stop();
                         controller.getGameCenter().saveGame(controller.getGame(), pathTextField.getText(), nameTextField.getText());
+                        primaryStage.close();
                     } catch (NotValidFilePathException e) {
                         NotValidFilePathException exception = new NotValidFilePathException();
                         new Timeline(new KeyFrame(Duration.seconds(2), new KeyValue(exception.getImageView().imageProperty(), null))).play();
@@ -147,6 +148,8 @@ public class SideBarUI {
         ComboBox<String> comboBox = new ComboBox<>();
         comboBox.setBackground(Background.EMPTY);
         comboBox.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
+        comboBox.setMaxWidth(300);
+        comboBox.setMaxWidth(300);
         comboBox.getItems().addAll(eneMyMapsList.toString().split("\n"));
         comboBox.relocate(70, UIConstants.MENU_VBOX_STARTING_Y);
         Button selectButton=new Button("select");
@@ -164,7 +167,6 @@ public class SideBarUI {
         });
         group.getChildren().add(selectButton);
         group.getChildren().add(backView);
-
         group.getChildren().add(comboBox);
     }
 
@@ -195,6 +197,11 @@ public class SideBarUI {
             });
         } else {
             controller.getGame().setAttackedVillage(controller.getGame().getAllAttackedVillages().get(Integer.parseInt(comboBox.getValue().split("\\.")[0])-2));
+            try {
+                AttackMapUI.makeAttackGameBoard(primaryStage,controller);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 
