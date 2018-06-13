@@ -46,7 +46,7 @@ public class MapUI extends Application {
         return gifsOfTowers;
     }
 
-    private Controller controller = new Controller();
+    private static Controller controller = new Controller();
 // to be moved to a new thread
 // TODO: 6/11/2018 giant kill gif add and healer and wallbreaker and guardian giant kill add
 
@@ -143,6 +143,7 @@ public class MapUI extends Application {
         SideBarUI.makeSideBar(root);
 
         makeSlider(root);
+        SideBarUI.makeStartingMenu(root,primaryStage);
     }
 
     private void makeSlider(Group root) {
@@ -178,7 +179,6 @@ public class MapUI extends Application {
         grid.relocate(Screen.getPrimary().getVisualBounds().getWidth() * 0.17, Screen.getPrimary().getVisualBounds().getHeight() * 0.88);
 
         root.getChildren().add(grid);
-        SideBarUI.makeStartingMenu(root);
     }
 
 
@@ -254,7 +254,7 @@ public class MapUI extends Application {
                                         setOnClickImages(14, 14, root);
                                         village.getMap()[j][i].setIsEventSet(true);
                                     }
-                                    putBuildingImageInMap(i, j, village,16);
+                                    putBuildingImageInMap(i, j+1, village,16);
                                 }
 
                             } else {
@@ -305,7 +305,7 @@ public class MapUI extends Application {
         });
     }
 
-    private void addGlowToBuildings(ImageView imageView) {
+    private static void addGlowToBuildings(ImageView imageView) {
         DropShadow ds = new DropShadow( 20, Color.AQUA );
         imageView.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue ) ->
         {

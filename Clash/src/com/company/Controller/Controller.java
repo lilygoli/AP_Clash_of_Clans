@@ -184,14 +184,8 @@ public class Controller {
 
     public void implementAttackCommand() {
         Game.setWhereIAm("you are in Attack Menu");
-        StringBuilder result = new StringBuilder("1. load map\n");
-        int index = 2;
-        for (Game game : game.getAllAttackedVillages()) {
-            result.append(index).append(". ").append(game.getPlayerName()).append("\n");
-            index++;
-        }
-        result.append(index + ". Back");
-        View.show(result.toString());
+
+      //  View.show(result.toString());
 
         String input = view.getInput("please enter your preferred path for a saved game or select one from the list");
         if (input.equals("resources")){
@@ -226,9 +220,9 @@ public class Controller {
                 game.getAllAttackedVillages().add(enemyGame);
             }
 
-        } else if (playerChoice == index) {
-            mainCommandAnalyzer();
-            return;
+//        } else if (playerChoice == index) {
+//            mainCommandAnalyzer();
+//            return;
         } else {
             game.setAttackedVillage(game.getAllAttackedVillages().get(playerChoice - 2));
         }

@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Screen;
+import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -24,8 +25,14 @@ public class AttackMapUI {
     private static PannableCanvas canvas = new PannableCanvas();
     private static Controller controller;
     private static AnimationTimer showMapAnimationTimer;
+    private static Stage primaryStage;
 
-    public static void makeAttackGameBoard(Group group, Scene scene) throws FileNotFoundException {
+    public static void makeAttackGameBoard( Stage stage, Controller controller) throws FileNotFoundException {
+        AttackMapUI.controller=controller;
+        primaryStage=stage;
+        Group root= new Group();
+        Scene scene= new Scene(root,Screen.getPrimary().getVisualBounds().getWidth(),Screen.getPrimary().getVisualBounds().getHeight());
+        primaryStage.setScene(scene);
         Random random = new Random();
         boolean flag;
         FileInputStream fileInputStream;
@@ -50,9 +57,10 @@ public class AttackMapUI {
             }
 
         }
+        showMapInAttack(root);
     }
 
-    public void showMapInVillage(Group root) {
+    public static void showMapInAttack(Group root) {
         Village village = controller.getGame().getAttackedVillage().getVillage();
 
         showMapAnimationTimer=new AnimationTimer(){
