@@ -30,6 +30,7 @@ import java.util.Random;
 
 import static com.company.UIs.MapUI.getImageOfBuildings;
 import static com.company.UIs.MapUI.putBuildingImageInMap;
+import static com.company.UIs.MapUI.setIsInBuildMenu;
 import static com.company.UIs.SideBarUI.opacityOnHover;
 
 public class AttackMapUI {
@@ -114,11 +115,20 @@ public class AttackMapUI {
         SideBarUI.makeSideBar(group,true);
         ImageView attackMap= SideBarUI.getImageView("AttackMap.png");
         attackMap.setOnMouseClicked(event -> {
+            MainMenuUI.getGameLogic().stop();
+            controller.getGame().setUnderAttackOrDefense(true);
+            MainMenuUI.getGameLogic().start();
             implementPutUnit(group);
         });
         ImageView back= SideBarUI.getImageView("Back.png");
         back.setOnMouseClicked(event -> {
             try {
+                for (int i = 0; i < 30; i++) {
+                    for (int j = 0; j < 30; j++) {
+                        controller.getGame().getVillage().getMap()[j][i].setIsEventSet(false);
+                    }
+                }
+                MapUI.getShowMapAnimationTimer().stop();
                 MapUI.start(primaryStage);
             } catch (Exception e) {
                 e.printStackTrace();
