@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cd4373d0-16e4-43f1-a01f-34df3517e604" name="Default" comment="PassTurn runnable">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="cd4373d0-16e4-43f1-a01f-34df3517e604" name="Default" comment="map info">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/company/UIs/MapResources/MapBackGroundAttack.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/MapInfo.png" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UIs/MapUI.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/MapUI.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,8 +24,8 @@
       <file leaf-file-name="MapUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MapUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="260" column="32" lean-forward="true" selection-start-line="260" selection-start-column="32" selection-end-line="274" selection-end-column="33" />
+            <state relative-caret-position="181">
+              <caret line="115" column="8" lean-forward="true" selection-start-line="115" selection-start-column="8" selection-end-line="119" selection-end-column="47" />
               <folding>
                 <element signature="e#1537#1538#0" expanded="true" />
                 <element signature="e#1572#1573#0" expanded="true" />
@@ -50,9 +49,12 @@
       <file leaf-file-name="AttackMapUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="569">
-              <caret line="137" column="0" lean-forward="true" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="150">
+              <caret line="34" column="23" lean-forward="false" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
+              <folding>
+                <element signature="e#1293#1294#0" expanded="true" />
+                <element signature="e#1327#1328#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -74,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="535">
-              <caret line="777" column="97" lean-forward="false" selection-start-line="777" selection-start-column="97" selection-end-line="777" selection-end-column="97" />
+              <caret line="773" column="97" lean-forward="false" selection-start-line="773" selection-start-column="97" selection-end-line="773" selection-end-column="97" />
               <folding />
             </state>
           </provider>
@@ -106,7 +108,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&quot;Viv</find>
       <find>implementUpgrade</find>
       <find>Vival</find>
       <find>upgradeInfo</find>
@@ -136,6 +137,7 @@
       <find>focus</find>
       <find>request</find>
       <find>setoncli</find>
+      <find>backgroun</find>
     </findStrings>
     <replaceStrings>
       <replace>cell</replace>
@@ -355,6 +357,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="company" type="462c0819:PsiDirectoryNode" />
               <item name="UIs" type="462c0819:PsiDirectoryNode" />
+              <item name="MapResources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Clash" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Clash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="company" type="462c0819:PsiDirectoryNode" />
+              <item name="UIs" type="462c0819:PsiDirectoryNode" />
               <item name="SideBarMenuImages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -397,11 +407,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Controller/Controller.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/WizardTower.gif</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/MapUI.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
@@ -410,28 +416,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/Dragon/Move/Down.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/Dragon/Move/Left.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/Dragon/Move/Right.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/Dragon/Move/Up.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/Healer/Attack/Down.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/Healer/Attack/Left.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/Healer/Attack/Right.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/Healer/Attack/Up.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/Healer/HealerPortrait.jpg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/Healer/Move/Down.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/Healer/Move/Left.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/Healer/Move/Right.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/Healer/Move/Up.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/WallBreaker/Attack/Down.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/WallBreaker/Attack/Left.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/WallBreaker/Attack/Right.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/WallBreaker/Attack/Up.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/WallBreaker/Move/Down.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/WallBreaker/Move/Left.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/WallBreaker/Move/Right.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/WallBreaker/Move/Up.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/WallBreaker/WallBreakerPortrait.jpg</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -439,11 +423,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/BarrackLoading.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/Dragon/Down.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/Dragon/Left.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/Dragon/Right.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Soldiers/Dragon/Up.gif</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/MapInfo.png</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -725,7 +705,7 @@
       <workItem from="1528638894227" duration="180000" />
       <workItem from="1528689643534" duration="17705000" />
       <workItem from="1528819388645" duration="5677000" />
-      <workItem from="1528869102570" duration="3233000" />
+      <workItem from="1528869102570" duration="4274000" />
     </task>
     <task id="LOCAL-00001" summary="bug fix in Defences to shoot enemies">
       <created>1525595424519</created>
@@ -937,11 +917,25 @@
       <option name="project" value="LOCAL" />
       <updated>1528868563561</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="remove duplicate code, show map debug">
+      <created>1528873058843</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1528873058843</updated>
+    </task>
+    <task id="LOCAL-00032" summary="bakcground attack">
+      <created>1528874187885</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1528874187885</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182202000" />
+    <option name="totallyTimeSpent" value="183243000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -954,7 +948,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11487304" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -965,11 +958,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3675937" sideWeight="0.5071531" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25272068" sideWeight="0.49284694" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.095525995" sideWeight="0.49284694" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18621524" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22246066" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22246066" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26118502" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.030229745" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1026,8 +1019,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="bug fix" />
-    <MESSAGE value="almost last commit of phase 1" />
     <MESSAGE value="Constructing UI package and classes... phase 2 started" />
     <MESSAGE value="MainMenu appearance" />
     <MESSAGE value="relative Addresses" />
@@ -1051,7 +1042,9 @@
     <MESSAGE value="defences Upgrade and bug fix in mining" />
     <MESSAGE value="barrack crop" />
     <MESSAGE value="Attack show map and make game board" />
-    <option name="LAST_COMMIT_MESSAGE" value="Attack show map and make game board" />
+    <MESSAGE value="remove duplicate code, show map debug" />
+    <MESSAGE value="bakcground attack" />
+    <option name="LAST_COMMIT_MESSAGE" value="bakcground attack" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1472,26 +1465,15 @@
     <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="535">
-          <caret line="777" column="97" lean-forward="false" selection-start-line="777" selection-start-column="97" selection-end-line="777" selection-end-column="97" />
+          <caret line="773" column="97" lean-forward="false" selection-start-line="773" selection-start-column="97" selection-end-line="773" selection-end-column="97" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="23" column="16" lean-forward="false" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
-          <folding>
-            <element signature="e#782#783#0" expanded="true" />
-            <element signature="e#820#821#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MapUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="260" column="32" lean-forward="true" selection-start-line="260" selection-start-column="32" selection-end-line="274" selection-end-column="33" />
+        <state relative-caret-position="181">
+          <caret line="115" column="8" lean-forward="true" selection-start-line="115" selection-start-column="8" selection-end-line="119" selection-end-column="47" />
           <folding>
             <element signature="e#1537#1538#0" expanded="true" />
             <element signature="e#1572#1573#0" expanded="true" />
@@ -1511,11 +1493,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="23" column="16" lean-forward="false" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+          <folding>
+            <element signature="e#782#783#0" expanded="true" />
+            <element signature="e#820#821#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="569">
-          <caret line="137" column="0" lean-forward="true" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="150">
+          <caret line="34" column="23" lean-forward="false" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
+          <folding>
+            <element signature="e#1293#1294#0" expanded="true" />
+            <element signature="e#1327#1328#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
