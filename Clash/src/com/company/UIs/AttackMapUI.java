@@ -65,6 +65,11 @@ public class AttackMapUI {
         Group root= new Group();
         Scene scene= new Scene(root,Screen.getPrimary().getVisualBounds().getWidth(),Screen.getPrimary().getVisualBounds().getHeight());
         primaryStage.setScene(scene);
+        File file = new File("./src/com/company/UIs/MapResources/MapBackGroundAttack.jpg");
+        Image backGround = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight(), false, true);
+        ImageView backGroundView = new ImageView(backGround);
+        backGroundView.setOpacity(0.7);
+        root.getChildren().add(backGroundView);
         Random random = new Random();
         boolean flag;
         FileInputStream fileInputStream;
