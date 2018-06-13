@@ -54,7 +54,13 @@ public class SideBarUI {
         sideBarBackgroundImageView.setScaleY(0.95);
         sideBarBackgroundImageView.setX(sideBarStartingX);
         sideBarBackgroundImageView.setY(-20);
-            ImageView borderImageView = getImageView("upperBorder.png");
+        ImageView borderImageView;
+        if(!isInEnemyMap){
+            borderImageView = getImageView("upperBorder.png");
+        }else {
+             borderImageView = getImageView("AttackUpperBorder.png");
+        }
+
             borderImageView.setScaleX(0.6);
             borderImageView.setScaleY(0.8);
             borderImageView.setY(40);
@@ -102,13 +108,18 @@ public class SideBarUI {
         saveView.setY(Screen.getPrimary().getVisualBounds().getHeight() * 6 / 10);
         saveView.setScaleX(0.5);
         group.getChildren().add(sideBarBackgroundImageView);
+        group.getChildren().add(borderImageView);
         if(!isInEnemyMap) {
-            group.getChildren().add(borderImageView);
             makeResourceLabels(group,sideBarStartingX);
             group.getChildren().add(saveView);
+        }else {
+            makeResourceLabelsInAttack(group,sideBarStartingX);
         }
 
     }
+
+
+
     public static void makeStartingMenu(Group group, Stage stage){
         primaryStage=stage;
         makeSideBar(group,false);
@@ -197,6 +208,21 @@ public class SideBarUI {
         group.getChildren().add(gold);
         group.getChildren().add(elixir);
         group.getChildren().add(score);
+    }
+    private static void makeResourceLabelsInAttack(Group group, Double sideBarStartingX) {
+        Label gold= new Label(Integer.toString(controller.getGame().getAttackedVillage().getVillage().getResource().getGold()));
+        gold.relocate(sideBarStartingX+130,65);
+        Label elixir = new Label(Integer.toString(controller.getGame().getAttackedVillage().getVillage().getResource().getElixir()));
+        elixir.relocate(sideBarStartingX+220,65);
+        Label goldAchieved = new Label(Integer.toString(controller.getGame().getVillage().getGainedResource().getGold()));
+        goldAchieved.relocate(sideBarStartingX+180,85);
+        Label elixirAchieved = new Label(Integer.toString(controller.getGame().getVillage().getGainedResource().getElixir()));
+        elixirAchieved.relocate(sideBarStartingX+180,105);
+        group.getChildren().add(gold);
+        group.getChildren().add(elixir);
+        group.getChildren().add(goldAchieved);
+        group.getChildren().add(elixirAchieved);
+
     }
 
     public static void makeMainBuildingMenu(Group group) {
