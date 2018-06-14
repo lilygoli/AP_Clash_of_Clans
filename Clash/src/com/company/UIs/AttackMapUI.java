@@ -7,9 +7,6 @@ import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Village;
 import javafx.animation.AnimationTimer;
-import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
-import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -20,7 +17,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Arc;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -30,14 +26,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 import static com.company.UIs.MapUI.getImageOfBuildings;
 import static com.company.UIs.MapUI.mapCoordinates2PixelY;
 import static com.company.UIs.MapUI.putBuildingImageInMap;
 import static com.company.UIs.SideBarUI.makeSideBar;
-import static com.company.UIs.MapUI.setIsInBuildMenu;
 import static com.company.UIs.SideBarUI.opacityOnHover;
 
 public class AttackMapUI {
@@ -48,7 +42,7 @@ public class AttackMapUI {
     private static AnimationTimer showEnemyMapAnimationTimer;
     private static Stage primaryStage;
     private static HashMap<String ,Image> soldiersGif=new HashMap<>();
-    private static String choosenSoldierName = "";
+    private static String chosenSoldierName = "";
 
     public static HashMap<String, Image> getSoldiersGif() {
         return soldiersGif;
@@ -90,6 +84,7 @@ public class AttackMapUI {
         Random random = new Random();
         boolean flag;
         FileInputStream fileInputStream;
+
         for (int i = 33; i >= 0; i--) {
             for (int j = 0; j < 32; j++) {
                 flag = random.nextBoolean();
@@ -104,19 +99,16 @@ public class AttackMapUI {
                 int finalI = i;
                 int finalJ = j;
                 imageView.setOnMouseClicked(event -> {
-                        attackX = finalI - 2;
-                        attackY = finalJ - 1;
-                        if (choosenSoldierName.equals("")){
-
-                        }
-                        else{
-                            for (Soldier soldier : controller.getGame().getTroops()) {
-                                if (soldier.getClass().getSimpleName().equals(choosenSoldierName)  && soldier.getX() == -1){
-                                    putSoldiersImageInMap(attackY , attackX , 32 , canvas , soldiersGif.get(choosenSoldierName + "MoveUp"), soldier);
-                                    break;
-                                }
+                    attackX = finalI - 2;
+                    attackY = finalJ - 1;
+                    if (!chosenSoldierName.equals("")){
+                        for (Soldier soldier : controller.getGame().getTroops()) {
+                            if (soldier.getClass().getSimpleName().equals(chosenSoldierName)  && soldier.getX() == -1){
+                                putSoldiersImageInMap(attackY , attackX , 32 , canvas , soldiersGif.get(chosenSoldierName + "MoveUp"), soldier);
+                                break;
                             }
                         }
+                    }
                 });
             }
 
@@ -156,6 +148,7 @@ public class AttackMapUI {
                         controller.getGame().getVillage().getMap()[j][i].setIsEventSet(false);
                     }
                 }
+                UIConstants.DELTA_T=1000;
                 MapUI.getShowMapAnimationTimer().stop();
                 MapUI.start(primaryStage);
             } catch (Exception e) {
@@ -245,7 +238,7 @@ public class AttackMapUI {
         imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                choosenSoldierName = name;
+                chosenSoldierName = name;
             }
         });
     }
@@ -266,41 +259,41 @@ public class AttackMapUI {
     public static void showMapInAttack(Group root) {
         Village village = controller.getGame().getAttackedVillage().getVillage();
 
-            int flag = 0;
-            for (int i = 0; i < 30; i++) {
-                for (int j = 0; j < 30; j++) {
-                    if (village.getMap()[j][i].getClass() == Grass.class) {
-                        continue;
-                    } else if (village.getMap()[j][i].getClass() == MainBuilding.class) {
-                        if (flag == 0) {
-                            flag = 1;
-                            village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png"));
-                            if(!village.getMap()[j][i].getEventSet()){
-                                setOnClickImages(14, 14, root);
-                                village.getMap()[j][i].setIsEventSet(true);
-                            }
-                            putBuildingImageInMap(i, j, village,16, canvas);
+        int flag = 0;
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
+                if (village.getMap()[j][i].getClass() == Grass.class) {
+                    continue;
+                } else if (village.getMap()[j][i].getClass() == MainBuilding.class) {
+                    if (flag == 0) {
+                        flag = 1;
+                        village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png"));
+                        if(!village.getMap()[j][i].getEventSet()){
+                            setOnClickImages(14, 14, root);
+                            village.getMap()[j][i].setIsEventSet(true);
                         }
+                        putBuildingImageInMap(i, j, village,16, canvas);
+                    }
 
-                    } else {
-                        if(village.getMap()[j][i].getUnderConstructionStatus()){
-                            village.getMap()[j][i].setImage( getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".gif"));
-                            if(!village.getMap()[j][i].getEventSet()){
-                                AttackMapUI.setOnClickImages(i, j, root);
-                                village.getMap()[j][i].setIsEventSet(true);
-                            }
-                            putBuildingImageInMap(i, j, village,32, canvas);
-                        }else {
-                            village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png"));
-                            if(!village.getMap()[j][i].getEventSet()){
-                                AttackMapUI.setOnClickImages(i, j, root);
-                                village.getMap()[j][i].setIsEventSet(true);
-                            }
-                            putBuildingImageInMap(i, j, village,32, canvas);
+                } else {
+                    if(village.getMap()[j][i].getUnderConstructionStatus()){
+                        village.getMap()[j][i].setImage( getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".gif"));
+                        if(!village.getMap()[j][i].getEventSet()){
+                            AttackMapUI.setOnClickImages(i, j, root);
+                            village.getMap()[j][i].setIsEventSet(true);
                         }
+                        putBuildingImageInMap(i, j, village,32, canvas);
+                    }else {
+                        village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png"));
+                        if(!village.getMap()[j][i].getEventSet()){
+                            AttackMapUI.setOnClickImages(i, j, root);
+                            village.getMap()[j][i].setIsEventSet(true);
+                        }
+                        putBuildingImageInMap(i, j, village,32, canvas);
                     }
                 }
             }
+        }
     }
 
     public static void setOnClickImages(int i, int j, Group root) {

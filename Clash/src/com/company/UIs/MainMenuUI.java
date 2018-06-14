@@ -3,6 +3,8 @@ package com.company.UIs;
 import com.company.Exception.NotValidFilePathException;
 import com.company.Models.Game;
 import com.company.Models.GameCenter;
+import com.company.Models.Soldiers.Soldier;
+import com.company.Models.Towers.Buildings.Camp;
 import com.company.Models.Towers.Defences.ArcherTower;
 import com.company.Models.Towers.Defences.Cannon;
 import javafx.animation.KeyFrame;
@@ -147,9 +149,14 @@ public class MainMenuUI extends Application{
                         game = mapUI.getController().getGameCenter().loadGame(textField.getText());
                         mapUI.getController().setGame(game);
                         Thread gameLogic = new Thread(new PassTurnThread(mapUI.getController()));
+                        for (Camp camp : mapUI.getController().getGame().getVillage().getCamps()) {
+                            for (Soldier soldier : camp.getSoldiers()) {
+                                soldier.setImageView(new ImageView());
+                            }
+                        }
                         gameLogic.start();
                         try {
-                            mapUI.start(primaryStage);
+                            MapUI.start(primaryStage);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

@@ -22,7 +22,7 @@ public abstract class Soldier {
     private double x = -1, y = -1;
     private boolean dead;
     private Direction direction;
-    private ImageView imageView = new ImageView();
+    private transient ImageView imageView = new ImageView();
     static {
         soldierSubClasses.add(new Archer(0));
         soldierSubClasses.add(new Dragon(0));

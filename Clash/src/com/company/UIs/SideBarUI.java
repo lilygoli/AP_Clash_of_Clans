@@ -6,6 +6,7 @@ import com.company.Models.Builder;
 import com.company.Models.Config;
 import com.company.Models.Game;
 import com.company.Models.Resource;
+import com.company.Models.Soldiers.Soldier;
 import com.company.Models.Towers.Buildings.*;
 import com.company.Models.Towers.Buildings.Storage;
 import com.company.Models.Towers.Cell;
