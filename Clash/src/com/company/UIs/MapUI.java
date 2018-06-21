@@ -332,12 +332,12 @@ public class MapUI  {
         }
         return  buildingImage;
     }
-    public static double mapCoordinates2PixelX(int x) {
+    public static double mapCoordinates2PixelX(double x) {
         double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
         return Screen.getPrimary().getVisualBounds().getWidth() - (x + 3) * cellWidth;
     }
 
-    public static double mapCoordinates2PixelY(int y) {
+    public static double mapCoordinates2PixelY(double y) {
         double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
         return (y + 1) * cellWidth;
     }

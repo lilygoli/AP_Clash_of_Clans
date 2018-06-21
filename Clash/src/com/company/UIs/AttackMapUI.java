@@ -104,7 +104,7 @@ public class AttackMapUI {
                     if (!chosenSoldierName.equals("")){
                         for (Soldier soldier : controller.getGame().getTroops()) {
                             if (soldier.getClass().getSimpleName().equals(chosenSoldierName)  && soldier.getX() == -1){
-                                putSoldiersImageInMap(attackY , attackX , 32 , canvas , soldiersGif.get(chosenSoldierName + "MoveUp"), soldier);
+                                putSoldiersImageInMap(attackY , attackX , 32 , canvas , soldiersGif.get(chosenSoldierName + "MoveUp"), soldier, root);
                                 break;
                             }
                         }
@@ -316,7 +316,7 @@ public class AttackMapUI {
         return fileInputStream;
     }
 
-    public static void putSoldiersImageInMap(int i, int j, int size, PannableCanvas canvas, Image image, Soldier soldier) {
+    public static void putSoldiersImageInMap(int i, int j, int size, PannableCanvas canvas, Image image, Soldier soldier, Group group) {
         soldier.getImageView().setImage(image);
         soldier.getImageView().setX(MapUI.mapCoordinates2PixelX(j));
         soldier.getImageView().setY(mapCoordinates2PixelY(i));
@@ -330,6 +330,8 @@ public class AttackMapUI {
 
         soldier.setX(j);
         soldier.setY(i);
+
+//        implementPutUnit(group);
 
         canvas.getChildren().add(soldier.getImageView());
     }

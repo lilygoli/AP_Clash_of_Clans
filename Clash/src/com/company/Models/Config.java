@@ -235,7 +235,7 @@ public class Config {
         dictionary.put("Trap_ELIXIR_GAINED_WHEN_DESTRUCTED" , 0);
         dictionary.put("Trap_UPGRADE_COST",100);
 
-        dictionary.put("KMM" , 18);
+        dictionary.put("KMM" , 12);
     }
 
 
