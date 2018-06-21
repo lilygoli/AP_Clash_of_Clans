@@ -174,6 +174,21 @@ public abstract class Soldier {
     void attackTargets(Village attackerVillage, Village enemyVillage, Cell target) {
         if (hasReachedDestination(target)) {
             target.setStrength(target.getStrength() - getDamage());
+            String relativeDirection = getRelativeDirection(target);
+            switch (relativeDirection) {
+                case "Up":
+                    imageView.setImage(AttackMapUI.getSoldiersGif().get(this.getClass().getSimpleName() + "AttackUp"));
+                    break;
+                case "Down":
+                    imageView.setImage(AttackMapUI.getSoldiersGif().get(this.getClass().getSimpleName() + "AttackDown"));
+                    break;
+                case "Left":
+                    imageView.setImage(AttackMapUI.getSoldiersGif().get(this.getClass().getSimpleName() + "AttackLeft"));
+                    break;
+                case "Right":
+                    imageView.setImage(AttackMapUI.getSoldiersGif().get(this.getClass().getSimpleName() + "AttackRight"));
+                    break;
+            }
             if (target.getStrength() <= 0) {
                 destroyAndLoot(attackerVillage, target);
             }
@@ -196,6 +211,22 @@ public abstract class Soldier {
                     break;
             }
         }
+    }
+
+    private String getRelativeDirection(Cell target) {
+        if (target.getX() - getX() >= Math.abs(getY() - target.getY())){
+            return "Left";
+        }
+        else if (target.getY() - getY() >= Math.abs(target.getX() - getX())){
+            return "Down";
+        }
+        else if (getX() - target.getX() >= Math.abs(getY() - target.getY())){
+            return "Right";
+        }
+        else if (getY() - target.getY() >= Math.abs(target.getX() - getX())){
+            return "Up";
+        }
+        return "";
     }
 
     private void moveSoldier(Village attackerVillage, Direction direction, Village enemyVillage) {

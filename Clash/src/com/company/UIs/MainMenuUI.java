@@ -108,13 +108,14 @@ public class MainMenuUI extends Application{
                 Image backGround = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(),Screen.getPrimary().getVisualBounds().getHeight(), false, true);
                 ImageView backGroundView = new ImageView(backGround);
                 root.getChildren().add(backGroundView);
-                TextField textField=new TextField("please enter your preferred path");
-                textField.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        textField.setText("");
-                    }
-                });
+                TextField textField=new TextField();
+                textField.setPromptText("please enter your preferred path");
+//                textField.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//                    @Override
+//                    public void handle(MouseEvent event) {
+//                        textField.setText("");
+//                    }
+//                });
                 textField.setMinWidth(500);
                 textField.setMaxWidth(500);
                 textField.setFont(Font.font(30));
