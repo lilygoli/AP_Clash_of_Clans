@@ -13,30 +13,34 @@ public class Cannon extends Defence {
         this.setTimeLeftOfConstruction(this.getBuildDuration());
     }
 
-    public Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers) {
-        if (this.getUnderConstructionStatus()) {
-            return null;
-        }
-        ArrayList<Integer> validManhattanDistance = new ArrayList<>();
-        validManhattanDistance.add(0);
-        validManhattanDistance.add(1);
-        Soldier target = findNearestEnemyInRange(enemySoldiers, false, true);
-        if (target != null) {
-            Iterator<Soldier> i = enemySoldiers.iterator();
-            while (i.hasNext()) {
-                Soldier enemySoldier = i.next();
-                if (enemySoldier.getCanFly()) {
-                    continue;
-                }
-                Integer manhattanDistance =(int)Math.abs(enemySoldier.getX() - target.getX()) + (int)Math.abs(enemySoldier.getY() - target.getY());
-                if (validManhattanDistance.contains(manhattanDistance)) {
-                    enemySoldier.setHealth(enemySoldier.getHealth() - this.getDamage());
-                    if (enemySoldier.getHealth() <= 0) {
-                        i.remove();
+    public Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers)  {
+        synchronized (enemySoldiers) {
+            if (this.getUnderConstructionStatus()) {
+                return null;
+            }
+            ArrayList<Integer> validManhattanDistance = new ArrayList<>();
+            validManhattanDistance.add(0);
+            validManhattanDistance.add(1);
+            Soldier target = findNearestEnemyInRange(enemySoldiers, false, true);
+            if (target != null) {
+                Iterator<Soldier> i = enemySoldiers.iterator();
+                while (i.hasNext()) {
+                    Soldier enemySoldier = i.next();
+                    if (enemySoldier.getCanFly()) {
+                        continue;
+                    }
+                    Integer manhattanDistance = (int) Math.abs(enemySoldier.getX() - target.getX()) + (int) Math.abs(enemySoldier.getY() - target.getY());
+                    if (validManhattanDistance.contains(manhattanDistance)) {
+                        enemySoldier.setHealth(enemySoldier.getHealth() - this.getDamage());
+                        if (enemySoldier.getHealth() <= 0) {
+                            i.remove();
+                            enemySoldier.getImageView().setImage(null);
+                        }
                     }
                 }
             }
+            return target;
         }
-        return target;
     }
+
 }

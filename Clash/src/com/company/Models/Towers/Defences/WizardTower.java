@@ -16,27 +16,31 @@ public class WizardTower extends Defence {
     }
 
     public Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers) {
-        if (this.getUnderConstructionStatus()) {
-            return null;
-        }
-        ArrayList<Integer> validManhattanDistance = new ArrayList<>();
-        validManhattanDistance.add(0);
-        validManhattanDistance.add(1);
-        Soldier target = findNearestEnemyInRange(enemySoldiers, true, true);
-        if (target != null) {
-            Iterator<Soldier> i = enemySoldiers.iterator();
-            while (i.hasNext()) {
-                Soldier enemySoldier = i.next();
-                Integer manhattanDistance =(int)Math.abs(enemySoldier.getX() - target.getX()) + (int)Math.abs(enemySoldier.getY() - target.getY());
-                if (validManhattanDistance.contains(manhattanDistance)) {
-                    enemySoldier.setHealth(enemySoldier.getHealth() - this.getDamage());
-                    if (target.getHealth() <= 0) {
-                        i.remove();
+        synchronized (enemySoldiers) {
+            if (this.getUnderConstructionStatus()) {
+                return null;
+            }
+            ArrayList<Integer> validManhattanDistance = new ArrayList<>();
+            validManhattanDistance.add(0);
+            validManhattanDistance.add(1);
+            Soldier target = findNearestEnemyInRange(enemySoldiers, true, true);
+            if (target != null) {
+                Iterator<Soldier> i = enemySoldiers.iterator();
+                while (i.hasNext()) {
+                    Soldier enemySoldier = i.next();
+                    Integer manhattanDistance = (int) Math.abs(enemySoldier.getX() - target.getX()) + (int) Math.abs(enemySoldier.getY() - target.getY());
+                    if (validManhattanDistance.contains(manhattanDistance)) {
+                        enemySoldier.setHealth(enemySoldier.getHealth() - this.getDamage());
+                        if (target.getHealth() <= 0) {
+                            i.remove();
+                            ;
+                            target.getImageView().setImage(null);
+                        }
                     }
                 }
-            }
 
+            }
+            return target;
         }
-        return target;
     }
 }

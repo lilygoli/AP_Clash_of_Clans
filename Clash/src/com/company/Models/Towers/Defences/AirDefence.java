@@ -13,16 +13,19 @@ public class AirDefence extends Defence {
     }
 
     public Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers) {
-        if (this.getUnderConstructionStatus()) {
-            return null;
-        }
-        Soldier target = findNearestEnemyInRange(enemySoldiers, true, false);
-        if (target != null) {
-            target.setHealth(target.getHealth() - this.getDamage());
-            if (target.getHealth() <= 0) {
-                enemySoldiers.remove(target);
+        synchronized (enemySoldiers) {
+            if (this.getUnderConstructionStatus()) {
+                return null;
             }
+            Soldier target = findNearestEnemyInRange(enemySoldiers, true, false);
+            if (target != null) {
+                target.setHealth(target.getHealth() - this.getDamage());
+                if (target.getHealth() <= 0) {
+                    enemySoldiers.remove(target);
+                    target.getImageView().setImage(null);
+                }
+            }
+            return target;
         }
-        return target;
     }
 }

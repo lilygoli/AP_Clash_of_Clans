@@ -76,8 +76,8 @@ public abstract class Soldier {
         return health;
     }
 
-    private int getDamage() {
-        return damage / Config.getDictionary().get("KMM");
+    public int getDamage() {
+        return (int)Math.ceil(1.0 * damage / Config.getDictionary().get("KMM"));
     }
 
     private int getRadius() {

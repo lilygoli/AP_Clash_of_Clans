@@ -273,25 +273,25 @@ public class Game {
         }
         //Defender Map part
         for (Cannon cannon : this.attackedVillage.getVillage().getCannons()) {
-            if (cannon.getUnderConstructionStatus()) {
+            if (cannon.getUnderConstructionStatus() || cannon.isRuined()) {
                 continue;
             }
             cannon.findAndShootUnit(this.troops);
         }
         for (ArcherTower archerTower : this.attackedVillage.getVillage().getArcherTowers()) {
-            if (archerTower.getUnderConstructionStatus()) {
+            if (archerTower.getUnderConstructionStatus() || archerTower.isRuined()) {
                 continue;
             }
             archerTower.findAndShootUnit(this.troops);
         }
         for (AirDefence airDefence : this.attackedVillage.getVillage().getAirDefences()) {
-            if (airDefence.getUnderConstructionStatus()) {
+            if (airDefence.getUnderConstructionStatus() || airDefence.isRuined()) {
                 continue;
             }
             airDefence.findAndShootUnit(this.troops);
         }
         for (WizardTower wizardTower : this.attackedVillage.getVillage().getWizardTowers()) {
-            if (wizardTower.getUnderConstructionStatus()) {
+            if (wizardTower.getUnderConstructionStatus() || wizardTower.isRuined()) {
                 continue;
             }
             wizardTower.findAndShootUnit(this.troops);
@@ -302,6 +302,7 @@ public class Game {
                 if (soldier.getX() == -1 && soldier.getY() == -1) {
                     continue;
                 }
+                System.out.println(soldier.getClass().getSimpleName() + " " + soldier.getDamage());
                 soldier.attackTarget(this.getVillage(), this.attackedVillage.getVillage());
             }
             try {
@@ -313,7 +314,6 @@ public class Game {
 //        for (Soldier troop : troops) {
 //            troop.setX((double)Math.round(troop.getX()));
 //            troop.setY((double)Math.round(troop.getY()));
-//            System.out.println("war" + troop.getX() + " " + troop.getY());
 //        }
     }
 

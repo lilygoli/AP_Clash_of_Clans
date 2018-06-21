@@ -241,6 +241,7 @@ public class AttackMapUI {
     }
 
     private static void addClickListener(ImageView imageView, String name) {
+
         imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -254,9 +255,11 @@ public class AttackMapUI {
         if (controller.getGame().getTroops() == null) {
             return 0;
         }
-        for (Soldier soldier : controller.getGame().getTroops()) {
-            if (soldier.getClass().getSimpleName().equals(name) && soldier.getX() == -1 && soldier.getY() == -1) {
-                counter++;
+        synchronized (controller.getGame().getTroops()) {
+            for (Soldier soldier : controller.getGame().getTroops()) {
+                if (soldier.getClass().getSimpleName().equals(name) && soldier.getX() == -1 && soldier.getY() == -1) {
+                    counter++;
+                }
             }
         }
         return counter;
