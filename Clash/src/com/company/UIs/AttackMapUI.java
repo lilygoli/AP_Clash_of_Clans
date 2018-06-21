@@ -276,7 +276,7 @@ public class AttackMapUI {
                 } else if (village.getMap()[j][i].getClass() == MainBuilding.class) {
                     if (flag == 0) {
                         flag = 1;
-                        village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png"));
+                        village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png" , true));
                         if(village.getMap()[j][i].isRuined()){
                             root.getChildren().remove(village.getMap()[j][i].getImageView());
                         }else if(!village.getMap()[j][i].getEventSet()){
@@ -290,7 +290,7 @@ public class AttackMapUI {
                     if(village.getMap()[j][i].isRuined()){
                        root.getChildren().remove(village.getMap()[j][i].getImageView());
                     }else {
-                        village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png"));
+                        village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png" , true));
                         if(!village.getMap()[j][i].getEventSet()){
                             AttackMapUI.setOnClickImages(i, j, root);
                             village.getMap()[j][i].setIsEventSet(true);

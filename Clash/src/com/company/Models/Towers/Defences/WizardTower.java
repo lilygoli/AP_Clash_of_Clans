@@ -8,6 +8,8 @@ import javax.swing.text.html.ImageView;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import static com.company.UIs.MapUI.getImageOfBuildings;
+
 public class WizardTower extends Defence {
     public WizardTower(int number,int level) {
         super(number,level);
@@ -25,6 +27,7 @@ public class WizardTower extends Defence {
             validManhattanDistance.add(1);
             Soldier target = findNearestEnemyInRange(enemySoldiers, true, true);
             if (target != null) {
+                this.setImage(getImageOfBuildings(this.getClass().getSimpleName(),".gif" , true));
                 Iterator<Soldier> i = enemySoldiers.iterator();
                 while (i.hasNext()) {
                     Soldier enemySoldier = i.next();
@@ -38,7 +41,9 @@ public class WizardTower extends Defence {
                         }
                     }
                 }
-
+            }
+            else{
+                this.setImage(getImageOfBuildings(this.getClass().getSimpleName(),".png" , true));
             }
             return target;
         }

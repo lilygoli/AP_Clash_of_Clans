@@ -5,6 +5,8 @@ import com.company.Models.Soldiers.Soldier;
 
 import java.util.ArrayList;
 
+import static com.company.UIs.MapUI.getImageOfBuildings;
+
 public class ArcherTower extends Defence {
     public ArcherTower(int number,int level) {
         super(number, level);
@@ -19,12 +21,15 @@ public class ArcherTower extends Defence {
             }
             Soldier target = findNearestEnemyInRange(enemySoldiers, false, true);
             if (target != null) {
+                this.setImage(getImageOfBuildings(this.getClass().getSimpleName(),".gif" , true));
                 target.setHealth(target.getHealth() - this.getDamage());
                 if (target.getHealth() <= 0) {
                     enemySoldiers.remove(target);
                     target.getImageView().setImage(null);
-                    ;
                 }
+            }
+            else{
+                this.setImage(getImageOfBuildings(this.getClass().getSimpleName(),".png" ,true));
             }
             return target;
         }

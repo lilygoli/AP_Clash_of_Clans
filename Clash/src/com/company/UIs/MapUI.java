@@ -52,27 +52,35 @@ public class MapUI  {
 
     static {
         File AirDefenceFile = new File("./src/com/company/ImagesAndGifs/Buildings/AirDefenceLoading.gif");
+        gifsOfTowers.put("AirDefenceLoading", new Image(AirDefenceFile.toURI().toString()));
+        AirDefenceFile = new File("./src/com/company/ImagesAndGifs/Buildings/AirDefence.gif");
         gifsOfTowers.put("AirDefence", new Image(AirDefenceFile.toURI().toString()));
         File ArcherTowerFile = new File("./src/com/company/ImagesAndGifs/Buildings/ArcherTowerLoading.gif");
+        gifsOfTowers.put("ArcherTowerLoading", new Image(ArcherTowerFile.toURI().toString()));
+        ArcherTowerFile = new File("./src/com/company/ImagesAndGifs/Buildings/ArcherTower.gif");
         gifsOfTowers.put("ArcherTower", new Image(ArcherTowerFile.toURI().toString()));
         File CampFile = new File("./src/com/company/ImagesAndGifs/Buildings/CampLoading.gif");
-        gifsOfTowers.put("Camp", new Image(CampFile.toURI().toString()));
+        gifsOfTowers.put("CampLoading", new Image(CampFile.toURI().toString()));
         File CannonFile = new File("./src/com/company/ImagesAndGifs/Buildings/CannonLoading.gif");
+        gifsOfTowers.put("CannonLoading", new Image(CannonFile.toURI().toString()));
+        CannonFile = new File("./src/com/company/ImagesAndGifs/Buildings/Cannon.gif");
         gifsOfTowers.put("Cannon", new Image(CannonFile.toURI().toString()));
         File ElixirMineFile = new File("./src/com/company/ImagesAndGifs/Buildings/ElixirMineLoading.gif");
-        gifsOfTowers.put("ElixirMine", new Image(ElixirMineFile.toURI().toString()));
+        gifsOfTowers.put("ElixirMineLoading", new Image(ElixirMineFile.toURI().toString()));
         File ElixirStorageFile = new File("./src/com/company/ImagesAndGifs/Buildings/ElixirStorageLoading.gif");
-        gifsOfTowers.put("ElixirStorage", new Image(ElixirStorageFile.toURI().toString()));
+        gifsOfTowers.put("ElixirStorageLoading", new Image(ElixirStorageFile.toURI().toString()));
         File GoldMineFile = new File("./src/com/company/ImagesAndGifs/Buildings/GoldMineLoading.gif");
-        gifsOfTowers.put("GoldMine", new Image(GoldMineFile.toURI().toString()));
+        gifsOfTowers.put("GoldMineLoading", new Image(GoldMineFile.toURI().toString()));
         File GoldStorageFile = new File("./src/com/company/ImagesAndGifs/Buildings/GoldStorageLoading.gif");
-        gifsOfTowers.put("GoldStorage", new Image(GoldStorageFile.toURI().toString()));
+        gifsOfTowers.put("GoldStorageLoading", new Image(GoldStorageFile.toURI().toString()));
         File WallFile = new File("./src/com/company/ImagesAndGifs/Buildings/WallLoading.gif");
-        gifsOfTowers.put("Wall", new Image(WallFile.toURI().toString()));
+        gifsOfTowers.put("WallLoading", new Image(WallFile.toURI().toString()));
         File WizardTowerFile = new File("./src/com/company/ImagesAndGifs/Buildings/WizardTowerLoading.gif");
+        gifsOfTowers.put("WizardTowerLoading", new Image(WizardTowerFile.toURI().toString()));
+        WizardTowerFile = new File("./src/com/company/ImagesAndGifs/Buildings/WizardTower.gif");
         gifsOfTowers.put("WizardTower", new Image(WizardTowerFile.toURI().toString()));
         File BarrackFile = new File("./src/com/company/ImagesAndGifs/Buildings/BarrackLoading.gif");
-        gifsOfTowers.put("Barrack", new Image(BarrackFile.toURI().toString()));
+        gifsOfTowers.put("BarrackLoading", new Image(BarrackFile.toURI().toString()));
         File archerFile = new File("./src/com/company/ImagesAndGifs/Soldiers/Archer/ArcherPortrait.jpg");
         gifsOfTowers.put("ArcherPortrait", new Image(archerFile.toURI().toString()));
         File dragonFile=new File("./src/com/company/ImagesAndGifs/Soldiers/Dragon/DragonPortrait.jpg");
@@ -252,7 +260,7 @@ public class MapUI  {
                             } else if (village.getMap()[j][i].getClass() == MainBuilding.class) {
                                 if (flag == 0) {
                                     flag = 1;
-                                    village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png"));
+                                    village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png" , true));
                                     if(!village.getMap()[j][i].getEventSet()){
                                         setOnClickImages(14, 14, root);
                                         village.getMap()[j][i].setIsEventSet(true);
@@ -262,14 +270,14 @@ public class MapUI  {
 
                             } else {
                                 if(village.getMap()[j][i].getUnderConstructionStatus()){
-                                    village.getMap()[j][i].setImage( getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".gif"));
+                                    village.getMap()[j][i].setImage( getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".gif" , false));
                                     if(!village.getMap()[j][i].getEventSet()){
                                         setOnClickImages(i, j, root);
                                         village.getMap()[j][i].setIsEventSet(true);
                                     }
                                     putBuildingImageInMap(i, j, village,32, canvas);
                                 }else {
-                                    village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png"));
+                                    village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png" , true));
                                     if(!village.getMap()[j][i].getEventSet()){
                                         setOnClickImages(i, j, root);
                                         village.getMap()[j][i].setIsEventSet(true);
@@ -322,13 +330,17 @@ public class MapUI  {
         });
     }
 
-    public static Image getImageOfBuildings(String name, String type){
+    public static Image getImageOfBuildings(String name, String type , boolean inwar){
         Image buildingImage;
         if(type.equals(".png")) {
             File file = new File("./src/com/company/ImagesAndGifs/Buildings/" + name + type);
              buildingImage= new Image(file.toURI().toString());
         }else {
-             buildingImage= gifsOfTowers.get(name);
+            if (!inwar)
+             buildingImage= gifsOfTowers.get(name + "Loading");
+            else{
+                buildingImage= gifsOfTowers.get(name);
+            }
         }
         return  buildingImage;
     }

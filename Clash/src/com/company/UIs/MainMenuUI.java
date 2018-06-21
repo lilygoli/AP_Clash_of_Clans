@@ -94,7 +94,7 @@ public class MainMenuUI extends Application{
                 MapUI mapUI = new MapUI();
                 Game game = mapUI.getController().getGameCenter().makeNewGame();
                 mapUI.getController().setGame(game);
-                MainMenuUI.gameLogic = new Thread(new PassTurnThread(mapUI.getController()));
+                MainMenuUI.gameLogic = new Thread(new PassTurnThread(mapUI.getController() , primaryStage));
                 gameLogic.start();
                 try {
                     mapUI.start(primaryStage);
@@ -150,7 +150,7 @@ public class MainMenuUI extends Application{
                     try {
                         game = mapUI.getController().getGameCenter().loadGame(textField.getText());
                         mapUI.getController().setGame(game);
-                        Thread gameLogic = new Thread(new PassTurnThread(mapUI.getController()));
+                        Thread gameLogic = new Thread(new PassTurnThread(mapUI.getController() , primaryStage));
                         for (Camp camp : mapUI.getController().getGame().getVillage().getCamps()) {
                             for (Soldier soldier : camp.getSoldiers()) {
                                 soldier.setImageView(new ImageView());
