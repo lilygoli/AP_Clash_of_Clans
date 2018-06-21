@@ -229,7 +229,6 @@ public class MapUI  {
                         buildX = finalI - 2;
                         buildY = finalJ - 1;
                         imageView.requestFocus();
-                         Thread.currentThread().setDaemon(true);
                     }
                 });
             }

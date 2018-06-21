@@ -173,22 +173,9 @@ public abstract class Soldier {
 
     void attackTargets(Village attackerVillage, Village enemyVillage, Cell target) {
         if (hasReachedDestination(target)) {
-            target.setStrength(target.getStrength() - getDamage());
             String relativeDirection = getRelativeDirection(target);
-            switch (relativeDirection) {
-                case "Up":
-                    imageView.setImage(AttackMapUI.getSoldiersGif().get(this.getClass().getSimpleName() + "AttackUp"));
-                    break;
-                case "Down":
-                    imageView.setImage(AttackMapUI.getSoldiersGif().get(this.getClass().getSimpleName() + "AttackDown"));
-                    break;
-                case "Left":
-                    imageView.setImage(AttackMapUI.getSoldiersGif().get(this.getClass().getSimpleName() + "AttackLeft"));
-                    break;
-                case "Right":
-                    imageView.setImage(AttackMapUI.getSoldiersGif().get(this.getClass().getSimpleName() + "AttackRight"));
-                    break;
-            }
+            chooseRelativeDirection(relativeDirection);
+            target.setStrength(target.getStrength() - getDamage());
             if (target.getStrength() <= 0) {
                 destroyAndLoot(attackerVillage, target);
             }
@@ -214,16 +201,13 @@ public abstract class Soldier {
     }
 
     private String getRelativeDirection(Cell target) {
-        if (target.getX() - getX() >= Math.abs(getY() - target.getY())){
+        if (target.getX() - getX() >= Math.abs(getY() - target.getY())) {
             return "Left";
-        }
-        else if (target.getY() - getY() >= Math.abs(target.getX() - getX())){
+        } else if (target.getY() - getY() >= Math.abs(target.getX() - getX())) {
             return "Down";
-        }
-        else if (getX() - target.getX() >= Math.abs(getY() - target.getY())){
+        } else if (getX() - target.getX() >= Math.abs(getY() - target.getY())) {
             return "Right";
-        }
-        else if (getY() - target.getY() >= Math.abs(target.getX() - getX())){
+        } else if (getY() - target.getY() >= Math.abs(target.getX() - getX())) {
             return "Up";
         }
         return "";
@@ -237,6 +221,8 @@ public abstract class Soldier {
             } else {
                 Cell target = enemyVillage.getMap()[(int) (x - 1)][(int) y];
                 target.setStrength(target.getStrength() - getDamage());
+                String relativeDirection = getRelativeDirection(target);
+                chooseRelativeDirection(relativeDirection);
                 if (target.getStrength() <= 0) {
                     destroyAndLoot(attackerVillage, target);
                 }
@@ -248,6 +234,8 @@ public abstract class Soldier {
             } else {
                 Cell target = enemyVillage.getMap()[(int) (x + 1)][(int) y];
                 target.setStrength(target.getStrength() - getDamage());
+                String relativeDirection = getRelativeDirection(target);
+                chooseRelativeDirection(relativeDirection);
                 if (target.getStrength() <= 0) {
                     destroyAndLoot(attackerVillage, target);
                 }
@@ -258,6 +246,8 @@ public abstract class Soldier {
             } else {
                 Cell target = enemyVillage.getMap()[(int) x][(int) (y + 1)];
                 target.setStrength(target.getStrength() - getDamage());
+                String relativeDirection = getRelativeDirection(target);
+                chooseRelativeDirection(relativeDirection);
                 if (target.getStrength() <= 0) {
                     destroyAndLoot(attackerVillage, target);
                 }
@@ -269,10 +259,29 @@ public abstract class Soldier {
             } else {
                 Cell target = enemyVillage.getMap()[(int) x][(int) (y - 1)];
                 target.setStrength(target.getStrength() - getDamage());
+                String relativeDirection = getRelativeDirection(target);
+                chooseRelativeDirection(relativeDirection);
                 if (target.getStrength() <= 0) {
                     destroyAndLoot(attackerVillage, target);
                 }
             }
+    }
+
+    private void chooseRelativeDirection(String relativeDirection) {
+        switch (relativeDirection) {
+            case "Up":
+                imageView.setImage(AttackMapUI.getSoldiersGif().get(this.getClass().getSimpleName() + "AttackUp"));
+                break;
+            case "Down":
+                imageView.setImage(AttackMapUI.getSoldiersGif().get(this.getClass().getSimpleName() + "AttackDown"));
+                break;
+            case "Left":
+                imageView.setImage(AttackMapUI.getSoldiersGif().get(this.getClass().getSimpleName() + "AttackLeft"));
+                break;
+            case "Right":
+                imageView.setImage(AttackMapUI.getSoldiersGif().get(this.getClass().getSimpleName() + "AttackRight"));
+                break;
+        }
     }
 
     private void destroyAndLoot(Village attackerVillage, Cell target) {
@@ -302,26 +311,32 @@ public abstract class Soldier {
 
     // TODO: 4/18/2018 add healer
     public Cell findDestination(Village enemyVillage, ArrayList<String> validDestinations) {
+        boolean finishedFavoriteTrget = true;
         Cell destination = new Cell(0, 0);
         double minDistance = 100d;
-        int flag = 0;
+        //int flag = 0;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
                 if (!enemyVillage.getMap()[i][j].isRuined()) {
                     if (validDestinations.contains(enemyVillage.getMap()[i][j].getClass().getSimpleName())) {
+                        finishedFavoriteTrget = false;
                         if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) <= minDistance) {
                             destination = enemyVillage.getMap()[i][j];
                             minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
-                            flag = 1;
+                            //flag = 1;
                         }
                     }
                 }
             }
         }
-        if (validDestinations.contains("Camp")) {
-            if (flag == 0) {
-                return findDestination(enemyVillage, getAllValidDestinations());
-            }
+//        if (validDestinations.contains("Camp")) {
+//            if (flag == 0) {
+//                return findDestination(enemyVillage, getAllValidDestinations());
+//            }
+//        }
+        // TODO: 6/21/2018 check when all buildings destroyed what should happen?
+        if (finishedFavoriteTrget && !validDestinations.contains("Camp")) {
+            return findDestination(enemyVillage , getAllValidDestinations());
         }
         return destination;
     }
