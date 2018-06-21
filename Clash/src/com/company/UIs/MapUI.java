@@ -152,7 +152,7 @@ public class MapUI  {
     private static void makeSlider(Group root) {
         int maxDeltaT = UIConstants.DELTA_T;
         final Slider deltaTSlider = new Slider(0, maxDeltaT, maxDeltaT);
-        final Label caption = new Label("Delta T");
+        final Label caption = new Label("Time Unit");
         final Label deltaTValue = new Label(Double.toString(deltaTSlider.getValue()));
 
         GridPane grid = new GridPane();
@@ -229,6 +229,7 @@ public class MapUI  {
                         buildX = finalI - 2;
                         buildY = finalJ - 1;
                         imageView.requestFocus();
+                         Thread.currentThread().setDaemon(true);
                     }
                 });
             }

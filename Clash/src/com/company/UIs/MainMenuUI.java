@@ -102,6 +102,7 @@ public class MainMenuUI extends Application{
                     e.printStackTrace();
                 }
             }
+
         });
         loadGameView.setOnMouseClicked(event -> {
                 File file = new File("./src/com/company/UIs/MainMenu/menuGif.gif");
