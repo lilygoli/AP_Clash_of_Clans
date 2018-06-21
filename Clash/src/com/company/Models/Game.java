@@ -318,6 +318,7 @@ public class Game {
     }
 
     public void healAfterWar() {
+
         for (Soldier soldier : troops
                 ) {
             soldier.setX(-1);
@@ -333,6 +334,9 @@ public class Game {
     private void healSoldiers() {
         for (Soldier troop : troops) {
             troop.heal();
+        }
+        for (Camp camp : village.getCamps()) {
+            camp.getSoldiers().clear();
         }
         for (Soldier troop : troops) {
             for (Camp camp : village.getCamps()) {
@@ -447,7 +451,7 @@ public class Game {
                 flag = 1;
             }
         }
-        return timePassedInWar >= 10000 || troops.size() == 0 || flag == 0 || (attackedVillage.getVillage().getResource().getGold() == 0 && attackedVillage.getVillage().getResource().getElixir() == 0);
+        return  timePassedInWar>10000 || troops.size() == 0 || flag==0|| (attackedVillage.getVillage().getResource().getGold() == 0 && attackedVillage.getVillage().getResource().getElixir() == 0);
     }
 
     public void selectUnit(String unitType) throws NoSuchSoldierInCampException {

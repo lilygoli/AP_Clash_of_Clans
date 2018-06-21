@@ -288,6 +288,7 @@ public abstract class Soldier {
         target.setRuined(true);
         target.getImageView().setImage(null);
         target.setStrength(0);
+        target.setImage(null);
         attackerVillage.setScore(attackerVillage.getScore() + target.getPointsGainedWhenDestructed());
         Resource gainedResource;
         switch (target.getClass().getSimpleName()) {

@@ -7,6 +7,7 @@ import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Village;
 import javafx.animation.AnimationTimer;
+import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -71,10 +72,10 @@ public class AttackMapUI {
     }
 
     public static void makeAttackGameBoard( Stage stage, Controller controller) throws FileNotFoundException {
-        AttackMapUI.controller=controller;
-        primaryStage=stage;
-        Group root= new Group();
-        Scene scene= new Scene(root,Screen.getPrimary().getVisualBounds().getWidth(),Screen.getPrimary().getVisualBounds().getHeight());
+        AttackMapUI.controller = controller;
+        primaryStage = stage;
+        Group root = new Group();
+        Scene scene = new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight());
         primaryStage.setScene(scene);
         File file = new File("./src/com/company/UIs/MapResources/MapBackGroundAttack.jpg");
         Image backGround = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight(), false, true);
@@ -91,7 +92,7 @@ public class AttackMapUI {
                 fileInputStream = makeGrasses(flag, i, j);
                 Image image = new Image(fileInputStream);
                 ImageView imageView = new ImageView(image);
-                imageView.relocate(scene.getWidth() - ((i + 1) * Screen.getPrimary().getVisualBounds().getHeight() / 32) , j * Screen.getPrimary().getVisualBounds().getHeight() / 32);
+                imageView.relocate(scene.getWidth() - ((i + 1) * Screen.getPrimary().getVisualBounds().getHeight() / 32), j * Screen.getPrimary().getVisualBounds().getHeight() / 32);
                 imageView.setFitHeight(scene.getHeight() / 32);
                 imageView.setFitWidth(scene.getHeight() / 32);
                 canvas.getChildren().add(imageView);
@@ -101,18 +102,45 @@ public class AttackMapUI {
                 imageView.setOnMouseClicked(event -> {
                     attackX = finalI - 2;
                     attackY = finalJ - 1;
-                    if (!chosenSoldierName.equals("")){
+                    if (!chosenSoldierName.equals("")) {
                         for (Soldier soldier : controller.getGame().getTroops()) {
-                            if (soldier.getClass().getSimpleName().equals(chosenSoldierName)  && soldier.getX() == -1){
-                                putSoldiersImageInMap(attackY , attackX , 32 , canvas , soldiersGif.get(chosenSoldierName + "MoveUp"), soldier,root);
+                            if (soldier.getClass().getSimpleName().equals(chosenSoldierName) && soldier.getX() == -1) {
+                                putSoldiersImageInMap(attackY, attackX, 32, canvas, soldiersGif.get(chosenSoldierName + "MoveUp"), soldier, root);
                                 break;
                             }
                         }
                     }
                 });
             }
-
         }
+        new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                if (controller.getGame().isUnderAttackOrDefense()) {
+                    if (controller.getGame().isWarFinished()) {
+                        controller.getGame().healAfterWar();
+                        controller.getGame().setUnderAttackOrDefense(false);
+
+                        System.out.println(stage);
+                        try {
+                            for (int i = 0; i < 30; i++) {
+                                for (int j = 0; j < 30; j++) {
+                                    controller.getGame().getVillage().getMap()[j][i].setIsEventSet(false);
+                                }
+                            }
+                            UIConstants.DELTA_T=1000;
+                            MapUI.getShowMapAnimationTimer().stop();
+                            MapUI.start(stage);
+                        } catch (Exception e) {
+
+                        }
+
+                    }
+                }
+            }
+
+        }.start();
+
         SceneGestures sceneGestures = new SceneGestures(canvas);
         scene.addEventFilter(ScrollEvent.ANY, sceneGestures.getOnScrollEventHandler());
         scene.addEventFilter(MouseEvent.MOUSE_PRESSED, sceneGestures.getOnMousePressedEventHandler());
@@ -154,6 +182,7 @@ public class AttackMapUI {
                 UIConstants.DELTA_T=1000;
                 MapUI.getShowMapAnimationTimer().stop();
                 MapUI.start(primaryStage);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -212,6 +241,18 @@ public class AttackMapUI {
         backView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+//                try {
+//                    for (int i = 0; i < 30; i++) {
+//                        for (int j = 0; j < 30; j++) {
+//                            controller.getGame().getVillage().getMap()[j][i].setIsEventSet(false);
+//                        }
+//                    }
+//                    UIConstants.DELTA_T=1000;
+//                    MapUI.getShowMapAnimationTimer().stop();
+//
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
                 // TODO: 6/13/18 Exit
             }
         });
