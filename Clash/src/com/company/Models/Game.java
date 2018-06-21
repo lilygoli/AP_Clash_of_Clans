@@ -10,6 +10,8 @@ import com.company.Models.Towers.Defences.WizardTower;
 import com.company.Models.Towers.Buildings.Storage;
 import com.company.Models.Towers.Buildings.*;
 import com.company.Models.Soldiers.Soldier;
+import com.company.UIs.MainMenuUI;
+import com.company.UIs.UIConstants;
 import com.company.View.View;
 
 import java.util.ArrayList;
@@ -302,12 +304,17 @@ public class Game {
                 }
                 soldier.attackTarget(this.getVillage(), this.attackedVillage.getVillage());
             }
+            try {
+                Thread.sleep(UIConstants.DELTA_T / Config.getDictionary().get("KMM"));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-        for (Soldier troop : troops) {
-            troop.setX((double)Math.round(troop.getX()));
-            troop.setY((double)Math.round(troop.getY()));
-            System.out.println("war" + troop.getX() + " " + troop.getY());
-        }
+//        for (Soldier troop : troops) {
+//            troop.setX((double)Math.round(troop.getX()));
+//            troop.setY((double)Math.round(troop.getY()));
+//            System.out.println("war" + troop.getX() + " " + troop.getY());
+//        }
     }
 
     public void healAfterWar() {
