@@ -959,7 +959,6 @@ public class SideBarUI {
                 throw new NotEnoughCapacityInCampsException();
             }
             barrack.buildSoldier(soldierAmount, playerChoice, availableSoldiers);
-            System.out.println(soldierAmount * Config.getDictionary().get(playerChoice + "_ELEXIR_COST"));
             Resource resource = new Resource(controller.getGame().getVillage().getResource().getGold(), controller.getGame().getVillage().getResource().getElixir() - soldierAmount * Config.getDictionary().get(playerChoice + "_ELEXIR_COST"));
             controller.getGame().getVillage().setResource(resource);
         }

@@ -7,8 +7,10 @@ import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.Storage;
 import com.company.Models.Towers.Cell;
 import com.company.Models.Village;
+import com.company.UIs.AttackMapUI;
 import com.company.UIs.MapUI;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.MoveTo;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -23,6 +25,7 @@ public abstract class Soldier {
     private boolean dead;
     private Direction direction;
     private transient ImageView imageView = new ImageView();
+
     static {
         soldierSubClasses.add(new Archer(0));
         soldierSubClasses.add(new Dragon(0));
@@ -139,14 +142,14 @@ public abstract class Soldier {
 
     public void setX(double x) {
         this.x = x;
-        this.imageView.relocate(MapUI.mapCoordinates2PixelX((int)this.x), MapUI.mapCoordinates2PixelY((int)this.y));
-        System.out.println(x + " " + y);
+        this.imageView.relocate(MapUI.mapCoordinates2PixelX((int) this.x), MapUI.mapCoordinates2PixelY((int) this.y));
+        //System.out.println(x + " " + y);
     }
 
     public void setY(double y) {
         this.y = y;
-        this.imageView.relocate(MapUI.mapCoordinates2PixelX((int)this.x), MapUI.mapCoordinates2PixelY((int)this.y));
-        System.out.println(x + " " + y);
+        this.imageView.relocate(MapUI.mapCoordinates2PixelX((int) this.x), MapUI.mapCoordinates2PixelY((int) this.y));
+        //System.out.println(x + " " + y);
     }
 
     public void setDead(boolean dead) {
@@ -177,6 +180,21 @@ public abstract class Soldier {
         } else {
             setDirection(findDirection(enemyVillage, target));
             moveSoldier(attackerVillage, getDirection(), enemyVillage);
+            switch (getDirection()) {
+                // TODO: 6/14/2018 left and right here is wisewersa
+                case UP:
+                    imageView.setImage(AttackMapUI.getSoldiersGif().get(this.getClass().getSimpleName() + "MoveUp"));
+                    break;
+                case DOWN:
+                    imageView.setImage(AttackMapUI.getSoldiersGif().get(this.getClass().getSimpleName() + "MoveDown"));
+                    break;
+                case RIGHT:
+                    imageView.setImage(AttackMapUI.getSoldiersGif().get(this.getClass().getSimpleName() + "MoveLeft"));
+                    break;
+                case LEFT:
+                    imageView.setImage(AttackMapUI.getSoldiersGif().get(this.getClass().getSimpleName() + "MoveRight"));
+                    break;
+            }
         }
     }
 
@@ -184,46 +202,46 @@ public abstract class Soldier {
         // TODO: 4/24/2018 check double int
         if (direction == Direction.LEFT) {
             if (enemyVillage.getMap()[(int) (x - 1)][(int) y].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) (x - 1)][(int) y].isRuined() || getCanFly()) {
-                x = x - MOVE_PER_TURN;
+                setX(getX() - MOVE_PER_TURN);
             } else {
-                    Cell target = enemyVillage.getMap()[(int) (x - 1)][(int) y];
-                    target.setStrength(target.getStrength() - getDamage());
-                    if (target.getStrength() <= 0) {
-                        destroyAndLoot(attackerVillage, target);
-                    }
+                Cell target = enemyVillage.getMap()[(int) (x - 1)][(int) y];
+                target.setStrength(target.getStrength() - getDamage());
+                if (target.getStrength() <= 0) {
+                    destroyAndLoot(attackerVillage, target);
+                }
             }
 
         } else if (direction == Direction.RIGHT) {
             if (enemyVillage.getMap()[(int) (x + 1)][(int) y].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) (x + 1)][(int) y].isRuined() || getCanFly()) {
-                x = x + MOVE_PER_TURN;
+                setX(getX() + MOVE_PER_TURN);
             } else {
-                    Cell target = enemyVillage.getMap()[(int) (x + 1)][(int) y];
-                    target.setStrength(target.getStrength() - getDamage());
-                    if (target.getStrength() <= 0) {
-                        destroyAndLoot(attackerVillage, target);
-                    }
+                Cell target = enemyVillage.getMap()[(int) (x + 1)][(int) y];
+                target.setStrength(target.getStrength() - getDamage());
+                if (target.getStrength() <= 0) {
+                    destroyAndLoot(attackerVillage, target);
+                }
             }
         } else if (direction == Direction.DOWN) {
             if (enemyVillage.getMap()[(int) x][(int) (y + 1)].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) x][(int) (y + 1)].isRuined() || getCanFly()) {
-                y = y + MOVE_PER_TURN;
+                setY(getY() + MOVE_PER_TURN);
             } else {
                 Cell target = enemyVillage.getMap()[(int) x][(int) (y + 1)];
                 target.setStrength(target.getStrength() - getDamage());
                 if (target.getStrength() <= 0) {
                     destroyAndLoot(attackerVillage, target);
                 }
-        }
-    } else if(direction ==Direction.UP)
-
-        if (enemyVillage.getMap()[(int) x][(int) (y - 1)].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) x][(int) (y - 1)].isRuined() || getCanFly()) {
-            y = y - MOVE_PER_TURN;
-        } else {
-            Cell target = enemyVillage.getMap()[(int) x][(int) (y - 1)];
-            target.setStrength(target.getStrength() - getDamage());
-            if (target.getStrength() <= 0) {
-                destroyAndLoot(attackerVillage, target);
             }
-        }
+        } else if (direction == Direction.UP)
+
+            if (enemyVillage.getMap()[(int) x][(int) (y - 1)].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) x][(int) (y - 1)].isRuined() || getCanFly()) {
+                setY(getY() - MOVE_PER_TURN);
+            } else {
+                Cell target = enemyVillage.getMap()[(int) x][(int) (y - 1)];
+                target.setStrength(target.getStrength() - getDamage());
+                if (target.getStrength() <= 0) {
+                    destroyAndLoot(attackerVillage, target);
+                }
+            }
     }
 
     private void destroyAndLoot(Village attackerVillage, Cell target) {
@@ -235,7 +253,6 @@ public abstract class Soldier {
             case "GoldStorage": {
                 Storage storage = (Storage) target;
                 gainedResource = new Resource(target.getGoldGainedWhenDestructed() + storage.getResource(), target.getElixirGainedWhenDestructed());
-
                 break;
             }
             case "ElixirStorage": {
