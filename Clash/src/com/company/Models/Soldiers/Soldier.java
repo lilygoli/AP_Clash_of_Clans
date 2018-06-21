@@ -277,6 +277,7 @@ public abstract class Soldier {
 
     private void destroyAndLoot(Village attackerVillage, Cell target) {
         target.setRuined(true);
+        target.getImageView().setImage(null);
         target.setStrength(0);
         attackerVillage.setScore(attackerVillage.getScore() + target.getPointsGainedWhenDestructed());
         Resource gainedResource;

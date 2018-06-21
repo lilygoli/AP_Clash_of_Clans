@@ -255,7 +255,7 @@ public class AttackMapUI {
             return 0;
         }
         for (Soldier soldier : controller.getGame().getTroops()) {
-            if (soldier.getClass().getSimpleName().equals(name)) {
+            if (soldier.getClass().getSimpleName().equals(name) && soldier.getX() == -1 && soldier.getY() == -1) {
                 counter++;
             }
         }
@@ -335,6 +335,7 @@ public class AttackMapUI {
         soldier.setY(i);
 
         canvas.getChildren().add(soldier.getImageView());
+
         showAttackSideBar(group);
     }
 }
