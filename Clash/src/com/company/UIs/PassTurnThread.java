@@ -1,10 +1,11 @@
 package com.company.UIs;
 
 import com.company.Controller.Controller;
+import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.stage.Stage;
 
-public class PassTurnThread implements Runnable {
+public class PassTurnThread extends Application implements Runnable {
     Controller controller = new Controller();
     Stage stage;
 
@@ -25,6 +26,7 @@ public class PassTurnThread implements Runnable {
                         Task task = new Task() {
                             @Override
                             protected Object call() throws Exception {
+                                System.out.println(stage);
                                 MapUI.start(stage);
                                 return null;
                             }
@@ -41,5 +43,10 @@ public class PassTurnThread implements Runnable {
                     e.printStackTrace();
                 }
             }
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        run();
     }
 }
