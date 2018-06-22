@@ -83,7 +83,7 @@ public class AttackMapUI {
         primaryStage = stage;
         Group root = new Group();
         winningLabel.setFont(Font.font("Papyrus", FontWeight.BOLD,15));
-        winningLabel.setTextFill(Color.MISTYROSE);
+        winningLabel.setTextFill(Color.NAVY);
         winningLabel.relocate(310,80);
         root.getChildren().add(winningLabel);
         Scene scene = new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight());
@@ -133,7 +133,7 @@ public class AttackMapUI {
                     if (controller.getGame().isWarFinished()) {
                         controller.getGame().healAfterWar();
                         controller.getGame().setUnderAttackOrDefense(false);
-                        winningLabel.setText("war ended with " + controller.getGame().getVillage().getGainedResource().getGold() + "gold and\n" + controller.getGame().getVillage().getGainedResource().getElixir() + "elixir and " + controller.getGame().getVillage().getScore() + "scores achieved");
+                        winningLabel.setText("*war ended with " + controller.getGame().getVillage().getGainedResource().getGold() + "gold and\n" + controller.getGame().getVillage().getGainedResource().getElixir() + " elixir and " + controller.getGame().getVillage().getScore() + "scores achieved");
 
                         returnToVillageUI();
 
@@ -244,8 +244,7 @@ public class AttackMapUI {
     }
 
     public static void returnToVillageUI() {
-        controller.getGame().getVillage().getGainedResource().setGold(0);
-        controller.getGame().getVillage().getGainedResource().setElixir(0);
+
         try {
             for (int i = 0; i < 30; i++) {
                 for (int j = 0; j < 30; j++) {
