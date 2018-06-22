@@ -1,12 +1,10 @@
 package com.company.UIs;
 
 import com.company.Exception.NotValidFilePathException;
+import com.company.Models.Config;
 import com.company.Models.Game;
-import com.company.Models.GameCenter;
 import com.company.Models.Soldiers.Soldier;
 import com.company.Models.Towers.Buildings.Camp;
-import com.company.Models.Towers.Defences.ArcherTower;
-import com.company.Models.Towers.Defences.Cannon;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -19,10 +17,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -111,12 +110,6 @@ public class MainMenuUI extends Application{
                 root.getChildren().add(backGroundView);
                 TextField textField=new TextField();
                 textField.setPromptText("please enter your preferred path");
-//                textField.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//                    @Override
-//                    public void handle(MouseEvent event) {
-//                        textField.setText("");
-//                    }
-//                });
                 textField.setMinWidth(500);
                 textField.setMaxWidth(500);
                 textField.setFont(Font.font(30));
@@ -154,6 +147,12 @@ public class MainMenuUI extends Application{
                         for (Camp camp : mapUI.getController().getGame().getVillage().getCamps()) {
                             for (Soldier soldier : camp.getSoldiers()) {
                                 soldier.setImageView(new ImageView());
+                                Rectangle leftHealth=new Rectangle(5,1);
+                                leftHealth.setFill(Color.rgb(6,87,51));
+                                soldier.setLeftHealth(leftHealth);
+                                Rectangle allHealth=new Rectangle((1.0*Screen.getPrimary().getVisualBounds().getHeight() / 32)*soldier.getHealth()/ Config.getDictionary().get(soldier.getClass().getSimpleName() + "_HEALTH"),1);
+                                allHealth.setFill(Color.rgb(159,15,55));
+                                soldier.setAllHealth(allHealth);
                             }
                         }
                         gameLogic.start();

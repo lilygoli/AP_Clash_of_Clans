@@ -3,6 +3,8 @@ package com.company.Models.Towers.Defences;
 
 import com.company.Models.Config;
 import com.company.Models.Soldiers.Soldier;
+import com.company.UIs.AttackMapUI;
+import javafx.stage.Screen;
 
 import javax.swing.text.html.ImageView;
 import java.util.ArrayList;
@@ -34,10 +36,11 @@ public class WizardTower extends Defence {
                     Integer manhattanDistance = (int) Math.abs(enemySoldier.getX() - target.getX()) + (int) Math.abs(enemySoldier.getY() - target.getY());
                     if (validManhattanDistance.contains(manhattanDistance)) {
                         enemySoldier.setHealth(enemySoldier.getHealth() - this.getDamage());
+                        target.getLeftHealth().setWidth(1.0*(Screen.getPrimary().getVisualBounds().getHeight() / 32)*target.getHealth()/ Config.getDictionary().get(target.getClass().getSimpleName() + "_HEALTH"));
                         if (target.getHealth() <= 0) {
-                            i.remove();
-                            ;
+                            i.remove();;
                             target.getImageView().setImage(null);
+
                         }
                     }
                 }

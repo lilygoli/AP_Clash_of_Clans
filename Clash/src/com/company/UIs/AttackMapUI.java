@@ -1,15 +1,16 @@
 package com.company.UIs;
 
 import com.company.Controller.Controller;
+import com.company.Models.Config;
 import com.company.Models.Soldiers.Soldier;
 import com.company.Models.Towers.Buildings.Camp;
 import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Village;
 import javafx.animation.AnimationTimer;
-import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -18,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -122,18 +124,7 @@ public class AttackMapUI {
                         controller.getGame().setUnderAttackOrDefense(false);
 
                         System.out.println(stage);
-                        try {
-                            for (int i = 0; i < 30; i++) {
-                                for (int j = 0; j < 30; j++) {
-                                    controller.getGame().getVillage().getMap()[j][i].setIsEventSet(false);
-                                }
-                            }
-                            UIConstants.DELTA_T=1000;
-                            MapUI.getShowMapAnimationTimer().stop();
-                            MapUI.start(stage);
-                        } catch (Exception e) {
-
-                        }
+                       returnToVillageUI();
 
                     }
                 }
@@ -173,19 +164,7 @@ public class AttackMapUI {
         });
         ImageView back= SideBarUI.getImageView("Back.png");
         back.setOnMouseClicked(event -> {
-            try {
-                for (int i = 0; i < 30; i++) {
-                    for (int j = 0; j < 30; j++) {
-                        controller.getGame().getVillage().getMap()[j][i].setIsEventSet(false);
-                    }
-                }
-                UIConstants.DELTA_T=1000;
-                MapUI.getShowMapAnimationTimer().stop();
-                MapUI.start(primaryStage);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            returnToVillageUI();
         });
         VBox vBox= new VBox(attackMap,back);
         vBox.relocate(UIConstants.BUTTON_STARTING_X,UIConstants.MENU_VBOX_STARTING_Y);
@@ -241,19 +220,9 @@ public class AttackMapUI {
         backView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-//                try {
-//                    for (int i = 0; i < 30; i++) {
-//                        for (int j = 0; j < 30; j++) {
-//                            controller.getGame().getVillage().getMap()[j][i].setIsEventSet(false);
-//                        }
-//                    }
-//                    UIConstants.DELTA_T=1000;
-//                    MapUI.getShowMapAnimationTimer().stop();
-//
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-                // TODO: 6/13/18 Exit
+                controller.getGame().healAfterWar();
+                controller.getGame().setUnderAttackOrDefense(false);
+                returnToVillageUI();
             }
         });
 
@@ -261,6 +230,22 @@ public class AttackMapUI {
         allSoldiers.relocate(50, 160);
 
         group.getChildren().addAll(allSoldiers);
+    }
+
+    public static void returnToVillageUI() {
+        try {
+            for (int i = 0; i < 30; i++) {
+                for (int j = 0; j < 30; j++) {
+                    controller.getGame().getVillage().getMap()[j][i].setIsEventSet(false);
+                }
+            }
+            UIConstants.DELTA_T=1000;
+            MapUI.getShowMapAnimationTimer().stop();
+            MapUI.start(primaryStage);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static void addTroops() {
@@ -367,11 +352,12 @@ public class AttackMapUI {
 
     public static void putSoldiersImageInMap(int i, int j, int size, PannableCanvas canvas, Image image, Soldier soldier,Group group) {
         soldier.getImageView().setImage(image);
-        soldier.getImageView().setX(MapUI.mapCoordinates2PixelX(j));
-        soldier.getImageView().setY(mapCoordinates2PixelY(i));
+//        soldier.getImageView().setX(MapUI.mapCoordinates2PixelX(j));
+//        soldier.getImageView().setY(mapCoordinates2PixelY(i));
         soldier.getImageView().setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / size);
         soldier.getImageView().setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / size);
-
+        soldier.getAllHealth().setWidth(Screen.getPrimary().getVisualBounds().getHeight() / size)
+        ;
         if (canvas.getChildren().contains(soldier.getImageView())) {
             canvas.getChildren().remove(soldier.getImageView());
         }
@@ -379,7 +365,38 @@ public class AttackMapUI {
         soldier.setY(i);
 
         canvas.getChildren().add(soldier.getImageView());
+        canvas.getChildren().add(soldier.getAllHealth());
+        canvas.getChildren().add(soldier.getLeftHealth());
 
+        removeFromCanvas();
         showAttackSideBar(group);
+    }
+    public static void removeFromCanvas(){
+        new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                ArrayList<Rectangle> rectangles=new ArrayList<>();
+                for (Soldier soldier : controller.getGame().getTroops()) {
+                    rectangles.add(soldier.getLeftHealth());
+                    rectangles.add(soldier.getAllHealth());
+                }
+                ArrayList<Node> removedNodes=new ArrayList<>();
+                for (Node node : canvas.getChildren()) {
+                    if(node.getClass()== Rectangle.class){
+                        if(!rectangles.contains((Rectangle)node)){
+                            removedNodes.add(node);
+                        }
+                    }
+                }
+                canvas.getChildren().removeAll(removedNodes);
+            }
+
+            @Override
+            public void stop() {
+                if(controller.getGame().isWarFinished()){
+                    super.stop();
+                }
+            }
+        }.start();
     }
 }

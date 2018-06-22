@@ -10,7 +10,9 @@ import com.company.Models.Village;
 import com.company.UIs.AttackMapUI;
 import com.company.UIs.MapUI;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.MoveTo;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Screen;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -25,6 +27,8 @@ public abstract class Soldier {
     private boolean dead;
     private Direction direction;
     private transient ImageView imageView = new ImageView();
+    private transient Rectangle leftHealth;
+    private transient Rectangle allHealth;
 
     static {
         soldierSubClasses.add(new Archer(0));
@@ -39,6 +43,10 @@ public abstract class Soldier {
         health = Config.getDictionary().get(this.getClass().getSimpleName() + "_HEALTH");
         damage = Config.getDictionary().get(this.getClass().getSimpleName() + "_DAMAGE");
         buildDuration = Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION");
+        leftHealth =new Rectangle((1.0*Screen.getPrimary().getVisualBounds().getHeight() / 32)*health/Config.getDictionary().get(this.getClass().getSimpleName() + "_HEALTH"),2);
+        leftHealth.setFill(Color.rgb(6,87,51));
+        allHealth =new Rectangle(5,2);
+        allHealth.setFill(Color.rgb(159,16,55));
     }
 
     public Soldier(int time) {
@@ -143,18 +151,19 @@ public abstract class Soldier {
     public void setX(double x) {
         this.x = x;
         this.imageView.relocate(MapUI.mapCoordinates2PixelX(this.x), MapUI.mapCoordinates2PixelY(this.y));
-        //System.out.println(x + " " + y);
+        this.leftHealth.relocate(MapUI.mapCoordinates2PixelX(this.x), MapUI.mapCoordinates2PixelY(this.y)-5);
+        this.allHealth.relocate(MapUI.mapCoordinates2PixelX(this.x), MapUI.mapCoordinates2PixelY(this.y)-5);
+
     }
 
     public void setY(double y) {
         this.y = y;
         this.imageView.relocate(MapUI.mapCoordinates2PixelX(this.x), MapUI.mapCoordinates2PixelY(this.y));
-        //System.out.println(x + " " + y);
+        this.leftHealth.relocate(MapUI.mapCoordinates2PixelX(this.x), MapUI.mapCoordinates2PixelY(this.y)-5);
+        this.allHealth.relocate(MapUI.mapCoordinates2PixelX(this.x), MapUI.mapCoordinates2PixelY(this.y)-5);
+
     }
 
-    public void setDead(boolean dead) {
-        this.dead = dead;
-    }
 
     private void setDirection(Direction direction) {
         this.direction = direction;
@@ -418,4 +427,20 @@ public abstract class Soldier {
 
 
     public abstract void attackTarget(Village attackerVillage, Village enemyVillage);
+
+    public Rectangle getLeftHealth() {
+        return leftHealth;
+    }
+
+    public void setLeftHealth(Rectangle leftHealth) {
+        this.leftHealth = leftHealth;
+    }
+
+    public Rectangle getAllHealth() {
+        return allHealth;
+    }
+
+    public void setAllHealth(Rectangle allHealth) {
+        this.allHealth = allHealth;
+    }
 }
