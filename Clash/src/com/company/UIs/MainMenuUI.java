@@ -147,10 +147,10 @@ public class MainMenuUI extends Application{
                         for (Camp camp : mapUI.getController().getGame().getVillage().getCamps()) {
                             for (Soldier soldier : camp.getSoldiers()) {
                                 soldier.setImageView(new ImageView());
-                                Rectangle leftHealth=new Rectangle(5,1);
+                                Rectangle leftHealth=new Rectangle((1.0*Screen.getPrimary().getVisualBounds().getHeight() / 32)*soldier.getHealth()/ Config.getDictionary().get(soldier.getClass().getSimpleName() + "_HEALTH"),1);
                                 leftHealth.setFill(Color.rgb(6,87,51));
                                 soldier.setLeftHealth(leftHealth);
-                                Rectangle allHealth=new Rectangle((1.0*Screen.getPrimary().getVisualBounds().getHeight() / 32)*soldier.getHealth()/ Config.getDictionary().get(soldier.getClass().getSimpleName() + "_HEALTH"),1);
+                                Rectangle allHealth=new Rectangle(5,1);
                                 allHealth.setFill(Color.rgb(159,15,55));
                                 soldier.setAllHealth(allHealth);
                             }

@@ -5,6 +5,9 @@ import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Village;
 import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -22,7 +25,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
+import java.awt.*;
 import java.beans.EventHandler;
 import java.io.File;
 import java.io.FileInputStream;
@@ -131,7 +136,11 @@ public class MapUI  {
         ImageView backGroundView = new ImageView(backGround);
         backGroundView.setOpacity(0.7);
         root.getChildren().add(backGroundView);
-
+        if(!AttackMapUI.getWinningLabel().getText().equals("")){
+            new Timeline(new KeyFrame(Duration.seconds(2), new KeyValue(AttackMapUI.getWinningLabel().textProperty(), null))).play();
+            root.getChildren().add(AttackMapUI.getWinningLabel());
+            AttackMapUI.getWinningLabel().setText("");
+        }
         makeGameBoard(root ,scene);
 
 //        file = new File("./src/com/company/UIs/MapResources/mapBorder.png");

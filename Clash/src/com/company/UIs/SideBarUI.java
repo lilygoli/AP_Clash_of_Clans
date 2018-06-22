@@ -12,6 +12,7 @@ import com.company.Models.Towers.Buildings.Storage;
 import com.company.Models.Towers.Cell;
 
 import com.company.View.View;
+import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -115,7 +116,22 @@ public class SideBarUI {
             makeResourceLabels(group,sideBarStartingX);
             group.getChildren().add(saveView);
         }else {
-            makeResourceLabelsInAttack(group,sideBarStartingX);
+            Label gold=new Label("");
+            Label elixir= new Label("");
+            Label achievedGold= new Label("");
+            Label achievedElixir= new Label("");
+            group.getChildren().add(gold);
+            group.getChildren().add(elixir);
+            group.getChildren().add(achievedGold);
+            group.getChildren().add(achievedElixir);
+
+
+            new AnimationTimer() {
+                @Override
+                public void handle(long now) {
+                    makeResourceLabelsInAttack(group, sideBarStartingX, gold, elixir, achievedGold, achievedElixir);
+                }
+            }.start();
         }
 
     }
@@ -217,19 +233,15 @@ public class SideBarUI {
         group.getChildren().add(elixir);
         group.getChildren().add(score);
     }
-    private static void makeResourceLabelsInAttack(Group group, Double sideBarStartingX) {
-        Label gold= new Label(Integer.toString(controller.getGame().getAttackedVillage().getVillage().getResource().getGold()));
+    private static void makeResourceLabelsInAttack(Group group, Double sideBarStartingX,Label gold,Label elixir, Label goldAchieved, Label elixirAchieved) {
+        gold.setText(Integer.toString(controller.getGame().getAttackedVillage().getVillage().getResource().getGold()));
         gold.relocate(sideBarStartingX+130,65);
-        Label elixir = new Label(Integer.toString(controller.getGame().getAttackedVillage().getVillage().getResource().getElixir()));
+        elixir.setText(Integer.toString(controller.getGame().getAttackedVillage().getVillage().getResource().getElixir()));
         elixir.relocate(sideBarStartingX+220,65);
-        Label goldAchieved = new Label(Integer.toString(controller.getGame().getVillage().getGainedResource().getGold()));
+        goldAchieved.setText(Integer.toString(controller.getGame().getVillage().getGainedResource().getGold()));
         goldAchieved.relocate(sideBarStartingX+180,85);
-        Label elixirAchieved = new Label(Integer.toString(controller.getGame().getVillage().getGainedResource().getElixir()));
+        elixirAchieved.setText(Integer.toString(controller.getGame().getVillage().getGainedResource().getElixir()));
         elixirAchieved.relocate(sideBarStartingX+180,105);
-        group.getChildren().add(gold);
-        group.getChildren().add(elixir);
-        group.getChildren().add(goldAchieved);
-        group.getChildren().add(elixirAchieved);
 
     }
 

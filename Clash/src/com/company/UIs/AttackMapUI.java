@@ -7,7 +7,8 @@ import com.company.Models.Towers.Buildings.Camp;
 import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Village;
-import javafx.animation.AnimationTimer;
+import javafx.animation.*;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -17,12 +18,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,6 +33,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 import static com.company.UIs.MapUI.getImageOfBuildings;
 import static com.company.UIs.MapUI.mapCoordinates2PixelY;
@@ -42,10 +46,10 @@ public class AttackMapUI {
     private static int attackX, attackY;
     private static PannableCanvas canvas = new PannableCanvas();
     private static Controller controller;
-    private static AnimationTimer showEnemyMapAnimationTimer;
     private static Stage primaryStage;
     private static HashMap<String ,Image> soldiersGif=new HashMap<>();
     private static String chosenSoldierName = "";
+    private static Label winningLabel=new Label("");
 
     public static HashMap<String, Image> getSoldiersGif() {
         return soldiersGif;
@@ -73,10 +77,15 @@ public class AttackMapUI {
         }
     }
 
+
     public static void makeAttackGameBoard( Stage stage, Controller controller) throws FileNotFoundException {
         AttackMapUI.controller = controller;
         primaryStage = stage;
         Group root = new Group();
+        winningLabel.setFont(Font.font("Papyrus", FontWeight.BOLD,15));
+        winningLabel.setTextFill(Color.MISTYROSE);
+        winningLabel.relocate(310,80);
+        root.getChildren().add(winningLabel);
         Scene scene = new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight());
         primaryStage.setScene(scene);
         File file = new File("./src/com/company/UIs/MapResources/MapBackGroundAttack.jpg");
@@ -115,6 +124,8 @@ public class AttackMapUI {
                 });
             }
         }
+
+
         new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -122,9 +133,9 @@ public class AttackMapUI {
                     if (controller.getGame().isWarFinished()) {
                         controller.getGame().healAfterWar();
                         controller.getGame().setUnderAttackOrDefense(false);
+                        winningLabel.setText("war ended with " + controller.getGame().getVillage().getGainedResource().getGold() + "gold and\n" + controller.getGame().getVillage().getGainedResource().getElixir() + "elixir and " + controller.getGame().getVillage().getScore() + "scores achieved");
 
-                        System.out.println(stage);
-                       returnToVillageUI();
+                        returnToVillageUI();
 
                     }
                 }
@@ -233,6 +244,8 @@ public class AttackMapUI {
     }
 
     public static void returnToVillageUI() {
+        controller.getGame().getVillage().getGainedResource().setGold(0);
+        controller.getGame().getVillage().getGainedResource().setElixir(0);
         try {
             for (int i = 0; i < 30; i++) {
                 for (int j = 0; j < 30; j++) {
@@ -398,5 +411,9 @@ public class AttackMapUI {
                 }
             }
         }.start();
+    }
+
+    public static Label getWinningLabel() {
+        return winningLabel;
     }
 }
