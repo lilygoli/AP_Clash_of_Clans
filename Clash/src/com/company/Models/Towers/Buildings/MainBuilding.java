@@ -44,8 +44,6 @@ public class MainBuilding extends Building {
         for (Cell cell : Cell.getCellKinds()) {
             allBuildings.add(cell.getClass().getSimpleName());
         }
-        allBuildings.add(Wall.class.getSimpleName());
-        allBuildings.add(Trap.class.getSimpleName());
         allBuildings.remove("MainBuilding");
         Collections.sort(allBuildings);
         StringBuilder availableBuildings = new StringBuilder();

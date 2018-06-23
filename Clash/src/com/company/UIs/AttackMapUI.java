@@ -344,7 +344,6 @@ public class AttackMapUI {
     public static void setOnClickImages(int i, int j, Group root) {
         controller.getGame().getAttackedVillage().getVillage().getMap()[j][i].getImageView().setOnMouseClicked(event -> {
             controller.getGame().getAttackedVillage().getVillage().getMap()[j][i].getImageView().requestFocus();
-            System.out.println(controller.getGame().getAttackedVillage().getVillage().getMap()[j][i].getStrength());
         });
 
     }

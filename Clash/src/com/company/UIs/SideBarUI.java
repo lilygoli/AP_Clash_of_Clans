@@ -490,8 +490,8 @@ public class SideBarUI {
     private static void implementUpgradeBuildings(Group group, Cell cell) {
         if (cell.getClass().getSimpleName().equals("Barrack")) {
             if (cell.getLevel() + 1 > controller.getGame().getVillage().getMainBuilding().getLevel()) {
-                ImageView upgradeError = new ImageView("BarrackUpgradeError.png");
-                upgradeError.setY(Screen.getPrimary().getVisualBounds().getHeight() * 0.5);
+                ImageView upgradeError = getImageView("BarrackUpgradeError.png");
+                upgradeError.setY(Screen.getPrimary().getVisualBounds().getHeight() * 0.6);
                 upgradeError.setX(UIConstants.BUTTON_STARTING_X);
                 new Timeline(new KeyFrame(Duration.seconds(2), new KeyValue(upgradeError.imageProperty(), null))).play();
                 group.getChildren().add(upgradeError);
@@ -644,6 +644,7 @@ public class SideBarUI {
             case "Cannon":
             case "Trap":
             case "WizardTower":
+            case "Wall":
                 makeDefencesMenu(group, cell);
                 break;
             case "Barrack":
@@ -668,7 +669,12 @@ public class SideBarUI {
         ImageView infoView = getImageView("info.png");
         ImageView targetView = getImageView("Target.png");
         ImageView backView = getImageView("Back.png");
-        VBox vBox = new VBox(infoView, targetView, backView);
+        VBox vBox;
+        if(cell.getClass().getSimpleName().equals("Wall")){
+             vBox = new VBox(infoView, backView);
+        }else {
+             vBox = new VBox(infoView, targetView, backView);
+        }
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
         backView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -708,7 +714,12 @@ public class SideBarUI {
         File backFile=new File(ADDRESS+"Back.png");
         Image backImage=new Image(backFile.toURI().toString());
         ImageView backView=new ImageView(backImage);
-        VBox vBox=new VBox(overallInfoView, upgradeInfoView, attackInfoView, upgradeView, backView);
+        VBox vBox;
+        if(cell.getClass().getSimpleName().equals("Wall")){
+            vBox=new VBox(overallInfoView, upgradeInfoView, upgradeView, backView);
+        }else {
+            vBox = new VBox(overallInfoView, upgradeInfoView, attackInfoView, upgradeView, backView);
+        }
         vBox.relocate(50,160);
         group.getChildren().add(vBox);
 
