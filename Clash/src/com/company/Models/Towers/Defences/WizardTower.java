@@ -40,7 +40,6 @@ public class WizardTower extends Defence {
                         if (target.getHealth() <= 0) {
                             i.remove();;
                             target.getImageView().setImage(null);
-
                         }
                     }
                 }
