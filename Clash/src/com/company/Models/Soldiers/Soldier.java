@@ -185,6 +185,9 @@ public abstract class Soldier {
             String relativeDirection = getRelativeDirection(target);
             chooseRelativeDirection(relativeDirection);
             target.setStrength(target.getStrength() - getDamage());
+            if (this.getClass().getSimpleName().equals("WallBreaker")){
+                this.setHealth(0);
+            }
             if (target.getStrength() <= 0) {
                 destroyAndLoot(attackerVillage, target);
             }
@@ -230,6 +233,9 @@ public abstract class Soldier {
             } else {
                 Cell target = enemyVillage.getMap()[(int) (x - 1)][(int) y];
                 target.setStrength(target.getStrength() - getDamage());
+                if (this.getClass().getSimpleName().equals("WallBreaker")){
+                    this.setHealth(0);
+                }
                 String relativeDirection = getRelativeDirection(target);
                 chooseRelativeDirection(relativeDirection);
                 if (target.getStrength() <= 0) {
@@ -243,6 +249,9 @@ public abstract class Soldier {
             } else {
                 Cell target = enemyVillage.getMap()[(int) (x + 1)][(int) y];
                 target.setStrength(target.getStrength() - getDamage());
+                if (this.getClass().getSimpleName().equals("WallBreaker")){
+                    this.setHealth(0);
+                }
                 String relativeDirection = getRelativeDirection(target);
                 chooseRelativeDirection(relativeDirection);
                 if (target.getStrength() <= 0) {
@@ -255,6 +264,9 @@ public abstract class Soldier {
             } else {
                 Cell target = enemyVillage.getMap()[(int) x][(int) (y + 1)];
                 target.setStrength(target.getStrength() - getDamage());
+                if (this.getClass().getSimpleName().equals("WallBreaker")){
+                    this.setHealth(0);
+                }
                 String relativeDirection = getRelativeDirection(target);
                 chooseRelativeDirection(relativeDirection);
                 if (target.getStrength() <= 0) {
@@ -267,6 +279,9 @@ public abstract class Soldier {
                 setY(getY() - MOVE_PER_TURN);
             } else {
                 Cell target = enemyVillage.getMap()[(int) x][(int) (y - 1)];
+                if (this.getClass().getSimpleName().equals("WallBreaker")){
+                    this.setHealth(0);
+                }
                 target.setStrength(target.getStrength() - getDamage());
                 String relativeDirection = getRelativeDirection(target);
                 chooseRelativeDirection(relativeDirection);
@@ -394,24 +409,47 @@ public abstract class Soldier {
                 adjacent[3][0] = x - 1;
             }
             for (int i = 0; i < 4; i++) {
-                if (adjacent[i][0] != -1 && adjacent[i][1] != -1 && distance[x][y] + 1 + (int) (enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getStrength() / damage) < distance[adjacent[i][0]][adjacent[i][1]]) {
-                    distance[adjacent[i][0]][adjacent[i][1]] = distance[x][y] + 1 + (int) (enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getStrength() / damage);
-                    switch (i) {
-                        case 0:
-                            lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.DOWN;
-                            break;
-                        case 1:
-                            lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.LEFT;
-                            break;
-                        case 2:
-                            lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.UP;
-                            break;
-                        case 3:
-                            lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.RIGHT;
-                            break;
+                if (!this.getCanFly()) {
+                    if (adjacent[i][0] != -1 && adjacent[i][1] != -1 && distance[x][y] + 1 + (int) (enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getStrength() / damage) < distance[adjacent[i][0]][adjacent[i][1]]) {
+                        distance[adjacent[i][0]][adjacent[i][1]] = distance[x][y] + 1 + (int) (enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getStrength() / damage);
+                        switch (i) {
+                            case 0:
+                                lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.DOWN;
+                                break;
+                            case 1:
+                                lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.LEFT;
+                                break;
+                            case 2:
+                                lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.UP;
+                                break;
+                            case 3:
+                                lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.RIGHT;
+                                break;
+                        }
+                        queueX.add(adjacent[i][0]);
+                        queueY.add(adjacent[i][1]);
                     }
-                    queueX.add(adjacent[i][0]);
-                    queueY.add(adjacent[i][1]);
+                }
+                else{
+                    if (adjacent[i][0] != -1 && adjacent[i][1] != -1 && distance[x][y] + 1  < distance[adjacent[i][0]][adjacent[i][1]]) {
+                        distance[adjacent[i][0]][adjacent[i][1]] = distance[x][y] + 1;
+                        switch (i) {
+                            case 0:
+                                lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.DOWN;
+                                break;
+                            case 1:
+                                lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.LEFT;;
+                                break;
+                            case 2:
+                                lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.UP;
+                                break;
+                            case 3:
+                                lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.RIGHT;
+                                break;
+                        }
+                        queueX.add(adjacent[i][0]);
+                        queueY.add(adjacent[i][1]);
+                    }
                 }
             }
             queueX.removeFirst();

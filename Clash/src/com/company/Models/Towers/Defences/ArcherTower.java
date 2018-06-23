@@ -21,7 +21,7 @@ public class ArcherTower extends Defence {
             if (this.getUnderConstructionStatus()) {
                 return null;
             }
-            Soldier target = findNearestEnemyInRange(enemySoldiers, false, true);
+            Soldier target = findNearestEnemyInRange(enemySoldiers, true, true);
             if (target != null) {
                 this.setImage(getImageOfBuildings(this.getClass().getSimpleName(),".gif" , true));
                 target.setHealth(target.getHealth() - this.getDamage());
