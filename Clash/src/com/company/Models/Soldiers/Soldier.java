@@ -9,6 +9,7 @@ import com.company.Models.Towers.Cell;
 import com.company.Models.Village;
 import com.company.UIs.AttackMapUI;
 import com.company.UIs.MapUI;
+import com.company.UIs.UIConstants;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -65,7 +66,7 @@ public abstract class Soldier {
         this.imageView = imageView;
     }
 
-    private final double MOVE_PER_TURN = 1.0 * getMaxSpeed() / Config.getDictionary().get("KMM");
+    private final double MOVE_PER_TURN = 1.0 * getMaxSpeed() / ((UIConstants.DELTA_T+0.01)*0.002*Config.getDictionary().get("KMM"));
     // TODO: 4/26/2018 what is move per turn
 
     public static ArrayList<Soldier> getSoldierSubClasses() {
