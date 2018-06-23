@@ -25,6 +25,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -65,7 +66,12 @@ public class MainMenuUI extends Application{
         Image exitGame = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth() / 6,Screen.getPrimary().getVisualBounds().getHeight() / 6.5, false, true);
         ImageView exitGameView = new ImageView(exitGame);
         exitGameView.setScaleX(1.05);
-
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                System.exit(0);
+            }
+        });
 
         makeEventHandlersForHover(screenWidth, newGame, newGameView, loadGameView, exitGameView);
         makeEventHandlersForClick(screenWidth,screenHeight,root, newGameView, loadGameView, exitGameView, primaryStage);

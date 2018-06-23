@@ -669,9 +669,17 @@ public class SideBarUI {
         ImageView infoView = getImageView("info.png");
         ImageView targetView = getImageView("Target.png");
         ImageView backView = getImageView("Back.png");
+        ImageView switchOrientation= getImageView("SwitchOrientation.png");
+        switchOrientation.setOnMouseClicked(event -> {
+            if(MapUI.getVerticalOrientationOfWall()){
+                MapUI.setVerticalOrientationOfWall(false);
+            }else{
+                MapUI.setVerticalOrientationOfWall(true);
+            }
+        });
         VBox vBox;
         if(cell.getClass().getSimpleName().equals("Wall")){
-             vBox = new VBox(infoView, backView);
+             vBox = new VBox(infoView,switchOrientation, backView);
         }else {
              vBox = new VBox(infoView, targetView, backView);
         }
@@ -714,6 +722,7 @@ public class SideBarUI {
         File backFile=new File(ADDRESS+"Back.png");
         Image backImage=new Image(backFile.toURI().toString());
         ImageView backView=new ImageView(backImage);
+
         VBox vBox;
         if(cell.getClass().getSimpleName().equals("Wall")){
             vBox=new VBox(overallInfoView, upgradeInfoView, upgradeView, backView);

@@ -42,6 +42,7 @@ public class MapUI  {
     private static HashMap<String ,Image> gifsOfTowers=new HashMap<>();
     private static boolean isInBuildMenu=false;
     private static AnimationTimer showMapAnimationTimer;
+    private static boolean verticalOrientationOfWall=false;
 
     public static void setIsInBuildMenu(boolean isInBuildMenu) {
         MapUI.isInBuildMenu=isInBuildMenu;
@@ -52,7 +53,15 @@ public class MapUI  {
     }
 
     private static Controller controller = new Controller();
-// to be moved to a new thread
+
+    public static boolean getVerticalOrientationOfWall() {
+        return verticalOrientationOfWall;
+    }
+
+    public static void setVerticalOrientationOfWall(boolean verticalOrientationOfWall) {
+        MapUI.verticalOrientationOfWall = verticalOrientationOfWall;
+    }
+    // to be moved to a new thread
 // TODO: 6/11/2018 giant kill gif add and healer and wallbreaker and guardian giant kill add
 
     static {
@@ -287,7 +296,12 @@ public class MapUI  {
                                     }
                                     putBuildingImageInMap(i, j, village,32, canvas);
                                 }else {
-                                    village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png" , true));
+
+                                    if(village.getMap()[j][i].getClass().getSimpleName().equals("Wall")&& verticalOrientationOfWall){
+                                        village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName()+"2", ".png", true));
+                                    }else{
+                                        village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png" , true));
+                                    }
                                     if(!village.getMap()[j][i].getEventSet()){
                                         setOnClickImages(i, j, root);
                                         village.getMap()[j][i].setIsEventSet(true);
