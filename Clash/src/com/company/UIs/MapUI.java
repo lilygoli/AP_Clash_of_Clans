@@ -148,12 +148,11 @@ public class MapUI  {
 //        file = new File("./src/com/company/UIs/MapResources/mapBorder.png");
 //        Image mapBorder = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight(), false, true);
 //        ImageView mapBorderView = new ImageView(mapBorder);
-//        mapBorderView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() * 1.2);
+//        mapBorderView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() * 1.3);
 //        mapBorderView.relocate(Screen.getPrimary().getVisualBounds().getWidth() - Screen.getPrimary().getVisualBounds().getHeight() * 1.09, -Screen.getPrimary().getVisualBounds().getHeight() / 5.9);
 //        canvas.getChildren().add(mapBorderView);
-//        SideBarUI.makeSideBar(primaryStage , root);
 //        mapBorderView.setScaleY(0.9);
-//        mapBorderView.setScaleX(0.93);
+//        mapBorderView.setScaleX(0.95);
 //        mapBorderView.relocate(Screen.getPrimary().getVisualBounds().getWidth() - Screen.getPrimary().getVisualBounds().getHeight() * 1.15, -Screen.getPrimary().getVisualBounds().getHeight() / 5);
 
         showMapInVillage(controller.getGame().getVillage(), root);

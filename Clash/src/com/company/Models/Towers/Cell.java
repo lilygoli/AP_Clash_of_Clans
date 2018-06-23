@@ -4,10 +4,7 @@ import com.company.Models.Builder;
 import com.company.Models.Config;
 import com.company.Models.Game;
 import com.company.Models.Towers.Buildings.*;
-import com.company.Models.Towers.Defences.AirDefence;
-import com.company.Models.Towers.Defences.ArcherTower;
-import com.company.Models.Towers.Defences.Cannon;
-import com.company.Models.Towers.Defences.WizardTower;
+import com.company.Models.Towers.Defences.*;
 import com.company.Models.Village;
 import com.company.UIs.SideBarUI;
 import com.company.View.View;
@@ -80,6 +77,8 @@ public class Cell {
         cellKinds.add(new ArcherTower(0,0));
         cellKinds.add(new Cannon(0,0));
         cellKinds.add(new WizardTower(0,0));
+        cellKinds.add(new Wall(0,0));
+        cellKinds.add(new Trap(0,0));
     }
 
     public void upgrade() {

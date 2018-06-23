@@ -7,6 +7,7 @@ import com.company.Models.Towers.Buildings.Camp;
 import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Village;
+import com.gilecode.yagson.com.google.gson.annotations.Expose;
 import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
