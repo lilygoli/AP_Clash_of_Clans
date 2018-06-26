@@ -67,7 +67,6 @@ public abstract class Soldier {
     public void setImageView(ImageView imageView) {
         this.imageView = imageView;
     }
-    // TODO: 4/26/2018 what is move per turn
 
     public static ArrayList<Soldier> getSoldierSubClasses() {
         return soldierSubClasses;
@@ -163,6 +162,25 @@ public abstract class Soldier {
         this.leftHealth.relocate(MapUI.mapCoordinates2PixelX(this.x), MapUI.mapCoordinates2PixelY(this.y)-5);
         this.allHealth.relocate(MapUI.mapCoordinates2PixelX(this.x), MapUI.mapCoordinates2PixelY(this.y)-5);
 
+    }
+
+
+    public abstract void attackTarget(Village attackerVillage, Village enemyVillage);
+
+    public Rectangle getLeftHealth() {
+        return leftHealth;
+    }
+
+    public void setLeftHealth(Rectangle leftHealth) {
+        this.leftHealth = leftHealth;
+    }
+
+    public Rectangle getAllHealth() {
+        return allHealth;
+    }
+
+    public void setAllHealth(Rectangle allHealth) {
+        this.allHealth = allHealth;
     }
 
 
@@ -462,24 +480,5 @@ public abstract class Soldier {
 
     private boolean hasReachedDestination(Cell target) {
         return Math.sqrt(Math.pow(x - (double) target.getX(), 2.0) + Math.pow(y - (double) target.getY(), 2.0)) <= (double) getRadius();
-    }
-
-
-    public abstract void attackTarget(Village attackerVillage, Village enemyVillage);
-
-    public Rectangle getLeftHealth() {
-        return leftHealth;
-    }
-
-    public void setLeftHealth(Rectangle leftHealth) {
-        this.leftHealth = leftHealth;
-    }
-
-    public Rectangle getAllHealth() {
-        return allHealth;
-    }
-
-    public void setAllHealth(Rectangle allHealth) {
-        this.allHealth = allHealth;
     }
 }
