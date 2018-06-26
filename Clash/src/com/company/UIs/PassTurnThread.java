@@ -18,12 +18,14 @@ public class PassTurnThread  implements Runnable {
     public void run() {
         while (true) {
             controller.getGame().passTurn();
+            if (!controller.getGame().isUnderAttackOrDefense()) {
                 try {
                     Thread.sleep(UIConstants.DELTA_T);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
+        }
     }
 
 

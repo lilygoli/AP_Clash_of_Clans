@@ -123,6 +123,7 @@ public class Config {
         dictionary.put("Dragon_ADDED_HEALTH",5);
         dictionary.put("Dragon_ADDED_DAMAGE",1);
         dictionary.put("Dragon_UNLOCKLEVEL",0);
+        dictionary.put("Dragon_ADDED_HEALTH",5);
         dictionary.put("Dragon_CAN_FLY",1);
 
         dictionary.put("Archer_ELEXIR_COST",75);
