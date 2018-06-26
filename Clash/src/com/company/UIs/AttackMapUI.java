@@ -2,17 +2,13 @@ package com.company.UIs;
 
 import com.company.Controller.Controller;
 import com.company.Exception.InvalidPlaceForSoldiersException;
-import com.company.Exception.MarginalTowerException;
-import com.company.Exception.NotValidFilePathException;
-import com.company.Models.Config;
+import com.company.Models.Soldiers.Archer;
 import com.company.Models.Soldiers.Soldier;
 import com.company.Models.Towers.Buildings.Camp;
 import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Village;
-import com.gilecode.yagson.com.google.gson.annotations.Expose;
 import javafx.animation.*;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -24,7 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Screen;
@@ -37,10 +33,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
-import java.util.concurrent.ConcurrentLinkedDeque;
 
 import static com.company.UIs.MapUI.getImageOfBuildings;
-import static com.company.UIs.MapUI.mapCoordinates2PixelY;
 import static com.company.UIs.MapUI.putBuildingImageInMap;
 import static com.company.UIs.SideBarUI.makeSideBar;
 import static com.company.UIs.SideBarUI.opacityOnHover;
@@ -392,13 +386,15 @@ public class AttackMapUI {
         canvas.getChildren().add(soldier.getAllHealth());
         canvas.getChildren().add(soldier.getLeftHealth());
 
-        removeFromCanvas();
+        updateHealthBarAndArrows();
         showAttackSideBar(group);
     }
-    public static void removeFromCanvas(){
+    public static void updateHealthBarAndArrows(){
         new AnimationTimer() {
+            HashMap<ImageView,Soldier> arrows= new HashMap<>();
             @Override
             public void handle(long now) {
+                addArcherArrows();
                 ArrayList<Rectangle> rectangles=new ArrayList<>();
                 for (Soldier soldier : controller.getGame().getTroops()) {
                     rectangles.add(soldier.getLeftHealth());
@@ -413,12 +409,49 @@ public class AttackMapUI {
                     }
                 }
                 canvas.getChildren().removeAll(removedNodes);
-            }
-
-            @Override
-            public void stop() {
                 if(controller.getGame().isWarFinished()){
                     super.stop();
+                }
+            }
+
+            private void addArcherArrows() {
+                for (ImageView imageView : arrows.keySet()) {
+                    if(!controller.getGame().getTroops().contains(arrows.get(imageView))){
+                        canvas.getChildren().remove(imageView);
+                    }
+                }
+                for (int i=0;i<controller.getGame().getTroops().size();i++) {
+                    Soldier soldier=controller.getGame().getTroops().get(i);
+                    if(soldier.getClass().getSimpleName().equals("Archer")){
+                        if(((Archer)soldier).getTarget()!=null && soldier.hasReachedDestination(soldier.getTarget())){
+                            if(!arrows.values().contains(soldier)) {
+                                Path path = new Path();
+                                MoveTo moveTo = new MoveTo();
+                                moveTo.setX(MapUI.mapCoordinates2PixelX(soldier.getX()) + 12);
+                                moveTo.setY(MapUI.mapCoordinates2PixelY(soldier.getY()));
+                                LineTo lineTo = new LineTo();
+                                lineTo.setX(MapUI.mapCoordinates2PixelX(((Archer) soldier).getTarget().getX())+12);
+                                lineTo.setY(MapUI.mapCoordinates2PixelY(((Archer) soldier).getTarget().getY()));
+                                path.getElements().add(moveTo);
+                                path.getElements().add(lineTo);
+                                PathTransition pathTransition = new PathTransition();
+                                pathTransition.setCycleCount(10);
+                                pathTransition.setDuration(Duration.millis(UIConstants.DELTA_T));
+                                ImageView arrow = new ImageView(MapUI.getImageOfBuildings("Arrow", ".png", false));
+                                arrow.setScaleX(0.2);
+                                arrow.setScaleY(0.2);
+                                arrows.put(arrow, soldier);
+                                pathTransition.setNode(arrow);
+                                pathTransition.setPath(path);
+
+                                //Setting the orientation of the path
+                                pathTransition.setOrientation(PathTransition.OrientationType.
+                                        ORTHOGONAL_TO_TANGENT);
+                                pathTransition.play();
+                                canvas.getChildren().add(arrow);
+                            }
+                        }
+                    }
                 }
             }
         }.start();

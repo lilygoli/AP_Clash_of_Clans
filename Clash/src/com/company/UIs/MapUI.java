@@ -23,6 +23,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -65,6 +67,8 @@ public class MapUI  {
 // TODO: 6/11/2018 giant kill gif add and healer and wallbreaker and guardian giant kill add
 
     static {
+        File MainBuildingFile = new File("./src/com/company/ImagesAndGifs/Buildings/MainBuildingLoading.gif");
+        gifsOfTowers.put("MainBuildingLoading", new Image(MainBuildingFile.toURI().toString()));
         File AirDefenceFile = new File("./src/com/company/ImagesAndGifs/Buildings/AirDefenceLoading.gif");
         gifsOfTowers.put("AirDefenceLoading", new Image(AirDefenceFile.toURI().toString()));
         AirDefenceFile = new File("./src/com/company/ImagesAndGifs/Buildings/AirDefence.gif");
@@ -184,12 +188,15 @@ public class MapUI  {
         int maxDeltaT = UIConstants.DELTA_T;
         final Slider deltaTSlider = new Slider(0, maxDeltaT, maxDeltaT);
         final Label caption = new Label("Time Unit");
+        caption.setFont(Font.font("Papyrus",FontWeight.BOLD,13));
+        caption.setTextFill(Color.DARKRED);
         final Label deltaTValue = new Label(Double.toString(deltaTSlider.getValue()));
+        deltaTValue.setTextFill(Color.DARKRED);
 
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(10, 10, 10, 10));
         grid.setVgap(10);
-        grid.setHgap(20);
+        grid.setHgap(10);
 
         GridPane.setConstraints(caption, 0, 1);
         grid.getChildren().add(caption);
@@ -210,7 +217,7 @@ public class MapUI  {
         GridPane.setConstraints(deltaTValue, 2, 1);
         grid.getChildren().add(deltaTValue);
 
-        grid.relocate(Screen.getPrimary().getVisualBounds().getWidth() * 0.17, Screen.getPrimary().getVisualBounds().getHeight() * 0.88);
+        grid.relocate(Screen.getPrimary().getVisualBounds().getWidth() * 0.21, Screen.getPrimary().getVisualBounds().getHeight() * 0.88);
 
         root.getChildren().add(grid);
     }
@@ -283,7 +290,10 @@ public class MapUI  {
                             } else if (village.getMap()[j][i].getClass() == MainBuilding.class) {
                                 if (flag == 0) {
                                     flag = 1;
-                                    village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png" , true));
+                                    if( village.getMap()[j][i].getTimeLeftOfUpgrade()>0) {
+                                        village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(), ".gif", false));
+                                    }else{
+                                        village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png" , false));}
                                     if(!village.getMap()[j][i].getEventSet()){
                                         setOnClickImages(14, 14, root);
                                         village.getMap()[j][i].setIsEventSet(true);
@@ -292,7 +302,7 @@ public class MapUI  {
                                 }
 
                             } else {
-                                if(village.getMap()[j][i].getUnderConstructionStatus()){
+                                if(village.getMap()[j][i].getUnderConstructionStatus() || village.getMap()[j][i].getTimeLeftOfUpgrade()>0){
                                     village.getMap()[j][i].setImage( getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".gif" , false));
                                     if(!village.getMap()[j][i].getEventSet()){
                                         setOnClickImages(i, j, root);
@@ -358,13 +368,13 @@ public class MapUI  {
         });
     }
 
-    public static Image getImageOfBuildings(String name, String type , boolean inwar){
+    public static Image getImageOfBuildings(String name, String type , boolean inWar){
         Image buildingImage;
         if(type.equals(".png")) {
             File file = new File("./src/com/company/ImagesAndGifs/Buildings/" + name + type);
              buildingImage= new Image(file.toURI().toString());
         }else {
-            if (!inwar)
+            if (!inWar)
              buildingImage= gifsOfTowers.get(name + "Loading");
             else{
                 buildingImage= gifsOfTowers.get(name);

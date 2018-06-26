@@ -25,13 +25,12 @@ public abstract class Soldier {
     private int damage;
     private int level;
     private double x = -1, y = -1;
-    private boolean dead;
     private Direction direction;
+    private Cell target=null;
     private transient ImageView imageView = new ImageView();
     private transient Rectangle leftHealth;
     private transient Rectangle allHealth;
-
-    private final double MOVE_PER_TURN = 1.0 * getMaxSpeed() / ((UIConstants.DELTA_T+0.01)*0.002*Config.getDictionary().get("KMM"));
+    private final double MOVE_PER_TURN = 1.0 * getMaxSpeed() / ((UIConstants.DELTA_T+0.1)*0.002*Config.getDictionary().get("KMM"));
 
     static {
         soldierSubClasses.add(new Archer(0));
@@ -50,6 +49,14 @@ public abstract class Soldier {
         leftHealth.setFill(Color.rgb(6,87,51));
         allHealth =new Rectangle(5,2);
         allHealth.setFill(Color.rgb(159,16,55));
+    }
+
+    public Cell getTarget() {
+        return target;
+    }
+
+    public void setTarget(Cell target) {
+        this.target = target;
     }
 
     public Soldier(int time) {
@@ -124,9 +131,6 @@ public abstract class Soldier {
         return Config.getDictionary().get(this.getClass().getSimpleName() + "_CAN_FLY") != 0;
     }
 
-    public boolean isDead() {
-        return dead;
-    }
 
     public Direction getDirection() {
         return direction;
@@ -474,11 +478,13 @@ public abstract class Soldier {
             queueX.removeFirst();
             queueY.removeFirst();
         }
-        // TODO: 4/23/2018 check double and int 
-        return lastDir[(int) getX()][(int) getY()];
+        // TODO: 4/23/2018 check double and int
+        System.out.println(getX()+" y"+getY());
+
+        return lastDir[(int)Math.floor(getX())][(int) Math.floor(getY())];
     }
 
-    private boolean hasReachedDestination(Cell target) {
+    public boolean hasReachedDestination(Cell target) {
         return Math.sqrt(Math.pow(x - (double) target.getX(), 2.0) + Math.pow(y - (double) target.getY(), 2.0)) <= (double) getRadius();
     }
 }

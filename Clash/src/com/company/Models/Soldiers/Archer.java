@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Archer extends Soldier {
-    public void attackTarget(Village attackerVillage,Village enemyVillage){
 
-        super.attackTargets(attackerVillage,enemyVillage ,findDestination(enemyVillage,new ArrayList<String>(Arrays.asList("AirDefence","ArcherTower","Cannon","WizardTower"))));
+    public void attackTarget(Village attackerVillage, Village enemyVillage){
+        setTarget(findDestination(enemyVillage,new ArrayList<String>(Arrays.asList("AirDefence","ArcherTower","Cannon","WizardTower"))));
+        super.attackTargets(attackerVillage,enemyVillage ,getTarget());
     }
 
     public Archer(int time) {
