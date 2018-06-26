@@ -336,7 +336,7 @@ public abstract class Soldier {
 
     // TODO: 4/18/2018 add healer
     public Cell findDestination(Village enemyVillage, ArrayList<String> validDestinations) {
-        boolean finishedFavoriteTrget = true;
+        boolean finishedFavoriteTarget = true;
         Cell destination = new Cell(0, 0);
         double minDistance = 100d;
         //int flag = 0;
@@ -344,7 +344,7 @@ public abstract class Soldier {
             for (int j = 0; j < 30; j++) {
                 if (!enemyVillage.getMap()[i][j].isRuined()) {
                     if (validDestinations.contains(enemyVillage.getMap()[i][j].getClass().getSimpleName())) {
-                        finishedFavoriteTrget = false;
+                        finishedFavoriteTarget = false;
                         if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) <= minDistance) {
                             destination = enemyVillage.getMap()[i][j];
                             minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
@@ -360,7 +360,7 @@ public abstract class Soldier {
 //            }
 //        }
         // TODO: 6/21/2018 check when all buildings destroyed what should happen?
-        if (finishedFavoriteTrget && !validDestinations.contains("Camp")) {
+        if (finishedFavoriteTarget && !validDestinations.contains("Camp")) {
             return findDestination(enemyVillage , getAllValidDestinations());
         }
         return destination;

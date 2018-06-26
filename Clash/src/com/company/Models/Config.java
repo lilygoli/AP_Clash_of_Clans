@@ -229,7 +229,7 @@ public class Config {
         dictionary.put("Trap_BUILD_DURATION" , 40);
         dictionary.put("Trap_STRENGTH" , 100);
         dictionary.put("Trap_DAMAGE" , 100);
-        dictionary.put("Trap_RADIUS" , 0);
+        dictionary.put("Trap_RADIUS" , 1);
         dictionary.put("Trap_POINTS_GAINED_WHEN_DESTRUCTED" , 1);
         dictionary.put("Trap_GOLD_GAINED_WHEN_DESTRUCTED" , 100);
         dictionary.put("Trap_ELIXIR_GAINED_WHEN_DESTRUCTED" , 0);
