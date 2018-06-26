@@ -413,13 +413,23 @@ public class Game {
         time++;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
-                if (!village.getMap()[j][i].getClass().getSimpleName().equals("Grass")) {
-                    if (village.getMap()[j][i].getUnderConstructionStatus()) {
-                        village.getMap()[j][i].setTimeLeftOfConstruction(village.getMap()[j][i].getTimeLeftOfConstruction()- 1);
-                        if (village.getMap()[j][i].getTimeLeftOfConstruction() == 0) {
-                            village.getMap()[j][i].setUnderConstructionStatus(false);
-                            village.getMap()[j][i].getWorkingBuilder().setOccupationState(false);
+                Cell cell = village.getMap()[j][i];
+                if (!cell.getClass().getSimpleName().equals("Grass")) {
+                    if (cell.getUnderConstructionStatus()) {
+                        cell.setTimeLeftOfConstruction(cell.getTimeLeftOfConstruction()- 1);
+                        if (cell.getTimeLeftOfConstruction() == 0) {
+                            cell.setUnderConstructionStatus(false);
+                            cell.getWorkingBuilder().setOccupationState(false);
                         }
+                    }
+                    //upgrade tobe recent
+                    if(cell.getTimeLeftOfUpgrade()>0) {
+                        cell.setTimeLeftOfUpgrade(cell.getTimeLeftOfUpgrade() - 1);
+                    }
+                    if(cell.getTimeLeftOfUpgrade()==0){
+                        System.out.println("hey you bitch");
+                        cell.setTimeLeftOfUpgrade(-1);
+                        cell.upgrade(); //recent
                     }
                 }
             }

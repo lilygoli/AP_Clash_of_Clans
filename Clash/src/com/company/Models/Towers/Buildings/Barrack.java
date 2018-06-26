@@ -18,12 +18,14 @@ public class Barrack extends Building {
     public Barrack(int number,int level) {
         super(number, level);
         this.setStrength(Config.getDictionary().get(this.getClass().getSimpleName()+"_STRENGTH"));
+        this.setTimeLeftOfConstruction(this.getBuildDuration());
     }
 
     @Override
     public void upgrade() { // the comparison with mainBuilding level should be handled in Game
         if (canBeUpgraded) {
             if (timeDecreasedToMakeASoldier < 45) {
+                setLevel(getLevel()+1);
                 timeDecreasedToMakeASoldier++;//in soldiers constructor it should be handled if it gets negative
             } else {
                 canBeUpgraded = false;

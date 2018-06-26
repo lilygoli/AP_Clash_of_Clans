@@ -11,9 +11,7 @@ public abstract class Building extends Cell {
         super(number, level);
     }
 
-    public int getBuildDuration() {
-        return Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION");
-    }
+
 
     public int getStrength() {
         return super.getStrength();

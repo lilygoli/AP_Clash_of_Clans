@@ -77,9 +77,6 @@ public abstract class Defence extends Cell {
         return Config.getDictionary().get(this.getClass().getSimpleName() + "_JSON_TYPE");
     }
 
-    public int getBuildDuration() {
-        return Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION");
-    }
 
     public int getDamage() {
         return damage;

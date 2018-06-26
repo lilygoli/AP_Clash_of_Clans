@@ -32,6 +32,7 @@ public class Cell {
     private int number;
     private Builder workingBuilder;
     private int timeLeftOfConstruction;
+    private int timeLeftOfUpgrade=-1; //recent
     private transient boolean isEventSet=false;
 
     public void setIsEventSet(boolean isEventSet) {
@@ -49,7 +50,17 @@ public class Cell {
         this.level=level;
         this.number=number;
     }
+    public int getBuildDuration() {
+        return Config.getDictionary().get(this.getClass().getSimpleName() + "_BUILD_DURATION");
+    }
 
+    public int getTimeLeftOfUpgrade() { //recent
+        return timeLeftOfUpgrade;
+    }
+
+    public void setTimeLeftOfUpgrade(int timeLeftOfUpgrade) { //recent
+        this.timeLeftOfUpgrade = timeLeftOfUpgrade;
+    }
 
     public void setImage(Image image) {
         if(this.image==null){

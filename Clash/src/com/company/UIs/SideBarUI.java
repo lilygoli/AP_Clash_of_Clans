@@ -519,7 +519,7 @@ public class SideBarUI {
                 new Timeline(new KeyFrame(Duration.seconds(2), new KeyValue(exception.getImageView().imageProperty(), null))).play();
                 group.getChildren().add(exception.getImageView());
             } else {
-                cell.upgrade();
+                cell.setTimeLeftOfUpgrade(cell.getBuildDuration());
                 Resource resource = new Resource(controller.getGame().getVillage().getResource().getGold() - cell.getUpgradeCost(), controller.getGame().getVillage().getResource().getElixir());
                 controller.getGame().getVillage().setResource(resource);
                 backSwitchCaseFunction(group, cell);
