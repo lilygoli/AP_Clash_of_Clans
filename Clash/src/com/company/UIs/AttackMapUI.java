@@ -1,6 +1,9 @@
 package com.company.UIs;
 
 import com.company.Controller.Controller;
+import com.company.Exception.InvalidPlaceForSoldiersException;
+import com.company.Exception.MarginalTowerException;
+import com.company.Exception.NotValidFilePathException;
 import com.company.Models.Config;
 import com.company.Models.Soldiers.Soldier;
 import com.company.Models.Towers.Buildings.Camp;
@@ -114,7 +117,16 @@ public class AttackMapUI {
                 imageView.setOnMouseClicked(event -> {
                     attackX = finalI - 2;
                     attackY = finalJ - 1;
-                    if (!chosenSoldierName.equals("")) {
+                    if(attackY==30){
+                        attackY=29;
+                    }
+                    if(!(attackX==29 || attackX==0 || attackY==29 || attackY==0)){
+                        System.out.println("invalid");
+                        InvalidPlaceForSoldiersException exception= new InvalidPlaceForSoldiersException();
+                        new Timeline(new KeyFrame(Duration.seconds(4), new KeyValue(exception.getImageView().imageProperty(), null))).play();
+                        root.getChildren().add(exception.getImageView());
+
+                    }else if (!chosenSoldierName.equals("")) {
                         for (Soldier soldier : controller.getGame().getTroops()) {
                             if (soldier.getClass().getSimpleName().equals(chosenSoldierName) && soldier.getX() == -1) {
                                 putSoldiersImageInMap(attackY, attackX, 32, canvas, soldiersGif.get(chosenSoldierName + "MoveUp"), soldier, root);

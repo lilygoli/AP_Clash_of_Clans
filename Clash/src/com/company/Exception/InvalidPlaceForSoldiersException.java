@@ -16,10 +16,9 @@ public class InvalidPlaceForSoldiersException extends Exception{
     }
 
     {
-        File file = new File("./src/com/company/UIs/SideBarMenuImages/InvalidPlaceForSoldiersException.png");
+        File file = new File("./src/com/company/UIs/SideBarMenuImages/NotValidSoldierPlaceException.png");
         Image backGround = new Image(file.toURI().toString());
         imageView = new ImageView(backGround);
-        //imageView.relocate(UIConstants.BUTTON_STARTING_X,  Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.EXCEPTION_BUTTON_Y_COEFFICIENT);
-        imageView.relocate(UIConstants.BUTTON_STARTING_X,  Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.EXCEPTION_BUTTON_Y_COEFFICIENT);
+        imageView.relocate(UIConstants.BUTTON_STARTING_X+250,  Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.EXCEPTION_BUTTON_Y_COEFFICIENT-100);
     }
 }
