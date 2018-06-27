@@ -298,7 +298,7 @@ public class MapUI  {
                                         setOnClickImages(14, 14, root);
                                         village.getMap()[j][i].setIsEventSet(true);
                                     }
-                                    putBuildingImageInMap(i, j+1, village,16,canvas);
+                                    putBuildingImageInMap(i, j, village,16,canvas);
                                 }
 
                             } else {
@@ -333,7 +333,7 @@ public class MapUI  {
     }
 
     public static void putBuildingImageInMap(int i, int j, Village village, int size, PannableCanvas canvas) {
-        village.getMap()[j][i].getImageView().setX(mapCoordinates2PixelX(j));
+        village.getMap()[j][i].getImageView().setX(mapCoordinates2PixelX(j+1));
         village.getMap()[j][i].getImageView().setY(mapCoordinates2PixelY(i));
         addGlowToBuildings(village.getMap()[j][i].getImageView());
         village.getMap()[j][i].getImageView().setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / size);

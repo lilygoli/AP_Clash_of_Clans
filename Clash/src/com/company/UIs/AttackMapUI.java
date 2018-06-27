@@ -111,9 +111,6 @@ public class AttackMapUI {
                 imageView.setOnMouseClicked(event -> {
                     attackX = finalI - 2;
                     attackY = finalJ - 1;
-//                    if(attackY==30){
-//                        attackY=29;
-//                    }
                     if(!(attackX==29 || attackX==0 || attackY==29 || attackY==0) || attackX<0 || attackX>29 || attackY<0 || attackY>29){
                         System.out.println("invalid");
                         InvalidPlaceForSoldiersException exception= new InvalidPlaceForSoldiersException();
@@ -319,6 +316,7 @@ public class AttackMapUI {
                 if (village.getMap()[j][i].getClass() == Grass.class) {
                     continue;
                 } else if (village.getMap()[j][i].getClass() == MainBuilding.class) {
+                    System.out.println("x main building"+j+"y"+i);
                     if (flag == 0) {
                         flag = 1;
                         village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png" , true));
