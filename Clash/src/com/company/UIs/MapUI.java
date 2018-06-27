@@ -186,7 +186,7 @@ public class MapUI  {
 
     private static void makeSlider(Group root) {
         int maxDeltaT = UIConstants.DELTA_T;
-        final Slider deltaTSlider = new Slider(0, maxDeltaT, maxDeltaT);
+        final Slider deltaTSlider = new Slider(0.01, maxDeltaT, maxDeltaT);
         final Label caption = new Label("Time Unit");
         caption.setFont(Font.font("Papyrus",FontWeight.BOLD,13));
         caption.setTextFill(Color.DARKRED);

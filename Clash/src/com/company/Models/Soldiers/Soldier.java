@@ -30,7 +30,7 @@ public abstract class Soldier {
     private transient ImageView imageView = new ImageView();
     private transient Rectangle leftHealth;
     private transient Rectangle allHealth;
-    private final double MOVE_PER_TURN = 1.0 * getMaxSpeed() / ((UIConstants.DELTA_T+0.1)*0.002*Config.getDictionary().get("KMM"));
+    private final double MOVE_PER_TURN = 1.0 * getMaxSpeed() / ((UIConstants.DELTA_T)*0.002*Config.getDictionary().get("KMM"));
 
     static {
         soldierSubClasses.add(new Archer(0));
@@ -250,6 +250,7 @@ public abstract class Soldier {
 
     private void moveSoldier(Village attackerVillage, Direction direction, Village enemyVillage) {
         // TODO: 4/24/2018 check double int
+        System.out.println("move per turn"+MOVE_PER_TURN);
         if (direction == Direction.LEFT) {
             if (enemyVillage.getMap()[(int) (x - 1)][(int) y].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) (x - 1)][(int) y].isRuined() || getCanFly()) {
                 setX(getX() - MOVE_PER_TURN);

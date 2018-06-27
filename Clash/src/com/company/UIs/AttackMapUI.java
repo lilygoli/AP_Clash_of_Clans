@@ -111,10 +111,10 @@ public class AttackMapUI {
                 imageView.setOnMouseClicked(event -> {
                     attackX = finalI - 2;
                     attackY = finalJ - 1;
-                    if(attackY==30){
-                        attackY=29;
-                    }
-                    if(!(attackX==29 || attackX==0 || attackY==29 || attackY==0)){
+//                    if(attackY==30){
+//                        attackY=29;
+//                    }
+                    if(!(attackX==29 || attackX==0 || attackY==29 || attackY==0) || attackX<0 || attackX>29 || attackY<0 || attackY>29){
                         System.out.println("invalid");
                         InvalidPlaceForSoldiersException exception= new InvalidPlaceForSoldiersException();
                         new Timeline(new KeyFrame(Duration.seconds(4), new KeyValue(exception.getImageView().imageProperty(), null))).play();
@@ -379,6 +379,7 @@ public class AttackMapUI {
         if (canvas.getChildren().contains(soldier.getImageView())) {
             canvas.getChildren().remove(soldier.getImageView());
         }
+        System.out.println("gotten x o y"+j+" "+i);
         soldier.setX(j);
         soldier.setY(i);
 

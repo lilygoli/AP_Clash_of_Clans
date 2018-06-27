@@ -427,7 +427,6 @@ public class Game {
                         cell.setTimeLeftOfUpgrade(cell.getTimeLeftOfUpgrade() - 1);
                     }
                     if(cell.getTimeLeftOfUpgrade()==0){
-                        System.out.println("hey you bitch");
                         cell.setTimeLeftOfUpgrade(-1);
                         cell.upgrade(); //recent
                     }
