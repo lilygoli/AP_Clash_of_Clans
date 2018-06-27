@@ -82,7 +82,7 @@ public class AttackMapUI {
         Group root = new Group();
         winningLabel.setFont(Font.font("Papyrus", FontWeight.BOLD,15));
         winningLabel.setTextFill(Color.NAVY);
-        winningLabel.relocate(310,80);
+        winningLabel.relocate(270,80);
         root.getChildren().add(winningLabel);
         Scene scene = new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight());
         primaryStage.setScene(scene);
@@ -113,7 +113,7 @@ public class AttackMapUI {
                     attackY = finalJ - 1;
                     if(!(attackX==29 || attackX==0 || attackY==29 || attackY==0) || attackX<0 || attackX>29 || attackY<0 || attackY>29){
                         System.out.println("invalid");
-                        InvalidPlaceForSoldiersException exception= new InvalidPlaceForSoldiersException();
+                        InvalidPlaceForSoldiersException exception = new InvalidPlaceForSoldiersException();
                         new Timeline(new KeyFrame(Duration.seconds(4), new KeyValue(exception.getImageView().imageProperty(), null))).play();
                         root.getChildren().add(exception.getImageView());
 
@@ -138,9 +138,7 @@ public class AttackMapUI {
                         controller.getGame().healAfterWar();
                         controller.getGame().setUnderAttackOrDefense(false);
                         winningLabel.setText("*war ended with " + controller.getGame().getVillage().getGainedResource().getGold() + "gold and\n" + controller.getGame().getVillage().getGainedResource().getElixir() + " elixir and " + controller.getGame().getVillage().getScore() + "scores achieved");
-
                         returnToVillageUI();
-
                     }
                 }
             }
@@ -178,9 +176,7 @@ public class AttackMapUI {
             showAttackSideBar(group);
         });
         ImageView back= SideBarUI.getImageView("Back.png");
-        back.setOnMouseClicked(event -> {
-            returnToVillageUI();
-        });
+        back.setOnMouseClicked(event -> returnToVillageUI());
         VBox vBox= new VBox(attackMap,back);
         vBox.relocate(UIConstants.BUTTON_STARTING_X,UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
@@ -372,8 +368,7 @@ public class AttackMapUI {
 //        soldier.getImageView().setY(mapCoordinates2PixelY(i));
         soldier.getImageView().setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / size);
         soldier.getImageView().setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / size);
-        soldier.getAllHealth().setWidth(Screen.getPrimary().getVisualBounds().getHeight() / size)
-        ;
+        soldier.getAllHealth().setWidth(Screen.getPrimary().getVisualBounds().getHeight() / size);
         if (canvas.getChildren().contains(soldier.getImageView())) {
             canvas.getChildren().remove(soldier.getImageView());
         }

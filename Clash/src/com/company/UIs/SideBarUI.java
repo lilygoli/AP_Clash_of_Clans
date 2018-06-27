@@ -6,20 +6,14 @@ import com.company.Models.Builder;
 import com.company.Models.Config;
 import com.company.Models.Game;
 import com.company.Models.Resource;
-import com.company.Models.Soldiers.Soldier;
 import com.company.Models.Towers.Buildings.*;
-import com.company.Models.Towers.Buildings.Storage;
 import com.company.Models.Towers.Cell;
-
-import com.company.View.View;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -33,13 +27,11 @@ import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class SideBarUI {
     private static final String ADDRESS = "./src/com/company/UIs/SideBarMenuImages/";
@@ -76,20 +68,10 @@ public class SideBarUI {
                 Button saveButton=new Button("save");
                 pathTextField.setBackground(Background.EMPTY);
                 pathTextField.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
-                pathTextField.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        pathTextField.setText("");
-                    }
-                });
+                pathTextField.setOnMouseClicked(event12 -> pathTextField.setText(""));
                 nameTextField.setBackground(Background.EMPTY);
                 nameTextField.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
-                nameTextField.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        nameTextField.setText("");
-                    }
-                });
+                nameTextField.setOnMouseClicked(event13 -> nameTextField.setText(""));
                 saveButton.setStyle("-fx-background-color: rgba(143,99,29,0.87)");
                 VBox vBox = new VBox(10 , pathTextField , nameTextField , saveButton);
                 vBox.relocate(UIConstants.BUTTON_STARTING_X + 10 , Screen.getPrimary().getVisualBounds().getHeight() * 0.2);
@@ -124,8 +106,6 @@ public class SideBarUI {
             group.getChildren().add(elixir);
             group.getChildren().add(achievedGold);
             group.getChildren().add(achievedElixir);
-
-
             new AnimationTimer() {
                 @Override
                 public void handle(long now) {
@@ -136,22 +116,16 @@ public class SideBarUI {
 
     }
 
-
-
     public static void makeStartingMenu(Group group, Stage stage){
         primaryStage=stage;
         makeSideBar(group,false);
         ImageView attackImage = getImageView("Attack.png");
-        attackImage.setOnMouseClicked(event -> {
-            makeLoadEnemyMapMenu(group);
-
-        });
+        attackImage.setOnMouseClicked(event -> makeLoadEnemyMapMenu(group));
         attackImage.setScaleX(0.6);
         attackImage.setScaleY(0.8);
         attackImage.setY(UIConstants.ATTACK_STARTING_Y);
         attackImage.setX(UIConstants.ATTACK_STARTING_X);
         group.getChildren().add(attackImage);
-
     }
 
     private static void makeLoadEnemyMapMenu(Group group) {
@@ -172,16 +146,12 @@ public class SideBarUI {
         Button selectButton=new Button("select");
         selectButton.setStyle("-fx-background-color: #a5862e");
         selectButton.relocate(120,UIConstants.MENU_VBOX_STARTING_Y + 50);
-        selectButton.setOnMouseClicked(event1 -> {
-            loadEnemyMap(group, comboBox);
-        });
+        selectButton.setOnMouseClicked(event1 -> loadEnemyMap(group, comboBox));
         ImageView backView = getImageView("back.png");
         backView.setScaleX(0.5);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.BACK_BUTTON_Y_COEFFICIENT);
         backView.setX(UIConstants.BUTTON_STARTING_X);
-        backView.setOnMouseClicked(event3 -> {
-            makeStartingMenu(group,primaryStage);
-        });
+        backView.setOnMouseClicked(event3 -> makeStartingMenu(group,primaryStage));
         group.getChildren().add(selectButton);
         group.getChildren().add(backView);
         group.getChildren().add(comboBox);
@@ -248,24 +218,18 @@ public class SideBarUI {
     public static void makeMainBuildingMenu(Group group) {
         makeSideBar(group,false);
         ImageView infoView = getImageView("info.png");
-        infoView.setOnMouseClicked(event -> {
-            makeDefaultInfoMenu(group,controller.getGame().getVillage().getMap()[14][14]);
-        });
+        infoView.setOnMouseClicked(event -> makeDefaultInfoMenu(group,controller.getGame().getVillage().getMap()[14][14]));
         ImageView availableBuildingView = getImageView("AvailableBuildings.png");
-        availableBuildingView.setOnMouseClicked(mouseEvent -> {
-            showAvailableBuildings(group);
-        });
+        availableBuildingView.setOnMouseClicked(mouseEvent -> showAvailableBuildings(group));
         ImageView statusView = getImageView("Status.png");
         statusView.setOnMouseClicked(event -> {
             makeSideBar(group,false);
-            makeLabels(group,controller.getGame().getVillage().showTownHallStatus().trim(),0.2,false);
+            makeLabels(group,controller.getGame().getVillage().showTownHallStatus().trim(),0.2 ,10 ,false);
             ImageView backView = getImageView("back.png");
             backView.setScaleX(0.5);
             backView.setY(Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.BACK_BUTTON_Y_COEFFICIENT);
             backView.setX(UIConstants.BUTTON_STARTING_X);
-            backView.setOnMouseClicked(backEvent -> {
-                makeMainBuildingMenu(group);
-            });
+            backView.setOnMouseClicked(backEvent -> makeMainBuildingMenu(group));
             group.getChildren().add(backView);
         });
         ImageView backView = getImageView("Back.png");
@@ -285,7 +249,7 @@ public class SideBarUI {
 
     private static void showAvailableBuildings(Group group) {
         makeSideBar(group,false);
-        makeLabels(group,"choose your preferred building",0.17,false);
+        makeLabels(group,"choose your preferred building",0.17, 10,false);
         ComboBox<String> comboBox = new ComboBox<>();
         comboBox.setBackground(Background.EMPTY);
         comboBox.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
@@ -387,7 +351,7 @@ public class SideBarUI {
     private static void makeSoldiersMenu(Group group, Cell cell) {
         Camp camp = (Camp)cell;
         makeSideBar(group,false);
-        makeLabels(group,camp.showSoldiers().trim(),0.2,false);
+        makeLabels(group,camp.showSoldiers().trim(),0.2 ,10 ,false);
         ImageView backView = getImageView("Back.png");
         backView.setX(UIConstants.BUTTON_STARTING_X);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
@@ -427,14 +391,12 @@ public class SideBarUI {
         campCapacity.setX(UIConstants.INFOMENU_STARTING_X);
         campCapacity.setY(UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(campCapacity);
-        makeLabels(group,Integer.toString(camp.getCapacity()),0.39,true);
+        makeLabels(group,Integer.toString(camp.getCapacity()),0.39, 10,true);
         ImageView backView = getImageView("Back.png");
         backView.setX(UIConstants.BUTTON_STARTING_X);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
         group.getChildren().add(backView);
-        backView.setOnMouseClicked(backEvent -> {
-            makeCampInfoMenu(group  ,cell);
-        });
+        backView.setOnMouseClicked(backEvent -> makeCampInfoMenu(group  ,cell));
     }
 
     public static void makeMineMenu(Group group, Cell cell) {
@@ -543,7 +505,7 @@ public class SideBarUI {
         UpgradeCost.setX(UIConstants.INFOMENU_STARTING_X);
         UpgradeCost.setY(UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(UpgradeCost);
-        makeLabels(group,Integer.toString(cell.getUpgradeCost()),0.32,true);
+        makeLabels(group,Integer.toString(cell.getUpgradeCost()),0.32 , 10 ,true);
         ImageView backView = getImageView("Back.png");
         backView.setX(UIConstants.BUTTON_STARTING_X);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
@@ -582,8 +544,8 @@ public class SideBarUI {
         overallInfoInsides.setX(UIConstants.INFOMENU_STARTING_X);
         overallInfoInsides.setY(UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(overallInfoInsides);
-        makeLabels(group,Integer.toString(cell.getLevel()),0.36,true);
-        makeLabels(group,Integer.toString(cell.getStrength()),0.27,true);
+        makeLabels(group,Integer.toString(cell.getLevel()),0.36 ,10 ,true);
+        makeLabels(group,Integer.toString(cell.getStrength()),0.27 ,10 ,true);
         ImageView backView = getImageView("Back.png");
         backView.setX(UIConstants.BUTTON_STARTING_X);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
@@ -622,7 +584,7 @@ public class SideBarUI {
 
     private static void makeStatusBarracks(Group group, Cell cell) {
         makeSideBar(group,false);
-        makeLabels(group,controller.getGame().getVillage().showBarracksStatus(),0.2,false);
+        makeLabels(group,controller.getGame().getVillage().showBarracksStatus(),0.2 , 10,false);
         ImageView backView = getImageView("back.png");
         backView.setScaleX(0.5);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.BACK_BUTTON_Y_COEFFICIENT);
@@ -732,42 +694,11 @@ public class SideBarUI {
         vBox.relocate(50,160);
         group.getChildren().add(vBox);
 
-        backView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                //makeSideBar(group);
-                //makeDefencesMenu(group, cell);
-                makeDefencesMenu(group , cell);
-            }
-        });
-        overallInfoView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                //makeSideBar(group);
-                makeDefencesOverallInfoMenu(group, cell);
-            }
-        });
-        upgradeInfoView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                //makeSideBar(group);
-                makeDefencesUpgradeInfoMenu(group, cell);
-            }
-        });
-        attackInfoView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                //makeSideBar(group);
-                makeDefencesAttackInfoMenu(group, cell);
-            }
-        });
-        upgradeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                //makeSideBar(group);
-                makeDefencesUpgradeMenu(group, cell);
-            }
-        });
+        backView.setOnMouseClicked(event -> makeDefencesMenu(group , cell));
+        overallInfoView.setOnMouseClicked(event -> makeDefencesOverallInfoMenu(group, cell));
+        upgradeInfoView.setOnMouseClicked(event -> makeDefencesUpgradeInfoMenu(group, cell));
+        attackInfoView.setOnMouseClicked(event -> makeDefencesAttackInfoMenu(group, cell));
+        upgradeView.setOnMouseClicked(event -> makeDefencesUpgradeMenu(group, cell));
     }
 
     private static void makeDefencesUpgradeMenu(Group group, Cell cell) {
@@ -783,28 +714,26 @@ public class SideBarUI {
         group.getChildren().add(attacklInfoInsides);
 
         String damage = "";
-        if (cell.getClass().getSimpleName().equals("ArcherTower")) {
-            damage = "Ground units";
+        if (cell.getClass().getSimpleName().equals("ArcherTower") || cell.getClass().getSimpleName().equals("Cannon") || cell.getClass().getSimpleName().equals("Trap")) {
+            damage = "Ground \nunits";
         }
         if (cell.getClass().getSimpleName().equals("AirDefence")) {
-            damage = "Flying units";
+            damage = "Flying \nunits";
         }
         if (cell.getClass().getSimpleName().equals("Cannon")) {
-            damage = "Ground units";
+            damage = "Ground \nunits";
         }
         if (cell.getClass().getSimpleName().equals("WizardTower")) {
-            damage = "Ground & Flying units";
+            damage = "Ground & \nFlying units";
         }
-        makeLabels(group,damage,0.25,true);
-        makeLabels(group,Integer.toString(cell.getDamage()),0.3,true);
-        makeLabels(group,Integer.toString(cell.getRange()),0.35,true);
+        makeLabels(group,damage,0.26, -20  , true);
+        makeLabels(group,Integer.toString(cell.getDamage()),0.326, 0, true);
+        makeLabels(group,Integer.toString(cell.getRange()),0.387, 43 ,true);
         ImageView backView = getImageView("Back.png");
         backView.setX(UIConstants.BUTTON_STARTING_X);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
         group.getChildren().add(backView);
-        backView.setOnMouseClicked(backEvent -> {
-            makeDefencesMenu(group , cell);
-        });
+        backView.setOnMouseClicked(backEvent -> makeDefencesMenu(group , cell));
     }
 
     private static void makeDefencesUpgradeInfoMenu(Group group, Cell cell) {
@@ -833,8 +762,8 @@ public class SideBarUI {
                     Cell newCell = (Cell) spacialBuilding.getDeclaredConstructor(int.class, int.class).newInstance(0, 0);
                     int goldCost = Config.getDictionary().get(newCell.getClass().getSimpleName() + "_GOLD_COST");
                     int elixirCost = Config.getDictionary().get(newCell.getClass().getSimpleName() + "_ELIXIR_COST");
-                    makeLabels(group,"Do you want to build\n" + buildingName + "\nfor " + goldCost + " gold and " + elixirCost + " elixir?",0.27,false);
-                    makeLabels(group,"if yes,\nplease select the spot you want\nto build your building on",0.39,false);
+                    makeLabels(group,"Do you want to build\n" + buildingName + "\nfor " + goldCost + " gold and " + elixirCost + " elixir?",0.27 , 10,false);
+                    makeLabels(group,"if yes,\nplease select the spot you want\nto build your building on",0.39,  10 , false);
                     ImageView buildView = getImageView("Build.png");
                     buildView.setX(UIConstants.BUTTON_STARTING_X);
                     buildView.setY(Screen.getPrimary().getVisualBounds().getHeight()*0.55);
@@ -872,12 +801,12 @@ public class SideBarUI {
     }
 
 
-    private static void makeLabels(Group group, String message,double yCoefficient,boolean isInfoLabel) {
+    private static void makeLabels(Group group, String message,double yCoefficient , int xCoefficient ,boolean isInfoLabel) {
         Label label=new Label(message);
         if(isInfoLabel) {
-            label.relocate(UIConstants.INFO_LABEL_STARTING_X + 10, Screen.getPrimary().getVisualBounds().getHeight() * yCoefficient);
+            label.relocate(UIConstants.INFO_LABEL_STARTING_X + xCoefficient, Screen.getPrimary().getVisualBounds().getHeight() * yCoefficient);
         }else{
-            label.relocate(UIConstants.LABELS_STARTING_X + 10, Screen.getPrimary().getVisualBounds().getHeight() * yCoefficient);
+            label.relocate(UIConstants.LABELS_STARTING_X + xCoefficient, Screen.getPrimary().getVisualBounds().getHeight() * yCoefficient);
         }
         label.setTextFill(Color.BROWN);
         label.setFont(Font.font("Papyrus",16));

@@ -30,8 +30,9 @@ public abstract class Soldier {
     private transient ImageView imageView = new ImageView();
     private transient Rectangle leftHealth;
     private transient Rectangle allHealth;
-    private final double MOVE_PER_TURN = 1.0 * getMaxSpeed() / ((UIConstants.DELTA_T)*0.002*Config.getDictionary().get("KMM"));
-
+    //private final double MOVE_PER_TURN = 1.0 * getMaxSpeed() / ((UIConstants.DELTA_T+0.1)*0.002*Config.getDictionary().get("KMM"));
+    private final double MOVE_PER_TURN = 1.0 * getMaxSpeed() / Config.getDictionary().get("KMM");
+    //private final double MOVE_PER_TURN = 1.0;
     static {
         soldierSubClasses.add(new Archer(0));
         soldierSubClasses.add(new Dragon(0));
@@ -250,10 +251,9 @@ public abstract class Soldier {
 
     private void moveSoldier(Village attackerVillage, Direction direction, Village enemyVillage) {
         // TODO: 4/24/2018 check double int
-        System.out.println("move per turn"+MOVE_PER_TURN);
         if (direction == Direction.LEFT) {
             if (enemyVillage.getMap()[(int) (x - 1)][(int) y].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) (x - 1)][(int) y].isRuined() || getCanFly()) {
-                setX(getX() - MOVE_PER_TURN);
+                setX(getX() - 1.0 * getMaxSpeed() / ((UIConstants.DELTA_T+0.1) * 0.002 * Config.getDictionary().get("KMM")));
             } else {
                 Cell target = enemyVillage.getMap()[(int) (x - 1)][(int) y];
                 target.setStrength(target.getStrength() - getDamage());
@@ -269,7 +269,7 @@ public abstract class Soldier {
 
         } else if (direction == Direction.RIGHT) {
             if (enemyVillage.getMap()[(int) (x + 1)][(int) y].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) (x + 1)][(int) y].isRuined() || getCanFly()) {
-                setX(getX() + MOVE_PER_TURN);
+                setX(getX() + 1.0 * getMaxSpeed() / ((UIConstants.DELTA_T+0.1) * 0.002 * Config.getDictionary().get("KMM")));
             } else {
                 Cell target = enemyVillage.getMap()[(int) (x + 1)][(int) y];
                 target.setStrength(target.getStrength() - getDamage());
@@ -284,7 +284,7 @@ public abstract class Soldier {
             }
         } else if (direction == Direction.DOWN) {
             if (enemyVillage.getMap()[(int) x][(int) (y + 1)].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) x][(int) (y + 1)].isRuined() || getCanFly()) {
-                setY(getY() + MOVE_PER_TURN);
+                setY(getY() + 1.0 * getMaxSpeed() / ((UIConstants.DELTA_T+0.1) * 0.002 * Config.getDictionary().get("KMM")));
             } else {
                 Cell target = enemyVillage.getMap()[(int) x][(int) (y + 1)];
                 target.setStrength(target.getStrength() - getDamage());
@@ -300,7 +300,7 @@ public abstract class Soldier {
         } else if (direction == Direction.UP)
 
             if (enemyVillage.getMap()[(int) x][(int) (y - 1)].getClass().equals(Grass.class) || enemyVillage.getMap()[(int) x][(int) (y - 1)].isRuined() || getCanFly()) {
-                setY(getY() - MOVE_PER_TURN);
+                setY(getY() - 1.0 * getMaxSpeed() / ((UIConstants.DELTA_T+0.1) * 0.002 * Config.getDictionary().get("KMM")));
             } else {
                 Cell target = enemyVillage.getMap()[(int) x][(int) (y - 1)];
                 if (this.getClass().getSimpleName().equals("WallBreaker")){
@@ -393,7 +393,9 @@ public abstract class Soldier {
     public ArrayList<String> getAllValidDestinations() {
         ArrayList<String> allTowers = new ArrayList<>();
         for (Cell cell : Cell.getCellKinds()) {
-            allTowers.add(cell.getClass().getSimpleName());
+            if (!cell.getClass().getSimpleName().equals("Trap")) {
+                allTowers.add(cell.getClass().getSimpleName());
+            }
         }
         return allTowers;
     }
