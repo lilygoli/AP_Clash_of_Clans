@@ -7,6 +7,7 @@ import com.company.Models.Soldiers.Soldier;
 import com.company.Models.Towers.Buildings.Camp;
 import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
+import com.company.Models.Towers.Cell;
 import com.company.Models.Village;
 import javafx.animation.*;
 import javafx.event.EventHandler;
@@ -36,8 +37,7 @@ import java.util.Random;
 
 import static com.company.UIs.MapUI.getImageOfBuildings;
 import static com.company.UIs.MapUI.putBuildingImageInMap;
-import static com.company.UIs.SideBarUI.makeSideBar;
-import static com.company.UIs.SideBarUI.opacityOnHover;
+import static com.company.UIs.SideBarUI.*;
 
 public class AttackMapUI {
     private static final String ADDRESS = "./src/com/company/UIs/SideBarMenuImages/";
@@ -158,7 +158,7 @@ public class AttackMapUI {
 
     private static void makeAttackStartingSideBar(Group group) {
         SideBarUI.makeSideBar(group,true);
-        ImageView attackMap= SideBarUI.getImageView("AttackMap.png");
+        ImageView attackMap= getImageView("AttackMap.png");
         attackMap.setOnMouseClicked(event -> {
 //            MainMenuUI.getGameLogic().stop();
 //            controller.getGame().setUnderAttackOrDefense(true);
@@ -175,7 +175,7 @@ public class AttackMapUI {
 
             showAttackSideBar(group);
         });
-        ImageView back= SideBarUI.getImageView("Back.png");
+        ImageView back= getImageView("Back.png");
         back.setOnMouseClicked(event -> returnToVillageUI());
         VBox vBox= new VBox(attackMap,back);
         vBox.relocate(UIConstants.BUTTON_STARTING_X,UIConstants.MENU_VBOX_STARTING_Y);
@@ -344,8 +344,24 @@ public class AttackMapUI {
     public static void setOnClickImages(int i, int j, Group root) {
         controller.getGame().getAttackedVillage().getVillage().getMap()[j][i].getImageView().setOnMouseClicked(event -> {
             controller.getGame().getAttackedVillage().getVillage().getMap()[j][i].getImageView().requestFocus();
+            Cell tower = controller.getGame().getAttackedVillage().getVillage().getMap()[i][j];
+            makeStatusTowerSidebar(root, tower);
         });
 
+    }
+
+    private static void makeStatusTowerSidebar(Group root, Cell tower) {
+        SideBarUI.makeSideBar(root, true);
+        makeLabels(root, tower.getClass().getSimpleName(), 0.15, 20, false);
+        makeLabels(root, "Level : " + tower.getLevel(), 0.23, 20, false);
+        makeLabels(root, "Health : " + tower.getStrength(), 0.31, 20, false);
+        ImageView backView = getImageView("Back.png");
+        backView.setX(UIConstants.BUTTON_STARTING_X);
+        backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
+        root.getChildren().add(backView);
+        backView.setOnMouseClicked(backEvent -> {
+            showAttackSideBar(root);
+        });
     }
 
     public static FileInputStream makeGrasses(boolean flag, int i, int j) throws FileNotFoundException {
