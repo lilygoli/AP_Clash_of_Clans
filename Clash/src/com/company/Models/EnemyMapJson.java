@@ -62,7 +62,11 @@ public class EnemyMapJson {
         game.getVillage().setMainBuilding(null);
         game.setTime(0);
         game.setAttackStatus(true);
-        game.getVillage().setWalls(walls);
+//        game.getVillage().setWalls(walls);
+//        System.out.println(game.getVillage().getWalls().get(0));
+        for (Wall wall : walls) {
+            initializeWall(game,wall);
+        }
         game.getVillage().setResource(resources);
         for (Cell building : buildings
                 ) {
@@ -139,6 +143,17 @@ public class EnemyMapJson {
         goldMine.setLevel(building.getLevel());
         game.getVillage().getGoldMines().add(goldMine);
         game.getVillage().getMap()[building.getX()][building.getY()] = goldMine;
+    }
+    private void initializeWall(Game game, Cell building) {
+        Wall wall = new Wall(game.getVillage().getWalls().size(), building.getLevel());
+        wall.setX(building.getX());
+        wall.setY(building.getY());
+        for (int i = 0; i < building.getLevel(); i++) {
+            wall.upgrade();
+        }
+        wall.setLevel(building.getLevel());
+        game.getVillage().getWalls().add(wall);
+        game.getVillage().getMap()[building.getX()][building.getY()] = wall;
     }
 
     private void initializeElixirMine(Game game, Cell building) {

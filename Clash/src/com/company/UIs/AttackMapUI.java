@@ -322,7 +322,7 @@ public class AttackMapUI {
                             setOnClickImages(14, 14, root);
                             village.getMap()[j][i].setIsEventSet(true);
                         }
-                        putBuildingImageInMap(i, j, village,16, canvas);
+                        putBuildingImageInMap(i, j, village,16, canvas,0);
                     }
 
                 } else {
@@ -334,7 +334,7 @@ public class AttackMapUI {
                             AttackMapUI.setOnClickImages(i, j, root);
                             village.getMap()[j][i].setIsEventSet(true);
                         }
-                        putBuildingImageInMap(i, j, village,32, canvas);
+                        putBuildingImageInMap(i, j, village,32, canvas,0);
                     }
                 }
             }
@@ -424,7 +424,7 @@ public class AttackMapUI {
                                 moveTo.setX(MapUI.mapCoordinates2PixelX(soldier.getX()) + 12);
                                 moveTo.setY(MapUI.mapCoordinates2PixelY(soldier.getY()));
                                 LineTo lineTo = new LineTo();
-                                lineTo.setX(MapUI.mapCoordinates2PixelX(((Archer) soldier).getTarget().getX())+12);
+                                lineTo.setX(MapUI.mapCoordinates2PixelX(((Archer) soldier).getTarget().getX())-12);
                                 lineTo.setY(MapUI.mapCoordinates2PixelY(((Archer) soldier).getTarget().getY()));
                                 path.getElements().add(moveTo);
                                 path.getElements().add(lineTo);
@@ -438,7 +438,6 @@ public class AttackMapUI {
                                 pathTransition.setNode(arrow);
                                 pathTransition.setPath(path);
 
-                                //Setting the orientation of the path
                                 pathTransition.setOrientation(PathTransition.OrientationType.
                                         ORTHOGONAL_TO_TANGENT);
                                 pathTransition.play();

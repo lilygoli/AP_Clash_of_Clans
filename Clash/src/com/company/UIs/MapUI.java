@@ -99,6 +99,8 @@ public class MapUI  {
         gifsOfTowers.put("WizardTower", new Image(WizardTowerFile.toURI().toString()));
         File BarrackFile = new File("./src/com/company/ImagesAndGifs/Buildings/BarrackLoading.gif");
         gifsOfTowers.put("BarrackLoading", new Image(BarrackFile.toURI().toString()));
+        File TrapFile = new File("./src/com/company/ImagesAndGifs/Buildings/TrapLoading.gif");
+        gifsOfTowers.put("TrapLoading", new Image(TrapFile.toURI().toString()));
         File archerFile = new File("./src/com/company/ImagesAndGifs/Soldiers/Archer/ArcherPortrait.jpg");
         gifsOfTowers.put("ArcherPortrait", new Image(archerFile.toURI().toString()));
         File dragonFile=new File("./src/com/company/ImagesAndGifs/Soldiers/Dragon/DragonPortrait.jpg");
@@ -111,6 +113,7 @@ public class MapUI  {
         gifsOfTowers.put("HealerPortrait", new Image(healerFile.toURI().toString()));
         File wallBreakerFile=new File("./src/com/company/ImagesAndGifs/Soldiers/WallBreaker/WallBreakerPortrait.jpg");
         gifsOfTowers.put("WallBreakerPortrait", new Image(wallBreakerFile.toURI().toString()));
+
     }
 
     public static int getBuildX() {
@@ -298,7 +301,7 @@ public class MapUI  {
                                         setOnClickImages(14, 14, root);
                                         village.getMap()[j][i].setIsEventSet(true);
                                     }
-                                    putBuildingImageInMap(i, j, village,16,canvas);
+                                    putBuildingImageInMap(i, j, village,16,canvas,0);
                                 }
 
                             } else {
@@ -308,7 +311,7 @@ public class MapUI  {
                                         setOnClickImages(i, j, root);
                                         village.getMap()[j][i].setIsEventSet(true);
                                     }
-                                    putBuildingImageInMap(i, j, village,32, canvas);
+                                    putBuildingImageInMap(i, j, village,32, canvas,-1);
                                 }else {
 
                                     if(village.getMap()[j][i].getClass().getSimpleName().equals("Wall")&& verticalOrientationOfWall){
@@ -320,7 +323,7 @@ public class MapUI  {
                                         setOnClickImages(i, j, root);
                                         village.getMap()[j][i].setIsEventSet(true);
                                     }
-                                    putBuildingImageInMap(i, j, village,32,canvas);
+                                    putBuildingImageInMap(i, j, village,32,canvas,-1);
                                 }
                             }
                         }
@@ -332,8 +335,8 @@ public class MapUI  {
         showMapAnimationTimer.start();
     }
 
-    public static void putBuildingImageInMap(int i, int j, Village village, int size, PannableCanvas canvas) {
-        village.getMap()[j][i].getImageView().setX(mapCoordinates2PixelX(j+1));
+    public static void putBuildingImageInMap(int i, int j, Village village, int size, PannableCanvas canvas,int adjust) {
+        village.getMap()[j][i].getImageView().setX(mapCoordinates2PixelX(j+1+adjust));
         village.getMap()[j][i].getImageView().setY(mapCoordinates2PixelY(i));
         addGlowToBuildings(village.getMap()[j][i].getImageView());
         village.getMap()[j][i].getImageView().setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / size);
