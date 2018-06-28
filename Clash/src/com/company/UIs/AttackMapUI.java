@@ -111,13 +111,14 @@ public class AttackMapUI {
                 imageView.setOnMouseClicked(event -> {
                     attackX = finalI - 2;
                     attackY = finalJ - 1;
-                    if(!(attackX==29 || attackX==0 || attackY==29 || attackY==0) || attackX<0 || attackX>29 || attackY<0 || attackY>29){
-                        System.out.println("invalid");
-                        InvalidPlaceForSoldiersException exception = new InvalidPlaceForSoldiersException();
-                        new Timeline(new KeyFrame(Duration.seconds(4), new KeyValue(exception.getImageView().imageProperty(), null))).play();
-                        root.getChildren().add(exception.getImageView());
-
-                    }else if (!chosenSoldierName.equals("")) {
+//                    if(!(attackX==29 || attackX==0 || attackY==29 || attackY==0) || attackX<0 || attackX>29 || attackY<0 || attackY>29){
+//                        System.out.println("invalid");
+//                        InvalidPlaceForSoldiersException exception = new InvalidPlaceForSoldiersException();
+//                        new Timeline(new KeyFrame(Duration.seconds(4), new KeyValue(exception.getImageView().imageProperty(), null))).play();
+//                        root.getChildren().add(exception.getImageView());
+//
+//                    }else
+                        if (!chosenSoldierName.equals("")) {
                         for (Soldier soldier : controller.getGame().getTroops()) {
                             if (soldier.getClass().getSimpleName().equals(chosenSoldierName) && soldier.getX() == -1) {
                                 putSoldiersImageInMap(attackY, attackX, 32, canvas, soldiersGif.get(chosenSoldierName + "MoveUp"), soldier, root);
@@ -334,7 +335,7 @@ public class AttackMapUI {
                             AttackMapUI.setOnClickImages(i, j, root);
                             village.getMap()[j][i].setIsEventSet(true);
                         }
-                        putBuildingImageInMap(i, j, village,32, canvas,0);
+                        putBuildingImageInMap(i, j, village,32, canvas,-1);
                     }
                 }
             }
@@ -424,7 +425,7 @@ public class AttackMapUI {
                                 moveTo.setX(MapUI.mapCoordinates2PixelX(soldier.getX()) + 12);
                                 moveTo.setY(MapUI.mapCoordinates2PixelY(soldier.getY()));
                                 LineTo lineTo = new LineTo();
-                                lineTo.setX(MapUI.mapCoordinates2PixelX(((Archer) soldier).getTarget().getX())-12);
+                                lineTo.setX(MapUI.mapCoordinates2PixelX(((Archer) soldier).getTarget().getX())+12);
                                 lineTo.setY(MapUI.mapCoordinates2PixelY(((Archer) soldier).getTarget().getY()));
                                 path.getElements().add(moveTo);
                                 path.getElements().add(lineTo);

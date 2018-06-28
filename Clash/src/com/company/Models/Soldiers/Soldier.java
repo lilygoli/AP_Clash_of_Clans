@@ -205,6 +205,7 @@ public abstract class Soldier {
 
 
     void attackTargets(Village attackerVillage, Village enemyVillage, Cell target) {
+        System.out.println("target x"+target.getX()+"soldier x"+x);
         if (hasReachedDestination(target)) {
             String relativeDirection = getRelativeDirection(target);
             chooseRelativeDirection(relativeDirection);
@@ -219,7 +220,7 @@ public abstract class Soldier {
             setDirection(findDirection(enemyVillage, target));
             moveSoldier(attackerVillage, getDirection(), enemyVillage);
             switch (getDirection()) {
-                // TODO: 6/14/2018 left and right here is wisewersa
+                // TODO: 6/14/2018 left and right here is viseversa
                 case UP:
                     imageView.setImage(AttackMapUI.getSoldiersGif().get(this.getClass().getSimpleName() + "MoveUp"));
                     break;
@@ -483,8 +484,7 @@ public abstract class Soldier {
         }
         // TODO: 4/23/2018 check double and int
         System.out.println(getX()+" y"+getY());
-
-        return lastDir[(int)Math.floor(getX())][(int) Math.floor(getY())];
+        return lastDir[(int)Math.ceil(getX())][(int) Math.ceil(getY())];
     }
 
     public boolean hasReachedDestination(Cell target) {

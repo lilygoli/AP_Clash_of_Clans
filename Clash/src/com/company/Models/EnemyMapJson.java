@@ -4,6 +4,7 @@ import com.company.Models.Towers.Buildings.*;
 import com.company.Models.Towers.Cell;
 import com.company.Models.Towers.Defences.*;
 
+import java.beans.Transient;
 import java.util.ArrayList;
 
 public class EnemyMapJson {
@@ -104,6 +105,8 @@ public class EnemyMapJson {
                 case 11:
                     initializeWizardTower(game, building);
                     break;
+                case 13 :
+                    initializeTrap(game,building);
                 case 14:
                     //Gaurdian Giant
                     break;
@@ -144,6 +147,7 @@ public class EnemyMapJson {
         game.getVillage().getGoldMines().add(goldMine);
         game.getVillage().getMap()[building.getX()][building.getY()] = goldMine;
     }
+
     private void initializeWall(Game game, Cell building) {
         Wall wall = new Wall(game.getVillage().getWalls().size(), building.getLevel());
         wall.setX(building.getX());
@@ -154,6 +158,17 @@ public class EnemyMapJson {
         wall.setLevel(building.getLevel());
         game.getVillage().getWalls().add(wall);
         game.getVillage().getMap()[building.getX()][building.getY()] = wall;
+    }
+    private void initializeTrap(Game game, Cell building) {
+        Trap trap = new Trap(game.getVillage().getTraps().size(), building.getLevel());
+        trap.setX(building.getX());
+        trap.setY(building.getY());
+        for (int i = 0; i < building.getLevel(); i++) {
+            trap.upgrade();
+        }
+        trap.setLevel(building.getLevel());
+        game.getVillage().getTraps().add(trap);
+        game.getVillage().getMap()[building.getX()][building.getY()] = trap;
     }
 
     private void initializeElixirMine(Game game, Cell building) {
