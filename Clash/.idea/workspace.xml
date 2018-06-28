@@ -8,20 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cd4373d0-16e4-43f1-a01f-34df3517e604" name="Default" comment="bug fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Models/Config.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Config.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Models/Game.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Game.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Models/Soldiers/Archer.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Soldiers/Archer.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Models/Soldiers/Dragon.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Soldiers/Dragon.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Models/Soldiers/Giant.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Soldiers/Giant.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Models/Soldiers/Guardian.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Soldiers/Guardian.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Models/Soldiers/Healer.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Soldiers/Healer.java" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Models/Soldiers/WallBreaker.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Soldiers/WallBreaker.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Models/Towers/Cell.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Towers/Cell.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Trap.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Trap.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UIs/MapUI.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/MapUI.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,8 +28,8 @@
       <file leaf-file-name="Soldier.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="464" column="28" lean-forward="false" selection-start-line="464" selection-start-column="28" selection-end-line="464" selection-end-column="28" />
+            <state relative-caret-position="227">
+              <caret line="510" column="37" lean-forward="false" selection-start-line="510" selection-start-column="37" selection-end-line="510" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#847#856#0" expanded="true" />
@@ -118,8 +105,8 @@
       <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Models/Config.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1837">
-              <caret line="163" column="0" lean-forward="true" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+            <state relative-caret-position="440">
+              <caret line="133" column="42" lean-forward="false" selection-start-line="133" selection-start-column="42" selection-end-line="133" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -189,8 +176,8 @@
       <file leaf-file-name="Healer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Healer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+            <state relative-caret-position="363">
+              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding>
                 <element signature="e#216#217#0" expanded="true" />
                 <element signature="e#243#244#0" expanded="true" />
@@ -333,8 +320,8 @@
         <option value="$PROJECT_DIR$/src/com/company/Models/Game.java" />
         <option value="$PROJECT_DIR$/src/com/company/UIs/MapUI.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Trap.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/Config.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Cell.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Models/Config.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java" />
       </list>
     </option>
@@ -821,12 +808,12 @@
       <workItem from="1529756288643" duration="4209000" />
       <workItem from="1529897568444" duration="229000" />
       <workItem from="1529909750134" duration="494000" />
-      <workItem from="1530019087671" duration="30999000" />
+      <workItem from="1530019087671" duration="35136000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="237717000" />
+    <option name="totallyTimeSpent" value="241854000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1184,17 +1171,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Healer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-          <folding>
-            <element signature="e#216#217#0" expanded="true" />
-            <element signature="e#243#244#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Dragon.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -1269,16 +1245,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Models/Config.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1837">
-          <caret line="163" column="0" lean-forward="true" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+        <state relative-caret-position="440">
+          <caret line="133" column="42" lean-forward="false" selection-start-line="133" selection-start-column="42" selection-end-line="133" selection-end-column="42" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Healer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding>
+            <element signature="e#216#217#0" expanded="true" />
+            <element signature="e#243#244#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="464" column="28" lean-forward="false" selection-start-line="464" selection-start-column="28" selection-end-line="464" selection-end-column="28" />
+        <state relative-caret-position="227">
+          <caret line="510" column="37" lean-forward="false" selection-start-line="510" selection-start-column="37" selection-end-line="510" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#847#856#0" expanded="true" />

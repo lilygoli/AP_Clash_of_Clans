@@ -442,8 +442,8 @@ public abstract class Soldier {
             for (int i = 0; i < 4; i++) {
                 if (!this.getCanFly()) {
                     if (adjacent[i][0] != -1 && adjacent[i][1] != -1 && !enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getClass().getSimpleName().equals("Trap")) {
-                        if (distance[x][y] + 1 + (int) (enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getStrength() / damage) < distance[adjacent[i][0]][adjacent[i][1]]) {
-                            distance[adjacent[i][0]][adjacent[i][1]] = distance[x][y] + 1 + (int) (enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getStrength() / damage);
+                        if (distance[x][y] + 1 + (int) (enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getStrength() * getMaxSpeed() / damage) < distance[adjacent[i][0]][adjacent[i][1]]) {
+                            distance[adjacent[i][0]][adjacent[i][1]] = distance[x][y] + 1 + (int) (enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getStrength() * getMaxSpeed() / damage);
                             switch (i) {
                                 case 0:
                                     lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.DOWN;
@@ -466,10 +466,10 @@ public abstract class Soldier {
                             distance[adjacent[i][0]][adjacent[i][1]] = distance[x][y] + 1;
                             switch (i) {
                                 case 0:
-                                    lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.DOWN;;
+                                    lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.DOWN;
                                     break;
                                 case 1:
-                                    lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.LEFT;;
+                                    lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.LEFT;
                                     break;
                                 case 2:
                                     lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.UP;
@@ -491,7 +491,7 @@ public abstract class Soldier {
                                 lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.DOWN;
                                 break;
                             case 1:
-                                lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.LEFT;;
+                                lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.LEFT;
                                 break;
                             case 2:
                                 lastDir[adjacent[i][0]][adjacent[i][1]] = Direction.UP;
@@ -508,9 +508,13 @@ public abstract class Soldier {
             queueX.removeFirst();
             queueY.removeFirst();
         }
-        // TODO: 4/23/2018 check double and int
+        // TODO: 6/28/2018 check this
         System.out.println(getX()+" y"+getY());
-        return lastDir[(int)Math.ceil(getX())][(int) Math.ceil(getY())];
+        Direction direction = lastDir[(int)Math.ceil(getX())][(int) Math.ceil(getY())];
+        if (direction == Direction.UP || direction == Direction.RIGHT){
+            return lastDir[(int)Math.floor(getX())][(int) Math.floor(getY())];
+        }
+        return direction;
     }
 
     public boolean hasReachedDestination(Cell target) {
