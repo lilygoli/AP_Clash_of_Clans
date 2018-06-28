@@ -801,7 +801,7 @@ public class SideBarUI {
     }
 
 
-    private static void makeLabels(Group group, String message,double yCoefficient , int xCoefficient ,boolean isInfoLabel) {
+    public static void makeLabels(Group group, String message,double yCoefficient , int xCoefficient ,boolean isInfoLabel) {
         Label label=new Label(message);
         if(isInfoLabel) {
             label.relocate(UIConstants.INFO_LABEL_STARTING_X + xCoefficient, Screen.getPrimary().getVisualBounds().getHeight() * yCoefficient);
