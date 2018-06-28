@@ -3,10 +3,7 @@ package com.company.Models;
 import com.company.Exception.*;
 import com.company.Models.Towers.Buildings.Camp;
 import com.company.Models.Towers.Cell;
-import com.company.Models.Towers.Defences.AirDefence;
-import com.company.Models.Towers.Defences.ArcherTower;
-import com.company.Models.Towers.Defences.Cannon;
-import com.company.Models.Towers.Defences.WizardTower;
+import com.company.Models.Towers.Defences.*;
 import com.company.Models.Towers.Buildings.Storage;
 import com.company.Models.Towers.Buildings.*;
 import com.company.Models.Soldiers.Soldier;
@@ -15,6 +12,7 @@ import com.company.UIs.UIConstants;
 import com.company.View.View;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Game {
     private String playerName;
@@ -296,14 +294,26 @@ public class Game {
             }
             wizardTower.findAndShootUnit(this.troops);
         }
+        for (Trap trap : this.attackedVillage.getVillage().getTraps()) {
+            if (trap.getUnderConstructionStatus() || trap.isRuined()) {
+                continue;
+            }
+            trap.findAndShootUnit(this.troops);
+        }
         //Attacker Soldiers part
         for (int i = 0; i < Config.getDictionary().get("KMM"); i++) {
-            for (Soldier soldier : troops) {
+            Iterator<Soldier> iterator = troops.iterator();
+            while(iterator.hasNext()){
+                Soldier soldier = iterator.next();
                 if (soldier.getX() == -1 && soldier.getY() == -1) {
                     continue;
                 }
                 System.out.println(soldier.getClass().getSimpleName() + " " + soldier.getDamage());
                 soldier.attackTarget(this.getVillage(), this.attackedVillage.getVillage());
+                if (soldier.getHealth() <= 0){
+                    iterator.remove();
+                    soldier.getImageView().setImage(null);
+                }
             }
             try {
                 Thread.sleep(UIConstants.DELTA_T / Config.getDictionary().get("KMM"));

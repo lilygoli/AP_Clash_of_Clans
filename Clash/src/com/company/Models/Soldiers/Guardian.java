@@ -1,5 +1,6 @@
 package com.company.Models.Soldiers;
 
+import com.company.Controller.Controller;
 import com.company.Models.Village;
 
 public class Guardian extends Soldier{

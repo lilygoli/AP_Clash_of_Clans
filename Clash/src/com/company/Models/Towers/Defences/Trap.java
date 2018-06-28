@@ -15,7 +15,7 @@ public class Trap extends Defence{
     }
 
     @Override
-    public Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers) {
+    public Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers){
         synchronized (enemySoldiers) {
             if (this.getUnderConstructionStatus()) {
                 return null;
@@ -30,9 +30,9 @@ public class Trap extends Defence{
                     target.getImageView().setImage(null);
                 }
                 this.setRuined(true);
-                this.getImageView().setImage(null);
+                //this.getImageView().setImage(null);
                 this.setStrength(0);
-                this.setImage(null);
+                //this.setImage(null);
             }
             else{
                 this.setImage(getImageOfBuildings(this.getClass().getSimpleName(),".png" ,true));

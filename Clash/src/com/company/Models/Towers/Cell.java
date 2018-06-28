@@ -117,6 +117,9 @@ public class Cell {
     }
 
     public int getStrength() {
+        if (this.getClass().getSimpleName().equals("Trap")){
+            return 0;
+        }
         return strength;
     }
 

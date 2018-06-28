@@ -101,6 +101,8 @@ public class MapUI  {
         gifsOfTowers.put("BarrackLoading", new Image(BarrackFile.toURI().toString()));
         File TrapFile = new File("./src/com/company/ImagesAndGifs/Buildings/TrapLoading.gif");
         gifsOfTowers.put("TrapLoading", new Image(TrapFile.toURI().toString()));
+        File TrapGifFile = new File("./src/com/company/ImagesAndGifs/Buildings/Trap.gif");
+        gifsOfTowers.put("Trap", new Image(TrapGifFile.toURI().toString()));
         File archerFile = new File("./src/com/company/ImagesAndGifs/Soldiers/Archer/ArcherPortrait.jpg");
         gifsOfTowers.put("ArcherPortrait", new Image(archerFile.toURI().toString()));
         File dragonFile=new File("./src/com/company/ImagesAndGifs/Soldiers/Dragon/DragonPortrait.jpg");

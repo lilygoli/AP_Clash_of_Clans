@@ -44,13 +44,18 @@ public class AttackMapUI {
     private static int attackX, attackY;
     private static PannableCanvas canvas = new PannableCanvas();
     private static Controller controller;
+
     private static Stage primaryStage;
+
     private static HashMap<String ,Image> soldiersGif=new HashMap<>();
     private static String chosenSoldierName = "";
     private static Label winningLabel=new Label("");
-
     public static HashMap<String, Image> getSoldiersGif() {
         return soldiersGif;
+    }
+
+    public static Controller getController() {
+        return controller;
     }
 
     static {
@@ -229,13 +234,10 @@ public class AttackMapUI {
         File backFile=new File(ADDRESS+"Back.png");
         Image backImage=new Image(backFile.toURI().toString());
         ImageView backView=new ImageView(backImage);
-        backView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                controller.getGame().healAfterWar();
-                controller.getGame().setUnderAttackOrDefense(false);
-                returnToVillageUI();
-            }
+        backView.setOnMouseClicked(event -> {
+            controller.getGame().healAfterWar();
+            controller.getGame().setUnderAttackOrDefense(false);
+            returnToVillageUI();
         });
 
         VBox allSoldiers = new VBox(1, soldiers1, label1, soldiers2, label2, soldiers3, label3, backView);
@@ -281,12 +283,7 @@ public class AttackMapUI {
 
     private static void addClickListener(ImageView imageView, String name) {
 
-        imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                chosenSoldierName = name;
-            }
-        });
+        imageView.setOnMouseClicked(event -> chosenSoldierName = name);
     }
 
     private static int findNumberOfTroops(String name) {
@@ -434,15 +431,15 @@ public class AttackMapUI {
                 for (int i=0;i<controller.getGame().getTroops().size();i++) {
                     Soldier soldier=controller.getGame().getTroops().get(i);
                     if(soldier.getClass().getSimpleName().equals("Archer")){
-                        if(((Archer)soldier).getTarget()!=null && soldier.hasReachedDestination(soldier.getTarget())){
+                        if(soldier.getTarget()!=null && soldier.hasReachedDestination(soldier.getTarget())){
                             if(!arrows.values().contains(soldier)) {
                                 Path path = new Path();
                                 MoveTo moveTo = new MoveTo();
                                 moveTo.setX(MapUI.mapCoordinates2PixelX(soldier.getX()) + 12);
                                 moveTo.setY(MapUI.mapCoordinates2PixelY(soldier.getY()));
                                 LineTo lineTo = new LineTo();
-                                lineTo.setX(MapUI.mapCoordinates2PixelX(((Archer) soldier).getTarget().getX())+12);
-                                lineTo.setY(MapUI.mapCoordinates2PixelY(((Archer) soldier).getTarget().getY()));
+                                lineTo.setX(MapUI.mapCoordinates2PixelX((soldier).getTarget().getX())+12);
+                                lineTo.setY(MapUI.mapCoordinates2PixelY((soldier).getTarget().getY()));
                                 path.getElements().add(moveTo);
                                 path.getElements().add(lineTo);
                                 PathTransition pathTransition = new PathTransition();

@@ -141,7 +141,7 @@ public class Config {
         dictionary.put("WallBreaker_BUILD_DURATION",10);
         dictionary.put("WallBreaker_HEALTH",100);
         dictionary.put("WallBreaker_RADIUS",1);
-        dictionary.put("WallBreaker_DAMAGE",50);
+        dictionary.put("WallBreaker_DAMAGE",600);
         dictionary.put("WallBreaker_MAXSPEED",6);
         // TODO: 4/18/2018 add when we have no wall
         dictionary.put("WallBreaker_POINTS_GAINED_WHEN_DESTRUCTED" , 3);

@@ -278,25 +278,15 @@ public class SideBarUI {
     public static void makeStorageMenu(Group group, Cell cell) {
         makeSideBar(group,false);
         ImageView overAllInfoView = getImageView("OverAllInfo.png");
-        overAllInfoView.setOnMouseClicked(event -> {
-            showOverallInfo(group , cell);
-        });
+        overAllInfoView.setOnMouseClicked(event -> showOverallInfo(group , cell));
         ImageView UpgradeInfoView = getImageView("UpgradeInfo.png");
-        UpgradeInfoView.setOnMouseClicked(event -> {
-            showUpgradeInfo(group , cell);
-        });
+        UpgradeInfoView.setOnMouseClicked(event -> showUpgradeInfo(group , cell));
         ImageView SourcesInfoView = getImageView("SourcesInfo.png");
-        SourcesInfoView.setOnMouseClicked(event -> {
-            showSourcesInfo(group , cell);
-        });
+        SourcesInfoView.setOnMouseClicked(event -> showSourcesInfo(group , cell));
         ImageView upgradeView = getImageView("Upgrade.png");
-        upgradeView.setOnMouseClicked(event -> {
-            implementUpgradeBuildings(group , cell);
-        });
+        upgradeView.setOnMouseClicked(event -> implementUpgradeBuildings(group , cell));
         ImageView backView = getImageView("Back.png");
-        backView.setOnMouseClicked(event -> {
-            makeStartingMenu(group,primaryStage);
-        });
+        backView.setOnMouseClicked(event -> makeStartingMenu(group,primaryStage));
         VBox vBox = new VBox(1, overAllInfoView, UpgradeInfoView, SourcesInfoView, upgradeView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
@@ -324,25 +314,17 @@ public class SideBarUI {
         backView.setX(UIConstants.BUTTON_STARTING_X);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
         group.getChildren().add(backView);
-        backView.setOnMouseClicked(backEvent -> {
-            backSwitchCaseFunction(group, cell);
-        });
+        backView.setOnMouseClicked(backEvent -> backSwitchCaseFunction(group, cell));
     }
 
     public static void makeCampMenu(Group group, Cell cell) {
         makeSideBar(group,false);
         ImageView infoView = getImageView("info.png");
-        infoView.setOnMouseClicked(event -> {
-            makeCampInfoMenu(group , cell);
-        });
+        infoView.setOnMouseClicked(event -> makeCampInfoMenu(group , cell));
         ImageView SoldiersView = getImageView("Soldiers.png");
-        SoldiersView.setOnMouseClicked(event -> {
-            makeSoldiersMenu(group , cell);
-        });
+        SoldiersView.setOnMouseClicked(event -> makeSoldiersMenu(group , cell));
         ImageView backView = getImageView("Back.png");
-        backView.setOnMouseClicked(event -> {
-            makeStartingMenu(group,primaryStage);
-        });
+        backView.setOnMouseClicked(event -> makeStartingMenu(group,primaryStage));
         VBox vBox = new VBox(1, infoView, SoldiersView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
@@ -356,29 +338,19 @@ public class SideBarUI {
         backView.setX(UIConstants.BUTTON_STARTING_X);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
         group.getChildren().add(backView);
-        backView.setOnMouseClicked(backEvent -> {
-            makeCampMenu(group  ,cell);
-        });
+        backView.setOnMouseClicked(backEvent -> makeCampMenu(group  ,cell));
     }
 
     public static void makeCampInfoMenu(Group group, Cell cell) {
         makeSideBar(group,false);
         ImageView overAllInfoView = getImageView("OverAllInfo.png");
-        overAllInfoView.setOnMouseClicked(event -> {
-            showOverallInfo(group , cell);
-        });
+        overAllInfoView.setOnMouseClicked(event -> showOverallInfo(group , cell));
         ImageView UpgradeInfoView = getImageView("UpgradeInfo.png");
-        UpgradeInfoView.setOnMouseClicked(event -> {
-            showUpgradeInfo(group , cell);
-        });
+        UpgradeInfoView.setOnMouseClicked(event -> showUpgradeInfo(group , cell));
         ImageView CapacityInfoView = getImageView("CapacityInfo.png");
-        CapacityInfoView.setOnMouseClicked(event -> {
-            showCampCapacityInfo(group , cell);
-        });
+        CapacityInfoView.setOnMouseClicked(event -> showCampCapacityInfo(group , cell));
         ImageView backView = getImageView("Back.png");
-        backView.setOnMouseClicked(event -> {
-            makeCampMenu(group , cell);
-        });
+        backView.setOnMouseClicked(event -> makeCampMenu(group , cell));
         VBox vBox = new VBox(1, overAllInfoView, UpgradeInfoView, CapacityInfoView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
@@ -402,9 +374,7 @@ public class SideBarUI {
     public static void makeMineMenu(Group group, Cell cell) {
         makeSideBar(group,false);
         ImageView infoView = getImageView("info.png");
-        infoView.setOnMouseClicked(event -> {
-            makeDefaultInfoMenu(group,cell);
-        });
+        infoView.setOnMouseClicked(event -> makeDefaultInfoMenu(group,cell));
         ImageView mineView = getImageView("Mine.png");
         mineView.setOnMouseClicked(event -> {
             Mine mine = (Mine) cell;
@@ -418,9 +388,7 @@ public class SideBarUI {
             makeMineMenu(group,cell);
         });
         ImageView backView = getImageView("Back.png");
-        backView.setOnMouseClicked(event -> {
-          makeStartingMenu(group,primaryStage);
-        });
+        backView.setOnMouseClicked(event -> makeStartingMenu(group,primaryStage));
         VBox vBox = new VBox(1, infoView, mineView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
@@ -429,21 +397,13 @@ public class SideBarUI {
     private static void makeDefaultInfoMenu(Group group, Cell cell) {
         makeSideBar(group,false);
         ImageView overallInfoView = getImageView("OverAllInfo.png");
-        overallInfoView.setOnMouseClicked(event -> {
-            showOverallInfo(group, cell);
-        });
+        overallInfoView.setOnMouseClicked(event -> showOverallInfo(group, cell));
         ImageView UpgradeInfoView = getImageView("UpgradeInfo.png");
-        UpgradeInfoView.setOnMouseClicked(event -> {
-            showUpgradeInfo(group, cell);
-        });
+        UpgradeInfoView.setOnMouseClicked(event -> showUpgradeInfo(group, cell));
         ImageView upgradeView = getImageView("Upgrade.png");
-        upgradeView.setOnMouseClicked(event -> {
-            implementUpgradeBuildings(group, cell);
-        });
+        upgradeView.setOnMouseClicked(event -> implementUpgradeBuildings(group, cell));
         ImageView backView = getImageView("Back.png");
-        backView.setOnMouseClicked(event -> {
-            makeBuildingsMenu(group,cell);
-        });
+        backView.setOnMouseClicked(event -> makeBuildingsMenu(group,cell));
         VBox vBox = new VBox(1, overallInfoView, UpgradeInfoView,upgradeView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
@@ -491,9 +451,7 @@ public class SideBarUI {
         backView.setScaleX(0.5);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.BACK_BUTTON_Y_COEFFICIENT);
         backView.setX(UIConstants.BUTTON_STARTING_X);
-        backView.setOnMouseClicked(event -> {
-            backSwitchCaseFunction(group, cell);
-        });
+        backView.setOnMouseClicked(event -> backSwitchCaseFunction(group, cell));
         group.getChildren().add(backView);
     }
 
@@ -510,9 +468,7 @@ public class SideBarUI {
         backView.setX(UIConstants.BUTTON_STARTING_X);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
         group.getChildren().add(backView);
-        backView.setOnMouseClicked(backEvent -> {
-            backSwitchCaseFunction(group, cell);
-        });
+        backView.setOnMouseClicked(backEvent -> backSwitchCaseFunction(group, cell));
     }
 
     private static void backSwitchCaseFunction(Group group, Cell cell) {
@@ -574,12 +530,7 @@ public class SideBarUI {
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
 
-        BuildSoldiersView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                barrackBuildSoldierMenu(group, cell);
-            }
-        });
+        BuildSoldiersView.setOnMouseClicked(event -> barrackBuildSoldierMenu(group, cell));
     }
 
     private static void makeStatusBarracks(Group group, Cell cell) {
@@ -589,9 +540,7 @@ public class SideBarUI {
         backView.setScaleX(0.5);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.BACK_BUTTON_Y_COEFFICIENT);
         backView.setX(UIConstants.BUTTON_STARTING_X);
-        backView.setOnMouseClicked(backEvent -> {
-            makeBarrackMenu(group,cell);
-        });
+        backView.setOnMouseClicked(backEvent -> makeBarrackMenu(group,cell));
         group.getChildren().add(backView);
     }
 
@@ -647,24 +596,9 @@ public class SideBarUI {
         }
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
-        backView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                makeStartingMenu(group,primaryStage);
-            }
-        });
-        infoView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                makeDefencesInfoMenu(group, cell);
-            }
-        });
-        targetView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                makeDefencesAttackInfoMenu(group, cell);
-            }
-        });
+        backView.setOnMouseClicked(event -> makeStartingMenu(group,primaryStage));
+        infoView.setOnMouseClicked(event -> makeDefencesInfoMenu(group, cell));
+        targetView.setOnMouseClicked(event -> makeDefencesAttackInfoMenu(group, cell));
     }
 
     private static void makeDefencesInfoMenu(Group group, Cell cell) {
