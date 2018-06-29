@@ -107,8 +107,9 @@ public class EnemyMapJson {
                     break;
                 case 13 :
                     initializeTrap(game,building);
+                    break;
                 case 14:
-                    //Gaurdian Giant
+                    initializeGaurdianGiant(game,building);
                     break;
             }
         }
@@ -146,6 +147,19 @@ public class EnemyMapJson {
         goldMine.setLevel(building.getLevel());
         game.getVillage().getGoldMines().add(goldMine);
         game.getVillage().getMap()[building.getX()][building.getY()] = goldMine;
+    }
+
+    private void initializeGaurdianGiant(Game game, Cell building) {
+        GuardianGiant guardianGiant = new GuardianGiant(game.getVillage().getGuardianGiants().size(), building.getLevel());
+        guardianGiant.setX(building.getX());
+        guardianGiant.setY(building.getY());
+        for (int i = 0; i < building.getLevel(); i++) {
+            guardianGiant.upgrade();
+        }
+        guardianGiant.setLevel(building.getLevel());
+        game.getVillage().getGuardianGiants().add(guardianGiant);
+        game.getVillage().getMap()[building.getX()][building.getY()] = guardianGiant;
+
     }
 
     private void initializeWall(Game game, Cell building) {

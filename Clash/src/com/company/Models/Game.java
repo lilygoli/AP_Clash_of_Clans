@@ -184,6 +184,9 @@ public class Game {
             case "WizardTower":
                 number = enemyVillage.getWizardTowers().size();
                 break;
+            case "GuardianGiant":
+                number=enemyVillage.getGuardianGiants().size();
+                break;
         }
         return number;
     }

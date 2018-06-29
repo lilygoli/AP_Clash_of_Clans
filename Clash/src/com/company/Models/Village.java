@@ -3,6 +3,7 @@ package com.company.Models;
 import com.company.Exception.BusyCellException;
 import com.company.Exception.MarginalTowerException;
 import com.company.Exception.NotEnoughFreeBuildersException;
+import com.company.Models.Soldiers.Guardian;
 import com.company.Models.Towers.Buildings.*;
 import com.company.Models.Towers.Cell;
 import com.company.Models.Towers.Defences.*;
@@ -26,6 +27,7 @@ public class Village {
     private ArrayList<ElixirMine> elixirMines = new ArrayList<ElixirMine>();
     private ArrayList<GoldStorage> goldStorages = new ArrayList<GoldStorage>();
     private ArrayList<ElixirStorage> elixirStorages = new ArrayList<ElixirStorage>();
+    private ArrayList<GuardianGiant> guardianGiants= new ArrayList<>();
     private MainBuilding mainBuilding;
     private ArrayList<Barrack> barracks = new ArrayList<Barrack>();
     private ArrayList<Camp> camps = new ArrayList<Camp>();
@@ -78,6 +80,14 @@ public class Village {
 
     public Resource getGainedResource() {
         return this.gainedResource;
+    }
+
+    public ArrayList<GuardianGiant> getGuardianGiants() {
+        return guardianGiants;
+    }
+
+    public void setGuardianGiants(ArrayList<GuardianGiant> guardianGiants) {
+        this.guardianGiants = guardianGiants;
     }
 
     public void setResource(Resource resource) {
@@ -316,6 +326,9 @@ public class Village {
                     this.getWizardTowers().add((WizardTower) tower);
                     tower.setNumber(getWizardTowers().size());
                     break;
+                case "GuardianGiant":
+                    this.getGuardianGiants().add((GuardianGiant) tower);
+                    tower.setNumber(getGuardianGiants().size());
             }
 
         } else {
