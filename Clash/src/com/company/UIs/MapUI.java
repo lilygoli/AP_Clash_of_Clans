@@ -321,9 +321,9 @@ public class MapUI  {
                                 }else {
 
                                     if(village.getMap()[j][i].getClass().getSimpleName().equals("Wall")&& verticalOrientationOfWall){
-                                        village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName()+"2", ".png", true));
+                                        village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName()+"2", ".png", false));
                                     }else{
-                                        village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png" , true));
+                                        village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png" , false));
                                     }
                                     if(!village.getMap()[j][i].getEventSet()){
                                         setOnClickImages(i, j, root);
@@ -378,10 +378,12 @@ public class MapUI  {
     }
 
     public static Image getImageOfBuildings(String name, String type , boolean inWar){
-        Image buildingImage;
+        Image buildingImage = null;
         if(type.equals(".png")) {
-            File file = new File("./src/com/company/ImagesAndGifs/Buildings/" + name + type);
-             buildingImage= new Image(file.toURI().toString());
+            if (!inWar || !name.equals("Trap")) {
+                File file = new File("./src/com/company/ImagesAndGifs/Buildings/" + name + type);
+                buildingImage = new Image(file.toURI().toString());
+            }
         }else {
             if (!inWar)
              buildingImage= gifsOfTowers.get(name + "Loading");

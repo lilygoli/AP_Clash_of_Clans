@@ -7,8 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd4373d0-16e4-43f1-a01f-34df3517e604" name="Default" comment="bug fix">
-      <change beforePath="$PROJECT_DIR$/src/com/company/Models/Config.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Config.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/GuardianGiant.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/GuardianGiant.java" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Trap.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Trap.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java" />
       <change beforePath="$PROJECT_DIR$/src/com/company/UIs/MapUI.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/MapUI.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -26,13 +27,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="525">
+      <file leaf-file-name="AttackMapUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1232">
+              <caret line="336" column="75" lean-forward="true" selection-start-line="336" selection-start-column="0" selection-end-line="337" selection-end-column="0" />
+              <folding>
+                <element signature="e#7435#8202#0" expanded="true" />
+                <element signature="e#8201#8202#0" expanded="true" />
+                <element signature="e#26150#26151#0" expanded="true" />
+                <element signature="e#26185#26186#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Trap.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Trap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="582">
+              <caret line="30" column="81" lean-forward="false" selection-start-line="30" selection-start-column="81" selection-end-line="30" selection-end-column="81" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MarginalTowerException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/Exception/MarginalTowerException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="528">
+              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Soldier.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="361" column="36" lean-forward="true" selection-start-line="361" selection-start-column="36" selection-end-line="361" selection-end-column="36" />
+            <state relative-caret-position="278">
+              <caret line="10" column="23" lean-forward="false" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="e#2070#2071#0" expanded="true" />
                 <element signature="e#2099#2100#0" expanded="true" />
                 <element signature="e#2141#2142#0" expanded="true" />
@@ -90,11 +125,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Config.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Models/Config.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="253">
-              <caret line="204" column="55" lean-forward="false" selection-start-line="204" selection-start-column="55" selection-end-line="204" selection-end-column="55" />
+              <caret line="203" column="54" lean-forward="false" selection-start-line="203" selection-start-column="54" selection-end-line="203" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -112,53 +147,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SideBarUI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
-              <caret line="489" column="51" lean-forward="true" selection-start-line="489" selection-start-column="51" selection-end-line="489" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MapUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MapUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="74" column="39" lean-forward="false" selection-start-line="74" selection-start-column="39" selection-end-line="74" selection-end-column="39" />
+            <state relative-caret-position="9174">
+              <caret line="388" column="54" lean-forward="false" selection-start-line="388" selection-start-column="54" selection-end-line="388" selection-end-column="54" />
               <folding>
-                <marker date="1530292223378" expanded="true" signature="19906:20107" ph="{...}" />
+                <marker date="1530294205728" expanded="true" signature="20211:20412" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Cannon.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Cannon.java">
+      <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/View/View.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="33" column="51" lean-forward="true" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Village.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/Models/Village.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1169">
-              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Defence.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Defence.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="-499">
+              <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -195,11 +200,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Health</find>
-      <find>trappp</find>
-      <find>passturnIn</find>
-      <find>getAllV</find>
-      <find>getStr</find>
       <find>target</find>
       <find>Trap</find>
       <find>attacktargets</find>
@@ -225,6 +225,11 @@
       <find>Cannon</find>
       <find>passturn</find>
       <find>MappUI</find>
+      <find>attackMapUi</find>
+      <find>showMap</find>
+      <find>getImageOFBuildings</find>
+      <find>n</find>
+      <find>notValidFilePathEx</find>
     </findStrings>
     <replaceStrings>
       <replace>Canon</replace>
@@ -299,18 +304,18 @@
         <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/Archer.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/WallBreaker.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/Dragon.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Trap.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/Giant.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/Healer.java" />
-        <option value="$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Wall.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Cell.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Game.java" />
         <option value="$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java" />
-        <option value="$PROJECT_DIR$/src/com/company/UIs/MapUI.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/GuardianGiant.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Config.java" />
+        <option value="$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java" />
+        <option value="$PROJECT_DIR$/src/com/company/UIs/MapUI.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Trap.java" />
       </list>
     </option>
   </component>
@@ -363,6 +368,13 @@
               <item name="Clash" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="company" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Clash" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Clash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="company" type="462c0819:PsiDirectoryNode" />
+              <item name="Exception" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Clash" type="b2602c69:ProjectViewProjectNode" />
@@ -461,9 +473,9 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Models/EnemyMapJson.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Models/Game.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Models/Village.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Models/Config.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/MapUI.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -471,6 +483,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/BarrackLoading.gif</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/GuardianGiantLoading.gif</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -786,12 +800,12 @@
       <workItem from="1529897568444" duration="229000" />
       <workItem from="1529909750134" duration="494000" />
       <workItem from="1530019087671" duration="45599000" />
-      <workItem from="1530287799623" duration="4406000" />
+      <workItem from="1530287799623" duration="8306000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256723000" />
+    <option name="totallyTimeSpent" value="260623000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -855,16 +869,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/UpgradeInfo.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/UpgradeCost.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/tick2.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -965,11 +969,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/ArcherTower.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/Trap.gif">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
@@ -1076,16 +1075,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Trap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1023">
-          <caret line="31" column="16" lean-forward="false" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/UIs/PassTurnThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
@@ -1125,29 +1114,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2409">
-          <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
-          <folding>
-            <element signature="e#26102#26103#0" expanded="true" />
-            <element signature="e#26137#26138#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Cell.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="92" column="48" lean-forward="false" selection-start-line="92" selection-start-column="48" selection-end-line="92" selection-end-column="48" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1367#1368#0" expanded="true" />
-            <element signature="e#1395#1396#0" expanded="true" />
-            <element signature="e#3212#3213#0" expanded="true" />
-            <element signature="e#3244#3245#0" expanded="true" />
-            <element signature="e#4092#4093#0" expanded="true" />
-            <element signature="e#4118#4119#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1367#1368#0" expanded="false" />
+            <element signature="e#1395#1396#0" expanded="false" />
+            <element signature="e#3212#3213#0" expanded="false" />
+            <element signature="e#3244#3245#0" expanded="false" />
+            <element signature="e#4092#4093#0" expanded="false" />
+            <element signature="e#4118#4119#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1157,7 +1135,7 @@
         <state relative-caret-position="278">
           <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding>
-            <element signature="e#1097#1098#0" expanded="true" />
+            <element signature="e#1097#1098#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1170,6 +1148,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Defence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Cannon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="33" column="51" lean-forward="true" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="489" column="51" lean-forward="false" selection-start-line="489" selection-start-column="51" selection-end-line="489" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/GuardianGiant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="27" column="83" lean-forward="false" selection-start-line="27" selection-start-column="83" selection-end-line="27" selection-end-column="83" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="203" column="54" lean-forward="false" selection-start-line="203" selection-start-column="54" selection-end-line="203" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Models/Game.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="737">
@@ -1178,12 +1198,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MainMenuUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1419">
+          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="361" column="36" lean-forward="true" selection-start-line="361" selection-start-column="36" selection-end-line="361" selection-end-column="36" />
+        <state relative-caret-position="278">
+          <caret line="10" column="23" lean-forward="false" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#2070#2071#0" expanded="true" />
             <element signature="e#2099#2100#0" expanded="true" />
             <element signature="e#2141#2142#0" expanded="true" />
@@ -1240,62 +1267,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Defence.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/View/View.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="-499">
+          <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Cannon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="33" column="51" lean-forward="true" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="489" column="51" lean-forward="true" selection-start-line="489" selection-start-column="51" selection-end-line="489" selection-end-column="51" />
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/Trap.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MapUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="74" column="39" lean-forward="false" selection-start-line="74" selection-start-column="39" selection-end-line="74" selection-end-column="39" />
+        <state relative-caret-position="9174">
+          <caret line="388" column="54" lean-forward="false" selection-start-line="388" selection-start-column="54" selection-end-line="388" selection-end-column="54" />
           <folding>
-            <marker date="1530292223378" expanded="true" signature="19906:20107" ph="{...}" />
+            <marker date="1530294205728" expanded="true" signature="20211:20412" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/GuardianGiant.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="27" column="83" lean-forward="false" selection-start-line="27" selection-start-column="83" selection-end-line="27" selection-end-column="83" />
+        <state relative-caret-position="1232">
+          <caret line="336" column="75" lean-forward="true" selection-start-line="336" selection-start-column="0" selection-end-line="337" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#7435#8202#0" expanded="true" />
+            <element signature="e#8201#8202#0" expanded="true" />
+            <element signature="e#26150#26151#0" expanded="true" />
+            <element signature="e#26185#26186#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MainMenuUI.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Exception/MarginalTowerException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1419">
-          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+        <state relative-caret-position="528">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Config.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Trap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="204" column="55" lean-forward="false" selection-start-line="204" selection-start-column="55" selection-end-line="204" selection-end-column="55" />
+        <state relative-caret-position="582">
+          <caret line="30" column="81" lean-forward="false" selection-start-line="30" selection-start-column="81" selection-end-line="30" selection-end-column="81" />
           <folding />
         </state>
       </provider>
