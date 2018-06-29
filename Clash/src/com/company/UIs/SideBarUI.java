@@ -130,10 +130,10 @@ public class SideBarUI {
 
     private static void makeLoadEnemyMapMenu(Group group) {
         makeSideBar(group,false);
-        StringBuilder eneMyMapsList = new StringBuilder("1. load map\n");
+        StringBuilder enemyMapsList = new StringBuilder("1. load map\n");
         int index = 2;
         for (Game game : controller.getGame().getAllAttackedVillages()) {
-            eneMyMapsList.append(index).append(". ").append(game.getPlayerName()).append("\n");
+            enemyMapsList.append(index).append(". ").append(game.getPlayerName()).append("\n");
             index++;
         }
         ComboBox<String> comboBox = new ComboBox<>();
@@ -141,7 +141,7 @@ public class SideBarUI {
         comboBox.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
         comboBox.setMaxWidth(300);
         comboBox.setMaxWidth(300);
-        comboBox.getItems().addAll(eneMyMapsList.toString().split("\n"));
+        comboBox.getItems().addAll(enemyMapsList.toString().split("\n"));
         comboBox.relocate(90, UIConstants.MENU_VBOX_STARTING_Y);
         Button selectButton=new Button("select");
         selectButton.setStyle("-fx-background-color: #a5862e");
@@ -172,15 +172,18 @@ public class SideBarUI {
                         enemyGame = controller.getGameCenter().loadEnemyMap(textField.getText());
                         controller.getGame().setAttackedVillage(enemyGame);
                         AttackMapUI.makeAttackGameBoard(primaryStage,controller);
+                        if (!controller.getGame().getAllAttackedVillages().contains(enemyGame)) {
+                            controller.getGame().getAllAttackedVillages().add(enemyGame);
+                        }
                     } catch (NotValidFilePathException e) {
                         new Timeline(new KeyFrame(Duration.seconds(2), new KeyValue(e.getImageView().imageProperty(), null))).play();
                         group.getChildren().add(e.getImageView());
                     } catch (FileNotFoundException e) {
-                        e.printStackTrace();
+                        NotValidFilePathException e1= new NotValidFilePathException();
+                        new Timeline(new KeyFrame(Duration.seconds(2), new KeyValue(e1.getImageView().imageProperty(), null))).play();
+                        group.getChildren().add(e1.getImageView());
                     }
-                if (!controller.getGame().getAllAttackedVillages().contains(enemyGame)) {
-                    controller.getGame().getAllAttackedVillages().add(enemyGame);
-                }
+
             });
         } else {
             controller.getGame().setAttackedVillage(controller.getGame().getAllAttackedVillages().get(Integer.parseInt(comboBox.getValue().split("\\.")[0])-2));

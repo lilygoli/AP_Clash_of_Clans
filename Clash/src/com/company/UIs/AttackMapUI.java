@@ -343,7 +343,7 @@ public class AttackMapUI {
     public static void setOnClickImages(int i, int j, Group root) {
         controller.getGame().getAttackedVillage().getVillage().getMap()[j][i].getImageView().setOnMouseClicked(event -> {
             controller.getGame().getAttackedVillage().getVillage().getMap()[j][i].getImageView().requestFocus();
-            Cell tower = controller.getGame().getAttackedVillage().getVillage().getMap()[i][j];
+            Cell tower = controller.getGame().getAttackedVillage().getVillage().getMap()[j][i];
             makeStatusTowerSidebar(root, tower);
         });
 
@@ -351,9 +351,9 @@ public class AttackMapUI {
 
     private static void makeStatusTowerSidebar(Group root, Cell tower) {
         SideBarUI.makeSideBar(root, true);
-        makeLabels(root, tower.getClass().getSimpleName(), 0.15, 20, false);
-        makeLabels(root, "Level : " + tower.getLevel(), 0.23, 20, false);
-        makeLabels(root, "Health : " + tower.getStrength(), 0.31, 20, false);
+        makeLabels(root, tower.getClass().getSimpleName(), 0.2, 20, false);
+        makeLabels(root, "Level : " + tower.getLevel(), 0.27, 20, false);
+        makeLabels(root, "Health : " + tower.getStrength(), 0.36, 20, false);
         ImageView backView = getImageView("Back.png");
         backView.setX(UIConstants.BUTTON_STARTING_X);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
