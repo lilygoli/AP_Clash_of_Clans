@@ -1,6 +1,7 @@
 package com.company.Models;
 
 import com.company.Exception.*;
+import com.company.Models.Soldiers.Healer;
 import com.company.Models.Towers.Buildings.Camp;
 import com.company.Models.Towers.Cell;
 import com.company.Models.Towers.Defences.*;
@@ -269,6 +270,7 @@ public class Game {
         if (this.attackedVillage == null) {
             throw new NotInWarException();
         }
+        timePassedInWar++;
         //Defender Map part
         for (Cannon cannon : this.attackedVillage.getVillage().getCannons()) {
             if (cannon.getUnderConstructionStatus() || cannon.isRuined()) {
@@ -310,6 +312,12 @@ public class Game {
                 }
                 System.out.println(soldier.getClass().getSimpleName() + " " + soldier.getDamage());
                 soldier.attackTarget(this.getVillage(), this.attackedVillage.getVillage());
+                if(soldier.getClass().getSimpleName().equals("Healer")){
+                    ((Healer)soldier).setTimeInWar(((Healer) soldier).getTimeInWar()+1);
+                    if(((Healer) soldier).getTimeInWar()>500){
+                        soldier.setHealth(0);
+                    }
+                }
                 if (soldier.getHealth() <= 0){
                     iterator.remove();
                     soldier.getImageView().setImage(null);
@@ -328,11 +336,14 @@ public class Game {
     }
 
     public void healAfterWar() {
-
+        timePassedInWar=0;
         for (Soldier soldier : troops
                 ) {
             soldier.setX(-1);
             soldier.setY(-1);
+            if(soldier.getClass().getSimpleName().equals("Healer")){
+                ((Healer)soldier).setTimeInWar(0);
+            }
         }
         healSoldiers();
         attackedVillage.rebuild();

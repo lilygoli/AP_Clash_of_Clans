@@ -33,6 +33,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Random;
 
 import static com.company.UIs.MapUI.getImageOfBuildings;
@@ -400,9 +401,109 @@ public class AttackMapUI {
     public static void updateHealthBarAndArrows(){
         new AnimationTimer() {
             HashMap<ImageView,Soldier> arrows= new HashMap<>();
+            HashMap<ImageView,LineTo>  paths= new HashMap<>();
+            HashMap<Circle,Soldier> healCircles= new HashMap<>();
+            HashMap <Circle,LineTo> circlePaths= new HashMap<>();
             @Override
             public void handle(long now) {
                 addArcherArrows();
+                addHealCircles();
+                if(controller.getGame().isWarFinished()){
+                    super.stop();
+                }
+            }
+
+
+            private void addArcherArrows() {
+                Iterator<ImageView> iterator= arrows.keySet().iterator();
+                while (iterator.hasNext()) {
+                    ImageView imageView= iterator.next();
+                    if(!controller.getGame().getTroops().contains(arrows.get(imageView))){
+                        canvas.getChildren().remove(imageView);
+                    }
+                    if(!(MapUI.mapCoordinates2PixelX(arrows.get(imageView).getTarget().getX())+12==paths.get(imageView).getX() && MapUI.mapCoordinates2PixelY(arrows.get(imageView).getTarget().getY())+12==paths.get(imageView).getY())){
+                        System.out.println("target"+MapUI.mapCoordinates2PixelX(arrows.get(imageView).getTarget().getX())+12+"image"+paths.get(imageView).getX());
+                        canvas.getChildren().remove(imageView);
+                        iterator.remove();
+                    }
+                }
+                for (int i=0;i<controller.getGame().getTroops().size();i++) {
+                    Soldier soldier=controller.getGame().getTroops().get(i);
+                    if(soldier.getClass().getSimpleName().equals("Archer")){
+                        if(soldier.getTarget()!=null && soldier.hasReachedDestination(soldier.getTarget())){
+                            if(!arrows.values().contains(soldier)) {
+                                ImageView arrow = new ImageView(MapUI.getImageOfBuildings("Arrow", ".png", false));
+                                arrow.setScaleX(0.2);
+                                arrow.setScaleY(0.2);
+                                arrows.put(arrow, soldier);
+                                paths.put(arrow,makePath(soldier,arrow,1));
+
+                            }
+                        }
+                    }
+                }
+            }
+
+            private LineTo makePath(Soldier soldier,Node node,double rate) {
+                Path path = new Path();
+                MoveTo moveTo = new MoveTo();
+                moveTo.setX(MapUI.mapCoordinates2PixelX(soldier.getX()) + 12);
+                moveTo.setY(MapUI.mapCoordinates2PixelY(soldier.getY()) + 12);
+                LineTo lineTo = new LineTo();
+                lineTo.setX(MapUI.mapCoordinates2PixelX((soldier).getTarget().getX()) + 12);
+                lineTo.setY(MapUI.mapCoordinates2PixelY((soldier).getTarget().getY())+12);
+                path.getElements().add(moveTo);
+                path.getElements().add(lineTo);
+                PathTransition pathTransition = new PathTransition();
+                pathTransition.setCycleCount(Animation.INDEFINITE);
+                pathTransition.setDuration(Duration.INDEFINITE);
+                pathTransition.setNode(node);
+                pathTransition.setPath(path);
+                pathTransition.setRate(rate);
+
+                pathTransition.setOrientation(PathTransition.OrientationType.
+                        ORTHOGONAL_TO_TANGENT);
+                pathTransition.play();
+                canvas.getChildren().add(node);
+                return lineTo;
+            }
+
+            private void addHealCircles() {
+                Iterator<Circle> iterator= healCircles.keySet().iterator();
+                while (iterator.hasNext()) {
+                    Circle circle=iterator.next();
+                    if(!controller.getGame().getTroops().contains(healCircles.get(circle))){
+                        canvas.getChildren().remove(circle);
+                    }
+                    if(!(MapUI.mapCoordinates2PixelX(healCircles.get(circle).getTarget().getX())+12==circlePaths.get(circle).getX() && MapUI.mapCoordinates2PixelY(healCircles.get(circle).getTarget().getY())+12==circlePaths.get(circle).getY())){
+                        canvas.getChildren().remove(circle);
+                        iterator.remove();
+                    }
+                }
+                for (int i=0;i<controller.getGame().getTroops().size();i++) {
+                    Soldier soldier=controller.getGame().getTroops().get(i);
+                    if(soldier.getClass().getSimpleName().equals("Healer")){
+                        if(soldier.getTarget()!=null && soldier.hasReachedDestination(soldier.getTarget())){
+                            if(!healCircles.values().contains(soldier)) {
+                                Circle circle= new Circle();
+                                circle.setRadius(3);
+                                circle.setFill(Color.MINTCREAM);
+                                circle.setOpacity(0.2);
+                                healCircles.put(circle, soldier);
+                                circlePaths.put(circle,makePath(soldier,circle,0.7));
+                                canvas.getChildren().add(circle);
+
+                            }
+                        }
+                    }
+                }
+
+            }
+
+        }.start();
+        new AnimationTimer() {
+            @Override
+            public void handle(long now) {
                 ArrayList<Rectangle> rectangles=new ArrayList<>();
                 for (Soldier soldier : controller.getGame().getTroops()) {
                     rectangles.add(soldier.getLeftHealth());
@@ -422,47 +523,9 @@ public class AttackMapUI {
                 }
             }
 
-            private void addArcherArrows() {
-                for (ImageView imageView : arrows.keySet()) {
-                    if(!controller.getGame().getTroops().contains(arrows.get(imageView))){
-                        canvas.getChildren().remove(imageView);
-                    }
-                }
-                for (int i=0;i<controller.getGame().getTroops().size();i++) {
-                    Soldier soldier=controller.getGame().getTroops().get(i);
-                    if(soldier.getClass().getSimpleName().equals("Archer")){
-                        if(soldier.getTarget()!=null && soldier.hasReachedDestination(soldier.getTarget())){
-                            if(!arrows.values().contains(soldier)) {
-                                Path path = new Path();
-                                MoveTo moveTo = new MoveTo();
-                                moveTo.setX(MapUI.mapCoordinates2PixelX(soldier.getX()) + 12);
-                                moveTo.setY(MapUI.mapCoordinates2PixelY(soldier.getY()));
-                                LineTo lineTo = new LineTo();
-                                lineTo.setX(MapUI.mapCoordinates2PixelX((soldier).getTarget().getX())+12);
-                                lineTo.setY(MapUI.mapCoordinates2PixelY((soldier).getTarget().getY()));
-                                path.getElements().add(moveTo);
-                                path.getElements().add(lineTo);
-                                PathTransition pathTransition = new PathTransition();
-                                pathTransition.setCycleCount(10);
-                                pathTransition.setDuration(Duration.millis(UIConstants.DELTA_T));
-                                ImageView arrow = new ImageView(MapUI.getImageOfBuildings("Arrow", ".png", false));
-                                arrow.setScaleX(0.2);
-                                arrow.setScaleY(0.2);
-                                arrows.put(arrow, soldier);
-                                pathTransition.setNode(arrow);
-                                pathTransition.setPath(path);
-
-                                pathTransition.setOrientation(PathTransition.OrientationType.
-                                        ORTHOGONAL_TO_TANGENT);
-                                pathTransition.play();
-                                canvas.getChildren().add(arrow);
-                            }
-                        }
-                    }
-                }
-            }
         }.start();
     }
+
 
     public static Label getWinningLabel() {
         return winningLabel;
