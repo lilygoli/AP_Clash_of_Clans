@@ -90,6 +90,7 @@ public class Cell {
         cellKinds.add(new WizardTower(0,0));
         cellKinds.add(new Wall(0,0));
         cellKinds.add(new Trap(0,0));
+        cellKinds.add(new GuardianGiant(0 , 0));
     }
 
     public void upgrade() {
