@@ -8,6 +8,7 @@ import com.company.Models.Towers.Buildings.Camp;
 import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Towers.Cell;
+import com.company.Models.Towers.Defences.Trap;
 import com.company.Models.Village;
 import javafx.animation.*;
 import javafx.event.EventHandler;
