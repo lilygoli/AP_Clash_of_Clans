@@ -555,6 +555,7 @@ public class SideBarUI {
             case "Trap":
             case "WizardTower":
             case "Wall":
+            case "GuardianGiant":
                 makeDefencesMenu(group, cell);
                 break;
             case "Barrack":
@@ -658,6 +659,9 @@ public class SideBarUI {
         }
         if (cell.getClass().getSimpleName().equals("WizardTower")) {
             damage = "Ground & \nFlying units";
+        }
+        if (cell.getClass().getSimpleName().equals("GuardianGiant")) {
+            damage = "Ground \n units";
         }
         makeLabels(group,damage,0.26, -20  , true);
         makeLabels(group,Integer.toString(cell.getDamage()),0.326, 0, true);
