@@ -116,13 +116,13 @@ public class AttackMapUI {
                 imageView.setOnMouseClicked(event -> {
                     attackX = finalI - 2;
                     attackY = finalJ - 1;
-//                    if(!(attackX==29 || attackX==0 || attackY==29 || attackY==0) || attackX<0 || attackX>29 || attackY<0 || attackY>29){
-//                        System.out.println("invalid");
-//                        InvalidPlaceForSoldiersException exception = new InvalidPlaceForSoldiersException();
-//                        new Timeline(new KeyFrame(Duration.seconds(4), new KeyValue(exception.getImageView().imageProperty(), null))).play();
-//                        root.getChildren().add(exception.getImageView());
-//
-//                    }else
+                    if(!(attackX==29 || attackX==0 || attackY==29 || attackY==0) || attackX<0 || attackX>29 || attackY<0 || attackY>29){
+                        System.out.println("invalid");
+                        InvalidPlaceForSoldiersException exception = new InvalidPlaceForSoldiersException();
+                        new Timeline(new KeyFrame(Duration.seconds(4), new KeyValue(exception.getImageView().imageProperty(), null))).play();
+                        root.getChildren().add(exception.getImageView());
+
+                    }else
                         if (!chosenSoldierName.equals("")) {
                         for (Soldier soldier : controller.getGame().getTroops()) {
                             if (soldier.getClass().getSimpleName().equals(chosenSoldierName) && soldier.getX() == -1) {

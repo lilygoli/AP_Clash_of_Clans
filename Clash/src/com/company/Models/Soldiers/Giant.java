@@ -1,8 +1,6 @@
 package com.company.Models.Soldiers;
 
-import com.company.Controller.Controller;
 import com.company.Models.Village;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
