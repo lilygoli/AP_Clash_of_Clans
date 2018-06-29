@@ -72,7 +72,7 @@ public class MapUI  {
         File AirDefenceFile = new File("./src/com/company/ImagesAndGifs/Buildings/AirDefenceLoading.gif");
         gifsOfTowers.put("AirDefenceLoading", new Image(AirDefenceFile.toURI().toString()));
         File GuardianGiantGif = new File("./src/com/company/ImagesAndGifs/Buildings/GuardianGiant.gif");
-        gifsOfTowers.put("AirDefenceLoading", new Image(GuardianGiantGif.toURI().toString()));
+        gifsOfTowers.put("GuardianGiant", new Image(GuardianGiantGif.toURI().toString()));
         AirDefenceFile = new File("./src/com/company/ImagesAndGifs/Buildings/AirDefence.gif");
         gifsOfTowers.put("AirDefence", new Image(AirDefenceFile.toURI().toString()));
         File ArcherTowerFile = new File("./src/com/company/ImagesAndGifs/Buildings/ArcherTowerLoading.gif");

@@ -25,7 +25,7 @@ public class GuardianGiant extends Defence {
                     break;
                 }
             }
-            this.setImage(getImageOfBuildings(this.getClass().getSimpleName(),".gif" , true));
+            this.setImage(getImageOfBuildings(this.getClass().getSimpleName(),".png" , true));
         }
         Iterator<Soldier> iterator = enemySoldiers.iterator();
         while (iterator.hasNext()) {

@@ -202,7 +202,7 @@ public class Config {
         dictionary.put("Cannon_UPGRADE_COST",100);
 
         dictionary.put("GuardianGiant_JSON_TYPE" , 14);
-        dictionary.put("GuardianGiant_GOLD_COST" , 1000);
+        dictionary.put("GuardianGiant_GOLD_COST" , 10000);
         dictionary.put("GuardianGiant_ELIXIR_COST" , 0);
         dictionary.put("GuardianGiant_BUILD_DURATION" , 4000);
         dictionary.put("GuardianGiant_STRENGTH" , 700);
