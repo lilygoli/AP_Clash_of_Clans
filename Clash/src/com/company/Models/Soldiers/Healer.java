@@ -6,9 +6,13 @@ import com.company.Models.Village;
 import com.company.UIs.AttackMapUI;
 import javafx.stage.Screen;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Healer extends Soldier {
     private int heal;
     private int healAdded;
+    private int timeInWar=0;
 
     public Healer(int time) {
         super(time);
@@ -21,6 +25,14 @@ public class Healer extends Soldier {
 
     public int getHealAdded() {
         return Config.getDictionary().get(this.getClass().getSimpleName() + "_ADDED_HEAL");
+    }
+
+    public void setTimeInWar(int timeInWar) {
+        this.timeInWar = timeInWar;
+    }
+
+    public int getTimeInWar() {
+        return timeInWar;
     }
 
     @Override
@@ -42,9 +54,11 @@ public class Healer extends Soldier {
             }
         }
         if (targetSoldier != null) {
+
             Cell target = new Cell( 0 , 0);
             target.setX((int)targetSoldier.getX());
             target.setY((int)targetSoldier.getY());
+            setTarget(target);
             if (hasReachedDestination(target)) {
                 String relativeDirection = getRelativeDirection(target);
                 chooseRelativeDirection(relativeDirection);

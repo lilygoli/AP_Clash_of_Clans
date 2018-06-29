@@ -120,7 +120,7 @@ public class Config {
         dictionary.put("Dragon_RADIUS",3);
         dictionary.put("Dragon_DAMAGE",30);
         dictionary.put("Dragon_MAXSPEED",6);
-        //dictionary.put("Dragon_ADDED_HEALTH",5);
+        dictionary.put("Dragon_ADDED_HEALTH",5);
         dictionary.put("Dragon_ADDED_DAMAGE",1);
         dictionary.put("Dragon_UNLOCKLEVEL",0);
         dictionary.put("Dragon_ADDED_HEALTH",5);
@@ -153,6 +153,7 @@ public class Config {
         dictionary.put("Healer_ELEXIR_COST",175);
         dictionary.put("Healer_BUILD_DURATION",30);
         dictionary.put("Healer_HEALTH",200);
+        dictionary.put("Healer_ADDED_HEALTH",0);
         dictionary.put("Healer_RADIUS",10);
         dictionary.put("Healer_DAMAGE",0);
         dictionary.put("Healer_MAXSPEED",3);
