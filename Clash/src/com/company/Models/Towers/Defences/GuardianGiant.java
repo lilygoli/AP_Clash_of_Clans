@@ -17,15 +17,24 @@ public class GuardianGiant extends Defence {
 
     @Override
     public Soldier findAndShootUnit(ArrayList<Soldier> enemySoldiers) {
+        for (Soldier enemySoldier : enemySoldiers) {
+            if (!enemySoldier.getCanFly() && enemySoldier.getX() != -1){
+                int distance = (int) Math.abs(enemySoldier.getX() - this.getX()) + (int) Math.abs(enemySoldier.getY() - this.getY());
+                if (distance <= getRadius()){
+                    this.setImage(getImageOfBuildings(this.getClass().getSimpleName(),".gif" , true));
+                    break;
+                }
+            }
+            this.setImage(getImageOfBuildings(this.getClass().getSimpleName(),".gif" , true));
+        }
         Iterator<Soldier> iterator = enemySoldiers.iterator();
         while (iterator.hasNext()) {
             Soldier enemySoldier = iterator.next();
-            if (enemySoldier.getCanFly()) {
+            if (enemySoldier.getCanFly() || enemySoldier.getX() == -1) {
                 continue;
             }
             int distance = (int) Math.abs(enemySoldier.getX() - this.getX()) + (int) Math.abs(enemySoldier.getY() - this.getY());
-            if (distance <= 2){
-                this.setImage(getImageOfBuildings(this.getClass().getSimpleName(),".gif" , true));
+            if (distance <= this.getRadius()){
                 enemySoldier.setHealth(enemySoldier.getHealth() - this.getDamage());
                 enemySoldier.getLeftHealth().setWidth(1.0 * (Screen.getPrimary().getVisualBounds().getHeight() / 32) * enemySoldier.getHealth() / Config.getDictionary().get(enemySoldier.getClass().getSimpleName() + "_HEALTH"));
                 if (enemySoldier.getHealth() <= 0) {
@@ -34,7 +43,6 @@ public class GuardianGiant extends Defence {
                 }
             }
         }
-        this.setImage(getImageOfBuildings(this.getClass().getSimpleName(),".jpg" , true));
         return null;
     }
 }

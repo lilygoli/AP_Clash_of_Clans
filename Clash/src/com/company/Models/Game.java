@@ -305,6 +305,12 @@ public class Game {
             }
             trap.findAndShootUnit(this.troops);
         }
+        for (GuardianGiant guardianGiant : this.attackedVillage.getVillage().getGuardianGiants()) {
+            if (guardianGiant.getUnderConstructionStatus() || guardianGiant.isRuined()){
+                continue;
+            }
+            guardianGiant.findAndShootUnit(this.troops);
+        }
         //Attacker Soldiers part
         for (int i = 0; i < Config.getDictionary().get("KMM"); i++) {
             Iterator<Soldier> iterator = troops.iterator();

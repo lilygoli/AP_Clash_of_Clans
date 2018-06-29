@@ -201,6 +201,18 @@ public class Config {
         dictionary.put("Cannon_ELIXIR_GAINED_WHEN_DESTRUCTED" , 0);
         dictionary.put("Cannon_UPGRADE_COST",100);
 
+        dictionary.put("GuardianGiant_JSON_TYPE" , 14);
+        dictionary.put("GuardianGiant_GOLD_COST" , 1000);
+        dictionary.put("GuardianGiant_ELIXIR_COST" , 0);
+        dictionary.put("GuardianGiant_BUILD_DURATION" , 4000);
+        dictionary.put("GuardianGiant_STRENGTH" , 700);
+        dictionary.put("GuardianGiant_DAMAGE" , 60);
+        dictionary.put("GuardianGiant_RADIUS" , 2);
+        dictionary.put("GuardianGiant_POINTS_GAINED_WHEN_DESTRUCTED" , 6);
+        dictionary.put("GuardianGiant_GOLD_GAINED_WHEN_DESTRUCTED" , 10000);
+        dictionary.put("GuardianGiant_ELIXIR_GAINED_WHEN_DESTRUCTED" , 0);
+        dictionary.put("GuardianGiant_UPGRADE_COST",100);
+
         dictionary.put("WizardTower_JSON_TYPE" , 11);
         dictionary.put("WizardTower_GOLD_COST" , 500);
         dictionary.put("WizardTower_ELIXIR_COST" , 500);

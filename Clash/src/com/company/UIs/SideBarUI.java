@@ -486,6 +486,7 @@ public class SideBarUI {
             case "AirDefence":
             case "Trap":
             case "Wall":
+            case "GuardianGiant":
                 makeDefencesInfoMenu(group , cell);
                 break;
             default:
@@ -506,9 +507,7 @@ public class SideBarUI {
         backView.setX(UIConstants.BUTTON_STARTING_X);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight()*UIConstants.BACK_BUTTON_Y_COEFFICIENT);
         group.getChildren().add(backView);
-        backView.setOnMouseClicked(backEvent -> {
-            backSwitchCaseFunction(group, cell);
-        });
+        backView.setOnMouseClicked(backEvent -> backSwitchCaseFunction(group, cell));
     }
 
     public static void makeBarrackMenu(Group group, Cell cell) {
