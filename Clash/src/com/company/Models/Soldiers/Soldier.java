@@ -220,6 +220,7 @@ public abstract class Soldier {
                 destroyAndLoot(attackerVillage, target);
             }
         } else {
+//            if(Math.ceil(getX())-getX()>=0 && Math.ceil(getX())-getX()< 0.1 && Math.ceil(getY())-getY()>=0 && Math.ceil(getY())-getY()< 0.1)
             setDirection(findDirection(enemyVillage, target));
             moveSoldier(attackerVillage, getDirection(), enemyVillage);
             switch (getDirection()) {

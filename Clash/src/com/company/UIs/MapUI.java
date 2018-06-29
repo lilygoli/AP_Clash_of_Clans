@@ -154,10 +154,10 @@ public class MapUI  {
         ImageView backGroundView = new ImageView(backGround);
         backGroundView.setOpacity(0.7);
         root.getChildren().add(backGroundView);
+        controller.getGame().getVillage().getGainedResource().setGold(0);
+        controller.getGame().getVillage().getGainedResource().setElixir(0);
         try {
             if (!AttackMapUI.getWinningLabel().getText().equals("")) {
-                controller.getGame().getVillage().getGainedResource().setGold(0);
-                controller.getGame().getVillage().getGainedResource().setElixir(0);
                 new Timeline(new KeyFrame(Duration.seconds(6), new KeyValue(AttackMapUI.getWinningLabel().textProperty(), null))).play();
                 root.getChildren().add(AttackMapUI.getWinningLabel());
                 AttackMapUI.getWinningLabel().setText("");
