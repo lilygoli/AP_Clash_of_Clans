@@ -1,6 +1,5 @@
 package com.company.Models.Towers.Defences;
 
-import com.company.Exception.NotValidFilePathException;
 import com.company.Models.Config;
 import com.company.Models.Soldiers.Soldier;
 import javafx.animation.KeyFrame;

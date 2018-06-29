@@ -7,10 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd4373d0-16e4-43f1-a01f-34df3517e604" name="Default" comment="bug fix">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Trap.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Trap.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UIs/MapUI.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/MapUI.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,8 +32,8 @@
               <folding>
                 <element signature="e#7435#8202#0" expanded="true" />
                 <element signature="e#8201#8202#0" expanded="true" />
-                <element signature="e#26150#26151#0" expanded="true" />
-                <element signature="e#26185#26186#0" expanded="true" />
+                <element signature="e#26149#26150#0" expanded="true" />
+                <element signature="e#26184#26185#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -45,9 +42,11 @@
       <file leaf-file-name="Trap.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Trap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="582">
-              <caret line="30" column="81" lean-forward="false" selection-start-line="30" selection-start-column="81" selection-end-line="30" selection-end-column="81" />
-              <folding />
+            <state relative-caret-position="66">
+              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -473,8 +472,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Models/Config.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/MapUI.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
@@ -483,8 +481,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/BarrackLoading.gif</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/GuardianGiantLoading.gif</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -800,12 +796,12 @@
       <workItem from="1529897568444" duration="229000" />
       <workItem from="1529909750134" duration="494000" />
       <workItem from="1530019087671" duration="45599000" />
-      <workItem from="1530287799623" duration="8306000" />
+      <workItem from="1530287799623" duration="8493000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="260623000" />
+    <option name="totallyTimeSpent" value="260810000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -818,7 +814,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="-13" width="2586" height="1466" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922825" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -828,8 +823,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24702145" sideWeight="0.5078125" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922825" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24630542" sideWeight="0.4921875" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32922825" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24630542" sideWeight="0.4921875" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922825" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1297,8 +1292,8 @@
           <folding>
             <element signature="e#7435#8202#0" expanded="true" />
             <element signature="e#8201#8202#0" expanded="true" />
-            <element signature="e#26150#26151#0" expanded="true" />
-            <element signature="e#26185#26186#0" expanded="true" />
+            <element signature="e#26149#26150#0" expanded="true" />
+            <element signature="e#26184#26185#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1313,9 +1308,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Trap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="30" column="81" lean-forward="false" selection-start-line="30" selection-start-column="81" selection-end-line="30" selection-end-column="81" />
-          <folding />
+        <state relative-caret-position="66">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
