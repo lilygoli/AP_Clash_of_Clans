@@ -492,7 +492,8 @@ public class AttackMapUI {
                                 circle.setOpacity(0.2);
                                 healCircles.put(circle, soldier);
                                 circlePaths.put(circle,makePath(soldier,circle,0.7));
-                                canvas.getChildren().add(circle);
+                                if(!canvas.getChildren().contains(circle))
+                                  canvas.getChildren().add(circle);
 
                             }
                         }

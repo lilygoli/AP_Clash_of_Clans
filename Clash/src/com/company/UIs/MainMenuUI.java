@@ -9,14 +9,20 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.concurrent.Task;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -25,6 +31,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import javax.swing.*;
 import java.io.File;
 
 public class MainMenuUI extends Application{
@@ -70,17 +77,48 @@ public class MainMenuUI extends Application{
     }
 
     private void makeEventHandlersForClick(double screenWidth,double screenHeight,Group root, ImageView newGameView, ImageView loadGameView, ImageView exitGameView, Stage primaryStage) {
+
+        ProgressBar progressBar= new ProgressBar();
+        progressBar.setScaleX(2);
+        progressBar.setStyle("-fx-accent: red;");
+        ProgressIndicator progressIndicator = new ProgressIndicator();
+        progressIndicator.setStyle("-fx-accent: red;");
         newGameView.setOnMouseClicked(event -> {
-            MapUI mapUI = new MapUI();
-            Game game = mapUI.getController().getGameCenter().makeNewGame();
-            mapUI.getController().setGame(game);
-            MainMenuUI.gameLogic = new Thread(new PassTurnThread(mapUI.getController() , primaryStage));
-            gameLogic.start();
-            try {
-                MapUI.start(primaryStage);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
+            Group loadingRoot = new Group();
+            File file = new File("./src/com/company/UIs/MapResources/MapBackGround.jpg");
+            Image backGround = new Image(file.toURI().toString(),screenWidth, screenHeight, false, true);
+            ImageView backGroundView = new ImageView(backGround);
+            backGroundView.setOpacity(0.7);
+            loadingRoot.getChildren().add(backGroundView);
+            VBox vBox= new VBox(progressBar,progressIndicator);
+            vBox.setSpacing(10);
+            vBox.relocate(screenWidth/2.2,screenHeight/2.2);
+            loadingRoot.getChildren().add(vBox);
+            Scene scene = new Scene(loadingRoot, screenWidth, screenHeight);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+            Task task= new Task() {
+                @Override
+                protected Object call() throws Exception {
+                    Thread.sleep(5000);
+                    return new MapUI();
+                }
+            };
+            new Thread(task).start();
+            task.setOnSucceeded(event1 -> {
+                MapUI mapUI=(MapUI)task.getValue();
+                Game game = mapUI.getController().getGameCenter().makeNewGame();
+                mapUI.getController().setGame(game);
+                MainMenuUI.gameLogic = new Thread(new PassTurnThread(mapUI.getController() , primaryStage));
+                gameLogic.start();
+                try {
+                    MapUI.start(primaryStage);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+
         });
         loadGameView.setOnMouseClicked(event -> loadGameButton(screenWidth, screenHeight, root, primaryStage));
         exitGameView.setOnMouseClicked(event -> primaryStage.close());
