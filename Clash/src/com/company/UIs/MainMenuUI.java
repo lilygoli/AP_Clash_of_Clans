@@ -80,9 +80,9 @@ public class MainMenuUI extends Application{
 
         ProgressBar progressBar= new ProgressBar();
         progressBar.setScaleX(2);
-        progressBar.setStyle("-fx-accent: red;");
+        progressBar.setStyle("-fx-accent: #9f1037;");
         ProgressIndicator progressIndicator = new ProgressIndicator();
-        progressIndicator.setStyle("-fx-accent: red;");
+        progressIndicator.setStyle("-fx-accent: #9f1037;");
         newGameView.setOnMouseClicked(event -> {
 
             Group loadingRoot = new Group();
