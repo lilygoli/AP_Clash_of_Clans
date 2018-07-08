@@ -132,19 +132,13 @@ public class SideBarUI {
         host.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 40);
         group.getChildren().add(host);
         host.setOnMouseClicked(event -> {
-             Server server = new Server();
-             server.start();
+             AttackMapUI.server = new Server();
+             AttackMapUI.server.start();
+             intiClient(name);
              makeLoadEnemyMapMenu(group);
         });
         attackImage.setOnMouseClicked((MouseEvent event) -> {
-            try {
-                AttackMapUI.clientSocket = new Socket("localhost" , 12345);
-                AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clientSocket.getOutputStream());
-                AttackMapUI.clientObjectInput = new ObjectInputStream(AttackMapUI.clientSocket.getInputStream());
-                AttackMapUI.clientObjectOutput.writeObject(name.getText());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            intiClient(name);
             makeLoadEnemyMapMenu(group);
         });
         attackImage.setScaleX(0.6);
@@ -152,6 +146,17 @@ public class SideBarUI {
         attackImage.setY(UIConstants.ATTACK_STARTING_Y);
         attackImage.setX(UIConstants.ATTACK_STARTING_X);
         group.getChildren().add(attackImage);
+    }
+
+    private static void intiClient(TextField name) {
+        try {
+            AttackMapUI.clientSocket = new Socket("localhost" , 12345);
+            AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clientSocket.getOutputStream());
+            AttackMapUI.clientObjectInput = new ObjectInputStream(AttackMapUI.clientSocket.getInputStream());
+            AttackMapUI.clientObjectOutput.writeObject(name.getText());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void makeLoadEnemyMapMenu(Group group) {
