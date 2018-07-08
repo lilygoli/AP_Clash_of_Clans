@@ -1,5 +1,8 @@
 package com.company.Multiplayer;
 
+import com.company.Models.Game;
+import com.company.Models.Village;
+
 import java.io.IOException;
 
 public class ServerInputListener extends Thread{
@@ -32,7 +35,9 @@ public class ServerInputListener extends Thread{
                     } else {
                         for (ClientOnServer clientOnServer : Server.clients) {
                             if (clientOnServer.getName().equals(stringCommand)) {
-
+                                clientOnServer.getOutput().writeObject("giveVillage");
+                                Game game = (Game) clientOnServer.getInput().readObject();
+                                client.getOutput().writeObject(game);
                             }
                         }
                     }

@@ -8,6 +8,7 @@ import com.company.Models.Game;
 import com.company.Models.Resource;
 import com.company.Models.Towers.Buildings.*;
 import com.company.Models.Towers.Cell;
+import com.company.Multiplayer.ClientInputListener;
 import com.company.Multiplayer.ClientOnServer;
 import com.company.Multiplayer.Server;
 import javafx.animation.AnimationTimer;
@@ -154,6 +155,8 @@ public class SideBarUI {
             AttackMapUI.clientSocket = new Socket("localhost" , 12345);
             AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clientSocket.getOutputStream());
             AttackMapUI.clientObjectInput = new ObjectInputStream(AttackMapUI.clientSocket.getInputStream());
+            Thread clientInputListener = new ClientInputListener();
+            clientInputListener.start();
             AttackMapUI.clientObjectOutput.writeObject(name.getText());
         } catch (IOException e) {
             e.printStackTrace();
@@ -172,10 +175,8 @@ public class SideBarUI {
         clientsComboBox.setOnMouseClicked(event -> {
             try {
                 AttackMapUI.clientObjectOutput.writeObject("giveClients");
-                String clients = (String) AttackMapUI.clientObjectInput.readObject();
-                clientsComboBox.getItems().clear();
-                clientsComboBox.getItems().addAll(clients.split("\n"));
-            } catch (IOException | ClassNotFoundException e) {
+                AttackMapUI.clientObjectOutput.flush();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         });
@@ -229,13 +230,9 @@ public class SideBarUI {
         } else {
             try {
                 AttackMapUI.clientObjectOutput.writeObject(comboBox.getValue());
-                controller.getGame().setAttackedVillage((Game) AttackMapUI.clientObjectInput.readObject());
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            try {
+                Thread.sleep(1000);
                 AttackMapUI.makeAttackGameBoard(primaryStage,controller);
-            } catch (FileNotFoundException e) {
+            } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
