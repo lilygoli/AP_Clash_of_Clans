@@ -17,10 +17,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -42,6 +39,7 @@ public class SideBarUI {
     private static Controller controller;
     private static Stage primaryStage;
     public static ComboBox<String> clientsComboBox = new ComboBox<>();
+    public static TextArea chatsArea = new TextArea();
     public static void setController(Controller controller) {
         SideBarUI.controller = controller;
     }
@@ -215,7 +213,7 @@ public class SideBarUI {
 
         });
 
-        VBox vBox = new VBox(10 , message, send);
+        VBox vBox = new VBox(10 , message, send , chatsArea);
         vBox.relocate(UIConstants.BUTTON_STARTING_X + 10 , Screen.getPrimary().getVisualBounds().getHeight() * 0.2);
         group.getChildren().add(vBox);
     }

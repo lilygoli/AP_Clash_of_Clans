@@ -7,6 +7,7 @@ import java.io.IOException;
 
 public class ServerInputListener extends Thread{
     private ClientOnServer client;
+    private StringBuilder chats = new StringBuilder();
 
     public ClientOnServer getClient() {
         return client;
@@ -32,7 +33,13 @@ public class ServerInputListener extends Thread{
                             clients.append(clientOnServer.getName() + "\n");
                         }
                         client.getOutput().writeObject(clients.toString());
-                    } else {
+                    } else if (stringCommand.charAt(0) == '&') {
+                        chats.append(stringCommand.substring(1 , stringCommand.length()) + "\n");
+                        for (ClientOnServer clientOnServer : Server.clients) {
+                            clientOnServer.getOutput().writeObject(chats.toString());
+                        }
+                    }
+                    else{
                         for (ClientOnServer clientOnServer : Server.clients) {
                             if (clientOnServer.getName().equals(stringCommand)) {
                                 clientOnServer.getOutput().writeObject("giveVillage");
