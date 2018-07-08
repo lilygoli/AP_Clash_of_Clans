@@ -134,6 +134,7 @@ public class SideBarUI {
         host.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 40);
         group.getChildren().add(host);
         host.setOnMouseClicked(event -> {
+            System.out.println("host");
              AttackMapUI.server = new Server();
              AttackMapUI.server.start();
              intiClient(name);
@@ -263,7 +264,7 @@ public class SideBarUI {
                 AttackMapUI.clientObjectOutput.reset(); //reset
                 AttackMapUI.clientObjectOutput.writeObject(nameOfEnemy);
                 while(controller.getGame().getAttackedVillage() == null) {
-
+                    System.out.println("stuck");
                 }
                 AttackMapUI.makeAttackGameBoard(primaryStage,controller);
             } catch (IOException e) {

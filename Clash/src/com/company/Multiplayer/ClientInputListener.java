@@ -16,8 +16,9 @@ public class ClientInputListener extends Thread{
                 Object command = AttackMapUI.clientObjectInput.readObject();
                 if (command.getClass().getSimpleName().equals("String")) {
                     String stringCommand = (String) command;
-                    if (stringCommand.equals("giveVillage")) {
-                        AttackMapUI.clientObjectOutput.writeObject(MapUI.getController().getGame());
+                    if (stringCommand.startsWith("giveVillage")) {
+                       AttackMapUI.clientObjectOutput.writeObject(new Message(MapUI.getController().getGame(),stringCommand.split("\n")[1]));
+//                        AttackMapUI.clientObjectOutput.writeObject(MapUI.getController().getGame());
                         AttackMapUI.clientObjectOutput.flush();
                     }
                     else {
@@ -30,7 +31,8 @@ public class ClientInputListener extends Thread{
                     }
                 }
                 else if (command.getClass().getSimpleName().equals("Game")) {
-                    System.out.println(command);
+                    System.out.println(command+"thread?");
+                    System.out.println(AttackMapUI.clientName);
                     MapUI.getController().getGame().setAttackedVillage((Game)command);
                 }
             } catch (IOException | ClassNotFoundException e) {
