@@ -32,7 +32,6 @@ import javafx.util.Duration;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -133,14 +132,19 @@ public class SideBarUI {
         host.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 40);
         group.getChildren().add(host);
         host.setOnMouseClicked(event -> {
-            AttackMapUI.server = new Server();
-            AttackMapUI.server.start();
-            createClient(name);
-            makeLoadEnemyMapMenu(group);
-
+             Server server = new Server();
+             server.start();
+             makeLoadEnemyMapMenu(group);
         });
         attackImage.setOnMouseClicked((MouseEvent event) -> {
-            createClient(name);
+            try {
+                AttackMapUI.clientSocket = new Socket("localhost" , 12345);
+                AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clientSocket.getOutputStream());
+                AttackMapUI.clientObjectInput = new ObjectInputStream(AttackMapUI.clientSocket.getInputStream());
+                AttackMapUI.clientObjectOutput.writeObject(name.getText());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             makeLoadEnemyMapMenu(group);
         });
         attackImage.setScaleX(0.6);
@@ -148,22 +152,6 @@ public class SideBarUI {
         attackImage.setY(UIConstants.ATTACK_STARTING_Y);
         attackImage.setX(UIConstants.ATTACK_STARTING_X);
         group.getChildren().add(attackImage);
-    }
-
-    private static void createClient(TextField name) {
-        try {
-            System.out.println("1");
-            AttackMapUI.clinetSocket = new Socket("127.0.0.1" , 12345);
-            System.out.println("2");
-            AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clinetSocket.getOutputStream());
-            System.out.println("3");
-            AttackMapUI.clientObjectinput = new ObjectInputStream(AttackMapUI.clinetSocket.getInputStream());
-            System.out.println("4");
-            AttackMapUI.clientObjectOutput.writeObject(name.getText());
-            System.out.println("5");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private static void makeLoadEnemyMapMenu(Group group) {
@@ -178,7 +166,7 @@ public class SideBarUI {
         comboBox.setOnMouseClicked(event -> {
             try {
                 AttackMapUI.clientObjectOutput.writeObject("giveClients");
-                ArrayList<ClientOnServer> clients = (ArrayList<ClientOnServer>) AttackMapUI.clientObjectinput.readObject();
+                ArrayList<ClientOnServer> clients = (ArrayList<ClientOnServer>) AttackMapUI.clientObjectInput.readObject();
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }

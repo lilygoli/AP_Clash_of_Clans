@@ -50,6 +50,9 @@ public class AttackMapUI {
     public static Socket clinetSocket;
     public static ObjectInputStream clientObjectinput;
     public static ObjectOutputStream clientObjectOutput;
+    public static Socket clientSocket;
+    public static ObjectOutputStream clientObjectOutput;
+    public static ObjectInputStream clientObjectInput;
     private static final String ADDRESS = "./src/com/company/UIs/SideBarMenuImages/";
     private static int attackX, attackY;
     private static PannableCanvas canvas = new PannableCanvas();

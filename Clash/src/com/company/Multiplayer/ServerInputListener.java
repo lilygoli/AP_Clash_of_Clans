@@ -22,7 +22,7 @@ public class ServerInputListener extends Thread{
             Object command = client.getInput().readObject();
             if (command.getClass().getSimpleName().equals("String")) {
                 String stringCommand = (String) command;
-                if (stringCommand.equals("give clients")) {
+                if (stringCommand.equals("giveClients")) {
                     client.getOutput().writeObject(Server.clients);
                 }
                 else {
