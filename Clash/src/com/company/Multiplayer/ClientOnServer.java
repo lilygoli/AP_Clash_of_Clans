@@ -11,9 +11,43 @@ public class ClientOnServer {
     private ObjectInputStream input;
     private ObjectOutputStream output;
 
-    public ClientOnServer(Socket clientSocket) throws IOException {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Socket getClientSocket() {
+        return clientSocket;
+    }
+
+    public void setClientSocket(Socket clientSocket) {
+        this.clientSocket = clientSocket;
+    }
+
+    public ObjectInputStream getInput() {
+        return input;
+    }
+
+    public void setInput(ObjectInputStream input) {
+        this.input = input;
+    }
+
+    public ObjectOutputStream getOutput() {
+        return output;
+    }
+
+    public void setOutput(ObjectOutputStream output) {
+        this.output = output;
+    }
+
+    public ClientOnServer(Socket clientSocket) throws IOException, ClassNotFoundException {
         this.clientSocket = clientSocket;
         input = new ObjectInputStream(clientSocket.getInputStream());
         output = new ObjectOutputStream(clientSocket.getOutputStream());
+        this.name = (String)input.readObject();
+        this.output.writeObject(Server.clients);
     }
 }

@@ -5,8 +5,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class Server {
-    private ServerSocket serverSocket;
-    private ArrayList<ClientOnServer> clients = new ArrayList<>();
+    public static ServerSocket serverSocket;
+    public static ArrayList<ClientOnServer> clients = new ArrayList<>();
 
     public ArrayList<ClientOnServer> getClients() {
         return clients;

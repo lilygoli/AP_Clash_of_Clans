@@ -29,6 +29,10 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.net.Socket;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
