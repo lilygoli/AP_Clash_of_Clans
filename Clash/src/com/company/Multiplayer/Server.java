@@ -24,7 +24,7 @@ public class Server {
         this.serverSocket = serverSocket;
     }
 
-    private void start() {
+    public void start() {
         serverInitialization();
         Socket socket = new Socket();
 
@@ -39,4 +39,5 @@ public class Server {
             e.printStackTrace();
         }
     }
+
 }

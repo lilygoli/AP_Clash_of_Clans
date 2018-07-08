@@ -29,9 +29,8 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -42,6 +41,9 @@ import static com.company.UIs.MapUI.putBuildingImageInMap;
 import static com.company.UIs.SideBarUI.*;
 
 public class AttackMapUI {
+    public static Socket clinetSocket;
+    public static ObjectOutputStream clientObjectOutput;
+    public static ObjectInputStream clientObjectinput;
     private static final String ADDRESS = "./src/com/company/UIs/SideBarMenuImages/";
     private static int attackX, attackY;
     private static PannableCanvas canvas = new PannableCanvas();
@@ -279,7 +281,6 @@ public class AttackMapUI {
     private static Label makeTroopsLabel(Group group, String name) {
         Label label = new Label("X" + Integer.toString(findNumberOfTroops(name)));
         label.setFont(Font.font("Papyrus"));
-        ;
         return label;
     }
 
@@ -408,7 +409,6 @@ public class AttackMapUI {
             @Override
             public void handle(long now) {
                 addArcherArrows();
-                addHealCircles();
                 if(controller.getGame().isWarFinished()){
                     super.stop();
                 }
@@ -469,38 +469,6 @@ public class AttackMapUI {
                 return lineTo;
             }
 
-            private void addHealCircles() {
-                Iterator<Circle> iterator= healCircles.keySet().iterator();
-                while (iterator.hasNext()) {
-                    Circle circle=iterator.next();
-                    if(!controller.getGame().getTroops().contains(healCircles.get(circle))){
-                        canvas.getChildren().remove(circle);
-                    }
-                    if(!(MapUI.mapCoordinates2PixelX(healCircles.get(circle).getTarget().getX())+12==circlePaths.get(circle).getX() && MapUI.mapCoordinates2PixelY(healCircles.get(circle).getTarget().getY())+12==circlePaths.get(circle).getY())){
-                        canvas.getChildren().remove(circle);
-                        iterator.remove();
-                    }
-                }
-                for (int i=0;i<controller.getGame().getTroops().size();i++) {
-                    Soldier soldier=controller.getGame().getTroops().get(i);
-                    if(soldier.getClass().getSimpleName().equals("Healer")){
-                        if(soldier.getTarget()!=null && soldier.hasReachedDestination(soldier.getTarget())){
-                            if(!healCircles.values().contains(soldier)) {
-                                Circle circle= new Circle();
-                                circle.setRadius(3);
-                                circle.setFill(Color.MINTCREAM);
-                                circle.setOpacity(0.2);
-                                healCircles.put(circle, soldier);
-                                circlePaths.put(circle,makePath(soldier,circle,0.7));
-                                if(!canvas.getChildren().contains(circle))
-                                  canvas.getChildren().add(circle);
-
-                            }
-                        }
-                    }
-                }
-
-            }
 
         }.start();
         new AnimationTimer() {
@@ -524,7 +492,6 @@ public class AttackMapUI {
                     super.stop();
                 }
             }
-
         }.start();
     }
 

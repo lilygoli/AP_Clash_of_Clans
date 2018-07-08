@@ -8,6 +8,8 @@ import com.company.Models.Game;
 import com.company.Models.Resource;
 import com.company.Models.Towers.Buildings.*;
 import com.company.Models.Towers.Cell;
+import com.company.Multiplayer.ClientOnServer;
+import com.company.Multiplayer.Server;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -27,9 +29,11 @@ import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import java.io.File;
-import java.io.FileNotFoundException;
+
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -117,10 +121,32 @@ public class SideBarUI {
     }
 
     public static void makeStartingMenu(Group group, Stage stage){
-        primaryStage=stage;
+        primaryStage = stage;
         makeSideBar(group,false);
         ImageView attackImage = getImageView("Attack.png");
-        attackImage.setOnMouseClicked(event -> makeLoadEnemyMapMenu(group));
+        TextField name = new TextField("");
+        name.relocate(UIConstants.ATTACK_STARTING_X + 20 , UIConstants.ATTACK_STARTING_Y - 100);
+        name.setMinWidth(200);
+        name.setMaxWidth(200);
+        group.getChildren().add(name);
+        Button host = new Button("Host");
+        host.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 40);
+        group.getChildren().add(host);
+        host.setOnMouseClicked(event -> {
+             Server server = new Server();
+             server.start();
+        });
+        attackImage.setOnMouseClicked((MouseEvent event) -> {
+            try {
+                AttackMapUI.clinetSocket = new Socket("localhost" , 12345);
+                AttackMapUI.clientObjectinput = new ObjectInputStream(AttackMapUI.clinetSocket.getInputStream());
+                AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clinetSocket.getOutputStream());
+                AttackMapUI.clientObjectOutput.writeObject(name.getText());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            makeLoadEnemyMapMenu(group);
+        });
         attackImage.setScaleX(0.6);
         attackImage.setScaleY(0.8);
         attackImage.setY(UIConstants.ATTACK_STARTING_Y);
@@ -137,6 +163,14 @@ public class SideBarUI {
             index++;
         }
         ComboBox<String> comboBox = new ComboBox<>();
+        comboBox.setOnMouseClicked(event -> {
+            try {
+                AttackMapUI.clientObjectOutput.writeObject("giveClients");
+                ArrayList<ClientOnServer> clients = (ArrayList<ClientOnServer>) AttackMapUI.clientObjectinput.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
         comboBox.setBackground(Background.EMPTY);
         comboBox.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
         comboBox.setMaxWidth(300);
