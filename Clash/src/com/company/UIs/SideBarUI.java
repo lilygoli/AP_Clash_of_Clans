@@ -226,7 +226,12 @@ public class SideBarUI {
 
             });
         } else {
-            controller.getGame().setAttackedVillage(controller.getGame().getAllAttackedVillages().get(Integer.parseInt(comboBox.getValue().split("\\.")[0])-2));
+            try {
+                AttackMapUI.clientObjectOutput.writeObject(comboBox.getValue());
+                controller.getGame().setAttackedVillage((Game) AttackMapUI.clientObjectInput.readObject());
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
             try {
                 AttackMapUI.makeAttackGameBoard(primaryStage,controller);
             } catch (FileNotFoundException e) {
