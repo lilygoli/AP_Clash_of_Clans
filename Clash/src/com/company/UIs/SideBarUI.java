@@ -165,12 +165,6 @@ public class SideBarUI {
 
     private static void makeLoadEnemyMapMenu(Group group) {
         makeSideBar(group,false);
-        StringBuilder enemyMapsList = new StringBuilder("1. load map\n");
-        int index = 2;
-        for (Game game : controller.getGame().getAllAttackedVillages()) {
-            enemyMapsList.append(index).append(". ").append(game.getPlayerName()).append("\n");
-            index++;
-        }
         //ComboBox<String> comboBox = new ComboBox<>();
         clientsComboBox.setOnMouseClicked(event -> {
             try {
@@ -197,6 +191,33 @@ public class SideBarUI {
         group.getChildren().add(selectButton);
         group.getChildren().add(backView);
         group.getChildren().add(clientsComboBox);
+
+        Button chatRoom = new Button("Chat");
+        chatRoom.setStyle("-fx-background-color: #a5862e");
+        chatRoom.relocate(120,UIConstants.MENU_VBOX_STARTING_Y + 100);
+        group.getChildren().add(chatRoom);
+        chatRoom.setOnMouseClicked(event1 -> {
+            makeChatRoomSideBar(group);
+        });
+    }
+
+    private static void makeChatRoomSideBar(Group group) {
+        makeSideBar(group, false);
+        TextField message=new TextField("");
+        message.setBackground(Background.EMPTY);
+        message.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
+
+        Button send = new Button("Send");
+        send.setStyle("-fx-background-color: #a5862e");
+        send.relocate(120,UIConstants.MENU_VBOX_STARTING_Y + 100);
+        group.getChildren().add(send);
+        send.setOnMouseClicked(event1 -> {
+
+        });
+
+        VBox vBox = new VBox(10 , message, send);
+        vBox.relocate(UIConstants.BUTTON_STARTING_X + 10 , Screen.getPrimary().getVisualBounds().getHeight() * 0.2);
+        group.getChildren().add(vBox);
     }
 
     private static void loadEnemyMap(Group group, ComboBox<String> comboBox) {
