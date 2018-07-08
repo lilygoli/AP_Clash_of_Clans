@@ -133,18 +133,14 @@ public class SideBarUI {
         host.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 40);
         group.getChildren().add(host);
         host.setOnMouseClicked(event -> {
-             Server server = new Server();
-             server.start();
+            AttackMapUI.server = new Server();
+            AttackMapUI.server.start();
+            createClient(name);
+            makeLoadEnemyMapMenu(group);
+
         });
         attackImage.setOnMouseClicked((MouseEvent event) -> {
-            try {
-                AttackMapUI.clinetSocket = new Socket("localhost" , 12345);
-                AttackMapUI.clientObjectinput = new ObjectInputStream(AttackMapUI.clinetSocket.getInputStream());
-                AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clinetSocket.getOutputStream());
-                AttackMapUI.clientObjectOutput.writeObject(name.getText());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            createClient(name);
             makeLoadEnemyMapMenu(group);
         });
         attackImage.setScaleX(0.6);
@@ -152,6 +148,22 @@ public class SideBarUI {
         attackImage.setY(UIConstants.ATTACK_STARTING_Y);
         attackImage.setX(UIConstants.ATTACK_STARTING_X);
         group.getChildren().add(attackImage);
+    }
+
+    private static void createClient(TextField name) {
+        try {
+            System.out.println("1");
+            AttackMapUI.clinetSocket = new Socket("127.0.0.1" , 12345);
+            System.out.println("2");
+            AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clinetSocket.getOutputStream());
+            System.out.println("3");
+            AttackMapUI.clientObjectinput = new ObjectInputStream(AttackMapUI.clinetSocket.getInputStream());
+            System.out.println("4");
+            AttackMapUI.clientObjectOutput.writeObject(name.getText());
+            System.out.println("5");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void makeLoadEnemyMapMenu(Group group) {

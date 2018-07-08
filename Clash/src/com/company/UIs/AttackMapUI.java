@@ -10,6 +10,7 @@ import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Towers.Cell;
 import com.company.Models.Towers.Defences.Trap;
 import com.company.Models.Village;
+import com.company.Multiplayer.Server;
 import javafx.animation.*;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -45,9 +46,10 @@ import static com.company.UIs.MapUI.putBuildingImageInMap;
 import static com.company.UIs.SideBarUI.*;
 
 public class AttackMapUI {
+    public static Server server;
     public static Socket clinetSocket;
-    public static ObjectOutputStream clientObjectOutput;
     public static ObjectInputStream clientObjectinput;
+    public static ObjectOutputStream clientObjectOutput;
     private static final String ADDRESS = "./src/com/company/UIs/SideBarMenuImages/";
     private static int attackX, attackY;
     private static PannableCanvas canvas = new PannableCanvas();
