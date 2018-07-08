@@ -26,8 +26,6 @@ public class Server {
 
     public void start() {
         serverInitialization();
-        Socket socket = new Socket();
-
     }
 
     private void serverInitialization() {

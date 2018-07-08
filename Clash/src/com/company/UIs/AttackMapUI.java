@@ -49,7 +49,6 @@ public class AttackMapUI {
     public static Server server;
     public static Socket clinetSocket;
     public static ObjectInputStream clientObjectinput;
-    public static ObjectOutputStream clientObjectOutput;
     public static Socket clientSocket;
     public static ObjectOutputStream clientObjectOutput;
     public static ObjectInputStream clientObjectInput;
