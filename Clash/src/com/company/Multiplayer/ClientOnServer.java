@@ -3,13 +3,14 @@ package com.company.Multiplayer;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.Socket;
 
-public class ClientOnServer {
+public class ClientOnServer implements Serializable{
     private String name;
-    private Socket clientSocket;
-    private ObjectInputStream input;
-    private ObjectOutputStream output;
+    private transient Socket clientSocket;
+    private transient ObjectInputStream input;
+    private transient ObjectOutputStream output;
 
     public String getName() {
         return name;
