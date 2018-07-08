@@ -18,23 +18,28 @@ public class ServerInputListener extends Thread{
     }
 
     public void run() {
-        try {
-            Object command = client.getInput().readObject();
-            if (command.getClass().getSimpleName().equals("String")) {
-                String stringCommand = (String) command;
-                if (stringCommand.equals("giveClients")) {
-                    client.getOutput().writeObject(Server.clients);
-                }
-                else {
-                    for (ClientOnServer clientOnServer : Server.clients) {
-                        if (clientOnServer.getName().equals(stringCommand)) {
+        while(true) {
+            try {
+                Object command = client.getInput().readObject();
+                if (command.getClass().getSimpleName().equals("String")) {
+                    String stringCommand = (String) command;
+                    if (stringCommand.equals("giveClients")) {
+                        StringBuilder clients = new StringBuilder();
+                        for (ClientOnServer clientOnServer : Server.clients) {
+                            clients.append(clientOnServer.getName() + "\n");
+                        }
+                        client.getOutput().writeObject(clients.toString());
+                    } else {
+                        for (ClientOnServer clientOnServer : Server.clients) {
+                            if (clientOnServer.getName().equals(stringCommand)) {
 
+                            }
                         }
                     }
                 }
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
             }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 }

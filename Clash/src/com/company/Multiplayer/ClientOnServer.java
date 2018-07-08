@@ -16,39 +16,22 @@ public class ClientOnServer implements Serializable{
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Socket getClientSocket() {
-        return clientSocket;
-    }
-
-    public void setClientSocket(Socket clientSocket) {
-        this.clientSocket = clientSocket;
-    }
-
     public ObjectInputStream getInput() {
         return input;
-    }
-
-    public void setInput(ObjectInputStream input) {
-        this.input = input;
     }
 
     public ObjectOutputStream getOutput() {
         return output;
     }
 
-    public void setOutput(ObjectOutputStream output) {
-        this.output = output;
-    }
-
     public ClientOnServer(Socket clientSocket) throws IOException, ClassNotFoundException {
         this.clientSocket = clientSocket;
-        input = new ObjectInputStream(clientSocket.getInputStream());
-        output = new ObjectOutputStream(clientSocket.getOutputStream());
+        input = new ObjectInputStream(this.clientSocket.getInputStream());
+        output = new ObjectOutputStream(this.clientSocket.getOutputStream());
         this.name = (String)input.readObject();
         this.output.writeObject(Server.clients);
+
+        ServerInputListener inputListener = new ServerInputListener(this);
+        inputListener.start();
     }
 }

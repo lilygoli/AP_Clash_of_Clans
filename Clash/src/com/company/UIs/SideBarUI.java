@@ -162,7 +162,6 @@ public class SideBarUI {
     private static void makeLoadEnemyMapMenu(Group group) {
         makeSideBar(group,false);
         StringBuilder enemyMapsList = new StringBuilder("1. load map\n");
-        final ArrayList<ClientOnServer>[] clients = new ArrayList[1];
         int index = 2;
         for (Game game : controller.getGame().getAllAttackedVillages()) {
             enemyMapsList.append(index).append(". ").append(game.getPlayerName()).append("\n");
@@ -172,7 +171,9 @@ public class SideBarUI {
         comboBox.setOnMouseClicked(event -> {
             try {
                 AttackMapUI.clientObjectOutput.writeObject("giveClients");
-                clients[0] = (ArrayList<ClientOnServer>) AttackMapUI.clientObjectInput.readObject();
+                String clients = (String) AttackMapUI.clientObjectInput.readObject();
+                comboBox.getItems().clear();
+                comboBox.getItems().addAll(clients.split("\n"));
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -181,11 +182,6 @@ public class SideBarUI {
         comboBox.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
         comboBox.setMaxWidth(300);
         comboBox.setMaxWidth(300);
-        ArrayList<String> attackedMapsNames = new ArrayList<>();
-        for (ClientOnServer clientOnServer : clients[0]) {
-            attackedMapsNames.add(clientOnServer.getName());
-        }
-        comboBox.getItems().addAll(attackedMapsNames);
         comboBox.relocate(90, UIConstants.MENU_VBOX_STARTING_Y);
         Button selectButton=new Button("select");
         selectButton.setStyle("-fx-background-color: #a5862e");
