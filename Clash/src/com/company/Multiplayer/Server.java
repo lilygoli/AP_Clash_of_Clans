@@ -13,7 +13,7 @@ public class Server {
     }
 
     public void setClients(ArrayList<ClientOnServer> clients) {
-        this.clients = clients;
+        Server.clients = clients;
     }
 
     public ServerSocket getServerSocket() {
@@ -21,7 +21,7 @@ public class Server {
     }
 
     public void setServerSocket(ServerSocket serverSocket) {
-        this.serverSocket = serverSocket;
+        Server.serverSocket = serverSocket;
     }
 
     public void start() {

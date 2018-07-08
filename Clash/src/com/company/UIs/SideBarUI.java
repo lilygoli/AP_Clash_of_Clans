@@ -40,6 +40,8 @@ public class SideBarUI {
     private static Stage primaryStage;
     public static ComboBox<String> clientsComboBox = new ComboBox<>();
     public static TextArea chatsArea = new TextArea();
+    public static ArrayList<String >  availableVillagesToAttack= new ArrayList<>();
+
     public static void setController(Controller controller) {
         SideBarUI.controller = controller;
     }
@@ -155,6 +157,7 @@ public class SideBarUI {
             AttackMapUI.clientObjectInput = new ObjectInputStream(AttackMapUI.clientSocket.getInputStream());
             Thread clientInputListener = new ClientInputListener();
             clientInputListener.start();
+            AttackMapUI.clientName=name.getText();
             AttackMapUI.clientObjectOutput.writeObject(name.getText());
         } catch (IOException e) {
             e.printStackTrace();
@@ -167,11 +170,15 @@ public class SideBarUI {
         clientsComboBox.setOnMouseClicked(event -> {
             try {
                 AttackMapUI.clientObjectOutput.writeObject("giveClients");
+                System.out.println("hohohohoho");
                 AttackMapUI.clientObjectOutput.flush();
-            } catch (IOException e) {
+                Thread.sleep(20);
+                clientsComboBox.getItems().addAll(availableVillagesToAttack);
+            } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         });
+
         clientsComboBox.setBackground(Background.EMPTY);
         clientsComboBox.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
         clientsComboBox.setMaxWidth(300);
@@ -180,7 +187,9 @@ public class SideBarUI {
         Button selectButton=new Button("select");
         selectButton.setStyle("-fx-background-color: #a5862e");
         selectButton.relocate(120,UIConstants.MENU_VBOX_STARTING_Y + 50);
-        selectButton.setOnMouseClicked(event1 -> loadEnemyMap(group, clientsComboBox));
+        selectButton.setOnMouseClicked(event -> {
+            loadEnemyMap(group, clientsComboBox);
+        });
         ImageView backView = getImageView("back.png");
         backView.setScaleX(0.5);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.BACK_BUTTON_Y_COEFFICIENT);
@@ -248,7 +257,9 @@ public class SideBarUI {
             });
         } else {
             try {
-                AttackMapUI.clientObjectOutput.writeObject(comboBox.getValue());
+                String nameOfEnemy = comboBox.getValue();
+                System.out.println(comboBox.getValue());
+                AttackMapUI.clientObjectOutput.writeObject(nameOfEnemy);
                 while(controller.getGame().getAttackedVillage() == null) {
 
                 }

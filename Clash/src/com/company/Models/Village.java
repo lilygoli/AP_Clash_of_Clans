@@ -9,11 +9,12 @@ import com.company.Models.Towers.Cell;
 import com.company.Models.Towers.Defences.*;
 import com.company.Models.Soldiers.Soldier;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-public class Village {
+public class Village implements Serializable{
     private Cell[][] map;
     private int score = 0;
     private ArrayList<ArcherTower> archerTowers = new ArrayList<ArcherTower>();

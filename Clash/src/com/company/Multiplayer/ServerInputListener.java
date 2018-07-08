@@ -51,7 +51,9 @@ public class ServerInputListener extends Thread{
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
+                break;
             }
+
         }
     }
 }

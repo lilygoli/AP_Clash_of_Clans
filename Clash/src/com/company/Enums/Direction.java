@@ -1,5 +1,7 @@
 package com.company.Enums;
 
-public enum Direction {
+import java.io.Serializable;
+
+public enum Direction implements Serializable {
     UP, RIGHT, DOWN, LEFT , NONE;
 }

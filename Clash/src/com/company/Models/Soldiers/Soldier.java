@@ -15,10 +15,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public abstract class Soldier {
+public abstract class Soldier implements Serializable{
     private static ArrayList<Soldier> soldierSubClasses = new ArrayList<Soldier>();
     private int buildDuration;
     private int health;

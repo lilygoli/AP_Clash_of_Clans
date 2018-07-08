@@ -1,6 +1,8 @@
 package com.company.Models;
 
-public class Builder {
+import java.io.Serializable;
+
+public class Builder implements Serializable {
     private int number;
     private boolean isOccupied;
     private int x, y;

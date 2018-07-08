@@ -12,10 +12,11 @@ import com.company.UIs.MainMenuUI;
 import com.company.UIs.UIConstants;
 import com.company.View.View;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Game {
+public class Game implements Serializable {
     private String playerName;
     private Village village;
     private int time;

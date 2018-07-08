@@ -1,6 +1,8 @@
 package com.company.Models;
 
-public class Resource {
+import java.io.Serializable;
+
+public class Resource implements Serializable {
     private int gold;
     private int elixir;
     public Resource(int gold,int elixir){
