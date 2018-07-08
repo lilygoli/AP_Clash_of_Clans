@@ -230,9 +230,11 @@ public class SideBarUI {
         } else {
             try {
                 AttackMapUI.clientObjectOutput.writeObject(comboBox.getValue());
-                Thread.sleep(1000);
+                while(controller.getGame().getAttackedVillage() == null) {
+
+                }
                 AttackMapUI.makeAttackGameBoard(primaryStage,controller);
-            } catch (IOException | InterruptedException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -250,6 +252,7 @@ public class SideBarUI {
         group.getChildren().add(score);
     }
     private static void makeResourceLabelsInAttack(Group group, Double sideBarStartingX,Label gold,Label elixir, Label goldAchieved, Label elixirAchieved) {
+        System.out.println(controller.getGame().getAttackedVillage());
         gold.setText(Integer.toString(controller.getGame().getAttackedVillage().getVillage().getResource().getGold()));
         gold.relocate(sideBarStartingX+130,65);
         elixir.setText(Integer.toString(controller.getGame().getAttackedVillage().getVillage().getResource().getElixir()));

@@ -139,7 +139,7 @@ public class MapUI  {
     }
 
 
-    public Controller getController() {
+    public static Controller getController() {
         return controller;
     }
 
