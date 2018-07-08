@@ -78,19 +78,19 @@
       <file leaf-file-name="SideBarUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="229" column="80" lean-forward="false" selection-start-line="229" selection-start-column="80" selection-end-line="229" selection-end-column="80" />
+            <state relative-caret-position="253">
+              <caret line="176" column="71" lean-forward="true" selection-start-line="176" selection-start-column="71" selection-end-line="176" selection-end-column="71" />
               <folding>
-                <element signature="e#1447#1448#0" expanded="true" />
-                <element signature="e#1496#1497#0" expanded="true" />
-                <element signature="e#5193#5437#0" expanded="true" />
-                <element signature="e#5436#5437#0" expanded="true" />
-                <element signature="e#44062#44063#0" expanded="true" />
-                <element signature="e#44122#44123#0" expanded="true" />
-                <element signature="e#44515#44516#0" expanded="true" />
-                <element signature="e#44572#44573#0" expanded="true" />
-                <element signature="e#44725#44726#0" expanded="true" />
-                <element signature="e#44780#44781#0" expanded="true" />
+                <element signature="e#1518#1519#0" expanded="true" />
+                <element signature="e#1567#1568#0" expanded="true" />
+                <element signature="e#5264#5508#0" expanded="true" />
+                <element signature="e#5507#5508#0" expanded="true" />
+                <element signature="e#44205#44206#0" expanded="true" />
+                <element signature="e#44265#44266#0" expanded="true" />
+                <element signature="e#44658#44659#0" expanded="true" />
+                <element signature="e#44715#44716#0" expanded="true" />
+                <element signature="e#44868#44869#0" expanded="true" />
+                <element signature="e#44923#44924#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -162,7 +162,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>attackTargets</find>
       <find>healer</find>
       <find>heal</find>
       <find>yes we are th</find>
@@ -192,6 +191,7 @@
       <find>timeLeftofconstruction</find>
       <find>attack</find>
       <find>combo</find>
+      <find>comboBox</find>
     </findStrings>
     <replaceStrings>
       <replace>Canon</replace>
@@ -212,6 +212,7 @@
       <replace>this</replace>
       <replace>cell</replace>
       <replace>GuardianGiant</replace>
+      <replace>clientsComboBox</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -745,12 +746,12 @@
       <workItem from="1530680849294" duration="311000" />
       <workItem from="1530800670125" duration="1814000" />
       <workItem from="1530892506711" duration="3584000" />
-      <workItem from="1531028215502" duration="9500000" />
+      <workItem from="1531028215502" duration="10083000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="277215000" />
+    <option name="totallyTimeSpent" value="277798000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1178,19 +1179,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="229" column="80" lean-forward="false" selection-start-line="229" selection-start-column="80" selection-end-line="229" selection-end-column="80" />
+        <state relative-caret-position="253">
+          <caret line="176" column="71" lean-forward="true" selection-start-line="176" selection-start-column="71" selection-end-line="176" selection-end-column="71" />
           <folding>
-            <element signature="e#1447#1448#0" expanded="true" />
-            <element signature="e#1496#1497#0" expanded="true" />
-            <element signature="e#5193#5437#0" expanded="true" />
-            <element signature="e#5436#5437#0" expanded="true" />
-            <element signature="e#44062#44063#0" expanded="true" />
-            <element signature="e#44122#44123#0" expanded="true" />
-            <element signature="e#44515#44516#0" expanded="true" />
-            <element signature="e#44572#44573#0" expanded="true" />
-            <element signature="e#44725#44726#0" expanded="true" />
-            <element signature="e#44780#44781#0" expanded="true" />
+            <element signature="e#1518#1519#0" expanded="true" />
+            <element signature="e#1567#1568#0" expanded="true" />
+            <element signature="e#5264#5508#0" expanded="true" />
+            <element signature="e#5507#5508#0" expanded="true" />
+            <element signature="e#44205#44206#0" expanded="true" />
+            <element signature="e#44265#44266#0" expanded="true" />
+            <element signature="e#44658#44659#0" expanded="true" />
+            <element signature="e#44715#44716#0" expanded="true" />
+            <element signature="e#44868#44869#0" expanded="true" />
+            <element signature="e#44923#44924#0" expanded="true" />
           </folding>
         </state>
       </provider>

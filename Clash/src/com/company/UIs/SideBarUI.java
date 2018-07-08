@@ -40,6 +40,7 @@ public class SideBarUI {
     private static final String ADDRESS = "./src/com/company/UIs/SideBarMenuImages/";
     private static Controller controller;
     private static Stage primaryStage;
+    public static ComboBox<String> clientsComboBox = new ComboBox<>();
     public static void setController(Controller controller) {
         SideBarUI.controller = controller;
     }
@@ -167,26 +168,26 @@ public class SideBarUI {
             enemyMapsList.append(index).append(". ").append(game.getPlayerName()).append("\n");
             index++;
         }
-        ComboBox<String> comboBox = new ComboBox<>();
-        comboBox.setOnMouseClicked(event -> {
+        //ComboBox<String> comboBox = new ComboBox<>();
+        clientsComboBox.setOnMouseClicked(event -> {
             try {
                 AttackMapUI.clientObjectOutput.writeObject("giveClients");
                 String clients = (String) AttackMapUI.clientObjectInput.readObject();
-                comboBox.getItems().clear();
-                comboBox.getItems().addAll(clients.split("\n"));
+                clientsComboBox.getItems().clear();
+                clientsComboBox.getItems().addAll(clients.split("\n"));
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         });
-        comboBox.setBackground(Background.EMPTY);
-        comboBox.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
-        comboBox.setMaxWidth(300);
-        comboBox.setMaxWidth(300);
-        comboBox.relocate(90, UIConstants.MENU_VBOX_STARTING_Y);
+        clientsComboBox.setBackground(Background.EMPTY);
+        clientsComboBox.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
+        clientsComboBox.setMaxWidth(300);
+        clientsComboBox.setMaxWidth(300);
+        clientsComboBox.relocate(90, UIConstants.MENU_VBOX_STARTING_Y);
         Button selectButton=new Button("select");
         selectButton.setStyle("-fx-background-color: #a5862e");
         selectButton.relocate(120,UIConstants.MENU_VBOX_STARTING_Y + 50);
-        selectButton.setOnMouseClicked(event1 -> loadEnemyMap(group, comboBox));
+        selectButton.setOnMouseClicked(event1 -> loadEnemyMap(group, clientsComboBox));
         ImageView backView = getImageView("back.png");
         backView.setScaleX(0.5);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.BACK_BUTTON_Y_COEFFICIENT);
@@ -194,7 +195,7 @@ public class SideBarUI {
         backView.setOnMouseClicked(event3 -> makeStartingMenu(group,primaryStage));
         group.getChildren().add(selectButton);
         group.getChildren().add(backView);
-        group.getChildren().add(comboBox);
+        group.getChildren().add(clientsComboBox);
     }
 
     private static void loadEnemyMap(Group group, ComboBox<String> comboBox) {
