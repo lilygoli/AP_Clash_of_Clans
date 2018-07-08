@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Village implements Serializable{
-    private Cell[][] map;
+    private  Cell[][] map;
     private int score = 0;
     private ArrayList<ArcherTower> archerTowers = new ArrayList<ArcherTower>();
     private ArrayList<Cannon> cannons = new ArrayList<Cannon>();
@@ -23,7 +23,6 @@ public class Village implements Serializable{
     private ArrayList<Wall> walls = new ArrayList<Wall>();
     private ArrayList<WizardTower> wizardTowers = new ArrayList<WizardTower>();
     private ArrayList<Trap> traps = new ArrayList<Trap>();
-    // TODO: 4/19/2018 add guardian giant arrayList and class
     private ArrayList<GoldMine> goldMines = new ArrayList<GoldMine>();
     private ArrayList<ElixirMine> elixirMines = new ArrayList<ElixirMine>();
     private ArrayList<GoldStorage> goldStorages = new ArrayList<GoldStorage>();

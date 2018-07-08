@@ -173,6 +173,7 @@ public class SideBarUI {
                 System.out.println("hohohohoho");
                 AttackMapUI.clientObjectOutput.flush();
                 Thread.sleep(20);
+                clientsComboBox.getItems().clear();
                 clientsComboBox.getItems().addAll(availableVillagesToAttack);
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
@@ -259,6 +260,7 @@ public class SideBarUI {
             try {
                 String nameOfEnemy = comboBox.getValue();
                 System.out.println(comboBox.getValue());
+                AttackMapUI.clientObjectOutput.reset(); //reset
                 AttackMapUI.clientObjectOutput.writeObject(nameOfEnemy);
                 while(controller.getGame().getAttackedVillage() == null) {
 

@@ -17,14 +17,13 @@ public class ClientInputListener extends Thread{
                 if (command.getClass().getSimpleName().equals("String")) {
                     String stringCommand = (String) command;
                     if (stringCommand.equals("giveVillage")) {
-
                         AttackMapUI.clientObjectOutput.writeObject(MapUI.getController().getGame());
                         AttackMapUI.clientObjectOutput.flush();
                     }
                     else {
                         SideBarUI.availableVillagesToAttack.clear();
                         if(stringCommand.contains(AttackMapUI.clientName)){
-                            stringCommand=stringCommand.replace(AttackMapUI.clientName,"");
+                            stringCommand = stringCommand.replace(AttackMapUI.clientName+"\n","");
                         }
                         SideBarUI.availableVillagesToAttack = new ArrayList<String>(Arrays.asList(stringCommand.split("\n")));
                         //SideBarUI.clientsComboBox.getItems().addAll(stringCommand.split("\n"));
