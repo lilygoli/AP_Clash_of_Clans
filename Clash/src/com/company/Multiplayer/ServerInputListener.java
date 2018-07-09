@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class ServerInputListener extends Thread{
     private ClientOnServer client;
-    private StringBuilder chats = new StringBuilder();
+
 
     public ClientOnServer getClient() {
         return client;
@@ -24,6 +24,7 @@ public class ServerInputListener extends Thread{
     public void run() {
         while(true) {
             try {
+                StringBuilder chats = Server.chats;
                 Object command = client.getInput().readObject();
                 if (command.getClass().getSimpleName().equals("String")) {
                     String stringCommand = (String) command;

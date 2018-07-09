@@ -141,6 +141,7 @@ public class SideBarUI {
              makeLoadEnemyMapMenu(group);
         });
         attackImage.setOnMouseClicked((MouseEvent event) -> {
+            MapUI.getController().getGame().setPlayerName(name.getText());
             intiClient(name);
             makeLoadEnemyMapMenu(group);
         });
@@ -221,7 +222,12 @@ public class SideBarUI {
         send.relocate(120,UIConstants.MENU_VBOX_STARTING_Y + 100);
         group.getChildren().add(send);
         send.setOnMouseClicked(event1 -> {
-
+            try {
+                AttackMapUI.clientObjectOutput.writeObject("&" + MapUI.getController().getGame().getPlayerName() + " : " + message.getText());
+                message.setText("");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         VBox vBox = new VBox(10 , message, send , chatsArea);

@@ -5,6 +5,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class Server {
+    public static StringBuilder chats = new StringBuilder("@");
     public static ServerSocket serverSocket;
     public static ArrayList<ClientOnServer> clients = new ArrayList<>();
 

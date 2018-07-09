@@ -4,6 +4,7 @@ import com.company.Models.Game;
 import com.company.UIs.AttackMapUI;
 import com.company.UIs.MapUI;
 import com.company.UIs.SideBarUI;
+import javafx.geometry.Side;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,6 +21,10 @@ public class ClientInputListener extends Thread{
                        AttackMapUI.clientObjectOutput.writeObject(new Message(MapUI.getController().getGame(),stringCommand.split("\n")[1]));
 //                        AttackMapUI.clientObjectOutput.writeObject(MapUI.getController().getGame());
                         AttackMapUI.clientObjectOutput.flush();
+                    }
+                    else if (stringCommand.charAt(0) == '@') {
+                        SideBarUI.chatsArea.clear();
+                        SideBarUI.chatsArea.setText(stringCommand.substring(1, stringCommand.length()));
                     }
                     else {
                         SideBarUI.availableVillagesToAttack.clear();
