@@ -130,26 +130,44 @@ public class SideBarUI {
 //        name.setMinWidth(200);
 //        name.setMaxWidth(200);
 //        group.getChildren().add(name);
+//        Button host1 = new Button("Host");
+//        host1.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 40);
+//        group.getChildren().add(host1);
+//        host1.setOnMouseClicked(event -> {
+//            System.out.println("host");
+//             AttackMapUI.server = new Server();
+//             AttackMapUI.server.start();
+//             intiClient(playerName);
+//             makeLoadEnemyMapMenu(group);
+//        });
         String playerName=MapUI.getController().getGame().getPlayerName();
-        Button host = new Button("Host");
-        host.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 40);
-        group.getChildren().add(host);
-        host.setOnMouseClicked(event -> {
-            System.out.println("host");
-             AttackMapUI.server = new Server();
-             AttackMapUI.server.start();
-             intiClient(playerName);
-             makeLoadEnemyMapMenu(group);
-        });
         attackImage.setOnMouseClicked((MouseEvent event) -> {
-            intiClient(playerName);
-            makeLoadEnemyMapMenu(group);
+            //start
+            makeSideBar(group,false);
+            Button host = new Button("Host");
+            host.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 10);
+            group.getChildren().add(host);
+            host.setOnMouseClicked(event1 -> {
+                System.out.println("host");
+                AttackMapUI.server = new Server();
+                AttackMapUI.server.start();
+                intiClient(playerName);
+                makeLoadEnemyMapMenu(group);
+            });
+            Button client = new Button("join");
+            client.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 50);
+            group.getChildren().add(client);
+            client.setOnMouseClicked(event1 -> {
+                intiClient(playerName);
+                makeLoadEnemyMapMenu(group);
         });
+            });
         attackImage.setScaleX(0.6);
         attackImage.setScaleY(0.8);
         attackImage.setY(UIConstants.ATTACK_STARTING_Y);
         attackImage.setX(UIConstants.ATTACK_STARTING_X);
         group.getChildren().add(attackImage);
+
     }
 
     private static void intiClient(String  name) {
