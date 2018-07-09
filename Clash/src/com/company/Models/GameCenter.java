@@ -35,7 +35,7 @@ public class GameCenter {
     public void saveGame(Game mainGame, String pathName, String name) throws NotValidFilePathException {
         YaGson yaGson = new YaGsonBuilder().excludeFieldsWithModifiers(Modifier.TRANSIENT).create();
         String stringJsonOfMainGame = yaGson.toJson(mainGame);
-        mainGame.setPlayerName(name);
+//        mainGame.setPlayerName(name);//inja
         BufferedWriter bufferedWriter = null;
         FileWriter fileWriter = null;
 
@@ -63,17 +63,17 @@ public class GameCenter {
         Game enemyGame = null;
         String[] EnemyJsonAndName = loadFromFile(enemyMapPath);
         for (Game game : games) {
-            if(game.getPlayerName().equals(EnemyJsonAndName[1].trim())){
+            if(game.getPlayerName().equals(EnemyJsonAndName[1].trim())){ //kollan bayad avaz she importanttt
                 return game;
             }
         }
         YaGson yaGson = new YaGson();
         EnemyMapJson enemyMapJson = yaGson.fromJson(EnemyJsonAndName[0].substring(0 , EnemyJsonAndName[0].length() - 1), EnemyMapJson.class);
         enemyGame = enemyMapJson.ConvertEnemyJsonToGame();
-        enemyGame.setPlayerName(EnemyJsonAndName[1]);
+        enemyGame.setPlayerName(EnemyJsonAndName[1]);//in ha dge estefade mishe? bayad avaz she name
         games.add(enemyGame);
 
-        return enemyGame;//TODO tooye Controller attackedVillage e game i k tooshim set beshe ba in be allAttackedVillages ham add beshe
+        return enemyGame;
 
     }
 

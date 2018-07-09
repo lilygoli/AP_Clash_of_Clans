@@ -125,11 +125,12 @@ public class SideBarUI {
         primaryStage = stage;
         makeSideBar(group,false);
         ImageView attackImage = getImageView("Attack.png");
-        TextField name = new TextField("");
-        name.relocate(UIConstants.ATTACK_STARTING_X + 20 , UIConstants.ATTACK_STARTING_Y - 100);
-        name.setMinWidth(200);
-        name.setMaxWidth(200);
-        group.getChildren().add(name);
+//        TextField name = new TextField(""); //inja
+//        name.relocate(UIConstants.ATTACK_STARTING_X + 20 , UIConstants.ATTACK_STARTING_Y - 100);
+//        name.setMinWidth(200);
+//        name.setMaxWidth(200);
+//        group.getChildren().add(name);
+        String playerName=MapUI.getController().getGame().getPlayerName();
         Button host = new Button("Host");
         host.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 40);
         group.getChildren().add(host);
@@ -137,12 +138,11 @@ public class SideBarUI {
             System.out.println("host");
              AttackMapUI.server = new Server();
              AttackMapUI.server.start();
-             intiClient(name);
+             intiClient(playerName);
              makeLoadEnemyMapMenu(group);
         });
         attackImage.setOnMouseClicked((MouseEvent event) -> {
-            MapUI.getController().getGame().setPlayerName(name.getText());
-            intiClient(name);
+            intiClient(playerName);
             makeLoadEnemyMapMenu(group);
         });
         attackImage.setScaleX(0.6);
@@ -152,15 +152,15 @@ public class SideBarUI {
         group.getChildren().add(attackImage);
     }
 
-    private static void intiClient(TextField name) {
+    private static void intiClient(String  name) {
         try {
             AttackMapUI.clientSocket = new Socket("localhost" , 12345);
             AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clientSocket.getOutputStream());
             AttackMapUI.clientObjectInput = new ObjectInputStream(AttackMapUI.clientSocket.getInputStream());
             Thread clientInputListener = new ClientInputListener();
             clientInputListener.start();
-            AttackMapUI.clientName=name.getText();
-            AttackMapUI.clientObjectOutput.writeObject(name.getText());
+            AttackMapUI.clientName=name;
+            AttackMapUI.clientObjectOutput.writeObject(name);
         } catch (IOException e) {
             e.printStackTrace();
         }

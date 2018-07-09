@@ -14,10 +14,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -77,49 +74,68 @@ public class MainMenuUI extends Application{
     }
 
     private void makeEventHandlersForClick(double screenWidth,double screenHeight,Group root, ImageView newGameView, ImageView loadGameView, ImageView exitGameView, Stage primaryStage) {
-
-        ProgressBar progressBar= new ProgressBar();
-        progressBar.setScaleX(2);
-        progressBar.setStyle("-fx-accent: #9f1037;");
-        ProgressIndicator progressIndicator = new ProgressIndicator();
-        progressIndicator.setStyle("-fx-accent: #9f1037;");
-        newGameView.setOnMouseClicked(event -> {
-
-            Group loadingRoot = new Group();
-            File file = new File("./src/com/company/UIs/MapResources/MapBackGround.jpg");
-            Image backGround = new Image(file.toURI().toString(),screenWidth, screenHeight, false, true);
+        newGameView.setOnMouseClicked(event1 -> {
+            root.getChildren().clear();
+            File file = new File("./src/com/company/UIs/MainMenu/menuGif.gif");
+            Image backGround = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight(), false, true);
             ImageView backGroundView = new ImageView(backGround);
-            backGroundView.setOpacity(0.7);
-            loadingRoot.getChildren().add(backGroundView);
-            VBox vBox= new VBox(progressBar,progressIndicator);
-            vBox.setSpacing(10);
-            vBox.relocate(screenWidth/2.2,screenHeight/2.2);
-            loadingRoot.getChildren().add(vBox);
-            Scene scene = new Scene(loadingRoot, screenWidth, screenHeight);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            Task task= new Task() {
-                @Override
-                protected Object call() throws Exception {
-                    Thread.sleep(5000);
-                    return new MapUI();
-                }
-            };
-            new Thread(task).start();
-            task.setOnSucceeded(event1 -> {
-                MapUI mapUI=(MapUI)task.getValue();
-                Game game = mapUI.getController().getGameCenter().makeNewGame();
-                mapUI.getController().setGame(game);
-                MainMenuUI.gameLogic = new Thread(new PassTurnThread(mapUI.getController() , primaryStage));
-                gameLogic.start();
-                try {
-                    MapUI.start(primaryStage);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
+            root.getChildren().add(backGroundView);
+            Label label= new Label("Please enter your name");
+            label.setFont(Font.font("Papyrus",27));
+            label.setTextFill(Color.ROSYBROWN);
+            TextField name = new TextField("");
+            name.setMinWidth(200);
+            name.setMaxWidth(200);
+            Button enter = new Button("Enter");
+            VBox firstVBox= new VBox(label,name,enter);
+            firstVBox.relocate(screenWidth/2.65, screenHeight/2.4);
+            firstVBox.setSpacing(10);
+            firstVBox.setAlignment(Pos.CENTER);
+            root.getChildren().add(firstVBox);
+            enter.setOnMouseClicked(event -> {
+                ProgressBar progressBar = new ProgressBar();
+                progressBar.setScaleX(2);
+                progressBar.setStyle("-fx-accent: #9f1037;");
+                ProgressIndicator progressIndicator = new ProgressIndicator();
+                progressIndicator.setStyle("-fx-accent: #9f1037;");
+                Group loadingRoot = new Group();
+                File fileBackground = new File("./src/com/company/UIs/MapResources/MapBackGround.jpg");
+                Image backGroundImage = new Image(fileBackground.toURI().toString(), screenWidth, screenHeight, false, true);
+                ImageView backGroundImageView = new ImageView(backGroundImage);
+                backGroundImageView.setOpacity(0.7);
+                loadingRoot.getChildren().add(backGroundImageView);
+                VBox vBox = new VBox(progressBar, progressIndicator);
+                vBox.setSpacing(10);
+                vBox.relocate(screenWidth / 2.2, screenHeight / 2.2);
+                loadingRoot.getChildren().add(vBox);
+                Scene scene = new Scene(loadingRoot, screenWidth, screenHeight);
+                primaryStage.setScene(scene);
+                primaryStage.show();
+                Task task = new Task() {
+                    @Override
+                    protected Object call() throws Exception {
+                        Thread.sleep(5000);
+                        return new MapUI();
+                    }
+                };
+                new Thread(task).start();
+                task.setOnSucceeded(event2 -> {
+                    MapUI mapUI = (MapUI) task.getValue();
+                    Game game = mapUI.getController().getGameCenter().makeNewGame();
+                    mapUI.getController().setGame(game);
+                    game.setPlayerName(name.getText());
+                    MainMenuUI.gameLogic = new Thread(new PassTurnThread(mapUI.getController(), primaryStage));
+                    gameLogic.start();
+                    try {
+                        MapUI.start(primaryStage);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
 
+            });
         });
+
         loadGameView.setOnMouseClicked(event -> loadGameButton(screenWidth, screenHeight, root, primaryStage));
         exitGameView.setOnMouseClicked(event -> primaryStage.close());
     }
