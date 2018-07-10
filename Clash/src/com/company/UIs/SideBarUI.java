@@ -127,56 +127,61 @@ public class SideBarUI {
         primaryStage = stage;
         makeSideBar(group,false);
         ImageView attackImage = getImageView("Attack.png");
-//        TextField name = new TextField(""); //inja
-//        name.relocate(UIConstants.ATTACK_STARTING_X + 20 , UIConstants.ATTACK_STARTING_Y - 100);
-//        name.setMinWidth(200);
-//        name.setMaxWidth(200);
-//        group.getChildren().add(name);
-//        Button host1 = new Button("Host");
-//        host1.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 40);
-//        group.getChildren().add(host1);
-//        host1.setOnMouseClicked(event -> {
-//            System.out.println("host");
-//             AttackMapUI.server = new Server();
-//             AttackMapUI.server.start();
-//             intiClient(playerName);
-//             makeLoadEnemyMapMenu(group);
-//        });
         String playerName=MapUI.getController().getGame().getPlayerName();
         attackImage.setOnMouseClicked((MouseEvent event) -> {
             //start
             makeSideBar(group,false);
 
-            TextField ip = new TextField("");
-            ip.setBackground(Background.EMPTY);
-            ip.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
-            ip.relocate(UIConstants.ATTACK_STARTING_X, UIConstants.ATTACK_STARTING_Y + 90);
-            ip.setPrefWidth(130);
-            group.getChildren().add(ip);
+            Button multiPlayer= new Button("MultiPlayer");
+            group.getChildren().add(multiPlayer);
+            multiPlayer.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 10);
+            multiPlayer.setOnMouseClicked(event3 -> {
+                makeSideBar(group,false);
 
-            Button host = new Button("Host");
-            host.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 10);
-            group.getChildren().add(host);
-            host.setOnMouseClicked(event1 -> {
-                System.out.println("host");
-                AttackMapUI.server = new Server();
-                AttackMapUI.server.start();
-                intiClient(playerName, "localhost");
-                makeLoadEnemyMapMenu(group);
+                Button host = new Button("Host");
+                host.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 10);
+                group.getChildren().add(host);
+                host.setOnMouseClicked(event1 -> {
+                    System.out.println("host");
+                    AttackMapUI.server = new Server();
+                    AttackMapUI.server.start();
+                    intiClient(playerName,"localhost");
+                    makeLoadEnemyMapMenu(group);
+                });
+                Button client = new Button("join");
+                client.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 50);
+                group.getChildren().add(client);
+                client.setOnMouseClicked(event1 -> {
+                    TextField ip = new TextField("");
+                    ip.setBackground(Background.EMPTY);
+                    ip.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
+                    ip.relocate(UIConstants.ATTACK_STARTING_X, UIConstants.ATTACK_STARTING_Y + 90);
+                    ip.setPrefWidth(130);
+                    group.getChildren().add(ip);
+                    Button connect = new Button("Connect");
+                    connect.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 70);
+                    group.getChildren().add(connect);
+                    connect.setOnMouseClicked(event2 -> {
+                        intiClient(playerName,ip.getText());
+                        makeLoadEnemyMapMenu(group);
+                    });
+                });
+
             });
-            Button client = new Button("Join");
-            client.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 50);
-            group.getChildren().add(client);
-            client.setOnMouseClicked(event1 -> {
-                intiClient(playerName, ip.getText());
-                makeLoadEnemyMapMenu(group);
+
+            Button singlePlayer = new Button("Single Player");
+            group.getChildren().add(singlePlayer);
+            singlePlayer.relocate(UIConstants.ATTACK_STARTING_X  , UIConstants.ATTACK_STARTING_Y + 30);
+            singlePlayer.setOnMouseClicked(event1 -> {
+                makeSideBar(group,false);
+                makeComboBox(group,false);
             });
-        });
+            });
         attackImage.setScaleX(0.6);
         attackImage.setScaleY(0.8);
-        attackImage.setY(UIConstants.ATTACK_STARTING_Y);
-        attackImage.setX(UIConstants.ATTACK_STARTING_X);
+        attackImage.relocate(UIConstants.ATTACK_STARTING_X,UIConstants.ATTACK_STARTING_Y);
         group.getChildren().add(attackImage);
+
 
     }
 
@@ -215,7 +220,6 @@ public class SideBarUI {
         clientsComboBox.setOnMouseClicked(event -> {
             try {
                 AttackMapUI.clientObjectOutput.writeObject("giveClients");
-                System.out.println("hohohohoho");
                 AttackMapUI.clientObjectOutput.flush();
                 Thread.sleep(20);
                 clientsComboBox.getItems().clear();
@@ -224,7 +228,26 @@ public class SideBarUI {
                 e.printStackTrace();
             }
         });
+        makeComboBox(group,true);
+        Button chatRoom = new Button("Chat");
+        chatRoom.setStyle("-fx-background-color: #a5862e");
+        chatRoom.relocate(120,UIConstants.MENU_VBOX_STARTING_Y + 100);
+        group.getChildren().add(chatRoom);
+        chatRoom.setOnMouseClicked(event1 -> {
+            makeChatRoomSideBar(group);
+        });
+    }
 
+    private static void makeComboBox(Group group, boolean multiPlayer) {
+        if(!multiPlayer){
+            StringBuilder enemyMapsList = new StringBuilder("1. load map\n");
+            int index = 2;
+            for (Game game : controller.getGame().getAllAttackedVillages()) {
+                enemyMapsList.append(index).append(". ").append(game.getPlayerName()).append("\n");
+                index++;
+            }
+            clientsComboBox.getItems().addAll(enemyMapsList.toString().split("\n"));
+        }
         clientsComboBox.setBackground(Background.EMPTY);
         clientsComboBox.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
         clientsComboBox.setMaxWidth(300);
@@ -234,7 +257,11 @@ public class SideBarUI {
         selectButton.setStyle("-fx-background-color: #a5862e");
         selectButton.relocate(120,UIConstants.MENU_VBOX_STARTING_Y + 50);
         selectButton.setOnMouseClicked(event -> {
-            loadEnemyMap(group, clientsComboBox);
+            if(multiPlayer)
+                loadEnemyMap(group, clientsComboBox);
+            else {
+                loadEnemyMapSinglePlayer(group,clientsComboBox);
+            }
         });
         ImageView backView = getImageView("back.png");
         backView.setScaleX(0.5);
@@ -279,34 +306,6 @@ public class SideBarUI {
     }
 
     private static void loadEnemyMap(Group group, ComboBox<String> comboBox) {
-        if (comboBox.getValue().equals("1. load map")) {
-            TextField textField= new TextField("please enter path");
-            textField.relocate(UIConstants.BUTTON_STARTING_X,400);
-            group.getChildren().add(textField);
-            Button loadButton=new Button("load");
-            group.getChildren().add(loadButton);
-            loadButton.relocate(200,400);
-            loadButton.setStyle("-fx-background-color: #a5862e");
-            loadButton.setOnMouseClicked(event2 ->{
-                Game enemyGame = null;
-                    try {
-                        enemyGame = controller.getGameCenter().loadEnemyMap(textField.getText());
-                        controller.getGame().setAttackedVillage(enemyGame);
-                        AttackMapUI.makeAttackGameBoard(primaryStage,controller);
-                        if (!controller.getGame().getAllAttackedVillages().contains(enemyGame)) {
-                            controller.getGame().getAllAttackedVillages().add(enemyGame);
-                        }
-                    } catch (NotValidFilePathException e) {
-                        new Timeline(new KeyFrame(Duration.seconds(2), new KeyValue(e.getImageView().imageProperty(), null))).play();
-                        group.getChildren().add(e.getImageView());
-                    } catch (FileNotFoundException e) {
-                        NotValidFilePathException e1= new NotValidFilePathException();
-                        new Timeline(new KeyFrame(Duration.seconds(2), new KeyValue(e1.getImageView().imageProperty(), null))).play();
-                        group.getChildren().add(e1.getImageView());
-                    }
-
-            });
-        } else {
             try {
                 String nameOfEnemy = comboBox.getValue();
                 System.out.println(comboBox.getValue());
@@ -319,7 +318,46 @@ public class SideBarUI {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+    }
+
+    private static void loadEnemyMapSinglePlayer(Group group , ComboBox comboBox) {
+        if (comboBox.getValue().equals("1. load map")) {
+            TextField textField = new TextField("please enter path");
+            textField.relocate(UIConstants.BUTTON_STARTING_X, 400);
+            group.getChildren().add(textField);
+            Button loadButton = new Button("load");
+            group.getChildren().add(loadButton);
+            loadButton.relocate(200, 400);
+            loadButton.setStyle("-fx-background-color: #a5862e");
+            loadButton.setOnMouseClicked(event2 -> {
+                Game enemyGame = null;
+                try {
+                    enemyGame = controller.getGameCenter().loadEnemyMap(textField.getText());
+                    controller.getGame().setAttackedVillage(enemyGame);
+                    AttackMapUI.makeAttackGameBoard(primaryStage, controller);
+                    if (!controller.getGame().getAllAttackedVillages().contains(enemyGame)) {
+                        controller.getGame().getAllAttackedVillages().add(enemyGame);
+                    }
+                } catch (NotValidFilePathException e) {
+                    new Timeline(new KeyFrame(Duration.seconds(2), new KeyValue(e.getImageView().imageProperty(), null))).play();
+                    group.getChildren().add(e.getImageView());
+                } catch (FileNotFoundException e) {
+                    NotValidFilePathException e1 = new NotValidFilePathException();
+                    new Timeline(new KeyFrame(Duration.seconds(2), new KeyValue(e1.getImageView().imageProperty(), null))).play();
+                    group.getChildren().add(e1.getImageView());
+                }
+
+            });
+        }else{
+            controller.getGame().setAttackedVillage(controller.getGame().getAllAttackedVillages().get(Integer.parseInt(((String)comboBox.getValue()).split("\\.")[0])-2));
+            try {
+                AttackMapUI.makeAttackGameBoard(primaryStage,controller);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
+
+
     }
 
     private static void makeResourceLabels(Group group,Double sideBarStartingX) {
