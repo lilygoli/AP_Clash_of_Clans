@@ -45,6 +45,7 @@ public class MapUI  {
     private static boolean isInBuildMenu=false;
     private static AnimationTimer showMapAnimationTimer;
     private static boolean verticalOrientationOfWall=false;
+    private static boolean isInDefense = false;
 
     public static void setIsInBuildMenu(boolean isInBuildMenu) {
         MapUI.isInBuildMenu=isInBuildMenu;
@@ -55,6 +56,10 @@ public class MapUI  {
     }
 
     private static Controller controller = new Controller();
+
+    public static void isIsInDefense( boolean isInDefense1) {
+        isInDefense=isInDefense1;
+    }
 
     public static boolean getVerticalOrientationOfWall() {
         return verticalOrientationOfWall;
@@ -290,51 +295,64 @@ public class MapUI  {
 
             @Override
             public void handle(long now) {
-                if (now - lastUpdate >= 1000000000) {
-                    int flag = 0;
-                    for (int i = 0; i < 30; i++) {
-                        for (int j = 0; j < 30; j++) {
-                            if (village.getMap()[j][i].getClass() == Grass.class) {
-                                continue;
-                            } else if (village.getMap()[j][i].getClass() == MainBuilding.class) {
-                                if (flag == 0) {
-                                    flag = 1;
-                                    if( village.getMap()[j][i].getTimeLeftOfUpgrade()>0) {
+                if (isInDefense) {
+                    try {
+                        while (MapUI.getController().getGame().getTroops()== null) {
+
+                        }
+                        AttackMapUI.makeAttackGameBoard(SideBarUI.primaryStage, MapUI.getController());
+                        this.stop();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    if (now - lastUpdate >= 1000000000) {
+                        int flag = 0;
+                        for (int i = 0; i < 30; i++) {
+                            for (int j = 0; j < 30; j++) {
+                                if (village.getMap()[j][i].getClass() == Grass.class) {
+                                    continue;
+                                } else if (village.getMap()[j][i].getClass() == MainBuilding.class) {
+                                    if (flag == 0) {
+                                        flag = 1;
+                                        if (village.getMap()[j][i].getTimeLeftOfUpgrade() > 0) {
+                                            village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(), ".gif", false));
+                                        } else {
+                                            village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(), ".png", false));
+                                        }
+                                        if (!village.getMap()[j][i].getEventSet()) {
+                                            setOnClickImages(14, 14, root);
+                                            village.getMap()[j][i].setIsEventSet(true);
+                                        }
+                                        putBuildingImageInMap(i, j, village, 16, canvas, 0);
+                                    }
+
+                                } else {
+                                    if (village.getMap()[j][i].getUnderConstructionStatus() || village.getMap()[j][i].getTimeLeftOfUpgrade() > 0) {
                                         village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(), ".gif", false));
-                                    }else{
-                                        village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png" , false));}
-                                    if(!village.getMap()[j][i].getEventSet()){
-                                        setOnClickImages(14, 14, root);
-                                        village.getMap()[j][i].setIsEventSet(true);
-                                    }
-                                    putBuildingImageInMap(i, j, village,16,canvas,0);
-                                }
+                                        if (!village.getMap()[j][i].getEventSet()) {
+                                            setOnClickImages(i, j, root);
+                                            village.getMap()[j][i].setIsEventSet(true);
+                                        }
+                                        putBuildingImageInMap(i, j, village, 32, canvas, -1);
+                                    } else {
 
-                            } else {
-                                if(village.getMap()[j][i].getUnderConstructionStatus() || village.getMap()[j][i].getTimeLeftOfUpgrade()>0){
-                                    village.getMap()[j][i].setImage( getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".gif" , false));
-                                    if(!village.getMap()[j][i].getEventSet()){
-                                        setOnClickImages(i, j, root);
-                                        village.getMap()[j][i].setIsEventSet(true);
+                                        if (village.getMap()[j][i].getClass().getSimpleName().equals("Wall") && verticalOrientationOfWall) {
+                                            village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName() + "2", ".png", false));
+                                        } else {
+                                            village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(), ".png", false));
+                                        }
+                                        if (!village.getMap()[j][i].getEventSet()) {
+                                            setOnClickImages(i, j, root);
+                                            village.getMap()[j][i].setIsEventSet(true);
+                                        }
+                                        putBuildingImageInMap(i, j, village, 32, canvas, -1);
                                     }
-                                    putBuildingImageInMap(i, j, village,32, canvas,-1);
-                                }else {
-
-                                    if(village.getMap()[j][i].getClass().getSimpleName().equals("Wall")&& verticalOrientationOfWall){
-                                        village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName()+"2", ".png", false));
-                                    }else{
-                                        village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png" , false));
-                                    }
-                                    if(!village.getMap()[j][i].getEventSet()){
-                                        setOnClickImages(i, j, root);
-                                        village.getMap()[j][i].setIsEventSet(true);
-                                    }
-                                    putBuildingImageInMap(i, j, village,32,canvas,-1);
                                 }
                             }
                         }
+                        lastUpdate = now;
                     }
-                    lastUpdate = now ;
                 }
             }
         };

@@ -1,6 +1,7 @@
 package com.company.Multiplayer;
 
 import com.company.Models.Game;
+import com.company.Models.Soldiers.Archer;
 import com.company.Models.Soldiers.Soldier;
 import com.company.UIs.AttackMapUI;
 import com.company.UIs.MapUI;
@@ -38,11 +39,18 @@ public class UDPReceiver extends Thread {
                 liveStreamingMessage liveStreamingMessage1;
                 do{
                    liveStreamingMessage1 = (liveStreamingMessage) iStream.readObject();
-                System.out.println(liveStreamingMessage1);
-
+                    System.out.println(liveStreamingMessage1);
                 }while (liveStreamingMessage1 == null);
+                if(liveStreamingMessage.troops== null){
+                    liveStreamingMessage.troops= new ArrayList<Soldier>();
+                    Archer archer= new Archer(0);
+                    archer.setX(1);
+                    archer.setY(1);
+                    liveStreamingMessage.troops.add(archer);
+                }
                 MapUI.getController().getGame().setTroops(liveStreamingMessage.getTroops());
                 MapUI.getController().getGame().setAttackedVillage(MapUI.getController().getGame());
+                MapUI.isIsInDefense(true);
 //                AttackMapUI.makeAttackGameBoard(SideBarUI.primaryStage,MapUI.getController());
                 iStream.close();
             } catch (IOException | ClassNotFoundException e) {

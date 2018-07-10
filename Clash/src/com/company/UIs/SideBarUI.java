@@ -10,6 +10,7 @@ import com.company.Models.Towers.Buildings.*;
 import com.company.Models.Towers.Cell;
 import com.company.Multiplayer.ClientInputListener;
 import com.company.Multiplayer.ClientOnServer;
+import com.company.Multiplayer.LiveAttackStreamer;
 import com.company.Multiplayer.Server;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -237,6 +238,9 @@ public class SideBarUI {
     }
 
     private static void makeComboBox(Group group, boolean multiPlayer) {
+        if(group.getChildren().contains(clientsComboBox)){
+            group.getChildren().remove(clientsComboBox);
+        }
         if(!multiPlayer){
             StringBuilder enemyMapsList = new StringBuilder("1. load map\n");
             int index = 2;
@@ -313,6 +317,8 @@ public class SideBarUI {
                     System.out.println("stuck");
                 }
                 AttackMapUI.makeAttackGameBoard(primaryStage,controller);
+                Thread streamer = new LiveAttackStreamer();
+                streamer.start();
             } catch (IOException e) {
                 e.printStackTrace();
             }
