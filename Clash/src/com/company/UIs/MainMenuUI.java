@@ -87,7 +87,10 @@ public class MainMenuUI extends Application{
             name.setMinWidth(200);
             name.setMaxWidth(200);
             Button enter = new Button("Enter");
-            VBox firstVBox= new VBox(label,name,enter);
+            enter.setStyle("-fx-background-color: #a5862e");
+            Button back = new Button("Back");
+            back.setStyle("-fx-background-color: #a5862e");
+            VBox firstVBox= new VBox(label,name,enter , back);
             firstVBox.relocate(screenWidth/2.65, screenHeight/2.4);
             firstVBox.setSpacing(10);
             firstVBox.setAlignment(Pos.CENTER);
@@ -132,8 +135,8 @@ public class MainMenuUI extends Application{
                         e.printStackTrace();
                     }
                 });
-
             });
+            back.setOnMouseClicked(event -> start(primaryStage));
         });
 
         loadGameView.setOnMouseClicked(event -> loadGameButton(screenWidth, screenHeight, root, primaryStage));

@@ -31,9 +31,9 @@ public class ClientInputListener extends Thread{
                     else {
                         SideBarUI.availableVillagesToAttack.clear();
                         if(stringCommand.contains(AttackMapUI.clientName)){
-                            stringCommand = stringCommand.replace(AttackMapUI.clientName+"\n","");
+                            stringCommand=stringCommand.replace(AttackMapUI.clientName + "\n","");
                         }
-                        SideBarUI.availableVillagesToAttack = new ArrayList<String>(Arrays.asList(stringCommand.split("\n")));
+                        SideBarUI.availableVillagesToAttack = new ArrayList<>(Arrays.asList(stringCommand.split("\n")));
                         //SideBarUI.clientsComboBox.getItems().addAll(stringCommand.split("\n"));
                     }
                 }

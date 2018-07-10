@@ -43,6 +43,12 @@ public class SideBarUI {
     public static TextArea chatsArea = new TextArea();
     public static ArrayList<String >  availableVillagesToAttack= new ArrayList<>();
 
+    static {
+        chatsArea.setEditable(false);
+        chatsArea.setMinWidth(180);
+        chatsArea.setMaxWidth(180);
+    }
+
     public static void setController(Controller controller) {
         SideBarUI.controller = controller;
     }
@@ -130,16 +136,16 @@ public class SideBarUI {
         attackImage.setOnMouseClicked((MouseEvent event) -> {
             //start
             makeSideBar(group,false);
-
             Button multiPlayer= new Button("MultiPlayer");
-            group.getChildren().add(multiPlayer);
-            multiPlayer.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 10);
+            multiPlayer.setMinWidth(100);
+            multiPlayer.setMaxWidth(100);
+            multiPlayer.setStyle("-fx-background-color: #a5862e");
             multiPlayer.setOnMouseClicked(event3 -> {
                 makeSideBar(group,false);
-
                 Button host = new Button("Host");
-                host.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 10);
-                group.getChildren().add(host);
+                host.setStyle("-fx-background-color: #a5862e");
+                host.setMinWidth(70);
+                host.setMaxWidth(70);
                 host.setOnMouseClicked(event1 -> {
                     System.out.println("host");
                     AttackMapUI.server = new Server();
@@ -148,40 +154,52 @@ public class SideBarUI {
                     makeLoadEnemyMapMenu(group);
                 });
                 Button client = new Button("join");
-                client.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 50);
-                group.getChildren().add(client);
+                client.setStyle("-fx-background-color: #a5862e");
+                client.setMinWidth(70);
+                client.setMaxWidth(70);
                 client.setOnMouseClicked(event1 -> {
                     TextField ip = new TextField("");
                     ip.setBackground(Background.EMPTY);
                     ip.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
-                    ip.relocate(UIConstants.ATTACK_STARTING_X, UIConstants.ATTACK_STARTING_Y + 90);
-                    ip.setPrefWidth(130);
-                    group.getChildren().add(ip);
+                    ip.setPrefWidth(100);
                     Button connect = new Button("Connect");
-                    connect.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 110);
-                    group.getChildren().add(connect);
+                    connect.setStyle("-fx-background-color: #a5862e");
+                    connect.setMinWidth(150);
+                    connect.setMaxWidth(150);
                     connect.setOnMouseClicked(event2 -> {
                         intiClient(playerName,ip.getText());
                         makeLoadEnemyMapMenu(group);
                     });
+                    VBox vBox3 = new VBox(20 , ip , connect);
+                    vBox3.relocate(UIConstants.ATTACK_STARTING_X + 40 , UIConstants.ATTACK_STARTING_Y + 130);
+                    group.getChildren().add(vBox3);
+                    connect.relocate(UIConstants.ATTACK_STARTING_X + 80 , UIConstants.ATTACK_STARTING_Y + 130);
                 });
-
+                Button back = new Button("back");
+                back.setStyle("-fx-background-color: #a5862e");
+                back.setMinWidth(70);
+                back.setMaxWidth(70);
+                back.setOnMouseClicked(event12 -> makeStartingMenu(group ,stage));
+                VBox vBox2 = new VBox(20 , host , client , back);
+                vBox2.relocate(UIConstants.ATTACK_STARTING_X  + 75 , UIConstants.ATTACK_STARTING_Y);
+                group.getChildren().add(vBox2);
             });
-
             Button singlePlayer = new Button("Single Player");
-            group.getChildren().add(singlePlayer);
-            singlePlayer.relocate(UIConstants.ATTACK_STARTING_X  , UIConstants.ATTACK_STARTING_Y + 30);
+            singlePlayer.setMinWidth(100);
+            singlePlayer.setMaxWidth(100);
+            singlePlayer.setStyle("-fx-background-color: #a5862e");
             singlePlayer.setOnMouseClicked(event1 -> {
                 makeSideBar(group,false);
                 makeComboBox(group,false);
             });
-            });
+            VBox vBox = new VBox(20 ,multiPlayer , singlePlayer);
+            vBox.relocate(UIConstants.ATTACK_STARTING_X  + 60 , UIConstants.ATTACK_STARTING_Y);
+            group.getChildren().add(vBox);
+        });
         attackImage.setScaleX(0.6);
         attackImage.setScaleY(0.8);
         attackImage.relocate(UIConstants.ATTACK_STARTING_X,UIConstants.ATTACK_STARTING_Y);
         group.getChildren().add(attackImage);
-
-
     }
 
     private static void intiClient(String  name, String ip) {
@@ -274,18 +292,21 @@ public class SideBarUI {
         group.getChildren().add(backView);
         group.getChildren().add(clientsComboBox);
 
-        Button chatRoom = new Button("Chat");
-        chatRoom.setStyle("-fx-background-color: #a5862e");
-        chatRoom.relocate(120,UIConstants.MENU_VBOX_STARTING_Y + 100);
-        group.getChildren().add(chatRoom);
-        chatRoom.setOnMouseClicked(event1 -> {
-            makeChatRoomSideBar(group);
-        });
+        if (multiPlayer) {
+            System.out.println("my log");
+            Button chatRoom = new Button("Chat");
+            chatRoom.setStyle("-fx-background-color: #a5862e");
+            chatRoom.relocate(120, UIConstants.MENU_VBOX_STARTING_Y + 100);
+            group.getChildren().add(chatRoom);
+            chatRoom.setOnMouseClicked(event1 -> makeChatRoomSideBar(group));
+        }
     }
 
     private static void makeChatRoomSideBar(Group group) {
         makeSideBar(group, false);
         TextField message=new TextField("");
+        message.setMinWidth(180);
+        message.setMaxWidth(180);
         message.setBackground(Background.EMPTY);
         message.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
 
