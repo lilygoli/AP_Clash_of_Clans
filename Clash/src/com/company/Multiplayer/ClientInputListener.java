@@ -42,7 +42,8 @@ public class ClientInputListener extends Thread{
                     System.out.println(AttackMapUI.clientName);
                     MapUI.getController().getGame().setAttackedVillage(((Message)command).getGame());
                     AttackMapUI.attackedIP = ((Message) command).getIp();
-
+                    Thread streamer = new LiveAttackStreamer();
+                    streamer.start();
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
