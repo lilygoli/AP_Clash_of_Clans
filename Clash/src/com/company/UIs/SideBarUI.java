@@ -159,7 +159,7 @@ public class SideBarUI {
                     ip.setPrefWidth(130);
                     group.getChildren().add(ip);
                     Button connect = new Button("Connect");
-                    connect.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 70);
+                    connect.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 110);
                     group.getChildren().add(connect);
                     connect.setOnMouseClicked(event2 -> {
                         intiClient(playerName,ip.getText());

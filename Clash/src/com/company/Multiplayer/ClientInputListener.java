@@ -19,6 +19,7 @@ public class ClientInputListener extends Thread{
                     String stringCommand = (String) command;
                     if (stringCommand.startsWith("giveVillage")) {
                        AttackMapUI.clientObjectOutput.writeObject(new Message(MapUI.getController().getGame(),stringCommand.split("\n")[1]));
+                       AttackMapUI.getController().getGame().setUnderAttackOrDefense(true);
 //                        AttackMapUI.clientObjectOutput.writeObject(MapUI.getController().getGame());
                         AttackMapUI.clientObjectOutput.flush();
                     }
@@ -35,10 +36,12 @@ public class ClientInputListener extends Thread{
                         //SideBarUI.clientsComboBox.getItems().addAll(stringCommand.split("\n"));
                     }
                 }
-                else if (command.getClass().getSimpleName().equals("Game")) {
+                else if (command.getClass().getSimpleName().equals("Message")) {
                     System.out.println(command+"thread?");
                     System.out.println(AttackMapUI.clientName);
-                    MapUI.getController().getGame().setAttackedVillage((Game)command);
+                    MapUI.getController().getGame().setAttackedVillage(((Message)command).getGame());
+                    AttackMapUI.attackedIP = ((Message) command).getIp();
+
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();

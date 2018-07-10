@@ -52,7 +52,7 @@ public class ServerInputListener extends Thread{
                 }else if(command.getClass().getSimpleName().equals("Message")) {
                     for (ClientOnServer clientOnServer : Server.clients) {
                         if (clientOnServer.getName().equals(((Message)command).getName())) {
-                            clientOnServer.getOutput().writeObject(((Message) command).getGame());
+                            clientOnServer.getOutput().writeObject(command);
                         }
                     }
                 }

@@ -33,6 +33,7 @@ import javafx.util.Duration;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.io.*;
 import java.net.Socket;
@@ -50,6 +51,7 @@ public class AttackMapUI {
     public static Socket clientSocket;
     public static ObjectOutputStream clientObjectOutput;
     public static ObjectInputStream clientObjectInput;
+    public static InetAddress attackedIP;
     public static String clientName;
     private static final String ADDRESS = "./src/com/company/UIs/SideBarMenuImages/";
     private static int attackX, attackY;
