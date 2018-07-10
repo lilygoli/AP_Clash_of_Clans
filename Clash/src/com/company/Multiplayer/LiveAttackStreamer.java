@@ -10,11 +10,12 @@ import java.net.DatagramPacket;
 
 public class LiveAttackStreamer extends Thread{
     public void run() {
-        while(AttackMapUI.getController().getGame().isUnderAttackOrDefense()) {
+        while(true) {
             ByteArrayOutputStream bStream = new ByteArrayOutputStream();
             try {
                 ObjectOutput oo = new ObjectOutputStream(bStream);
                 oo.writeObject(AttackMapUI.getController().getGame());
+               // System.out.println("streamer sent"+AttackMapUI.getController().getGame());
                 oo.close();
             } catch (Exception e) {
                 e.printStackTrace();
