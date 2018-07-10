@@ -7,14 +7,22 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class liveStreamingMessage implements Serializable {
-    ArrayList<Soldier> troops;
+    static ArrayList<Soldier> troops;
     ArrayList<Integer> healths = new ArrayList<>();
-    public liveStreamingMessage(){
-        troops= MapUI.getController().getGame().getTroops();
-        for (int i = 0; i <30 ; i++) {
-            for (int j = 0; j <30 ; j++) {
-                healths.add(MapUI.getController().getGame().getVillage().getMap()[i][j].getStrength());
-            }
-        }
+
+    public ArrayList<Integer> getHealths() {
+        return healths;
+    }
+
+    public static ArrayList<Soldier> getTroops() {
+        return troops;
+    }
+
+    public void setTroops(ArrayList<Soldier> troops) {
+        this.troops = troops;
+    }
+
+    public void setHealths(ArrayList<Integer> healths) {
+        this.healths = healths;
     }
 }
