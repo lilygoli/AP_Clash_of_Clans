@@ -19,7 +19,7 @@ public class ClientInputListener extends Thread{
                     String stringCommand = (String) command;
                     if (stringCommand.startsWith("giveVillage")) {
                        AttackMapUI.clientObjectOutput.writeObject(new Message(MapUI.getController().getGame(),stringCommand.split("\n")[1]));
-                       AttackMapUI.getController().getGame().setUnderAttackOrDefense(true);
+                       MapUI.getController().getGame().setUnderAttackOrDefense(true);
                        UDPReceiver udpReceiver = new UDPReceiver();
                        udpReceiver.start();
                         AttackMapUI.clientObjectOutput.flush();

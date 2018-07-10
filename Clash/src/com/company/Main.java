@@ -17,7 +17,7 @@ import java.io.File;
 public class Main{
     public static void main(String[] args){
         Controller controller = new Controller();
-        controller.mainCommandAnalyzer();
+//        controller.mainCommandAnalyzer();
 
         // TODO: 5/5/2018 show menu when build soldier
         // TODO: 5/5/2018 level sarbaz ha ro chap konim toye barracks status

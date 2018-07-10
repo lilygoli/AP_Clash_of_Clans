@@ -94,11 +94,12 @@ public class AttackMapUI {
             File attackLeftFile = new File("./src/com/company/ImagesAndGifs/Soldiers/" + soldier.getClass().getSimpleName() + "/Attack/Left.gif");
             soldiersGif.put(soldier.getClass().getSimpleName() + "AttackLeft", new Image(attackLeftFile.toURI().toString()));
 
-            try {
-                udpSocket = new DatagramSocket(8888);
-            } catch (SocketException e) {
-                e.printStackTrace();
-            }
+
+        }
+        try {
+            udpSocket = new DatagramSocket(12346);
+        } catch (SocketException e) {
+            e.printStackTrace();
         }
     }
 
