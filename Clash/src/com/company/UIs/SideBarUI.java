@@ -30,6 +30,8 @@ import javafx.util.Duration;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -144,6 +146,14 @@ public class SideBarUI {
         attackImage.setOnMouseClicked((MouseEvent event) -> {
             //start
             makeSideBar(group,false);
+
+            TextField ip = new TextField("");
+            ip.setBackground(Background.EMPTY);
+            ip.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
+            ip.relocate(UIConstants.ATTACK_STARTING_X, UIConstants.ATTACK_STARTING_Y + 90);
+            ip.setPrefWidth(130);
+            group.getChildren().add(ip);
+
             Button host = new Button("Host");
             host.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 10);
             group.getChildren().add(host);
@@ -151,17 +161,17 @@ public class SideBarUI {
                 System.out.println("host");
                 AttackMapUI.server = new Server();
                 AttackMapUI.server.start();
-                intiClient(playerName);
+                intiClient(playerName, "localhost");
                 makeLoadEnemyMapMenu(group);
             });
-            Button client = new Button("join");
+            Button client = new Button("Join");
             client.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 50);
             group.getChildren().add(client);
             client.setOnMouseClicked(event1 -> {
-                intiClient(playerName);
+                intiClient(playerName, ip.getText());
                 makeLoadEnemyMapMenu(group);
-        });
             });
+        });
         attackImage.setScaleX(0.6);
         attackImage.setScaleY(0.8);
         attackImage.setY(UIConstants.ATTACK_STARTING_Y);
@@ -170,9 +180,9 @@ public class SideBarUI {
 
     }
 
-    private static void intiClient(String  name) {
+    private static void intiClient(String  name, String ip) {
         try {
-            AttackMapUI.clientSocket = new Socket("localhost" , 12345);
+            AttackMapUI.clientSocket = new Socket(ip , 12345);
             AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clientSocket.getOutputStream());
             AttackMapUI.clientObjectInput = new ObjectInputStream(AttackMapUI.clientSocket.getInputStream());
             Thread clientInputListener = new ClientInputListener();
@@ -186,6 +196,21 @@ public class SideBarUI {
 
     private static void makeLoadEnemyMapMenu(Group group) {
         makeSideBar(group,false);
+
+        String ip = "";
+
+        try(final DatagramSocket socket = new DatagramSocket()){
+            InetAddress IP=InetAddress.getLocalHost();
+            ip = IP.getHostAddress();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Label ipLabel = new Label(ip);
+        ipLabel.relocate(300, 50);
+        group.getChildren().add(ipLabel);
+
         //ComboBox<String> comboBox = new ComboBox<>();
         clientsComboBox.setOnMouseClicked(event -> {
             try {
