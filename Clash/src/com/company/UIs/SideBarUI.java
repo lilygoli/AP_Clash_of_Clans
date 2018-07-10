@@ -30,9 +30,7 @@ import javafx.util.Duration;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.Socket;
+import java.net.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -204,7 +202,7 @@ public class SideBarUI {
 
         String ip = "";
 
-        try(final DatagramSocket socket = new DatagramSocket()){
+        try {
             InetAddress IP=InetAddress.getLocalHost();
             ip = IP.getHostAddress();
         }

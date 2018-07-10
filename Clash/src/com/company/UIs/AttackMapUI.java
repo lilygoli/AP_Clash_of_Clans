@@ -33,10 +33,12 @@ import javafx.util.Duration;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -47,6 +49,7 @@ import static com.company.UIs.MapUI.putBuildingImageInMap;
 import static com.company.UIs.SideBarUI.*;
 
 public class AttackMapUI {
+    public static DatagramSocket udpSocket;
     public static Server server;
     public static Socket clientSocket;
     public static ObjectOutputStream clientObjectOutput;
@@ -90,6 +93,12 @@ public class AttackMapUI {
             soldiersGif.put(soldier.getClass().getSimpleName() + "AttackRight", new Image(attackRightFile.toURI().toString()));
             File attackLeftFile = new File("./src/com/company/ImagesAndGifs/Soldiers/" + soldier.getClass().getSimpleName() + "/Attack/Left.gif");
             soldiersGif.put(soldier.getClass().getSimpleName() + "AttackLeft", new Image(attackLeftFile.toURI().toString()));
+
+            try {
+                udpSocket = new DatagramSocket(8888);
+            } catch (SocketException e) {
+                e.printStackTrace();
+            }
         }
     }
 
