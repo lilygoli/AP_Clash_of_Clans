@@ -22,7 +22,7 @@ public class ClientInputListener extends Thread{
                        MapUI.getController().getGame().setUnderAttackOrDefense(true);
                        UDPReceiver udpReceiver = new UDPReceiver();
                        udpReceiver.start();
-                        AttackMapUI.clientObjectOutput.flush();
+                       AttackMapUI.clientObjectOutput.flush();
                     }
                     else if (stringCommand.charAt(0) == '@') {
                         SideBarUI.chatsArea.clear();

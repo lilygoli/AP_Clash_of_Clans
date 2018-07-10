@@ -14,7 +14,7 @@ public class LiveAttackStreamer extends Thread{
             ByteArrayOutputStream bStream = new ByteArrayOutputStream();
             try {
                 ObjectOutput oo = new ObjectOutputStream(bStream);
-                oo.writeObject(AttackMapUI.getController().getGame());
+                oo.writeObject(new liveStreamingMessage());
                // System.out.println("streamer sent"+AttackMapUI.getController().getGame());
                 oo.close();
             } catch (Exception e) {
@@ -22,7 +22,7 @@ public class LiveAttackStreamer extends Thread{
             }
 
             byte[] buf = bStream.toByteArray();
-            DatagramPacket gamePacket = new DatagramPacket(buf, buf.length, AttackMapUI.attackedIP, 8888);
+            DatagramPacket gamePacket = new DatagramPacket(buf, buf.length, AttackMapUI.attackedIP, 12346);
             try {
                 AttackMapUI.udpSocket.send(gamePacket);
             } catch (IOException e) {

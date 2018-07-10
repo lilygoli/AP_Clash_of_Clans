@@ -37,7 +37,7 @@ import java.util.HashMap;
 public class SideBarUI {
     private static final String ADDRESS = "./src/com/company/UIs/SideBarMenuImages/";
     private static Controller controller;
-    private static Stage primaryStage;
+    public static Stage primaryStage;
     public static ComboBox<String> clientsComboBox = new ComboBox<>();
     public static TextArea chatsArea = new TextArea();
     public static ArrayList<String >  availableVillagesToAttack= new ArrayList<>();
@@ -370,7 +370,7 @@ public class SideBarUI {
         group.getChildren().add(score);
     }
     private static void makeResourceLabelsInAttack(Group group, Double sideBarStartingX,Label gold,Label elixir, Label goldAchieved, Label elixirAchieved) {
-        System.out.println(controller.getGame().getAttackedVillage());
+//        System.out.println(controller.getGame().getAttackedVillage());
         gold.setText(Integer.toString(controller.getGame().getAttackedVillage().getVillage().getResource().getGold()));
         gold.relocate(sideBarStartingX+130,65);
         elixir.setText(Integer.toString(controller.getGame().getAttackedVillage().getVillage().getResource().getElixir()));
