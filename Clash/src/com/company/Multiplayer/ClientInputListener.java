@@ -20,7 +20,8 @@ public class ClientInputListener extends Thread{
                     if (stringCommand.startsWith("giveVillage")) {
                        AttackMapUI.clientObjectOutput.writeObject(new Message(MapUI.getController().getGame(),stringCommand.split("\n")[1]));
                        AttackMapUI.getController().getGame().setUnderAttackOrDefense(true);
-//                        AttackMapUI.clientObjectOutput.writeObject(MapUI.getController().getGame());
+                       UDPReceiver udpReceiver = new UDPReceiver();
+                       udpReceiver.start();
                         AttackMapUI.clientObjectOutput.flush();
                     }
                     else if (stringCommand.charAt(0) == '@') {
