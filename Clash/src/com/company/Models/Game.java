@@ -22,14 +22,12 @@ public class Game implements Serializable {
     private int time;
     private boolean isUnderAttackOrDefense;
     private int timePassedInWar;
-
+    private ArrayList<Game> allAttackedVillages;
+    private Game attackedVillage;
+    private static String whereIAm;
     public Game getAttackedVillage() {
         return attackedVillage;
     }
-
-    private Game attackedVillage;
-    private ArrayList<Game> allAttackedVillages;
-    private static String whereIAm;
 
 
     private ArrayList<Soldier> troops;
