@@ -42,6 +42,7 @@ public class SideBarUI {
     public static ComboBox<String> clientsComboBox = new ComboBox<>();
     public static TextArea chatsArea = new TextArea();
     public static ArrayList<String >  availableVillagesToAttack= new ArrayList<>();
+    public static String port;
 
     public static void setController(Controller controller) {
         SideBarUI.controller = controller;
@@ -144,8 +145,25 @@ public class SideBarUI {
                     System.out.println("host");
                     AttackMapUI.server = new Server();
                     AttackMapUI.server.start();
-                    intiClient(playerName,"localhost");
-                    makeLoadEnemyMapMenu(group);
+                    TextField port = new TextField("");
+                    port.setBackground(Background.EMPTY);
+                    port.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
+                    port.relocate(UIConstants.ATTACK_STARTING_X, UIConstants.ATTACK_STARTING_Y + 120);
+                    port.setPrefWidth(130);
+                    group.getChildren().add(port);
+                    Button connect = new Button("Connect");
+                    connect.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 140);
+                    group.getChildren().add(connect);
+                    connect.setOnMouseClicked(event4 -> {
+                        SideBarUI.port= port.getText();
+                        try {
+                            AttackMapUI.udpSocket = new DatagramSocket(Integer.parseInt(SideBarUI.port));
+                        } catch (SocketException e) {
+                            e.printStackTrace();
+                        }
+                        intiClient(playerName, "localhost",port.getText());
+                        makeLoadEnemyMapMenu(group);
+                    });
                 });
                 Button client = new Button("join");
                 client.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 50);
@@ -156,12 +174,24 @@ public class SideBarUI {
                     ip.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
                     ip.relocate(UIConstants.ATTACK_STARTING_X, UIConstants.ATTACK_STARTING_Y + 90);
                     ip.setPrefWidth(130);
+                    TextField port = new TextField("");
+                    port.setBackground(Background.EMPTY);
+                    port.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
+                    port.relocate(UIConstants.ATTACK_STARTING_X, UIConstants.ATTACK_STARTING_Y + 120);
+                    port.setPrefWidth(130);
                     group.getChildren().add(ip);
+                    group.getChildren().add(port);
                     Button connect = new Button("Connect");
-                    connect.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 110);
+                    connect.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 140);
                     group.getChildren().add(connect);
                     connect.setOnMouseClicked(event2 -> {
-                        intiClient(playerName,ip.getText());
+                        SideBarUI.port= port.getText();
+                        try {
+                            AttackMapUI.udpSocket = new DatagramSocket(Integer.parseInt(SideBarUI.port)+1);
+                        } catch (SocketException e) {
+                            e.printStackTrace();
+                        }
+                        intiClient(playerName,ip.getText(),port.getText());
                         makeLoadEnemyMapMenu(group);
                     });
                 });
@@ -184,9 +214,9 @@ public class SideBarUI {
 
     }
 
-    private static void intiClient(String  name, String ip) {
+    private static void intiClient(String  name, String ip,String port) {
         try {
-            AttackMapUI.clientSocket = new Socket(ip , 12345);
+            AttackMapUI.clientSocket = new Socket(ip , Integer.parseInt(port));
             AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clientSocket.getOutputStream());
             AttackMapUI.clientObjectInput = new ObjectInputStream(AttackMapUI.clientSocket.getInputStream());
             Thread clientInputListener = new ClientInputListener();

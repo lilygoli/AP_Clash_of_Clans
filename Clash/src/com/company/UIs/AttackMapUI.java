@@ -55,6 +55,7 @@ public class AttackMapUI {
     public static ObjectOutputStream clientObjectOutput;
     public static ObjectInputStream clientObjectInput;
     public static InetAddress attackedIP;
+    public static String attackedPort;
     public static String clientName;
     private static final String ADDRESS = "./src/com/company/UIs/SideBarMenuImages/";
     private static int attackX, attackY;
@@ -96,11 +97,7 @@ public class AttackMapUI {
 
 
         }
-        try {
-            udpSocket = new DatagramSocket(12346);
-        } catch (SocketException e) {
-            e.printStackTrace();
-        }
+
     }
 
 

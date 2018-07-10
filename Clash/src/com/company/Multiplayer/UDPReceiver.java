@@ -33,22 +33,24 @@ public class UDPReceiver extends Thread {
             InetAddress address = packet.getAddress();
             int port = packet.getPort();
             packet = new DatagramPacket(buf, buf.length, address, port);
-            String received = new String(packet.getData(), 0, packet.getLength());
+//            String received = new String(packet.getData(), 0, packet.getLength());
             try {
                 ObjectInputStream iStream = new ObjectInputStream(new ByteArrayInputStream(packet.getData()));
                 liveStreamingMessage liveStreamingMessage1;
-                do{
                    liveStreamingMessage1 = (liveStreamingMessage) iStream.readObject();
-                    System.out.println(liveStreamingMessage1);
-                }while (liveStreamingMessage1 == null);
-                if(liveStreamingMessage.troops== null){
-                    liveStreamingMessage.troops= new ArrayList<Soldier>();
-                    Archer archer= new Archer(0);
-                    archer.setX(1);
-                    archer.setY(1);
-                    liveStreamingMessage.troops.add(archer);
+                   System.out.println(liveStreamingMessage1.getTroops());
+                if (liveStreamingMessage1.getTroops() == null){
+                    System.out.println("so stuck");
+                    continue;
                 }
-                MapUI.getController().getGame().setTroops(liveStreamingMessage.getTroops());
+//                if(liveStreamingMessage.troops== null){
+//                    liveStreamingMessage.troops= new ArrayList<Soldier>();
+//                    Archer archer= new Archer(0);
+//                    archer.setX(1);
+//                    archer.setY(1);
+//                    liveStreamingMessage.troops.add(archer);
+//                }
+                MapUI.getController().getGame().setTroops(liveStreamingMessage1.getTroops());
                 MapUI.getController().getGame().setAttackedVillage(MapUI.getController().getGame());
                 MapUI.isIsInDefense(true);
 //                AttackMapUI.makeAttackGameBoard(SideBarUI.primaryStage,MapUI.getController());

@@ -7,14 +7,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class liveStreamingMessage implements Serializable {
-    static ArrayList<Soldier> troops;
+    ArrayList<Soldier> troops;
     ArrayList<Integer> healths = new ArrayList<>();
 
     public ArrayList<Integer> getHealths() {
         return healths;
     }
 
-    public static ArrayList<Soldier> getTroops() {
+    public  ArrayList<Soldier> getTroops() {
         return troops;
     }
 

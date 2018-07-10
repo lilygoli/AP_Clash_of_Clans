@@ -18,7 +18,6 @@ public class LiveAttackStreamer extends Thread{
             try {
                 ObjectOutput oo = new ObjectOutputStream(bStream);
                 liveStreamingMessage lsm = new liveStreamingMessage();
-                ArrayList<Soldier> troops;
                 ArrayList<Integer> healths = new ArrayList<>();
                 System.out.println(MapUI.getController().getGame().getTroops());
                 for (int i = 0; i <30 ; i++) {
@@ -36,7 +35,7 @@ public class LiveAttackStreamer extends Thread{
             }
 
             byte[] buf = bStream.toByteArray();
-            DatagramPacket gamePacket = new DatagramPacket(buf, buf.length, AttackMapUI.attackedIP, 12346);
+            DatagramPacket gamePacket = new DatagramPacket(buf, buf.length, AttackMapUI.attackedIP, Integer.parseInt(AttackMapUI.attackedPort));
             try {
                 AttackMapUI.udpSocket.send(gamePacket);
             } catch (IOException e) {

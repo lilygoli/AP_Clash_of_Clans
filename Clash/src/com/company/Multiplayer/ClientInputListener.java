@@ -18,7 +18,7 @@ public class ClientInputListener extends Thread{
                 if (command.getClass().getSimpleName().equals("String")) {
                     String stringCommand = (String) command;
                     if (stringCommand.startsWith("giveVillage")) {
-                       AttackMapUI.clientObjectOutput.writeObject(new Message(MapUI.getController().getGame(),stringCommand.split("\n")[1]));
+                       AttackMapUI.clientObjectOutput.writeObject(new Message(MapUI.getController().getGame(),stringCommand.split("\n")[1],SideBarUI.port));
                        MapUI.getController().getGame().setUnderAttackOrDefense(true);
                        UDPReceiver udpReceiver = new UDPReceiver();
                        udpReceiver.start();
@@ -42,6 +42,7 @@ public class ClientInputListener extends Thread{
                     System.out.println(AttackMapUI.clientName);
                     MapUI.getController().getGame().setAttackedVillage(((Message)command).getGame());
                     AttackMapUI.attackedIP = ((Message) command).getIp();
+                    AttackMapUI.attackedPort = (((Message) command).getPort());
 
                 }
             } catch (IOException | ClassNotFoundException e) {

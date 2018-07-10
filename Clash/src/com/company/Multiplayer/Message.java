@@ -10,9 +10,11 @@ public class Message implements Serializable {
     private Game game;
     private String name;
     private InetAddress ip;
-    public Message(Game game,String name){
+    private String port;
+    public Message(Game game,String name, String port){
         this.game=game;
         this.name=name;
+        this.port = port;
         try{
             InetAddress IP=InetAddress.getLocalHost();
             ip = IP;
@@ -32,5 +34,9 @@ public class Message implements Serializable {
 
     public InetAddress getIp() {
         return ip;
+    }
+
+    public String getPort() {
+        return port;
     }
 }

@@ -10,5 +10,7 @@ public class UIConstants {
     public static final double INFO_LABEL_STARTING_X = 200;
     public static final double ATTACK_STARTING_Y =260 ;
     public static final double ATTACK_STARTING_X = 35;
+    public static final int SERVER_PORT = 12345;
     public static int DELTA_T = 1000;
-}
+
+    }
