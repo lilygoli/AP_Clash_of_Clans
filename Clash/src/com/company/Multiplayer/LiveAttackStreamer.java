@@ -35,7 +35,7 @@ public class LiveAttackStreamer extends Thread{
             }
 
             byte[] buf = bStream.toByteArray();
-            DatagramPacket gamePacket = new DatagramPacket(buf, buf.length, AttackMapUI.attackedIP, Integer.parseInt(AttackMapUI.attackedPort));
+            DatagramPacket gamePacket = new DatagramPacket(buf, buf.length, AttackMapUI.attackedIP, 12345);
             try {
                 AttackMapUI.udpSocket.send(gamePacket);
             } catch (IOException e) {

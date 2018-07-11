@@ -42,7 +42,7 @@ public class ClientInputListener extends Thread{
                     System.out.println(AttackMapUI.clientName);
                     MapUI.getController().getGame().setAttackedVillage(((Message)command).getGame());
                     AttackMapUI.attackedIP = ((Message) command).getIp();
-                    AttackMapUI.attackedPort = (((Message) command).getPort());
+//                    AttackMapUI.attackedPort = (((Message) command).getPort());
 
                 }
             } catch (IOException | ClassNotFoundException e) {

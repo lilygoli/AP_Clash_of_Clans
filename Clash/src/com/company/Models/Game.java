@@ -388,56 +388,6 @@ public class Game implements Serializable {
         }
     }
 
-
-
-    public void putUnit(String unitType, int amount, int x, int y) throws MoreThanLimitSoldiersException, InvalidPlaceForSoldiersException, NotEnoughSoldierInTroopsException {
-        ArrayList<Soldier> specialSoldierTypeInTroops=new ArrayList<>();
-        for (Soldier soldier : troops) {
-            if(soldier.getClass().getSimpleName().equalsIgnoreCase(unitType.trim().replace(" ",""))){
-                if(soldier.getX()==-1 && soldier.getY()==-1) {
-                    specialSoldierTypeInTroops.add(soldier);
-                    if (specialSoldierTypeInTroops.size() == amount){
-                        break;
-                    }
-                }
-            }
-        }
-        if(amount>specialSoldierTypeInTroops.size()){
-            throw new NotEnoughSoldierInTroopsException();
-        }
-        if (amount > 5) {
-            throw new MoreThanLimitSoldiersException();
-        }
-        if((x<29 && x>0) && (y<29 && y>0)){
-            throw new InvalidPlaceForSoldiersException();
-        }
-        int sameSoldiersNumber = 0;
-        for (Soldier soldier : troops
-                ) {
-            if (soldier.getY() != -1 && soldier.getX() != -1 && soldier.getX() == x && soldier.getY() == y) {
-                if (soldier.getClass().getSimpleName().equalsIgnoreCase(unitType.replace(" ", ""))) {
-                    sameSoldiersNumber++;
-                } else {
-                    throw new InvalidPlaceForSoldiersException();
-                }
-            }
-        }
-        int number = 0;
-        if (sameSoldiersNumber + amount <= 5) {
-            for (Soldier specialSoldierTypeInTroop : specialSoldierTypeInTroops) {
-                number++;
-                specialSoldierTypeInTroop.setX(x);
-                specialSoldierTypeInTroop.setY(y);
-                if (number == amount) {
-                    break;
-                }
-            }
-        }else {
-            throw new InvalidPlaceForSoldiersException();
-        }
-
-    }
-
     private void passTurnInNormalMode() {
         time++;
         for (int i = 0; i < 30; i++) {

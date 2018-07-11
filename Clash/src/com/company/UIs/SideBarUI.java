@@ -163,7 +163,7 @@ public class SideBarUI {
                     connect.setOnMouseClicked(event4 -> {
                         SideBarUI.port= port.getText();
                         try {
-                            AttackMapUI.udpSocket = new DatagramSocket(Integer.parseInt(SideBarUI.port));
+                            AttackMapUI.udpSocket = new DatagramSocket(12346);
                         } catch (SocketException e) {
                             e.printStackTrace();
                         }
@@ -195,7 +195,7 @@ public class SideBarUI {
                     connect.setOnMouseClicked(event2 -> {
                         SideBarUI.port= port.getText();
                         try {
-                            AttackMapUI.udpSocket = new DatagramSocket(Integer.parseInt(SideBarUI.port)+1);
+                            AttackMapUI.udpSocket = new DatagramSocket(12346);
                         } catch (SocketException e) {
                             e.printStackTrace();
                         }
