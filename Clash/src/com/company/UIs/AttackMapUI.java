@@ -59,7 +59,7 @@ public class AttackMapUI {
     public static String clientName;
     private static final String ADDRESS = "./src/com/company/UIs/SideBarMenuImages/";
     private static int attackX, attackY;
-    private static PannableCanvas canvas = new PannableCanvas();
+    public static PannableCanvas canvas = new PannableCanvas();
     private static Controller controller;
 
     private static Stage primaryStage;

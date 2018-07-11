@@ -3,6 +3,7 @@ package com.company.UIs;
 import com.company.Controller.Controller;
 import com.company.Models.Towers.Buildings.ElixirStorage;
 import com.company.Models.Towers.Buildings.GoldStorage;
+import com.company.Models.Soldiers.Soldier;
 import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Village;
@@ -43,6 +44,7 @@ import java.beans.EventHandler;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -386,6 +388,8 @@ public class MapUI  {
        showMapAnimationTimer=new AnimationTimer(){
 
             private long lastUpdate = 0;
+            private int flag = 0;
+            private ArrayList<Soldier> previousTroops= new ArrayList<>();
 
             @Override
             public void handle(long now) {
@@ -394,8 +398,26 @@ public class MapUI  {
                         while (MapUI.getController().getGame().getTroops()== null) {
 
                         }
-                        AttackMapUI.makeAttackGameBoard(SideBarUI.primaryStage, MapUI.getController());
-                        this.stop();
+                        if(flag==0) {
+                            AttackMapUI.makeAttackGameBoard(SideBarUI.primaryStage, MapUI.getController());
+                            flag=1;
+                        }
+                        for (Soldier previousTroop : previousTroops) {
+                        //    previousTroop.getImageView().setImage(null);
+                            canvas.getChildren().remove(previousTroop.getLeftHealth());
+                            canvas.getChildren().remove(previousTroop.getAllHealth());
+                        }
+                        for (Soldier soldier : MapUI.getController().getGame().getTroops()) {
+                            if(soldier.getX()!= -1 && !soldier.isHasPut()) {
+                                System.out.println("putting image");
+                                AttackMapUI.putSoldiersImageInMap((int) Math.ceil(soldier.getY()), (int) Math.ceil(soldier.getX()), 32, AttackMapUI.canvas, AttackMapUI.getSoldiersGif().get(soldier.getClass().getSimpleName() + "MoveUp"), soldier, root);
+                                previousTroops.add(soldier);
+                            }
+                        }
+                        if(controller.getGame().isWarFinished()){
+                            isInDefense = false;
+                        }
+                        System.out.println("in attack");
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -515,14 +537,14 @@ public class MapUI  {
         return (y + 1) * cellWidth;
     }
 
-    private int pixel2MapCoordinatesX(double x) {
+    private static int pixel2MapCoordinatesX(double x) {
         double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
         x = x - Screen.getPrimary().getVisualBounds().getWidth();
         x = - x / cellWidth;
         return (int)(x - 3);
     }
 
-    private int pixel2MapCoordinatesY(double y) {
+    private static int pixel2MapCoordinatesY(double y) {
         double cellWidth = Screen.getPrimary().getVisualBounds().getHeight() / 32;
         return (int) (y / cellWidth - 1);
     }
