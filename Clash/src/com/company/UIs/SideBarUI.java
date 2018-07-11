@@ -148,28 +148,31 @@ public class SideBarUI {
                 host.setMinWidth(70);
                 host.setMaxWidth(70);
                 host.setOnMouseClicked(event1 -> {
-                    System.out.println("host");
                     AttackMapUI.server = new Server();
                     AttackMapUI.server.start();
-                    TextField port = new TextField("");
-                    port.setBackground(Background.EMPTY);
-                    port.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
-                    port.relocate(UIConstants.ATTACK_STARTING_X, UIConstants.ATTACK_STARTING_Y + 120);
-                    port.setPrefWidth(130);
-                    group.getChildren().add(port);
-                    Button connect = new Button("Connect");
-                    connect.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 140);
-                    group.getChildren().add(connect);
-                    connect.setOnMouseClicked(event4 -> {
-                        SideBarUI.port= port.getText();
-                        try {
-                            AttackMapUI.udpSocket = new DatagramSocket(12346);
-                        } catch (SocketException e) {
-                            e.printStackTrace();
-                        }
-                        intiClient(playerName, "localhost",port.getText());
+//                    TextField port = new TextField("");
+//                    port.setBackground(Background.EMPTY);
+//                    port.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
+//                    port.relocate(UIConstants.ATTACK_STARTING_X + 40, UIConstants.ATTACK_STARTING_Y + 100);
+//                    port.setPrefWidth(130);
+//                    group.getChildren().add(port);
+//                    Button connect = new Button("Connect");
+//                    connect.relocate(UIConstants.ATTACK_STARTING_X + 60 , UIConstants.ATTACK_STARTING_Y + 150);
+//                    group.getChildren().add(connect);
+//                    connect.setOnMouseClicked(event4 -> {
+                        //SideBarUI.port= port.getText();
+                    try {
+                        AttackMapUI.udpSocket = new DatagramSocket(12345);
+                    } catch (SocketException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        intiClient(playerName, "localhost");
                         makeLoadEnemyMapMenu(group);
-                    });
+                    } catch (Exception e) {
+                        makeStartingMenu(group , stage);
+                    }
+                    //});
                 });
                 Button client = new Button("join");
                 client.setStyle("-fx-background-color: #a5862e");
@@ -181,11 +184,11 @@ public class SideBarUI {
                     ip.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
                    // ip.relocate(UIConstants.ATTACK_STARTING_X, UIConstants.ATTACK_STARTING_Y + 90);
                     ip.setPrefWidth(100);
-                    TextField port = new TextField("");
-                    port.setBackground(Background.EMPTY);
-                    port.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
+//                    TextField port = new TextField("");
+//                    port.setBackground(Background.EMPTY);
+//                    port.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
                    // port.relocate(UIConstants.ATTACK_STARTING_X, UIConstants.ATTACK_STARTING_Y + 120);
-                    port.setPrefWidth(100);
+                    //port.setPrefWidth(100);
                     Button connect = new Button("Connect");
                     //connect.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 140);
                     group.getChildren().add(connect);
@@ -193,16 +196,21 @@ public class SideBarUI {
                     connect.setMinWidth(150);
                     connect.setMaxWidth(150);
                     connect.setOnMouseClicked(event2 -> {
-                        SideBarUI.port= port.getText();
+                        //SideBarUI.port= port.getText();
+//                        try {
+//                            AttackMapUI.udpSocket = new DatagramSocket(Integer.parseInt(SideBarUI.port)+1);
+//                        } catch (SocketException e) {
+//                            e.printStackTrace();
+//                        }
                         try {
-                            AttackMapUI.udpSocket = new DatagramSocket(12346);
-                        } catch (SocketException e) {
-                            e.printStackTrace();
+                            intiClient(playerName,ip.getText());
+                            makeLoadEnemyMapMenu(group);
                         }
-                        intiClient(playerName,ip.getText(),port.getText());
-                        makeLoadEnemyMapMenu(group);
+                        catch (Exception e){
+                            makeStartingMenu(group , stage);
+                        }
                     });
-                    VBox vBox3 = new VBox(20 , ip ,port, connect);
+                    VBox vBox3 = new VBox(20 , ip , connect);
                     vBox3.relocate(UIConstants.ATTACK_STARTING_X + 40 , UIConstants.ATTACK_STARTING_Y + 130);
                     group.getChildren().add(vBox3);
                     connect.relocate(UIConstants.ATTACK_STARTING_X + 80 , UIConstants.ATTACK_STARTING_Y + 130);
@@ -234,18 +242,14 @@ public class SideBarUI {
         group.getChildren().add(attackImage);
     }
 
-    private static void intiClient(String  name, String ip,String port) {
-        try {
-            AttackMapUI.clientSocket = new Socket(ip , Integer.parseInt(port));
+    private static void intiClient(String  name, String ip) throws Exception{
+        AttackMapUI.clientSocket = new Socket(ip , 12345);
             AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clientSocket.getOutputStream());
             AttackMapUI.clientObjectInput = new ObjectInputStream(AttackMapUI.clientSocket.getInputStream());
             Thread clientInputListener = new ClientInputListener();
             clientInputListener.start();
             AttackMapUI.clientName=name;
             AttackMapUI.clientObjectOutput.writeObject(name);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private static void makeLoadEnemyMapMenu(Group group) {
@@ -319,7 +323,14 @@ public class SideBarUI {
         backView.setScaleX(0.5);
         backView.setY(Screen.getPrimary().getVisualBounds().getHeight() * UIConstants.BACK_BUTTON_Y_COEFFICIENT);
         backView.setX(UIConstants.BUTTON_STARTING_X);
-        backView.setOnMouseClicked(event3 -> makeStartingMenu(group,primaryStage));
+        backView.setOnMouseClicked(event3 -> {
+            try {
+                Server.serverSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            makeStartingMenu(group,primaryStage);
+        });
         group.getChildren().add(selectButton);
         group.getChildren().add(backView);
         group.getChildren().add(clientsComboBox);
@@ -354,8 +365,13 @@ public class SideBarUI {
                 e.printStackTrace();
             }
         });
+        Button back = new Button("Back");
+        back.setStyle("-fx-background-color: #a5862e");
+        back.setOnMouseClicked(event -> {
+            makeLoadEnemyMapMenu(group);
+        });
 
-        VBox vBox = new VBox(10 , message, send , chatsArea);
+        VBox vBox = new VBox(10 , message, send , chatsArea , back);
         vBox.relocate(UIConstants.BUTTON_STARTING_X + 10 , Screen.getPrimary().getVisualBounds().getHeight() * 0.2);
         group.getChildren().add(vBox);
     }

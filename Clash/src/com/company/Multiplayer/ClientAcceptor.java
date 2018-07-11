@@ -16,6 +16,7 @@ public class ClientAcceptor extends Thread{
                 Socket client = server.getServerSocket().accept();
                 server.getClients().add(new ClientOnServer(client));
             } catch (Exception e) {
+                this.stop();
                 e.printStackTrace();
             }
         }
