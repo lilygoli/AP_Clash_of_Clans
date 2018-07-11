@@ -210,7 +210,9 @@ public abstract class Soldier implements Serializable{
     }
 
     void attackTargets(Village attackerVillage, Village enemyVillage, Cell target) {
-        System.out.println("target x"+target.getX()+"soldier x"+x);
+        System.out.println(enemyVillage.getMap()[0][0]);
+
+        System.out.println("target x, y   "+target.getX() + " " + target.getY() + "                    " + target.getClass().getSimpleName());
         if (hasReachedDestination(target)) {
             String relativeDirection = getRelativeDirection(target);
             chooseRelativeDirection(relativeDirection);
@@ -356,6 +358,10 @@ public abstract class Soldier implements Serializable{
                         finishedFavoriteTarget = false;
                         if (Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2)) <= minDistance) {
                             destination = enemyVillage.getMap()[i][j];
+                            if (destination.getClass().getSimpleName().equals("MainBuilding")) {
+                                destination.setX(14);
+                                destination.setY(14);
+                            }
                             minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
                         }
                     }
