@@ -24,6 +24,10 @@ public class ClientInputListener extends Thread{
                        udpReceiver.start();
                        AttackMapUI.clientObjectOutput.flush();
                     }
+                    else if (stringCommand.startsWith("$")){
+                        System.out.println("2");
+                        SideBarUI.leaderBoard.setText(SideBarUI.leaderBoard.getText() + stringCommand.substring(1 , stringCommand.length()) + " -----" +  SideBarUI.allGainedElixirResouces + "------" + SideBarUI.allGainedGoldsResouces + "\n");
+                    }
                     else if (stringCommand.charAt(0) == '@') {
                         SideBarUI.chatsArea.clear();
                         SideBarUI.chatsArea.setText(stringCommand.substring(1, stringCommand.length()));

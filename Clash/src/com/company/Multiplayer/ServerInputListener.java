@@ -25,6 +25,7 @@ public class ServerInputListener extends Thread{
         while(true) {
             try {
                 StringBuilder chats = Server.chats;
+                StringBuilder leaderBoard = Server.leaderBoard;
                 Object command = client.getInput().readObject();
                 if (command.getClass().getSimpleName().equals("String")) {
                     String stringCommand = (String) command;
@@ -34,6 +35,12 @@ public class ServerInputListener extends Thread{
                             clients.append(clientOnServer.getName() + "\n");
                         }
                         client.getOutput().writeObject(clients.toString());
+                    }
+                    else if(stringCommand.equals("giveScores")){
+                        System.out.println("1");
+                        for (ClientOnServer clientOnServer : Server.clients) {
+                            clientOnServer.getOutput().writeObject("$" + client.getName());
+                        }
                     } else if (stringCommand.charAt(0) == '&') {
                         chats.append(stringCommand.substring(1 , stringCommand.length()) + "\n");
                         for (ClientOnServer clientOnServer : Server.clients) {

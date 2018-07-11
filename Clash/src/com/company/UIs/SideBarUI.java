@@ -32,6 +32,7 @@ import javafx.util.Duration;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.net.*;
+import java.time.chrono.ThaiBuddhistChronology;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -41,13 +42,22 @@ public class SideBarUI {
     public static Stage primaryStage;
     public static ComboBox<String> clientsComboBox = new ComboBox<>();
     public static TextArea chatsArea = new TextArea();
+    public static TextArea leaderBoard = new TextArea();
     public static ArrayList<String >  availableVillagesToAttack= new ArrayList<>();
     public static String port;
+    public static int allGainedGoldsResouces = 0;
+    public static int allGainedElixirResouces = 0;
 
     static {
+        leaderBoard.setEditable(false);
+        leaderBoard.relocate(50 , 180);
+        leaderBoard.setMinWidth(200);
+        leaderBoard.setMaxWidth(200);
+        leaderBoard.setStyle("-fx-background-color: #a5862e");
         chatsArea.setEditable(false);
         chatsArea.setMinWidth(180);
         chatsArea.setMaxWidth(180);
+        chatsArea.setBackground(Background.EMPTY);
     }
 
     public static void setController(Controller controller) {
@@ -284,11 +294,41 @@ public class SideBarUI {
         makeComboBox(group,true);
         Button chatRoom = new Button("Chat");
         chatRoom.setStyle("-fx-background-color: #a5862e");
-        chatRoom.relocate(120,UIConstants.MENU_VBOX_STARTING_Y + 100);
+        chatRoom.relocate(90,UIConstants.MENU_VBOX_STARTING_Y + 100);
+        chatRoom.setMinWidth(100);
+        chatRoom.setMaxWidth(100);
         group.getChildren().add(chatRoom);
-        chatRoom.setOnMouseClicked(event1 -> {
-            makeChatRoomSideBar(group);
+        chatRoom.setOnMouseClicked(event1 -> makeChatRoomSideBar(group));
+        Button leaderBoard = new Button("LeaderBoard");
+        leaderBoard.setStyle("-fx-background-color: #a5862e");
+        leaderBoard.relocate(90 , UIConstants.MENU_VBOX_STARTING_Y + 140);
+        group.getChildren().add(leaderBoard);
+        leaderBoard.setMaxWidth(100);
+        leaderBoard.setMinWidth(100);
+        leaderBoard.setOnMouseClicked(event -> {
+            try {
+                AttackMapUI.clientObjectOutput.writeObject("giveScores");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            SideBarUI.leaderBoard.clear();
+            showLeaderBoard(group);
         });
+    }
+
+    private static void showLeaderBoard(Group group) {
+        makeSideBar(group , false);
+        if (group.getChildren().contains(leaderBoard)){
+            group.getChildren().remove(leaderBoard);
+        }
+        group.getChildren().add(leaderBoard);
+        Button back = new Button("back");
+        back.relocate(90 , 390);
+        back.setMaxWidth(100);
+        back.setMinWidth(100);
+        back.setStyle("-fx-background-color: #a5862e");
+        group.getChildren().add(back);
+        back.setOnMouseClicked(event -> makeLoadEnemyMapMenu(group));
     }
 
     private static void makeComboBox(Group group, boolean multiPlayer) {
@@ -311,7 +351,9 @@ public class SideBarUI {
         clientsComboBox.relocate(90, UIConstants.MENU_VBOX_STARTING_Y);
         Button selectButton=new Button("select");
         selectButton.setStyle("-fx-background-color: #a5862e");
-        selectButton.relocate(120,UIConstants.MENU_VBOX_STARTING_Y + 50);
+        selectButton.relocate(90,UIConstants.MENU_VBOX_STARTING_Y + 60);
+        selectButton.setMinWidth(100);
+        selectButton.setMaxWidth(100);
         selectButton.setOnMouseClicked(event -> {
             if(multiPlayer)
                 loadEnemyMap(group, clientsComboBox);
@@ -325,7 +367,9 @@ public class SideBarUI {
         backView.setX(UIConstants.BUTTON_STARTING_X);
         backView.setOnMouseClicked(event3 -> {
             try {
-                Server.serverSocket.close();
+                if (multiPlayer) {
+                    Server.serverSocket.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

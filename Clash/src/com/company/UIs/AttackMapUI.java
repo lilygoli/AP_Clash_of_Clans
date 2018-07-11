@@ -163,6 +163,8 @@ public class AttackMapUI {
                         controller.getGame().healAfterWar();
                         controller.getGame().setUnderAttackOrDefense(false);
                         winningLabel.setText("*war ended with " + controller.getGame().getVillage().getGainedResource().getGold() + "gold and\n" + controller.getGame().getVillage().getGainedResource().getElixir() + " elixir and " + controller.getGame().getVillage().getScore() + "scores achieved");
+                        SideBarUI.allGainedGoldsResouces += controller.getGame().getVillage().getGainedResource().getGold();
+                        SideBarUI.allGainedElixirResouces += controller.getGame().getVillage().getGainedResource().getElixir();
                         returnToVillageUI();
                     }
                 }
