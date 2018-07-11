@@ -162,7 +162,7 @@ public class SideBarUI {
 //                    connect.setOnMouseClicked(event4 -> {
                         //SideBarUI.port= port.getText();
                     try {
-                        AttackMapUI.udpSocket = new DatagramSocket(12345);
+                        AttackMapUI.udpSocket = new DatagramSocket(12346);
                     } catch (SocketException e) {
                         e.printStackTrace();
                     }
@@ -197,11 +197,11 @@ public class SideBarUI {
                     connect.setMaxWidth(150);
                     connect.setOnMouseClicked(event2 -> {
                         //SideBarUI.port= port.getText();
-//                        try {
-//                            AttackMapUI.udpSocket = new DatagramSocket(Integer.parseInt(SideBarUI.port)+1);
-//                        } catch (SocketException e) {
-//                            e.printStackTrace();
-//                        }
+                        try {
+                            AttackMapUI.udpSocket = new DatagramSocket(12346);
+                        } catch (SocketException e) {
+                            e.printStackTrace();
+                        }
                         try {
                             intiClient(playerName,ip.getText());
                             makeLoadEnemyMapMenu(group);

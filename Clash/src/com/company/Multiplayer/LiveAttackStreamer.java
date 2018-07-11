@@ -35,14 +35,14 @@ public class LiveAttackStreamer extends Thread{
             }
 
             byte[] buf = bStream.toByteArray();
-            DatagramPacket gamePacket = new DatagramPacket(buf, buf.length, AttackMapUI.attackedIP, 12345);
+            DatagramPacket gamePacket = new DatagramPacket(buf, buf.length, AttackMapUI.attackedIP, 12346);
             try {
                 AttackMapUI.udpSocket.send(gamePacket);
             } catch (IOException e) {
                 e.printStackTrace();
             }
             try {
-                Thread.sleep(100);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
