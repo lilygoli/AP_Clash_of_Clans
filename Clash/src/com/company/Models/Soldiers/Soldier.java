@@ -32,6 +32,16 @@ public abstract class Soldier implements Serializable{
     private transient ImageView imageView = new ImageView();
     private transient Rectangle leftHealth;
     private transient Rectangle allHealth;
+    private boolean hasPut = false;
+
+    public boolean isHasPut() {
+        return hasPut;
+    }
+
+    public void setHasPut(boolean hasPut) {
+        this.hasPut = hasPut;
+    }
+
     static {
         soldierSubClasses.add(new Archer(0));
         soldierSubClasses.add(new Dragon(0));

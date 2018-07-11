@@ -28,6 +28,12 @@ public class LiveAttackStreamer extends Thread{
                 lsm.setTroops(MapUI.getController().getGame().getTroops());
                 lsm.setHealths(healths);
                 oo.writeObject(lsm);
+
+                for (Soldier soldier : MapUI.getController().getGame().getTroops()) {
+                    if (soldier.getX() != -1) {
+                        soldier.setHasPut(true);
+                    }
+                }
                // System.out.println("streamer sent"+AttackMapUI.getController().getGame());
                 oo.close();
             } catch (Exception e) {
