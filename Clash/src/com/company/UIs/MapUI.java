@@ -1,6 +1,8 @@
 package com.company.UIs;
 
 import com.company.Controller.Controller;
+import com.company.Models.Towers.Buildings.ElixirStorage;
+import com.company.Models.Towers.Buildings.GoldStorage;
 import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Village;
@@ -9,6 +11,9 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
@@ -19,9 +24,13 @@ import javafx.scene.control.Slider;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -46,6 +55,12 @@ public class MapUI  {
     private static AnimationTimer showMapAnimationTimer;
     private static boolean verticalOrientationOfWall=false;
     private static boolean isInDefense = false;
+    static final BooleanProperty cPressed = new SimpleBooleanProperty(false);
+    static final BooleanProperty hPressed = new SimpleBooleanProperty(false);
+    static final BooleanProperty ePressed = new SimpleBooleanProperty(false);
+    static final BooleanProperty aPressed = new SimpleBooleanProperty(false);
+    static final BooleanProperty tPressed = new SimpleBooleanProperty(false);
+    static final BooleanBinding cheat = cPressed.and(hPressed.and(ePressed.and(aPressed.and(tPressed))));
 
     public static void setIsInBuildMenu(boolean isInBuildMenu) {
         MapUI.isInBuildMenu=isInBuildMenu;
@@ -157,12 +172,91 @@ public class MapUI  {
         Group root = new Group();
         Scene scene = new Scene(root, Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight());
         primaryStage.setScene(scene);
-
+        Media sound = new Media(new File("./src/com/company/ImagesAndGifs/Maze.mp3").toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play();
+        mediaPlayer.setOnEndOfMedia(new Runnable() {
+            @Override
+            public void run() {
+                mediaPlayer.seek(Duration.ZERO);
+            }
+        });
+        final boolean[] isSongPuased = {false};
+        // TODO: 7/11/2018 repeat sound
         File file = new File("./src/com/company/UIs/MapResources/MapBackGround.jpg");
         Image backGround = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight(), false, true);
         ImageView backGroundView = new ImageView(backGround);
         backGroundView.setOpacity(0.7);
         root.getChildren().add(backGroundView);
+
+        scene.setOnKeyPressed(new javafx.event.EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.C){
+                    System.out.println("c");
+                    cPressed.set(true);
+                    hPressed.set(false);
+                    ePressed.set(false);
+                    aPressed.set(false);
+                    tPressed.set(false);
+                }
+                else if (event.getCode() == KeyCode.H){
+                    System.out.println("h");
+                    hPressed.set(true);
+                    ePressed.set(false);
+                    aPressed.set(false);
+                    tPressed.set(false);
+                }
+                else if (event.getCode() == KeyCode.E){
+                    System.out.println("e");
+                    ePressed.set(true);
+                    aPressed.set(false);
+                    tPressed.set(false);
+                }
+                else if (event.getCode() == KeyCode.A){
+                    System.out.println("a");
+                    aPressed.set(true);
+                    tPressed.set(false);
+                }
+                else if (event.getCode() == KeyCode.T){
+                    System.out.println("t");
+                    tPressed.set(true);
+                }
+                else if (event.getCode() == KeyCode.SPACE){
+                    if (isSongPuased[0]) {
+                        mediaPlayer.play();
+                        isSongPuased[0] = false;
+                    }
+                    else if (!isSongPuased[0]){
+                        mediaPlayer.pause();
+                        isSongPuased[0] = true;
+                    }
+                    cPressed.set(false);
+                    hPressed.set(false);
+                    ePressed.set(false);
+                    aPressed.set(false);
+                    tPressed.set(false);
+                }
+                else{
+                    cPressed.set(false);
+                    hPressed.set(false);
+                    ePressed.set(false);
+                    aPressed.set(false);
+                    tPressed.set(false);
+                }
+            }
+        });
+        cheat.addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                for (ElixirStorage elixirStorage : controller.getGame().getVillage().getElixirStorages()) {
+                    elixirStorage.addToStorage(elixirStorage.getCapacity());
+                }
+                for (GoldStorage goldStorage : controller.getGame().getVillage().getGoldStorages()) {
+                    goldStorage.addToStorage(goldStorage.getCapacity());
+                }
+            }
+        });
         controller.getGame().getVillage().getGainedResource().setGold(0);
         controller.getGame().getVillage().getGainedResource().setElixir(0);
         try {

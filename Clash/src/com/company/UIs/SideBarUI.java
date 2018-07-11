@@ -170,7 +170,7 @@ public class SideBarUI {
                         intiClient(playerName, "localhost");
                         makeLoadEnemyMapMenu(group);
                     } catch (Exception e) {
-                        makeStartingMenu(group , stage);
+                        makeLoadEnemyMapMenu(group);
                     }
                     //});
                 });
@@ -203,10 +203,10 @@ public class SideBarUI {
                             e.printStackTrace();
                         }
                         try {
-                            intiClient(playerName,ip.getText());
+                            intiClient(playerName, ip.getText());
                             makeLoadEnemyMapMenu(group);
                         }
-                        catch (Exception e){
+                        catch (IOException e){
                             makeStartingMenu(group , stage);
                         }
                     });
@@ -242,7 +242,7 @@ public class SideBarUI {
         group.getChildren().add(attackImage);
     }
 
-    private static void intiClient(String  name, String ip) throws Exception{
+    private static void intiClient(String  name, String ip) throws IOException{
         AttackMapUI.clientSocket = new Socket(ip , 12345);
             AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clientSocket.getOutputStream());
             AttackMapUI.clientObjectInput = new ObjectInputStream(AttackMapUI.clientSocket.getInputStream());
