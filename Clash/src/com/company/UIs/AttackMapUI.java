@@ -11,6 +11,7 @@ import com.company.Models.Towers.Cell;
 import com.company.Models.Towers.Defences.Trap;
 import com.company.Models.Village;
 import com.company.Multiplayer.Server;
+import com.company.Multiplayer.liveStreamingMessage;
 import javafx.animation.*;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -33,12 +34,9 @@ import javafx.util.Duration;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.Socket;
+import java.net.*;
 import java.io.*;
 import java.net.Socket;
-import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -146,6 +144,33 @@ public class AttackMapUI {
                         for (Soldier soldier : controller.getGame().getTroops()) {
                             if (soldier.getClass().getSimpleName().equals(chosenSoldierName) && soldier.getX() == -1) {
                                 putSoldiersImageInMap(attackY, attackX, 32, canvas, soldiersGif.get(chosenSoldierName + "MoveUp"), soldier, root);
+
+                                liveStreamingMessage lsm = new liveStreamingMessage();
+                                lsm.setSoldier(soldier);
+                                ArrayList<Integer> healths = new ArrayList<>();
+                                for (int r = 0; r <30 ; r++) {
+                                    for (int t = 0; t <30 ; t++) {
+                                        healths.add(MapUI.getController().getGame().getVillage().getMap()[r][t].getStrength());
+                                    }
+                                }
+                                lsm.setHealths(healths);
+                                ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+                                try {
+                                    ObjectOutput oo = new ObjectOutputStream(bStream);
+                                    oo.writeObject(lsm);
+                                    oo.close();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                                byte[] buf = bStream.toByteArray();
+                                DatagramPacket gamePacket = new DatagramPacket(buf, buf.length, AttackMapUI.attackedIP, 12346);
+                                try {
+                                    AttackMapUI.udpSocket.send(gamePacket);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
                                 break;
                             }
                         }

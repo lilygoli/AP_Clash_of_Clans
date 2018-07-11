@@ -7,19 +7,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class liveStreamingMessage implements Serializable {
-    ArrayList<Soldier> troops;
+    Soldier soldier;
     ArrayList<Integer> healths = new ArrayList<>();
 
     public ArrayList<Integer> getHealths() {
         return healths;
     }
 
-    public  ArrayList<Soldier> getTroops() {
-        return troops;
+    public Soldier getSoldier() {
+        return soldier;
     }
 
-    public void setTroops(ArrayList<Soldier> troops) {
-        this.troops = troops;
+    public void setSoldier(Soldier soldier) {
+        this.soldier = soldier;
     }
 
     public void setHealths(ArrayList<Integer> healths) {
