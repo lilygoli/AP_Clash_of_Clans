@@ -402,22 +402,28 @@ public class MapUI  {
                             AttackMapUI.makeAttackGameBoard(SideBarUI.primaryStage, MapUI.getController());
                             flag=1;
                         }
-                        for (Soldier previousTroop : previousTroops) {
-                        //    previousTroop.getImageView().setImage(null);
-                            canvas.getChildren().remove(previousTroop.getLeftHealth());
-                            canvas.getChildren().remove(previousTroop.getAllHealth());
-                        }
+                        //  Thread.sleep(100);
+//                        for (Soldier previousTroop : previousTroops) {
+//                            previousTroop.getImageView().setImage(null);
+//                            canvas.getChildren().remove(previousTroop.getLeftHealth());
+//                            canvas.getChildren().remove(previousTroop.getAllHealth());
+//                        }
+//                        canvas.getChildren().removeIf(x-> x.getClass().getSimpleName().equals("Rectangle"));
+//                        previousTroops.clear();
                         for (Soldier soldier : MapUI.getController().getGame().getTroops()) {
-                            if(soldier.getX()!= -1 && !soldier.isHasPut()) {
-                                System.out.println("putting image");
+                            if(!soldier.isHasPut()) {
                                 AttackMapUI.putSoldiersImageInMap((int) Math.ceil(soldier.getY()), (int) Math.ceil(soldier.getX()), 32, AttackMapUI.canvas, AttackMapUI.getSoldiersGif().get(soldier.getClass().getSimpleName() + "MoveUp"), soldier, root);
-                                previousTroops.add(soldier);
+                                soldier.setHasPut(true);
                             }
+//                                System.out.println("putting image");
+//                                soldier.setHasPut(true);
+//                                AttackMapUI.putSoldiersImageInMap((int) Math.ceil(soldier.getY()), (int) Math.ceil(soldier.getX()), 32, AttackMapUI.canvas, AttackMapUI.getSoldiersGif().get(soldier.getClass().getSimpleName() + "MoveUp"), soldier, root);
+//                                previousTroops.add(soldier);
+//                            }
                         }
                         if(controller.getGame().isWarFinished()){
                             isInDefense = false;
                         }
-                        System.out.println("in attack");
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
