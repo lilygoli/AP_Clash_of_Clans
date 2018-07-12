@@ -251,6 +251,7 @@ public class SideBarUI {
 
     private static void intiClient(String  name, String ip) throws IOException{
         AttackMapUI.clientSocket = new Socket(ip , 12345);
+        AttackMapUI.leaderBoardSocket = new Socket(ip, 12347);
             AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clientSocket.getOutputStream());
             AttackMapUI.clientObjectInput = new ObjectInputStream(AttackMapUI.clientSocket.getInputStream());
             Thread clientInputListener = new ClientInputListener();

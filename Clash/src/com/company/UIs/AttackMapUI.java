@@ -50,6 +50,7 @@ public class AttackMapUI {
     public static DatagramSocket udpSocket;
     public static Server server;
     public static Socket clientSocket;
+    public static Socket leaderBoardSocket;
     public static ObjectOutputStream clientObjectOutput;
     public static ObjectInputStream clientObjectInput;
     public static InetAddress attackedIP;
