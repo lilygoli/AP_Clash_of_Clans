@@ -42,17 +42,6 @@ public class ServerInputListener extends Thread{
                             clientOnServer.getOutput().writeObject(chats.toString());
                         }
                     }
-                    else if (stringCommand.charAt(0) == '$'){
-                        System.out.println("1");
-                        //System.out.println("commnad" + stringCommand);
-                        leaderBoard.append(leaderBoard + stringCommand.substring(1 , stringCommand.length()) + "\n");
-                        if (Server.clientcounter == Server.clients.size()) {
-                            for (ClientOnServer clientOnServer : Server.clients) {
-                                clientOnServer.getOutput().writeObject(leaderBoard.toString());
-                            }
-                            Server.clientcounter = 0;
-                        }
-                    }
                     else{
                         for (ClientOnServer clientOnServer : Server.clients) {
                             if (clientOnServer.getName().equals(stringCommand)) {
