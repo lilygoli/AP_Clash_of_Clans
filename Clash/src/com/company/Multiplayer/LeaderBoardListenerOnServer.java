@@ -16,8 +16,8 @@ public class LeaderBoardListenerOnServer extends Thread {
                     System.out.println("1");
                     //System.out.println("commnad" + stringCommand);
                     leaderBoard.append(leaderBoard + stringCommand.substring(1, stringCommand.length()) + "\n");
-                    for (ClientOnServer clientOnServer : Server.clients) {
-                        clientOnServer.getOutput().writeObject(leaderBoard.toString());
+                    for (ClientOnServerLeaderBoard clientOnServerLeaderBoard : Server.clientOnServerLeaderBoards) {
+                        clientOnServerLeaderBoard.getOutput().writeObject(leaderBoard.toString());
                     }
                 }
             } catch (IOException e) {

@@ -7,11 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd4373d0-16e4-43f1-a01f-34df3517e604" name="Default" comment="bug fix">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/company/Multiplayer/LeaderBoardListenerOnServer.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Multiplayer/ServerInputListener.java" afterPath="$PROJECT_DIR$/src/com/company/Multiplayer/ServerInputListener.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Multiplayer/LeaderBoardListenerOnServer.java" afterPath="$PROJECT_DIR$/src/com/company/Multiplayer/LeaderBoardListenerOnServer.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,7 +28,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/Server.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="231">
-              <caret line="9" column="66" lean-forward="false" selection-start-line="9" selection-start-column="66" selection-end-line="9" selection-end-column="66" />
+              <caret line="9" column="58" lean-forward="false" selection-start-line="9" selection-start-column="58" selection-end-line="9" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -79,8 +75,8 @@
       <file leaf-file-name="LeaderBoardListenerOnServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/LeaderBoardListenerOnServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="20" column="20" lean-forward="false" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+            <state relative-caret-position="430">
+              <caret line="17" column="112" lean-forward="false" selection-start-line="17" selection-start-column="112" selection-end-line="17" selection-end-column="112" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -114,8 +110,8 @@
       <file leaf-file-name="ClientOnServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/ClientOnServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+            <state relative-caret-position="552">
+              <caret line="22" column="5" lean-forward="false" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -124,8 +120,8 @@
       <file leaf-file-name="ClientInputListener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/ClientInputListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="28" column="50" lean-forward="false" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+            <state relative-caret-position="462">
+              <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="31" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -413,8 +409,9 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Multiplayer/ClientInputListener.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Multiplayer/ClientAcceptor.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Multiplayer/ClientOnServer.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Multiplayer/Server.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -422,7 +419,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Multiplayer/LeaderBoardListenerOnClient.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Multiplayer/ClientLeaderBoardAcceptor.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Multiplayer/ClientOnServerLeaderBoard.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -746,12 +744,12 @@
       <workItem from="1530892506711" duration="3584000" />
       <workItem from="1531028215502" duration="19669000" />
       <workItem from="1531229821616" duration="26636000" />
-      <workItem from="1531366701312" duration="7491000" />
+      <workItem from="1531366701312" duration="8216000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="321511000" />
+    <option name="totallyTimeSpent" value="322236000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1145,14 +1143,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/ClientInputListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="28" column="50" lean-forward="false" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
@@ -1164,18 +1154,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="9" column="66" lean-forward="false" selection-start-line="9" selection-start-column="66" selection-end-line="9" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/ClientOnServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        <state relative-caret-position="552">
+          <caret line="22" column="5" lean-forward="false" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1191,13 +1173,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/LeaderBoardUpdate.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="12" column="43" lean-forward="true" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="231">
+          <caret line="9" column="58" lean-forward="false" selection-start-line="9" selection-start-column="58" selection-end-line="9" selection-end-column="58" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1212,10 +1192,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/ClientInputListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="31" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/LeaderBoardUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="12" column="43" lean-forward="true" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/LeaderBoardListenerOnServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="20" column="20" lean-forward="false" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+        <state relative-caret-position="430">
+          <caret line="17" column="112" lean-forward="false" selection-start-line="17" selection-start-column="112" selection-end-line="17" selection-end-column="112" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
