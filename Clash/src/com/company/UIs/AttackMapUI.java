@@ -203,6 +203,7 @@ public class AttackMapUI {
                             SideBarUI.allGainedGoldsResouces += controller.getGame().getVillage().getGainedResource().getGold();
                             SideBarUI.allGainedElixirResouces += controller.getGame().getVillage().getGainedResource().getElixir();
                         }
+                        isIsInDefense(false);
                         returnToVillageUI();
                     }
                 }

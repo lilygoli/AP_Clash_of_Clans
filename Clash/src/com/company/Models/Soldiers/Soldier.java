@@ -428,17 +428,16 @@ public abstract class Soldier implements Serializable{
                             queueX.add(adjacent[i][0]);
                             queueY.add(adjacent[i][1]);
                         }
-                    }else if(adjacent[i][0] != -1 && adjacent[i][1] != -1 && enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getClass().getSimpleName().equals("Trap")){
-                        if (distance[x][y] + 1  < distance[adjacent[i][0]][adjacent[i][1]]) {
+                    } else if (adjacent[i][0] != -1 && adjacent[i][1] != -1 && enemyVillage.getMap()[adjacent[i][0]][adjacent[i][1]].getClass().getSimpleName().equals("Trap")) {
+                        if (distance[x][y] + 1 < distance[adjacent[i][0]][adjacent[i][1]]) {
                             distance[adjacent[i][0]][adjacent[i][1]] = distance[x][y] + 1;
                             switchDirection(lastDir, adjacent, i);
                             queueX.add(adjacent[i][0]);
                             queueY.add(adjacent[i][1]);
                         }
                     }
-                }
-                else{
-                    if (adjacent[i][0] != -1 && adjacent[i][1] != -1 && distance[x][y] + 1  < distance[adjacent[i][0]][adjacent[i][1]]) {
+                } else {
+                    if (adjacent[i][0] != -1 && adjacent[i][1] != -1 && distance[x][y] + 1 < distance[adjacent[i][0]][adjacent[i][1]]) {
                         distance[adjacent[i][0]][adjacent[i][1]] = distance[x][y] + 1;
                         switchDirection(lastDir, adjacent, i);
                         queueX.add(adjacent[i][0]);
@@ -450,8 +449,14 @@ public abstract class Soldier implements Serializable{
             queueY.removeFirst();
         }
         // TODO: 6/28/2018 check this
-        System.out.println(getX()+" y"+getY());
-        Direction direction = lastDir[(int)Math.ceil(getX())][(int) Math.ceil(getY())];
+        System.out.println(getX() + " y" + getY());
+        Direction direction;
+        if (Math.ceil(getX()) > 0){
+            direction = lastDir[(int) Math.ceil(getX())][(int) Math.ceil(getY())];
+        }
+        else{
+            direction = lastDir[0][0];
+        }
 //        if (direction == Direction.UP || direction == Direction.RIGHT){
 //            return lastDir[(int)Math.floor(getX())][(int) Math.floor(getY())];
 //        }

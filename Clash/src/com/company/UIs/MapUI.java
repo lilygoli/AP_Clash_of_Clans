@@ -435,9 +435,9 @@ public class MapUI  {
 //                                previousTroops.add(soldier);
 //                            }
                         }
-                        if(controller.getGame().isWarFinished()){
-                            isInDefense = false;
-                        }
+                        //if(controller.getGame().isWarFinished()){
+                            //isInDefense = false;
+                        //}
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
