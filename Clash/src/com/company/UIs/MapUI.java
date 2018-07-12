@@ -302,7 +302,6 @@ public class MapUI  {
         makeSlider(root);
         if(AttackMapUI.isReturningFromAttack()) {
             SideBarUI.makeLoadEnemyMapMenu(root);
-            AttackMapUI.setReturningFromWar(false);
         }else {
             SideBarUI.makeStartingMenu(root,primaryStage);
         }

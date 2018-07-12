@@ -225,7 +225,13 @@ public class SideBarUI {
                 back.setStyle("-fx-background-color: #a5862e");
                 back.setMinWidth(70);
                 back.setMaxWidth(70);
-                back.setOnMouseClicked(event12 -> makeStartingMenu(group ,stage));
+                back.setOnMouseClicked(event12 ->{
+                    if(AttackMapUI.isReturningFromAttack()) {
+                        SideBarUI.makeLoadEnemyMapMenu(group);
+                    }else {
+                        SideBarUI.makeStartingMenu(group,primaryStage);
+                    }
+                });
                 VBox vBox2 = new VBox(20 , host , client , back);
                 vBox2.relocate(UIConstants.ATTACK_STARTING_X  + 75 , UIConstants.ATTACK_STARTING_Y);
                 group.getChildren().add(vBox2);
@@ -515,7 +521,11 @@ public class SideBarUI {
         });
         ImageView backView = getImageView("Back.png");
         backView.setOnMouseClicked(event -> {
-            makeStartingMenu(group,primaryStage);
+            if(AttackMapUI.isReturningFromAttack()) {
+                SideBarUI.makeLoadEnemyMapMenu(group);
+            }else {
+                SideBarUI.makeStartingMenu(group,primaryStage);
+            }
         });
         VBox vBox = new VBox(infoView, availableBuildingView, statusView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
@@ -567,7 +577,13 @@ public class SideBarUI {
         ImageView upgradeView = getImageView("Upgrade.png");
         upgradeView.setOnMouseClicked(event -> implementUpgradeBuildings(group , cell));
         ImageView backView = getImageView("Back.png");
-        backView.setOnMouseClicked(event -> makeStartingMenu(group,primaryStage));
+        backView.setOnMouseClicked(event -> {
+            if(AttackMapUI.isReturningFromAttack()) {
+                SideBarUI.makeLoadEnemyMapMenu(group);
+            }else {
+                SideBarUI.makeStartingMenu(group,primaryStage);
+            }
+        });
         VBox vBox = new VBox(1, overAllInfoView, UpgradeInfoView, SourcesInfoView, upgradeView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
@@ -605,7 +621,11 @@ public class SideBarUI {
         ImageView SoldiersView = getImageView("Soldiers.png");
         SoldiersView.setOnMouseClicked(event -> makeSoldiersMenu(group , cell));
         ImageView backView = getImageView("Back.png");
-        backView.setOnMouseClicked(event -> makeStartingMenu(group,primaryStage));
+        backView.setOnMouseClicked(event -> { if(AttackMapUI.isReturningFromAttack()) {
+            SideBarUI.makeLoadEnemyMapMenu(group);
+        }else {
+            SideBarUI.makeStartingMenu(group,primaryStage);
+        }});
         VBox vBox = new VBox(1, infoView, SoldiersView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
@@ -669,7 +689,13 @@ public class SideBarUI {
             makeMineMenu(group,cell);
         });
         ImageView backView = getImageView("Back.png");
-        backView.setOnMouseClicked(event -> makeStartingMenu(group,primaryStage));
+        backView.setOnMouseClicked(event -> {
+            if(AttackMapUI.isReturningFromAttack()) {
+                SideBarUI.makeLoadEnemyMapMenu(group);
+            }else {
+                SideBarUI.makeStartingMenu(group,primaryStage);
+            }
+        });
         VBox vBox = new VBox(1, infoView, mineView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
@@ -804,7 +830,11 @@ public class SideBarUI {
         });
         ImageView backView = getImageView("Back.png");
         backView.setOnMouseClicked(event -> {
-            makeStartingMenu(group,primaryStage);
+            if(AttackMapUI.isReturningFromAttack()) {
+                SideBarUI.makeLoadEnemyMapMenu(group);
+            }else {
+                SideBarUI.makeStartingMenu(group,primaryStage);
+            }
         });
         VBox vBox = new VBox(1, infoView, BuildSoldiersView, statusView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
@@ -877,7 +907,11 @@ public class SideBarUI {
         }
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
-        backView.setOnMouseClicked(event -> makeStartingMenu(group,primaryStage));
+        backView.setOnMouseClicked(event -> { if(AttackMapUI.isReturningFromAttack()) {
+            SideBarUI.makeLoadEnemyMapMenu(group);
+        }else {
+            SideBarUI.makeStartingMenu(group,primaryStage);
+        }});
         infoView.setOnMouseClicked(event -> makeDefencesInfoMenu(group, cell));
         targetView.setOnMouseClicked(event -> makeDefencesAttackInfoMenu(group, cell));
     }

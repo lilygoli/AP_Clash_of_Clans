@@ -30,6 +30,7 @@ public class UDPReceiver extends Thread {
         running = true;
 
         while (running) {
+            System.out.println("running");
             DatagramPacket packet = new DatagramPacket(buf, buf.length);
             try {
                 AttackMapUI.udpSocket.receive(packet);
