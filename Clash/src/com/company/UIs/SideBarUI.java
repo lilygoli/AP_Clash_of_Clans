@@ -254,6 +254,8 @@ public class SideBarUI {
         AttackMapUI.leaderBoardSocket = new Socket(ip, 12347);
             AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clientSocket.getOutputStream());
             AttackMapUI.clientObjectInput = new ObjectInputStream(AttackMapUI.clientSocket.getInputStream());
+            AttackMapUI.leaderBoardInput = new ObjectInputStream(AttackMapUI.leaderBoardSocket.getInputStream());
+            AttackMapUI.leaderBoardOutput = new ObjectOutputStream(AttackMapUI.leaderBoardSocket.getOutputStream());
             Thread clientInputListener = new ClientInputListener();
             clientInputListener.start();
             AttackMapUI.clientName=name;

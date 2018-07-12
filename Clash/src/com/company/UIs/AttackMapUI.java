@@ -55,6 +55,8 @@ public class AttackMapUI {
     public static ObjectOutputStream clientObjectOutput;
     public static ObjectInputStream clientObjectInput;
     public static InetAddress attackedIP;
+    public static ObjectOutputStream leaderBoardOutput;
+    public static ObjectInputStream leaderBoardInput;
     public static String attackedPort;
     public static String clientName;
     private static final String ADDRESS = "./src/com/company/UIs/SideBarMenuImages/";
