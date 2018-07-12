@@ -6,11 +6,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd4373d0-16e4-43f1-a01f-34df3517e604" name="Default" comment="bugfix">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="cd4373d0-16e4-43f1-a01f-34df3517e604" name="Default" comment="host and join button moved to a new menu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Models/Game.java" afterPath="$PROJECT_DIR$/src/com/company/Models/Game.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Multiplayer/ClientOnServer.java" afterPath="$PROJECT_DIR$/src/com/company/Multiplayer/ClientOnServer.java" />
       <change beforePath="$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/UIs/MapUI.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/MapUI.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,49 +28,89 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="525">
+      <file leaf-file-name="Soldier.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="453" column="0" lean-forward="false" selection-start-line="453" selection-start-column="0" selection-end-line="453" selection-end-column="0" />
+              <folding>
+                <element signature="e#1247#1248#0" expanded="true" />
+                <element signature="e#1276#1277#0" expanded="true" />
+                <element signature="e#1321#1322#0" expanded="true" />
+                <element signature="e#1357#1358#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/Models/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="356">
+              <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+              <folding>
+                <element signature="e#1860#1861#0" expanded="true" />
+                <element signature="e#1912#1913#0" expanded="true" />
+                <element signature="e#1947#1948#0" expanded="true" />
+                <element signature="e#1977#1978#0" expanded="true" />
+                <element signature="e#2024#2025#0" expanded="true" />
+                <element signature="e#2062#2063#0" expanded="true" />
+                <element signature="e#2099#2100#0" expanded="true" />
+                <element signature="e#2131#2132#0" expanded="true" />
+                <element signature="e#2159#2160#0" expanded="true" />
+                <element signature="e#2186#2187#0" expanded="true" />
+                <element signature="e#2238#2239#0" expanded="true" />
+                <element signature="e#2282#2283#0" expanded="true" />
+                <element signature="e#2319#2320#0" expanded="true" />
+                <element signature="e#2352#2353#0" expanded="true" />
+                <element signature="e#2410#2411#0" expanded="true" />
+                <element signature="e#2469#2470#0" expanded="true" />
+                <element signature="e#3565#3566#0" expanded="true" />
+                <element signature="e#3596#3597#0" expanded="true" />
+                <element signature="e#3651#3652#0" expanded="true" />
+                <element signature="e#3691#3692#0" expanded="true" />
+                <element signature="e#6003#6004#0" expanded="true" />
+                <element signature="e#6038#6039#0" expanded="true" />
+                <element signature="e#9135#9136#0" expanded="true" />
+                <element signature="e#9222#9223#0" expanded="true" />
+                <element signature="e#18135#18136#0" expanded="true" />
+                <element signature="e#18169#18170#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="AttackMapUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="52" column="43" lean-forward="false" selection-start-line="52" selection-start-column="43" selection-end-line="52" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2498#2499#0" expanded="true" />
-                <element signature="e#2532#2533#0" expanded="true" />
-                <element signature="e#2580#2581#0" expanded="true" />
-                <element signature="e#2613#2614#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="131">
+              <caret line="190" column="76" lean-forward="false" selection-start-line="190" selection-start-column="76" selection-end-line="190" selection-end-column="76" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LiveAttackStreamer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/LiveAttackStreamer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="56" column="1" lean-forward="false" selection-start-line="56" selection-start-column="1" selection-end-line="56" selection-end-column="1" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="liveStreamingMessage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/liveStreamingMessage.java">
+      <file leaf-file-name="ClientOnServer.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/ClientOnServer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
-              <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+              <caret line="10" column="42" lean-forward="true" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#344#345#0" expanded="true" />
-                <element signature="e#374#375#0" expanded="true" />
-                <element signature="e#439#440#0" expanded="true" />
-                <element signature="e#486#487#0" expanded="true" />
-                <element signature="e#524#525#0" expanded="true" />
-                <element signature="e#582#583#0" expanded="true" />
-                <element signature="e#620#621#0" expanded="true" />
+                <element signature="e#776#777#0" expanded="true" />
+                <element signature="e#815#816#0" expanded="true" />
+                <element signature="e#871#872#0" expanded="true" />
+                <element signature="e#911#912#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServerInputListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/ServerInputListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1225">
+              <caret line="63" column="92" lean-forward="false" selection-start-line="63" selection-start-column="92" selection-end-line="63" selection-end-column="92" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -77,20 +118,28 @@
       <file leaf-file-name="SideBarUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="253" column="62" lean-forward="true" selection-start-line="253" selection-start-column="62" selection-end-line="253" selection-end-column="62" />
-              <folding>
-                <marker date="1531371720190" expanded="true" signature="19681:19848" ph="//..." />
-              </folding>
+            <state relative-caret-position="526">
+              <caret line="181" column="25" lean-forward="true" selection-start-line="181" selection-start-column="25" selection-end-line="181" selection-end-column="25" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientAcceptor.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LeaderBoardUpdate.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/LeaderBoardUpdate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClientAcceptor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/ClientAcceptor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="325">
+              <caret line="16" column="53" lean-forward="false" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -99,51 +148,44 @@
       <file leaf-file-name="ClientInputListener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/ClientInputListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="23" column="67" lean-forward="false" selection-start-line="23" selection-start-column="67" selection-end-line="23" selection-end-column="67" />
+            <state relative-caret-position="500">
+              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UDPReceiver.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/UDPReceiver.java">
+      <file leaf-file-name="MapUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MapUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="40" column="40" lean-forward="false" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Soldier.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="313" column="4" lean-forward="false" selection-start-line="313" selection-start-column="4" selection-end-line="313" selection-end-column="4" />
+            <state relative-caret-position="700">
+              <caret line="81" column="8" lean-forward="false" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="27" />
               <folding>
-                <element signature="e#819#828#0" expanded="true" />
+                <element signature="e#2700#2701#0" expanded="true" />
+                <element signature="e#2749#2750#0" expanded="true" />
+                <element signature="e#2811#2812#0" expanded="true" />
+                <element signature="e#2846#2847#0" expanded="true" />
+                <element signature="e#2971#2972#0" expanded="true" />
+                <element signature="e#3011#3012#0" expanded="true" />
+                <element signature="e#3056#3057#0" expanded="true" />
+                <element signature="e#3090#3091#0" expanded="true" />
+                <element signature="e#3150#3151#0" expanded="true" />
+                <element signature="e#3198#3199#0" expanded="true" />
+                <element signature="e#8549#8550#0" expanded="true" />
+                <element signature="e#8578#8579#0" expanded="true" />
+                <element signature="e#8641#8642#0" expanded="true" />
+                <element signature="e#8685#8686#0" expanded="true" />
+                <element signature="e#8733#8734#0" expanded="true" />
+                <element signature="e#8762#8763#0" expanded="true" />
+                <element signature="e#8799#8800#0" expanded="true" />
+                <element signature="e#8828#8829#0" expanded="true" />
+                <element signature="e#8877#8878#0" expanded="true" />
+                <element signature="e#8910#8911#0" expanded="true" />
+                <element signature="e#8966#8967#0" expanded="true" />
+                <element signature="e#9010#9011#0" expanded="true" />
+                <element signature="e#9591#9592#0" expanded="true" />
+                <element signature="e#9654#9655#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/Server.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="33" column="13" lean-forward="true" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Archer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Archer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="12" column="28" lean-forward="false" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -159,38 +201,39 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>healthBar</find>
-      <find>constructionTime</find>
-      <find>timeLeftofconstruction</find>
+      <find>12347</find>
+      <find>123</find>
+      <find>attackedPo</find>
+      <find>joi</find>
+      <find>udpSo</find>
+      <find>udp</find>
+      <find>join</find>
+      <find>port</find>
+      <find>makeA</find>
       <find>attack</find>
-      <find>combo</find>
-      <find>giveV</find>
-      <find>controller.get</find>
-      <find>new Game</find>
-      <find>newGame</find>
-      <find>MapUI.getCon</find>
-      <find>clientsComboBox</find>
-      <find>giveVillage</find>
-      <find>hohoho</find>
-      <find>comboBox</find>
-      <find>please</find>
-      <find>loadButt</find>
-      <find>Button back</find>
-      <find>chat</find>
-      <find>backBu</find>
+      <find>por</find>
+      <find>sideBarUI.port</find>
+      <find>x o</find>
+      <find>x o y</find>
+      <find>in atta</find>
+      <find>iswa</find>
+      <find>putt</find>
+      <find>in at</find>
+      <find>system.out.println</find>
+      <find>view</find>
+      <find>view.sh</find>
       <find>1234</find>
-      <find>chats</find>
-      <find>back.set</find>
-      <find>host</find>
-      <find>bac</find>
-      <find>back.png</find>
-      <find>socket</find>
-      <find>Server.serv</find>
-      <find>isunderattackordefense</find>
-      <find>button host</find>
-      <find>conne</find>
+      <find>isinDe</find>
+      <find>isinD</find>
+      <find>isInDe</find>
+      <find>tru</find>
+      <find>troops.iter</find>
+      <find>putSo</find>
+      <find>underAttackO</find>
+      <find>isUnderAt</find>
     </findStrings>
     <replaceStrings>
+      <replace>cell</replace>
       <replace>Canon</replace>
       <replace>WiazrdTower</replace>
       <replace>Wall</replace>
@@ -207,9 +250,6 @@
       <replace>WizardTower</replace>
       <replace>back</replace>
       <replace>this</replace>
-      <replace>cell</replace>
-      <replace>GuardianGiant</replace>
-      <replace>clientsComboBox</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -229,21 +269,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/company/Models/Buildings/MainBuilding.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/Buildings/Building.java" />
         <option value="$PROJECT_DIR$/src/com/company/View.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Buildings/Storage.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/GameCenter.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Cell.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Controller.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/Village.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/Dragon.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Buildings/Camp.java" />
         <option value="$PROJECT_DIR$/src/com/company/View/Regex.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Defence.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Buildings/Building.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/EnemyMapJson.java" />
-        <option value="$PROJECT_DIR$/src/com/company/View/View.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Buildings/Barrack.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/Giant.java" />
         <option value="$PROJECT_DIR$/src/com/company/UIs/PannableCanvas.java" />
         <option value="$PROJECT_DIR$/src/com/company/UIs/DragContents.java" />
         <option value="$PROJECT_DIR$/src/com/company/UIs/DragContext.java" />
@@ -254,32 +290,36 @@
         <option value="$PROJECT_DIR$/src/com/company/UIs/PassTurnThread.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/WizardTower.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/ArcherTower.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Buildings/Barrack.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/Guardian.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/Archer.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/WallBreaker.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/Dragon.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/Giant.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/Healer.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Wall.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Cell.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/GuardianGiant.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/Config.java" />
-        <option value="$PROJECT_DIR$/src/com/company/UIs/MapUI.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Trap.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/Archer.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Buildings/Mine.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/Healer.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Models/Config.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Models/EnemyMapJson.java" />
         <option value="$PROJECT_DIR$/src/com/company/Multiplayer/Server.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Multiplayer/ClientOnServer.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Multiplayer/ClientInputListener.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/Game.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Multiplayer/ServerInputListener.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Enums/Direction.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Models/Towers/Cell.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Models/Resource.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Models/Builder.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Models/Village.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Models/GameCenter.java" />
         <option value="$PROJECT_DIR$/src/com/company/UIs/MainMenuUI.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Multiplayer/ClientAcceptor.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Multiplayer/UDPReciever.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Multiplayer/Message.java" />
+        <option value="$PROJECT_DIR$/src/com/company/UIs/UIConstants.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Multiplayer/ClientInputListener.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java" />
+        <option value="$PROJECT_DIR$/src/com/company/View/View.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Multiplayer/ServerInputListener.java" />
         <option value="$PROJECT_DIR$/src/com/company/Multiplayer/liveStreamingMessage.java" />
         <option value="$PROJECT_DIR$/src/com/company/Multiplayer/LiveAttackStreamer.java" />
         <option value="$PROJECT_DIR$/src/com/company/Multiplayer/UDPReceiver.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Models/Game.java" />
+        <option value="$PROJECT_DIR$/src/com/company/UIs/MapUI.java" />
         <option value="$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java" />
         <option value="$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Multiplayer/ClientOnServer.java" />
       </list>
     </option>
   </component>
@@ -289,9 +329,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1612" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -308,9 +350,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -346,6 +386,47 @@
               <item name="Clash" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="company" type="462c0819:PsiDirectoryNode" />
+              <item name="ImagesAndGifs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Clash" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Clash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="company" type="462c0819:PsiDirectoryNode" />
+              <item name="ImagesAndGifs" type="462c0819:PsiDirectoryNode" />
+              <item name="Buildings" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Clash" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Clash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="company" type="462c0819:PsiDirectoryNode" />
+              <item name="ImagesAndGifs" type="462c0819:PsiDirectoryNode" />
+              <item name="Buildings" type="462c0819:PsiDirectoryNode" />
+              <item name="GuardianGiant" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Clash" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Clash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="company" type="462c0819:PsiDirectoryNode" />
+              <item name="ImagesAndGifs" type="462c0819:PsiDirectoryNode" />
+              <item name="Soldiers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Clash" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Clash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="company" type="462c0819:PsiDirectoryNode" />
+              <item name="ImagesAndGifs" type="462c0819:PsiDirectoryNode" />
+              <item name="Soldiers" type="462c0819:PsiDirectoryNode" />
+              <item name="Guardian" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Clash" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Clash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="company" type="462c0819:PsiDirectoryNode" />
               <item name="Models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -369,6 +450,24 @@
               <item name="Clash" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="company" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
+              <item name="Towers" type="462c0819:PsiDirectoryNode" />
+              <item name="Buildings" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Clash" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Clash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="company" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
+              <item name="Towers" type="462c0819:PsiDirectoryNode" />
+              <item name="Defences" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Clash" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Clash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="company" type="462c0819:PsiDirectoryNode" />
               <item name="Multiplayer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -382,7 +481,9 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -396,10 +497,14 @@
     <property name="extract.method.default.visibility" value="private" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.company.UIs" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.company.UIs" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\leili\IdeaProjects\cash\AP_7\Clash\src\com\company\ImagesAndGifs\Buildings" />
       <recent name="C:\Users\Arad\Desktop\AP_7\Clash\src\com\company\ImagesAndGifs\Buildings" />
       <recent name="C:\Users\Arad\Desktop\AP_7\Clash\src\com\company\ImagesAndGifs" />
     </key>
@@ -418,10 +523,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/misc.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Multiplayer/ClientInputListener.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Multiplayer/Server.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
@@ -744,43 +847,223 @@
       <workItem from="1529756288643" duration="4209000" />
       <workItem from="1529897568444" duration="229000" />
       <workItem from="1529909750134" duration="494000" />
-      <workItem from="1530019087671" duration="45599000" />
-      <workItem from="1530287799623" duration="9000000" />
-      <workItem from="1530503036738" duration="340000" />
-      <workItem from="1530514926135" duration="349000" />
-      <workItem from="1530680849294" duration="311000" />
-      <workItem from="1530800670125" duration="1814000" />
-      <workItem from="1530892506711" duration="3584000" />
-      <workItem from="1531028215502" duration="19669000" />
-      <workItem from="1531229821616" duration="8611000" />
-      <workItem from="1531368491804" duration="2934000" />
+      <workItem from="1530019087671" duration="3719000" />
+      <workItem from="1530030322420" duration="18094000" />
+      <workItem from="1530082664951" duration="7796000" />
+      <workItem from="1530115789149" duration="16236000" />
+      <workItem from="1530179377973" duration="1522000" />
+      <workItem from="1530198394688" duration="19304000" />
+      <workItem from="1530440207541" duration="950000" />
+      <workItem from="1530518583028" duration="3365000" />
+      <workItem from="1530787884314" duration="566000" />
+      <workItem from="1530884823614" duration="29202000" />
+      <workItem from="1531120097725" duration="25902000" />
+      <workItem from="1531222635703" duration="794000" />
+      <workItem from="1531230512146" duration="9106000" />
+      <workItem from="1531282931693" duration="26046000" />
+      <workItem from="1531368752459" duration="3103000" />
     </task>
-    <task id="LOCAL-00001" summary="bug fix and stream sender">
-      <created>1531307761029</created>
+    <task id="LOCAL-00001" summary="Archer arrows added. upgrade photo added. bug fix">
+      <created>1530050459867</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1531307761029</updated>
+      <updated>1530050459867</updated>
     </task>
-    <task id="LOCAL-00002" summary="mainBuilding 0, 0 bug fix">
-      <created>1531309955443</created>
+    <task id="LOCAL-00002" summary="bug fix">
+      <created>1530086516131</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1531309955443</updated>
+      <updated>1530086516131</updated>
     </task>
-    <task id="LOCAL-00003" summary="bugfix">
-      <created>1531369570118</created>
+    <task id="LOCAL-00003" summary="map coordinates fixed">
+      <created>1530090702717</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1531369570118</updated>
+      <updated>1530090702717</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="wall json fixed">
+      <created>1530163003857</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1530163003857</updated>
+    </task>
+    <task id="LOCAL-00005" summary="bug fix in attack">
+      <created>1530173192675</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1530173192675</updated>
+    </task>
+    <task id="LOCAL-00006" summary="attack back handling money fixed">
+      <created>1530199270323</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1530199270323</updated>
+    </task>
+    <task id="LOCAL-00007" summary="war time handled and healing circles added">
+      <created>1530288837054</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1530288837054</updated>
+    </task>
+    <task id="LOCAL-00008" summary="guardian giant enemyMapJson added">
+      <created>1530290127030</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1530290127030</updated>
+    </task>
+    <task id="LOCAL-00009" summary="guardian giant menu fixed">
+      <created>1530294155391</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1530294155391</updated>
+    </task>
+    <task id="LOCAL-00010" summary="file path exception and war statu handled">
+      <created>1530296319957</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1530296319957</updated>
+    </task>
+    <task id="LOCAL-00011" summary="progress bar added to newGame button">
+      <created>1530891727028</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1530891727028</updated>
+    </task>
+    <task id="LOCAL-00012" summary="progressBar refactored">
+      <created>1530891867830</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1530891867830</updated>
+    </task>
+    <task id="LOCAL-00013" summary="some exceptions handled in server and client classes">
+      <created>1531065294477</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1531065294477</updated>
+    </task>
+    <task id="LOCAL-00014" summary="StreamCorruption fixed">
+      <created>1531071021674</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1531071021674</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Message class added.attack in multi player happened!">
+      <created>1531074773326</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1531074773326</updated>
+    </task>
+    <task id="LOCAL-00016" summary="changed player setting name method.">
+      <created>1531129994806</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1531129994806</updated>
+    </task>
+    <task id="LOCAL-00017" summary="host and join button moved to a new menu">
+      <created>1531135566508</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1531135566508</updated>
+    </task>
+    <task id="LOCAL-00018" summary="multiplayer mode added">
+      <created>1531199685554</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1531199685554</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Message substituted to game object">
+      <created>1531201749594</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1531201749594</updated>
+    </task>
+    <task id="LOCAL-00020" summary="UDPReceiver Thread added">
+      <created>1531203865743</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1531203865743</updated>
+    </task>
+    <task id="LOCAL-00021" summary="bug fix">
+      <created>1531209535876</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1531209535876</updated>
+    </task>
+    <task id="LOCAL-00022" summary="onlineMessageStream class added">
+      <created>1531215692138</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1531215692138</updated>
+    </task>
+    <task id="LOCAL-00023" summary="bug fix">
+      <created>1531219719909</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1531219719909</updated>
+    </task>
+    <task id="LOCAL-00024" summary="bug fix">
+      <created>1531231111918</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1531231111918</updated>
+    </task>
+    <task id="LOCAL-00025" summary="troops sent to the other end successfully">
+      <created>1531238297236</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1531238297236</updated>
+    </task>
+    <task id="LOCAL-00026" summary="merge conflicts fixed">
+      <created>1531239110540</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1531239110540</updated>
+    </task>
+    <task id="LOCAL-00027" summary="live streaming bugfix">
+      <created>1531297387742</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1531297387742</updated>
+    </task>
+    <task id="LOCAL-00028" summary="UDP receiver fixed">
+      <created>1531308017845</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1531308017845</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="303857000" />
+    <option name="totallyTimeSpent" value="372423000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -792,39 +1075,39 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922825" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840723" sideWeight="0.4984375" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287827" sideWeight="0.4984375" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24630542" sideWeight="0.5078125" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13993174" sideWeight="0.50989586" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922825" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12817413" sideWeight="0.4921875" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13993174" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24687144" sideWeight="0.49010417" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922825" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17525035" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32676518" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2765625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922825" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Learn" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39872915" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39817974" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32676518" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Learn" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -834,22 +1117,84 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Archer arrows added. upgrade photo added. bug fix" />
+    <MESSAGE value="map coordinates fixed" />
+    <MESSAGE value="wall json fixed" />
+    <MESSAGE value="bug fix in attack" />
+    <MESSAGE value="attack back handling money fixed" />
+    <MESSAGE value="war time handled and healing circles added" />
+    <MESSAGE value="guardian giant enemyMapJson added" />
+    <MESSAGE value="guardian giant menu fixed" />
+    <MESSAGE value="file path exception and war statu handled" />
+    <MESSAGE value="progress bar added to newGame button" />
+    <MESSAGE value="progressBar refactored" />
+    <MESSAGE value="some exceptions handled in server and client classes" />
+    <MESSAGE value="StreamCorruption fixed" />
+    <MESSAGE value="Message class added.attack in multi player happened!" />
+    <MESSAGE value="changed player setting name method." />
+    <MESSAGE value="host and join button moved to a new menu" />
+    <MESSAGE value="multiplayer mode added" />
+    <MESSAGE value="Message substituted to game object" />
+    <MESSAGE value="UDPReceiver Thread added" />
+    <MESSAGE value="onlineMessageStream class added" />
     <MESSAGE value="bug fix" />
-    <MESSAGE value="bug fix and stream sender" />
-    <MESSAGE value="mainBuilding 0, 0 bug fix" />
-    <MESSAGE value="bugfix" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugfix" />
+    <MESSAGE value="troops sent to the other end successfully" />
+    <MESSAGE value="merge conflicts fixed" />
+    <MESSAGE value="live streaming bugfix" />
+    <MESSAGE value="UDP receiver fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="UDP receiver fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="130" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/company/Models/Game.java</url>
+          <line>459</line>
+          <properties />
+          <option name="timeStamp" value="130" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/company/Models/Game.java</url>
+          <line>339</line>
+          <properties />
+          <option name="timeStamp" value="132" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java</url>
+          <line>231</line>
+          <properties />
+          <option name="timeStamp" value="133" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java</url>
+          <line>232</line>
+          <properties />
+          <option name="timeStamp" value="134" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/com/company/Models/Game.java</url>
+          <line>273</line>
+          <properties class="com.company.Models.Game">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="131" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="135" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/ArcherTowerLoading.gif">
+    <entry file="file://$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/Arrow.png">
       <provider selected="true" editor-type-id="images">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Giant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/ArcherTower.gif">
@@ -857,11 +1202,9 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/UIConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="13" column="1" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/AirDefenceLoading.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/ArcherTower.png">
@@ -869,133 +1212,22 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/AirDefence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/WizardTower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="626">
-          <caret line="40" column="40" lean-forward="false" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/Arrow.png">
+    <entry file="file://$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/ArcherTowerLoading.gif">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/Trap.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.base/javafx/event/EventHandler.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/ArcherTower.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Buildings/Mine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="18" column="59" lean-forward="false" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Buildings/Barrack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="53" column="92" lean-forward="true" selection-start-line="53" selection-start-column="92" selection-end-line="53" selection-end-column="92" />
+        <state relative-caret-position="168">
+          <caret line="60" column="21" lean-forward="false" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Guardian.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="13" column="18" lean-forward="false" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/WallBreaker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="13" column="31" lean-forward="false" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Dragon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="13" column="266" lean-forward="false" selection-start-line="13" selection-start-column="266" selection-end-line="13" selection-end-column="266" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/PassTurnThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Healer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1386">
-          <caret line="52" column="228" lean-forward="false" selection-start-line="52" selection-start-column="228" selection-end-line="52" selection-end-column="228" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Giant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Wall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="19" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Defence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Cannon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="33" column="51" lean-forward="true" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/GuardianGiant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="27" column="83" lean-forward="false" selection-start-line="27" selection-start-column="83" selection-end-line="27" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6699">
-          <caret line="203" column="54" lean-forward="false" selection-start-line="203" selection-start-column="54" selection-end-line="203" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/View/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
-          <folding />
+        <state relative-caret-position="275">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1004,241 +1236,386 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Exception/MarginalTowerException.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Wall.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Trap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Exception/BusyCellException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
+        <state relative-caret-position="125">
           <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Enums/Direction.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Healer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        <state relative-caret-position="248">
+          <caret line="29" column="20" lean-forward="false" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/DragContext.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/GuardianGiant/MoveUp.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/GuardianGiant/MoveDown.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Buildings/Storage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="375">
+          <caret line="24" column="15" lean-forward="false" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
+          <folding>
+            <element signature="e#564#565#0" expanded="false" />
+            <element signature="e#595#596#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/GameCenter.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Config.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="30" column="20" lean-forward="false" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
+        <state relative-caret-position="100">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/EnemyMapJson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4575">
+          <caret line="204" column="54" lean-forward="false" selection-start-line="204" selection-start-column="54" selection-end-line="204" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/ImagesAndGifs/Buildings/Cannon.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MapResources/MapBackGroundAttack.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MapResources/MapBackGround.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="794" column="29" lean-forward="false" selection-start-line="794" selection-start-column="29" selection-end-line="794" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.graphics/javafx/scene/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="7347" column="22" lean-forward="false" selection-start-line="7347" selection-start-column="22" selection-end-line="7347" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="109" column="30" lean-forward="false" selection-start-line="109" selection-start-column="30" selection-end-line="109" selection-end-column="30" />
-          <folding>
-            <element signature="e#549#550#0" expanded="false" />
-            <element signature="e#576#577#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="147">
+          <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Cell.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Builder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="100">
+          <caret line="4" column="44" lean-forward="false" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Village.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Enums/Direction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="693">
-          <caret line="33" column="17" lean-forward="false" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
-          <folding />
+        <state relative-caret-position="100">
+          <caret line="4" column="45" lean-forward="false" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Models/Resource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
+        <state relative-caret-position="100">
           <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Village.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="17" column="12" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/GameCenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="72" column="100" lean-forward="false" selection-start-line="72" selection-start-column="100" selection-end-line="72" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="19" column="2" lean-forward="false" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/io/ObjectInputStream.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/ServerInputListener.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Cannon.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="26" column="51" lean-forward="false" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#255#256#0" expanded="false" />
-            <element signature="e#284#285#0" expanded="false" />
-            <element signature="e#336#337#0" expanded="false" />
-            <element signature="e#372#373#0" expanded="false" />
-            <element signature="e#429#430#0" expanded="false" />
-            <element signature="e#465#466#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/ClientOnServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="33" column="53" lean-forward="false" selection-start-line="33" selection-start-column="53" selection-end-line="33" selection-end-column="53" />
-          <folding>
-            <element signature="e#431#432#0" expanded="false" />
-            <element signature="e#458#459#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MapUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4710">
-          <caret line="387" column="0" lean-forward="false" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
+        <state relative-caret-position="275">
+          <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/UIConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="12" column="10" lean-forward="false" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="39" column="8" lean-forward="false" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="20" />
+          <folding>
+            <element signature="e#816#817#0" expanded="false" />
+            <element signature="e#843#844#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MainMenuUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1664">
-          <caret line="138" column="65" lean-forward="false" selection-start-line="138" selection-start-column="65" selection-end-line="138" selection-end-column="65" />
+        <state relative-caret-position="225">
+          <caret line="171" column="22" lean-forward="false" selection-start-line="171" selection-start-column="22" selection-end-line="171" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/net/Socket.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/liveStreamingMessage.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#344#345#0" expanded="true" />
-            <element signature="e#374#375#0" expanded="true" />
-            <element signature="e#439#440#0" expanded="true" />
-            <element signature="e#486#487#0" expanded="true" />
-            <element signature="e#524#525#0" expanded="true" />
-            <element signature="e#582#583#0" expanded="true" />
-            <element signature="e#620#621#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/ClientInputListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="23" column="67" lean-forward="false" selection-start-line="23" selection-start-column="67" selection-end-line="23" selection-end-column="67" />
+        <state relative-caret-position="180">
+          <caret line="33" column="49" lean-forward="false" selection-start-line="33" selection-start-column="49" selection-end-line="33" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/LiveAttackStreamer.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Cell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="56" column="1" lean-forward="false" selection-start-line="56" selection-start-column="1" selection-end-line="56" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="187">
+          <caret line="176" column="0" lean-forward="false" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/UDPReceiver.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/PassTurnThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="40" column="40" lean-forward="false" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
+        <state relative-caret-position="400">
+          <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Archer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="12" column="28" lean-forward="false" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+        <state relative-caret-position="196">
+          <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Game.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/Defence.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="98" column="13" lean-forward="false" selection-start-line="98" selection-start-column="13" selection-end-line="98" selection-end-column="13" />
+        <state relative-caret-position="184">
+          <caret line="35" column="14" lean-forward="false" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/View/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="46" column="67" lean-forward="false" selection-start-line="46" selection-start-column="67" selection-end-line="46" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/liveStreamingMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="21" column="8" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="31" />
           <folding>
-            <element signature="e#2410#2411#0" expanded="false" />
-            <element signature="e#2469#2470#0" expanded="false" />
+            <element signature="e#409#410#0" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+            <element signature="e#486#487#0" expanded="true" />
+            <element signature="e#524#525#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/LiveAttackStreamer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1150">
+          <caret line="55" column="3" lean-forward="false" selection-start-line="55" selection-start-column="3" selection-end-line="55" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/UDPReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1700">
+          <caret line="87" column="55" lean-forward="false" selection-start-line="87" selection-start-column="55" selection-end-line="87" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MapUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="81" column="8" lean-forward="false" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="27" />
+          <folding>
+            <element signature="e#2700#2701#0" expanded="true" />
+            <element signature="e#2749#2750#0" expanded="true" />
+            <element signature="e#2811#2812#0" expanded="true" />
+            <element signature="e#2846#2847#0" expanded="true" />
+            <element signature="e#2971#2972#0" expanded="true" />
+            <element signature="e#3011#3012#0" expanded="true" />
+            <element signature="e#3056#3057#0" expanded="true" />
+            <element signature="e#3090#3091#0" expanded="true" />
+            <element signature="e#3150#3151#0" expanded="true" />
+            <element signature="e#3198#3199#0" expanded="true" />
+            <element signature="e#8549#8550#0" expanded="true" />
+            <element signature="e#8578#8579#0" expanded="true" />
+            <element signature="e#8641#8642#0" expanded="true" />
+            <element signature="e#8685#8686#0" expanded="true" />
+            <element signature="e#8733#8734#0" expanded="true" />
+            <element signature="e#8762#8763#0" expanded="true" />
+            <element signature="e#8799#8800#0" expanded="true" />
+            <element signature="e#8828#8829#0" expanded="true" />
+            <element signature="e#8877#8878#0" expanded="true" />
+            <element signature="e#8910#8911#0" expanded="true" />
+            <element signature="e#8966#8967#0" expanded="true" />
+            <element signature="e#9010#9011#0" expanded="true" />
+            <element signature="e#9591#9592#0" expanded="true" />
+            <element signature="e#9654#9655#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="313" column="4" lean-forward="false" selection-start-line="313" selection-start-column="4" selection-end-line="313" selection-end-column="4" />
+        <state relative-caret-position="25">
+          <caret line="453" column="0" lean-forward="false" selection-start-line="453" selection-start-column="0" selection-end-line="453" selection-end-column="0" />
           <folding>
-            <element signature="e#819#828#0" expanded="true" />
+            <element signature="e#1247#1248#0" expanded="true" />
+            <element signature="e#1276#1277#0" expanded="true" />
+            <element signature="e#1321#1322#0" expanded="true" />
+            <element signature="e#1357#1358#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/Server.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="33" column="13" lean-forward="true" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="356">
+          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <folding>
+            <element signature="e#1860#1861#0" expanded="true" />
+            <element signature="e#1912#1913#0" expanded="true" />
+            <element signature="e#1947#1948#0" expanded="true" />
+            <element signature="e#1977#1978#0" expanded="true" />
+            <element signature="e#2024#2025#0" expanded="true" />
+            <element signature="e#2062#2063#0" expanded="true" />
+            <element signature="e#2099#2100#0" expanded="true" />
+            <element signature="e#2131#2132#0" expanded="true" />
+            <element signature="e#2159#2160#0" expanded="true" />
+            <element signature="e#2186#2187#0" expanded="true" />
+            <element signature="e#2238#2239#0" expanded="true" />
+            <element signature="e#2282#2283#0" expanded="true" />
+            <element signature="e#2319#2320#0" expanded="true" />
+            <element signature="e#2352#2353#0" expanded="true" />
+            <element signature="e#2410#2411#0" expanded="true" />
+            <element signature="e#2469#2470#0" expanded="true" />
+            <element signature="e#3565#3566#0" expanded="true" />
+            <element signature="e#3596#3597#0" expanded="true" />
+            <element signature="e#3651#3652#0" expanded="true" />
+            <element signature="e#3691#3692#0" expanded="true" />
+            <element signature="e#6003#6004#0" expanded="true" />
+            <element signature="e#6038#6039#0" expanded="true" />
+            <element signature="e#9135#9136#0" expanded="true" />
+            <element signature="e#9222#9223#0" expanded="true" />
+            <element signature="e#18135#18136#0" expanded="true" />
+            <element signature="e#18169#18170#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="52" column="43" lean-forward="false" selection-start-line="52" selection-start-column="43" selection-end-line="52" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2498#2499#0" expanded="true" />
-            <element signature="e#2532#2533#0" expanded="true" />
-            <element signature="e#2580#2581#0" expanded="true" />
-            <element signature="e#2613#2614#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="131">
+          <caret line="190" column="76" lean-forward="false" selection-start-line="190" selection-start-column="76" selection-end-line="190" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/ClientInputListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/ServerInputListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1225">
+          <caret line="63" column="92" lean-forward="false" selection-start-line="63" selection-start-column="92" selection-end-line="63" selection-end-column="92" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="253" column="62" lean-forward="true" selection-start-line="253" selection-start-column="62" selection-end-line="253" selection-end-column="62" />
-          <folding>
-            <marker date="1531371720190" expanded="true" signature="19681:19848" ph="//..." />
-          </folding>
+        <state relative-caret-position="526">
+          <caret line="181" column="25" lean-forward="true" selection-start-line="181" selection-start-column="25" selection-end-line="181" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/LeaderBoardUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/ClientAcceptor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="325">
+          <caret line="16" column="53" lean-forward="false" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/ClientOnServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="42" lean-forward="true" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+          <folding>
+            <element signature="e#776#777#0" expanded="true" />
+            <element signature="e#815#816#0" expanded="true" />
+            <element signature="e#871#872#0" expanded="true" />
+            <element signature="e#911#912#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1253,6 +1630,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -1272,7 +1650,6 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
-          <last-edited>java</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1284,7 +1661,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>10</last-edited>
+          <last-edited>9.0</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

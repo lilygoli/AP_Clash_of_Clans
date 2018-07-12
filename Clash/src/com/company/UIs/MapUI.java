@@ -78,6 +78,10 @@ public class MapUI  {
         isInDefense=isInDefense1;
     }
 
+    public static boolean isIsInDefense() {
+        return isInDefense;
+    }
+
     public static boolean getVerticalOrientationOfWall() {
         return verticalOrientationOfWall;
     }
@@ -415,7 +419,8 @@ public class MapUI  {
 //                        }
 //                        canvas.getChildren().removeIf(x-> x.getClass().getSimpleName().equals("Rectangle"));
 //                        previousTroops.clear();
-                        for (Soldier soldier : MapUI.getController().getGame().getTroops()) {
+                        ArrayList<Soldier> soldiers = MapUI.getController().getGame().getTroops();
+                        for (Soldier soldier : soldiers) {
                             if(!soldier.isHasPut()) {
                                 AttackMapUI.putSoldiersImageInMap((int) Math.ceil(soldier.getY()), (int) Math.ceil(soldier.getX()), 32, AttackMapUI.canvas, AttackMapUI.getSoldiersGif().get(soldier.getClass().getSimpleName() + "MoveUp"), soldier, root);
                                 soldier.setHasPut(true);

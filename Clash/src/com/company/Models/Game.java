@@ -312,25 +312,43 @@ public class Game implements Serializable {
         }
         //Attacker Soldiers part
         for (int i = 0; i < Config.getDictionary().get("KMM"); i++) {
-            Iterator<Soldier> iterator = troops.iterator();
-            while(iterator.hasNext()){
-                Soldier soldier = iterator.next();
-                if (soldier.getX() == -1 && soldier.getY() == -1) {
+            for (int j = troops.size()-1; j > -1 ; j--) {
+                if (troops.get(j).getX() == -1 && troops.get(j).getY() == -1) {
                     continue;
                 }
-                System.out.println(soldier.getClass().getSimpleName() + " " + soldier.getDamage());
-                soldier.attackTarget(this.getVillage(), this.attackedVillage.getVillage());
-                if(soldier.getClass().getSimpleName().equals("Healer")){
-                    ((Healer)soldier).setTimeInWar(((Healer) soldier).getTimeInWar()+1);
-                    if(((Healer) soldier).getTimeInWar()>500){
-                        soldier.setHealth(0);
+                System.out.println(troops.get(j).getClass().getSimpleName() + " " + troops.get(j).getDamage());
+                troops.get(j).attackTarget(this.getVillage(), this.attackedVillage.getVillage());
+                if(troops.get(j).getClass().getSimpleName().equals("Healer")){
+                    ((Healer)troops.get(j)).setTimeInWar(((Healer) troops.get(j)).getTimeInWar()+1);
+                    if(((Healer) troops.get(j)).getTimeInWar()>500){
+                        troops.get(j).setHealth(0);
                     }
                 }
-                if (soldier.getHealth() <= 0){
-                    iterator.remove();
-                    soldier.getImageView().setImage(null);
+                if (troops.get(j).getHealth() <= 0){
+                    troops.remove(troops.get(j));
+                    troops.get(j).getImageView().setImage(null);
                 }
+
             }
+//            Iterator<Soldier> iterator = troops.iterator();
+//            while(iterator.hasNext()){
+//                Soldier soldier = iterator.next();
+//                if (soldier.getX() == -1 && soldier.getY() == -1) {
+//                    continue;
+//                }
+//                System.out.println(soldier.getClass().getSimpleName() + " " + soldier.getDamage());
+//                soldier.attackTarget(this.getVillage(), this.attackedVillage.getVillage());
+//                if(soldier.getClass().getSimpleName().equals("Healer")){
+//                    ((Healer)soldier).setTimeInWar(((Healer) soldier).getTimeInWar()+1);
+//                    if(((Healer) soldier).getTimeInWar()>500){
+//                        soldier.setHealth(0);
+//                    }
+//                }
+//                if (soldier.getHealth() <= 0){
+//                    iterator.remove();
+//                    soldier.getImageView().setImage(null);
+//                }
+//            }
             try {
                 Thread.sleep(UIConstants.DELTA_T / Config.getDictionary().get("KMM"));
             } catch (InterruptedException e) {
