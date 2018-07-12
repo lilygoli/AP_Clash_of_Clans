@@ -7,9 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd4373d0-16e4-43f1-a01f-34df3517e604" name="Default" comment="bug fix">
-      <change beforePath="$PROJECT_DIR$/src/com/company/Multiplayer/ClientInputListener.java" afterPath="$PROJECT_DIR$/src/com/company/Multiplayer/ClientInputListener.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Multiplayer/Server.java" afterPath="$PROJECT_DIR$/src/com/company/Multiplayer/Server.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Multiplayer/ServerInputListener.java" afterPath="$PROJECT_DIR$/src/com/company/Multiplayer/ServerInputListener.java" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -324,6 +322,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="SearchEverywhereHistoryKey" value="capacity&#9;PSI&#9;JAVA://com.company.Exception.NotEnoughCapacityInCampsException&#10;plugin&#9;ACTION&#9;WelcomeScreen.Plugins" />
     <property name="extract.method.default.visibility" value="private" />
+    <property name="ChangesBrowser.SHOW_FLATTEN" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -679,12 +678,12 @@
       <workItem from="1530892506711" duration="3584000" />
       <workItem from="1531028215502" duration="19669000" />
       <workItem from="1531229821616" duration="26636000" />
-      <workItem from="1531366701312" duration="4444000" />
+      <workItem from="1531366701312" duration="4645000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="318464000" />
+    <option name="totallyTimeSpent" value="318665000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -697,7 +696,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="-13" width="2586" height="1466" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922825" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -705,10 +703,10 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24630542" sideWeight="0.5078125" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32922825" sideWeight="0.5016116" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922825" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2816092" sideWeight="0.4921875" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32922825" sideWeight="0.4983884" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2816092" sideWeight="0.49073327" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922825" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1065,10 +1063,10 @@
         <state relative-caret-position="330">
           <caret line="167" column="37" lean-forward="false" selection-start-line="167" selection-start-column="37" selection-end-line="167" selection-end-column="37" />
           <folding>
-            <element signature="e#2454#2455#0" expanded="true" />
-            <element signature="e#2488#2489#0" expanded="true" />
-            <element signature="e#2536#2537#0" expanded="true" />
-            <element signature="e#2569#2570#0" expanded="true" />
+            <element signature="e#2549#2550#0" expanded="true" />
+            <element signature="e#2583#2584#0" expanded="true" />
+            <element signature="e#2631#2632#0" expanded="true" />
+            <element signature="e#2664#2665#0" expanded="true" />
           </folding>
         </state>
       </provider>
