@@ -25,9 +25,6 @@ public class ClientInputListener extends Thread{
                        udpReceiver.start();
                        AttackMapUI.clientObjectOutput.flush();
                     }
-                    else if (stringCommand.startsWith("$")){
-                        AttackMapUI.clientObjectOutput.writeObject("$Name : " + AttackMapUI.clientName + "GoldGained : " + Integer.toString(SideBarUI.allGainedGoldsResouces + MapUI.getController().getGame().getVillage().getGainedResource().getGold()) + "--ElixirGained : " + Integer.toString(SideBarUI.allGainedElixirResouces + MapUI.getController().getGame().getVillage().getGainedResource().getElixir()));
-                    }
                     else if (stringCommand.charAt(0) == '*'){
                         System.out.println("stringcommand" + stringCommand);
                         SideBarUI.leaderBoard.setText(stringCommand.substring(1 , stringCommand.length()));
