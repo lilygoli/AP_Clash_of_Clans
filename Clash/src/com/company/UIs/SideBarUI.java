@@ -252,16 +252,17 @@ public class SideBarUI {
         AttackMapUI.clientSocket = new Socket(ip , 12345);
 //        AttackMapUI.leaderBoardSocket = new Socket(ip, 12347);
             AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clientSocket.getOutputStream());
-            AttackMapUI.clientObjectInput = new ObjectInputStream(AttackMapUI.clientSocket.getInputStream());
-//            AttackMapUI.leaderBoardInput = new ObjectInputStream(AttackMapUI.leaderBoardSocket.getInputStream());
-//            AttackMapUI.leaderBoardOutput = new ObjectOutputStream(AttackMapUI.leaderBoardSocket.getOutputStream());
+        AttackMapUI.clientObjectInput = new ObjectInputStream(AttackMapUI.clientSocket.getInputStream());
+//        AttackMapUI.leaderBoardOutput = new ObjectOutputStream(AttackMapUI.leaderBoardSocket.getOutputStream());
+//        AttackMapUI.leaderBoardInput = new ObjectInputStream(AttackMapUI.leaderBoardSocket.getInputStream());
             Thread clientInputListener = new ClientInputListener();
             clientInputListener.start();
+//            new LeaderBoardListenerOnClient().start();
             AttackMapUI.clientName=name;
             AttackMapUI.clientObjectOutput.writeObject(name);
     }
 
-    private static void makeLoadEnemyMapMenu(Group group) {
+    public static void makeLoadEnemyMapMenu(Group group) {
         makeSideBar(group,false);
 
         String ip = "";
