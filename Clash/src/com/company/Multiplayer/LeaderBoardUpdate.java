@@ -10,7 +10,7 @@ public class LeaderBoardUpdate extends Thread {
             Server.leaderBoard = new StringBuilder("*");
             for (ClientOnServer client : Server.clients) {
                 try {
-                    client.getOutput().writeObject("$");
+                    client.getLeaderBoardOutput().writeObject("$");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

@@ -39,6 +39,8 @@ public class ClientOnServer implements Serializable{
         this.clientSocket = clientSocket;
         input = new ObjectInputStream(this.clientSocket.getInputStream());
         output = new ObjectOutputStream(this.clientSocket.getOutputStream());
+        leaderBoardInput = new ObjectInputStream(this.getLeaderBoardInput());
+        leaderBoardOutput = new ObjectOutputStream(this.getLeaderBoardOutput());
         this.name = (String)input.readObject();
        // this.output.writeObject(Server.clients);
 
