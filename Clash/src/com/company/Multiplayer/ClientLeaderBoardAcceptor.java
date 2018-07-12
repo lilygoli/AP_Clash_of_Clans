@@ -1,21 +1,19 @@
 package com.company.Multiplayer;
 
-import java.io.IOException;
-import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ClientAcceptor extends Thread{
+public class ClientLeaderBoardAcceptor extends Thread {
     Server server;
 
-    public ClientAcceptor(Server server) {
+    public ClientLeaderBoardAcceptor(Server server) {
         this.server = server;
     }
 
     public void run() {
         while(true) {
             try {
-                Socket client = server.getServerSocket().accept();
-                server.getClients().add(new ClientOnServer(client));
+                Socket client = server.getLeaderBoardServerSocket().accept();
+                server.getClientOnServerLeaderBoards().add(new ClientOnServerLeaderBoard(client));
             } catch (Exception e) {
                 this.stop();
                 e.printStackTrace();
