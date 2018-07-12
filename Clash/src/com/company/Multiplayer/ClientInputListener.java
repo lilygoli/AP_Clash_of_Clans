@@ -31,6 +31,7 @@ public class ClientInputListener extends Thread{
                     else if (stringCommand.charAt(0) == '*'){
                         System.out.println("stringcommand" + stringCommand);
                         SideBarUI.leaderBoard.setText(stringCommand.substring(1 , stringCommand.length()));
+                        Server.clientcounter += 1;
                     }
                     else if (stringCommand.charAt(0) == '@') {
                         SideBarUI.chatsArea.clear();

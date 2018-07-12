@@ -9,6 +9,7 @@ public class Server {
     public static StringBuilder leaderBoard = new StringBuilder("*");
     public static ServerSocket serverSocket;
     public static ArrayList<ClientOnServer> clients = new ArrayList<>();
+    public static int clientcounter = 0;
 
     public ArrayList<ClientOnServer> getClients() {
         return clients;

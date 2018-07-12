@@ -43,11 +43,14 @@ public class ServerInputListener extends Thread{
                         }
                     }
                     else if (stringCommand.charAt(0) == '$'){
+                        System.out.println("1");
                         //System.out.println("commnad" + stringCommand);
                         leaderBoard.append(leaderBoard + stringCommand.substring(1 , stringCommand.length()) + "\n");
-                        System.out.println("leader board 1" + leaderBoard);
-                        for (ClientOnServer clientOnServer : Server.clients) {
-                            clientOnServer.getOutput().writeObject(leaderBoard.toString());
+                        if (Server.clientcounter == Server.clients.size()) {
+                            for (ClientOnServer clientOnServer : Server.clients) {
+                                clientOnServer.getOutput().writeObject(leaderBoard.toString());
+                            }
+                            Server.clientcounter = 0;
                         }
                     }
                     else{
