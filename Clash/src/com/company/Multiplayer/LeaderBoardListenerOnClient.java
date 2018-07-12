@@ -12,9 +12,7 @@ public class LeaderBoardListenerOnClient extends Thread{
             Object command = null;
             try {
                 command = AttackMapUI.leaderBoardInput.readObject();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
 
@@ -26,6 +24,10 @@ public class LeaderBoardListenerOnClient extends Thread{
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+            else if (stringCommand.startsWith("*")) {
+                System.out.println("stringcommand" + stringCommand);
+                SideBarUI.leaderBoard.setText(stringCommand.substring(1 , stringCommand.length()));
             }
 
         }

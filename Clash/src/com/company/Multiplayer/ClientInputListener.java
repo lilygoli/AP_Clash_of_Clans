@@ -25,11 +25,6 @@ public class ClientInputListener extends Thread{
                        udpReceiver.start();
                        AttackMapUI.clientObjectOutput.flush();
                     }
-                    else if (stringCommand.charAt(0) == '*'){
-                        System.out.println("stringcommand" + stringCommand);
-                        SideBarUI.leaderBoard.setText(stringCommand.substring(1 , stringCommand.length()));
-                        Server.clientcounter += 1;
-                    }
                     else if (stringCommand.charAt(0) == '@') {
                         SideBarUI.chatsArea.clear();
                         SideBarUI.chatsArea.setText(stringCommand.substring(1, stringCommand.length()));
