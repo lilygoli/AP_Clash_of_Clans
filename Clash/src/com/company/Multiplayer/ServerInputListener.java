@@ -5,6 +5,8 @@ import com.company.Models.Village;
 
 import java.io.IOException;
 
+import static com.company.Multiplayer.Server.leaderBoard;
+
 public class ServerInputListener extends Thread{
     private ClientOnServer client;
 
@@ -40,6 +42,13 @@ public class ServerInputListener extends Thread{
                         chats.append(stringCommand.substring(1 , stringCommand.length()) + "\n");
                         for (ClientOnServer clientOnServer : Server.clients) {
                             clientOnServer.getOutput().writeObject(chats.toString());
+                        }
+                    }else if (stringCommand.charAt(0) == '$') {
+                        System.out.println("1");
+                        //System.out.println("commnad" + stringCommand);
+                        leaderBoard.append(leaderBoard + stringCommand.substring(1, stringCommand.length()) + "\n");
+                        for (ClientOnServer clientOnServer : Server.clients) {
+                            clientOnServer.getOutput().writeObject(leaderBoard.toString());
                         }
                     }
                     else{

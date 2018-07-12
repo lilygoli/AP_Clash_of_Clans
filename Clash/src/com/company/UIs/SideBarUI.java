@@ -29,7 +29,6 @@ import javafx.util.Duration;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.net.*;
-import java.time.chrono.ThaiBuddhistChronology;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -174,7 +173,7 @@ public class SideBarUI {
                         e.printStackTrace();
                     }
                     try {
-                        intiClient(playerName, "localhost");
+                        initClient(playerName, "localhost");
                         makeLoadEnemyMapMenu(group);
                     } catch (Exception e) {
                         makeLoadEnemyMapMenu(group);
@@ -210,7 +209,7 @@ public class SideBarUI {
                             e.printStackTrace();
                         }
                         try {
-                            intiClient(playerName, ip.getText());
+                            initClient(playerName, ip.getText());
                             makeLoadEnemyMapMenu(group);
                         }
                         catch (IOException e){
@@ -249,13 +248,13 @@ public class SideBarUI {
         group.getChildren().add(attackImage);
     }
 
-    private static void intiClient(String  name, String ip) throws IOException{
+    private static void initClient(String  name, String ip) throws IOException{
         AttackMapUI.clientSocket = new Socket(ip , 12345);
-        //AttackMapUI.leaderBoardSocket = new Socket(ip, 12347);
+//        AttackMapUI.leaderBoardSocket = new Socket(ip, 12347);
             AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clientSocket.getOutputStream());
             AttackMapUI.clientObjectInput = new ObjectInputStream(AttackMapUI.clientSocket.getInputStream());
-            AttackMapUI.leaderBoardInput = new ObjectInputStream(AttackMapUI.leaderBoardSocket.getInputStream());
-            AttackMapUI.leaderBoardOutput = new ObjectOutputStream(AttackMapUI.leaderBoardSocket.getOutputStream());
+//            AttackMapUI.leaderBoardInput = new ObjectInputStream(AttackMapUI.leaderBoardSocket.getInputStream());
+//            AttackMapUI.leaderBoardOutput = new ObjectOutputStream(AttackMapUI.leaderBoardSocket.getOutputStream());
             Thread clientInputListener = new ClientInputListener();
             clientInputListener.start();
             AttackMapUI.clientName=name;
@@ -336,6 +335,7 @@ public class SideBarUI {
                 enemyMapsList.append(index).append(". ").append(game.getPlayerName()).append("\n");
                 index++;
             }
+            clientsComboBox.getItems().clear();
             clientsComboBox.getItems().addAll(enemyMapsList.toString().split("\n"));
         }
         clientsComboBox.setBackground(Background.EMPTY);

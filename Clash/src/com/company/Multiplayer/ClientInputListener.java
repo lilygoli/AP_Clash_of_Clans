@@ -28,6 +28,16 @@ public class ClientInputListener extends Thread{
                     else if (stringCommand.charAt(0) == '@') {
                         SideBarUI.chatsArea.clear();
                         SideBarUI.chatsArea.setText(stringCommand.substring(1, stringCommand.length()));
+                    }else if (stringCommand.startsWith("$")){
+                        try {
+                            AttackMapUI.clientObjectOutput.writeObject("$Name : " + AttackMapUI.clientName + " GoldGained : " + Integer.toString(SideBarUI.allGainedGoldsResouces + MapUI.getController().getGame().getVillage().getGainedResource().getGold()) + " -- ElixirGained : " + Integer.toString(SideBarUI.allGainedElixirResouces + MapUI.getController().getGame().getVillage().getGainedResource().getElixir()));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else if (stringCommand.startsWith("*")) {
+                        System.out.println("stringcommand" + stringCommand);
+                        SideBarUI.leaderBoard.setText(stringCommand.substring(1 , stringCommand.length()));
                     }
                     else {
                         SideBarUI.availableVillagesToAttack.clear();

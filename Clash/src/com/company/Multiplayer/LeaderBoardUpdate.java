@@ -8,9 +8,16 @@ public class LeaderBoardUpdate extends Thread {
     public void run() {
         while(true) {
             Server.leaderBoard = new StringBuilder("*");
+//            for (ClientOnServerLeaderBoard clientOnServerLeaderBoard : Server.clientOnServerLeaderBoards) {
+//                try {
+//                    clientOnServerLeaderBoard.getOutput().writeObject("$");
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
             for (ClientOnServer client : Server.clients) {
                 try {
-                    client.getLeaderBoardOutput().writeObject("$");
+                    client.getOutput().writeObject("$");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
