@@ -43,6 +43,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 import static com.company.UIs.MapUI.getImageOfBuildings;
+import static com.company.UIs.MapUI.isIsInDefense;
 import static com.company.UIs.MapUI.putBuildingImageInMap;
 import static com.company.UIs.SideBarUI.*;
 
@@ -50,6 +51,7 @@ public class AttackMapUI {
     public static DatagramSocket udpSocket;
     public static Server server;
     public static Socket clientSocket;
+    public static Socket leaderBoardSocket;
     public static ObjectOutputStream clientObjectOutput;
     public static ObjectInputStream clientObjectInput;
     public static InetAddress attackedIP;
@@ -142,7 +144,7 @@ public class AttackMapUI {
                     }else
                         if (!chosenSoldierName.equals("")) {
                         for (Soldier soldier : controller.getGame().getTroops()) {
-                            if (soldier.getClass().getSimpleName().equals(chosenSoldierName) && soldier.getX() == -1) {
+                            if (soldier.getClass().getSimpleName().equals(chosenSoldierName) && soldier.getX() == -1 && !MapUI.isIsInDefense()) {
                                 putSoldiersImageInMap(attackY, attackX, 32, canvas, soldiersGif.get(chosenSoldierName + "MoveUp"), soldier, root);
 
                                 liveStreamingMessage lsm = new liveStreamingMessage();
@@ -187,6 +189,7 @@ public class AttackMapUI {
                     if (controller.getGame().isWarFinished()) {
                         controller.getGame().healAfterWar();
                         controller.getGame().setUnderAttackOrDefense(false);
+                        controller.getGame().getAttackedVillage().setUnderAttackOrDefense(false);
                         winningLabel.setText("*war ended with " + controller.getGame().getVillage().getGainedResource().getGold() + "gold and\n" + controller.getGame().getVillage().getGainedResource().getElixir() + " elixir and " + controller.getGame().getVillage().getScore() + "scores achieved");
                         SideBarUI.allGainedGoldsResouces += controller.getGame().getVillage().getGainedResource().getGold();
                         SideBarUI.allGainedElixirResouces += controller.getGame().getVillage().getGainedResource().getElixir();

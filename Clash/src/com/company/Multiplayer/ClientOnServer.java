@@ -11,6 +11,9 @@ public class ClientOnServer implements Serializable{
     private transient Socket clientSocket;
     private transient ObjectInputStream input;
     private transient ObjectOutputStream output;
+    private transient ObjectInputStream leaderBoardInput;
+    private transient ObjectOutputStream leaderBoardOutput;
+
 
     public String getName() {
         return name;
@@ -22,6 +25,14 @@ public class ClientOnServer implements Serializable{
 
     public ObjectOutputStream getOutput() {
         return output;
+    }
+
+    public ObjectInputStream getLeaderBoardInput() {
+        return leaderBoardInput;
+    }
+
+    public ObjectOutputStream getLeaderBoardOutput() {
+        return leaderBoardOutput;
     }
 
     public ClientOnServer(Socket clientSocket) throws IOException, ClassNotFoundException {
