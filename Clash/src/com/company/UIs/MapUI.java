@@ -257,6 +257,11 @@ public class MapUI  {
                 for (GoldStorage goldStorage : controller.getGame().getVillage().getGoldStorages()) {
                     goldStorage.addToStorage(goldStorage.getCapacity());
                 }
+                cPressed.set(false);
+                hPressed.set(false);
+                ePressed.set(false);
+                aPressed.set(false);
+                tPressed.set(false);
             }
         });
         controller.getGame().getVillage().getGainedResource().setGold(0);

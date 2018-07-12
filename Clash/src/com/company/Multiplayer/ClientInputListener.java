@@ -6,6 +6,7 @@ import com.company.UIs.MapUI;
 import com.company.UIs.SideBarUI;
 import javafx.geometry.Side;
 
+import javax.print.attribute.standard.Sides;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,8 +26,11 @@ public class ClientInputListener extends Thread{
                        AttackMapUI.clientObjectOutput.flush();
                     }
                     else if (stringCommand.startsWith("$")){
-                        System.out.println("2");
-                        SideBarUI.leaderBoard.setText(SideBarUI.leaderBoard.getText() + stringCommand.substring(1 , stringCommand.length()) + " -----" +  SideBarUI.allGainedElixirResouces + "------" + SideBarUI.allGainedGoldsResouces + "\n");
+                        AttackMapUI.clientObjectOutput.writeObject("$" + SideBarUI.allGainedGoldsResouces + MapUI.getController().getGame().getVillage().getGainedResource().getGold() + "-" + SideBarUI.allGainedElixirResouces + MapUI.getController().getGame().getVillage().getGainedResource().getElixir());
+                    }
+                    else if (stringCommand.charAt(0) == '*'){
+                        System.out.println("stringcommand" + stringCommand);
+                        SideBarUI.leaderBoard.setText(stringCommand.substring(1 , stringCommand.length()));
                     }
                     else if (stringCommand.charAt(0) == '@') {
                         SideBarUI.chatsArea.clear();

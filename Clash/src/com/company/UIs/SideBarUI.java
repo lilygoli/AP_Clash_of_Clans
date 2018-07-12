@@ -8,10 +8,7 @@ import com.company.Models.Game;
 import com.company.Models.Resource;
 import com.company.Models.Towers.Buildings.*;
 import com.company.Models.Towers.Cell;
-import com.company.Multiplayer.ClientInputListener;
-import com.company.Multiplayer.ClientOnServer;
-import com.company.Multiplayer.LiveAttackStreamer;
-import com.company.Multiplayer.Server;
+import com.company.Multiplayer.*;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -306,12 +303,7 @@ public class SideBarUI {
         leaderBoard.setMaxWidth(100);
         leaderBoard.setMinWidth(100);
         leaderBoard.setOnMouseClicked(event -> {
-            try {
-                AttackMapUI.clientObjectOutput.writeObject("giveScores");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            SideBarUI.leaderBoard.clear();
+            new LeaderBoardUpdate().start();
             showLeaderBoard(group);
         });
     }
