@@ -48,11 +48,11 @@ public class Server {
     private void serverInitialization() {
         try {
             serverSocket = new ServerSocket(12345);
-            leaderBoardServerSocket = new ServerSocket(12347);
+            //leaderBoardServerSocket = new ServerSocket(12347);
             Thread clientAcceptor = new ClientAcceptor(this);
-            Thread clientLeaderBoardAcceptor =  new ClientLeaderBoardAcceptor(this);
+            //Thread clientLeaderBoardAcceptor =  new ClientLeaderBoardAcceptor(this);
             clientAcceptor.start();
-            clientLeaderBoardAcceptor.start();
+            //clientLeaderBoardAcceptor.start();
             new LeaderBoardUpdate().start();
         } catch (Exception e) {
             e.printStackTrace();
