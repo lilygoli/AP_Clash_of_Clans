@@ -300,7 +300,12 @@ public class MapUI  {
         scene.addEventFilter(MouseEvent.MOUSE_DRAGGED, sceneGestures.getOnMouseDraggedEventHandler());
         SideBarUI.setController(controller);
         makeSlider(root);
-        SideBarUI.makeStartingMenu(root,primaryStage);
+        if(AttackMapUI.isReturningFromAttack()) {
+            SideBarUI.makeLoadEnemyMapMenu(root);
+            AttackMapUI.setReturningFromWar(false);
+        }else {
+            SideBarUI.makeStartingMenu(root,primaryStage);
+        }
     }
 
     private static void makeSlider(Group root) {

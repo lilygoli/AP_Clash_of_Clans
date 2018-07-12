@@ -30,7 +30,6 @@ public class ClientOnServerLeaderBoard {
         input = new ObjectInputStream(this.clientSocket.getInputStream());
         output = new ObjectOutputStream(this.clientSocket.getOutputStream());
         this.name = (String)input.readObject();
-        // this.output.writeObject(Server.clients);
 
         //LeaderBoardListenerOnServer listerner = new LeaderBoardListenerOnServer();
         //listerner.start();

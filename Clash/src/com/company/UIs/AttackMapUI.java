@@ -2,18 +2,15 @@ package com.company.UIs;
 
 import com.company.Controller.Controller;
 import com.company.Exception.InvalidPlaceForSoldiersException;
-import com.company.Models.Soldiers.Archer;
 import com.company.Models.Soldiers.Soldier;
 import com.company.Models.Towers.Buildings.Camp;
 import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Towers.Cell;
-import com.company.Models.Towers.Defences.Trap;
 import com.company.Models.Village;
 import com.company.Multiplayer.Server;
 import com.company.Multiplayer.liveStreamingMessage;
 import javafx.animation.*;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -69,12 +66,21 @@ public class AttackMapUI {
     private static HashMap<String ,Image> soldiersGif=new HashMap<>();
     private static String chosenSoldierName = "";
     private static Label winningLabel=new Label("");
+    private static boolean returningFromAttack = false;
+
     public static HashMap<String, Image> getSoldiersGif() {
         return soldiersGif;
     }
 
     public static Controller getController() {
         return controller;
+    }
+
+    public static boolean isReturningFromAttack() {
+        return returningFromAttack;
+    }
+    public static void setReturningFromWar(boolean war){
+        returningFromAttack = war;
     }
 
     static {
@@ -309,6 +315,7 @@ public class AttackMapUI {
             }
             UIConstants.DELTA_T=1000;
             MapUI.getShowMapAnimationTimer().stop();
+            returningFromAttack = true;
             MapUI.start(primaryStage);
 
         } catch (Exception e) {
