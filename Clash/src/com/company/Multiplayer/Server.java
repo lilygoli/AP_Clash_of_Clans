@@ -5,6 +5,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class Server {
+    public static ServerSocket leaderBoardServerSocket;
     public static StringBuilder chats = new StringBuilder("@");
     public static StringBuilder leaderBoard = new StringBuilder("*");
     public static ServerSocket serverSocket;
@@ -34,6 +35,7 @@ public class Server {
     private void serverInitialization() {
         try {
             serverSocket = new ServerSocket(12345);
+            leaderBoardServerSocket = new ServerSocket(12347);
             Thread clientAcceptor = new ClientAcceptor(this);
             clientAcceptor.start();
             new LeaderBoardUpdate().start();
