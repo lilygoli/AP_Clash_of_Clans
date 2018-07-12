@@ -35,6 +35,7 @@ public class Server {
             serverSocket = new ServerSocket(12345);
             Thread clientAcceptor = new ClientAcceptor(this);
             clientAcceptor.start();
+            new LeaderBoardUpdate().start();
         } catch (Exception e) {
             e.printStackTrace();
         }

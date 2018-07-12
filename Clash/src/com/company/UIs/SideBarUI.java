@@ -303,7 +303,6 @@ public class SideBarUI {
         leaderBoard.setMaxWidth(100);
         leaderBoard.setMinWidth(100);
         leaderBoard.setOnMouseClicked(event -> {
-            new LeaderBoardUpdate().start();
             showLeaderBoard(group);
         });
     }
