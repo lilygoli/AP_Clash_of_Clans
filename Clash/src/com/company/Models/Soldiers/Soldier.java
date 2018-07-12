@@ -362,7 +362,7 @@ public abstract class Soldier implements Serializable{
                                 destination.setX(14);
                                 destination.setY(14);
                             }
-                            minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));
+                            minDistance = Math.sqrt(Math.pow(x - i, 2) + Math.pow(y - j, 2));;
                         }
                     }
                 }
