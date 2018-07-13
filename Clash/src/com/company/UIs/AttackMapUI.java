@@ -195,14 +195,14 @@ public class AttackMapUI {
             public void handle(long now) {
                 if (controller.getGame().isUnderAttackOrDefense()) {
                     if (controller.getGame().isWarFinished()) {
-                        controller.getGame().healAfterWar();
+                        controller.getGame().healAfterWar(isIsInDefense());
                         controller.getGame().setUnderAttackOrDefense(false);
-                        controller.getGame().getAttackedVillage().setUnderAttackOrDefense(false);
-                        winningLabel.setText("*war ended with " + controller.getGame().getVillage().getGainedResource().getGold() + "gold and\n" + controller.getGame().getVillage().getGainedResource().getElixir() + " elixir and " + controller.getGame().getVillage().getScore() + "scores achieved");
+                        //controller.getGame().getAttackedVillage().setUnderAttackOrDefense(false);
                         if (!isIsInDefense()) {
                             SideBarUI.allGainedGoldsResources += controller.getGame().getVillage().getGainedResource().getGold();
                             SideBarUI.allGainedElixirResources += controller.getGame().getVillage().getGainedResource().getElixir();
-                        }
+                            winningLabel.setText("*war ended with " + controller.getGame().getVillage().getGainedResource().getGold() + "gold and\n" + controller.getGame().getVillage().getGainedResource().getElixir() + " elixir and " + controller.getGame().getVillage().getScore() + "scores achieved");
+                              }
                         isIsInDefense(false);
                         returnToVillageUI();
                     }

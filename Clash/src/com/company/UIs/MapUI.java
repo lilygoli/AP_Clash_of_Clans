@@ -299,7 +299,7 @@ public class MapUI  {
         makeSlider(root);
         if(AttackMapUI.isReturningFromAttack()) {
             SideBarUI.makeLoadEnemyMapMenu(root);
-            Thread gameLogic = new Thread(new PassTurnThread(controller, primaryStage));
+            Thread gameLogic = new Thread(new PassTurnThread(controller , primaryStage));
             gameLogic.start();
         }else {
             SideBarUI.makeStartingMenu(root,primaryStage);
