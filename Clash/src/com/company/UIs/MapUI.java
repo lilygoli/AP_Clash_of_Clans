@@ -1,9 +1,9 @@
 package com.company.UIs;
 
 import com.company.Controller.Controller;
+import com.company.Models.Soldiers.Soldier;
 import com.company.Models.Towers.Buildings.ElixirStorage;
 import com.company.Models.Towers.Buildings.GoldStorage;
-import com.company.Models.Soldiers.Soldier;
 import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
 import com.company.Models.Village;
@@ -11,7 +11,6 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.application.Application;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -39,8 +38,6 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.awt.*;
-import java.beans.EventHandler;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -302,6 +299,8 @@ public class MapUI  {
         makeSlider(root);
         if(AttackMapUI.isReturningFromAttack()) {
             SideBarUI.makeLoadEnemyMapMenu(root);
+            Thread gameLogic = new Thread(new PassTurnThread(controller, primaryStage));
+            gameLogic.start();
         }else {
             SideBarUI.makeStartingMenu(root,primaryStage);
         }
@@ -366,12 +365,12 @@ public class MapUI  {
                     {
 
                         if (newValue) {
-                                try {
-                                    FileInputStream fileInputStream2 = new FileInputStream("./src/com/company/ImagesAndGifs/red.png");
-                                    imageView.setImage(new Image(fileInputStream2));
-                                } catch (FileNotFoundException e) {
-                                    e.printStackTrace();
-                                }
+                            try {
+                                FileInputStream fileInputStream2 = new FileInputStream("./src/com/company/ImagesAndGifs/red.png");
+                                imageView.setImage(new Image(fileInputStream2));
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
                         } else {
                             try {
                                 FileInputStream fileInputStream2 = new FileInputStream("./src/com/company/ImagesAndGifs/lightGreen.png");
@@ -398,7 +397,7 @@ public class MapUI  {
     }
     public static void showMapInVillage(Village village, Group root) {
 
-       showMapAnimationTimer=new AnimationTimer(){
+        showMapAnimationTimer=new AnimationTimer(){
 
             private long lastUpdate = 0;
             private int flag = 0;
@@ -436,7 +435,7 @@ public class MapUI  {
 //                            }
                         }
                         //if(controller.getGame().isWarFinished()){
-                            //isInDefense = false;
+                        //isInDefense = false;
                         //}
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
@@ -502,10 +501,10 @@ public class MapUI  {
         village.getMap()[j][i].getImageView().setFitWidth(Screen.getPrimary().getVisualBounds().getHeight() / size);
         village.getMap()[j][i].getImageView().setFitHeight(Screen.getPrimary().getVisualBounds().getHeight() / size);
 
-            if (canvas.getChildren().contains(village.getMap()[j][i].getImageView())) {
-                canvas.getChildren().remove(village.getMap()[j][i].getImageView());
-            }
-            canvas.getChildren().add(village.getMap()[j][i].getImageView());
+        if (canvas.getChildren().contains(village.getMap()[j][i].getImageView())) {
+            canvas.getChildren().remove(village.getMap()[j][i].getImageView());
+        }
+        canvas.getChildren().add(village.getMap()[j][i].getImageView());
     }
 
 
@@ -540,7 +539,7 @@ public class MapUI  {
             }
         }else {
             if (!inWar)
-             buildingImage= gifsOfTowers.get(name + "Loading");
+                buildingImage= gifsOfTowers.get(name + "Loading");
             else{
                 buildingImage= gifsOfTowers.get(name);
             }

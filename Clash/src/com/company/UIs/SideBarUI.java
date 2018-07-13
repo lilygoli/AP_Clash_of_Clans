@@ -41,8 +41,9 @@ public class SideBarUI {
     public static TextArea leaderBoard = new TextArea();
     public static ArrayList<String >  availableVillagesToAttack= new ArrayList<>();
     public static String port;
-    public static int allGainedGoldsResouces = 0;
-    public static int allGainedElixirResouces = 0;
+    public static int allGainedGoldsResources = 0;
+    public static int allGainedElixirResources = 0;
+    public static boolean isInSinglePlayer = false;
 
     static {
         leaderBoard.setEditable(false);
@@ -61,6 +62,7 @@ public class SideBarUI {
     }
 
     public static void makeSideBar(Group group, boolean isInEnemyMap) {
+        clientsComboBox.getItems().clear();
         ImageView sideBarBackgroundImageView =getImageView("labelLessCroppedMenu.png");
         Double sideBarStartingX = -sideBarBackgroundImageView.getImage().getWidth() / 16;
         sideBarBackgroundImageView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
@@ -71,41 +73,41 @@ public class SideBarUI {
         if(!isInEnemyMap){
             borderImageView = getImageView("upperBorder.png");
         }else {
-             borderImageView = getImageView("AttackUpperBorder.png");
+            borderImageView = getImageView("AttackUpperBorder.png");
         }
 
-            borderImageView.setScaleX(0.6);
-            borderImageView.setScaleY(0.8);
-            borderImageView.setY(40);
-            borderImageView.setX(sideBarStartingX + 20);
+        borderImageView.setScaleX(0.6);
+        borderImageView.setScaleY(0.8);
+        borderImageView.setY(40);
+        borderImageView.setX(sideBarStartingX + 20);
 
         ImageView saveView = getImageView("save.png");
         saveView.setOnMouseClicked(event -> {
-                makeSideBar(group,false);
-                TextField pathTextField=new TextField("enter path");
-                TextField nameTextField= new TextField("enter name");
-                Button saveButton=new Button("save");
-                pathTextField.setBackground(Background.EMPTY);
-                pathTextField.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
-                pathTextField.setOnMouseClicked(event12 -> pathTextField.setText(""));
-                nameTextField.setBackground(Background.EMPTY);
-                nameTextField.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
-                nameTextField.setOnMouseClicked(event13 -> nameTextField.setText(""));
-                saveButton.setStyle("-fx-background-color: rgba(143,99,29,0.87)");
-                VBox vBox = new VBox(10 , pathTextField , nameTextField , saveButton);
-                vBox.relocate(UIConstants.BUTTON_STARTING_X + 10 , Screen.getPrimary().getVisualBounds().getHeight() * 0.2);
-                group.getChildren().add(vBox);
-                saveButton.setOnMouseClicked(event1 -> {
-                    try {
-                        MapUI.getShowMapAnimationTimer().stop();
-                        controller.getGameCenter().saveGame(controller.getGame(), pathTextField.getText(), nameTextField.getText());
-                        primaryStage.close();
-                    } catch (NotValidFilePathException e) {
-                        NotValidFilePathException exception = new NotValidFilePathException();
-                        new Timeline(new KeyFrame(Duration.seconds(2), new KeyValue(exception.getImageView().imageProperty(), null))).play();
-                        group.getChildren().add(exception.getImageView());
-                    }
-                });
+            makeSideBar(group,false);
+            TextField pathTextField=new TextField("enter path");
+            TextField nameTextField= new TextField("enter name");
+            Button saveButton=new Button("save");
+            pathTextField.setBackground(Background.EMPTY);
+            pathTextField.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
+            pathTextField.setOnMouseClicked(event12 -> pathTextField.setText(""));
+            nameTextField.setBackground(Background.EMPTY);
+            nameTextField.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
+            nameTextField.setOnMouseClicked(event13 -> nameTextField.setText(""));
+            saveButton.setStyle("-fx-background-color: rgba(143,99,29,0.87)");
+            VBox vBox = new VBox(10 , pathTextField , nameTextField , saveButton);
+            vBox.relocate(UIConstants.BUTTON_STARTING_X + 10 , Screen.getPrimary().getVisualBounds().getHeight() * 0.2);
+            group.getChildren().add(vBox);
+            saveButton.setOnMouseClicked(event1 -> {
+                try {
+                    MapUI.getShowMapAnimationTimer().stop();
+                    controller.getGameCenter().saveGame(controller.getGame(), pathTextField.getText(), nameTextField.getText());
+                    primaryStage.close();
+                } catch (NotValidFilePathException e) {
+                    NotValidFilePathException exception = new NotValidFilePathException();
+                    new Timeline(new KeyFrame(Duration.seconds(2), new KeyValue(exception.getImageView().imageProperty(), null))).play();
+                    group.getChildren().add(exception.getImageView());
+                }
+            });
 
         });
         saveView.setX(sideBarStartingX + 30);
@@ -156,17 +158,6 @@ public class SideBarUI {
                 host.setOnMouseClicked(event1 -> {
                     AttackMapUI.server = new Server();
                     AttackMapUI.server.start();
-//                    TextField port = new TextField("");
-//                    port.setBackground(Background.EMPTY);
-//                    port.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
-//                    port.relocate(UIConstants.ATTACK_STARTING_X + 40, UIConstants.ATTACK_STARTING_Y + 100);
-//                    port.setPrefWidth(130);
-//                    group.getChildren().add(port);
-//                    Button connect = new Button("Connect");
-//                    connect.relocate(UIConstants.ATTACK_STARTING_X + 60 , UIConstants.ATTACK_STARTING_Y + 150);
-//                    group.getChildren().add(connect);
-//                    connect.setOnMouseClicked(event4 -> {
-                        //SideBarUI.port= port.getText();
                     try {
                         AttackMapUI.udpSocket = new DatagramSocket(12346);
                     } catch (SocketException e) {
@@ -178,7 +169,6 @@ public class SideBarUI {
                     } catch (Exception e) {
                         makeLoadEnemyMapMenu(group);
                     }
-                    //});
                 });
                 Button client = new Button("join");
                 client.setStyle("-fx-background-color: #a5862e");
@@ -188,12 +178,12 @@ public class SideBarUI {
                     TextField ip = new TextField("");
                     ip.setBackground(Background.EMPTY);
                     ip.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
-                   // ip.relocate(UIConstants.ATTACK_STARTING_X, UIConstants.ATTACK_STARTING_Y + 90);
+                    // ip.relocate(UIConstants.ATTACK_STARTING_X, UIConstants.ATTACK_STARTING_Y + 90);
                     ip.setPrefWidth(100);
 //                    TextField port = new TextField("");
 //                    port.setBackground(Background.EMPTY);
 //                    port.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
-                   // port.relocate(UIConstants.ATTACK_STARTING_X, UIConstants.ATTACK_STARTING_Y + 120);
+                    // port.relocate(UIConstants.ATTACK_STARTING_X, UIConstants.ATTACK_STARTING_Y + 120);
                     //port.setPrefWidth(100);
                     Button connect = new Button("Connect");
                     //connect.relocate(UIConstants.ATTACK_STARTING_X , UIConstants.ATTACK_STARTING_Y + 140);
@@ -225,13 +215,7 @@ public class SideBarUI {
                 back.setStyle("-fx-background-color: #a5862e");
                 back.setMinWidth(70);
                 back.setMaxWidth(70);
-                back.setOnMouseClicked(event12 ->{
-                    if(AttackMapUI.isReturningFromAttack()) {
-                        SideBarUI.makeLoadEnemyMapMenu(group);
-                    }else {
-                        SideBarUI.makeStartingMenu(group,primaryStage);
-                    }
-                });
+                back.setOnMouseClicked(event12 -> makeStartingMenu(group ,stage));
                 VBox vBox2 = new VBox(20 , host , client , back);
                 vBox2.relocate(UIConstants.ATTACK_STARTING_X  + 75 , UIConstants.ATTACK_STARTING_Y);
                 group.getChildren().add(vBox2);
@@ -241,6 +225,7 @@ public class SideBarUI {
             singlePlayer.setMaxWidth(100);
             singlePlayer.setStyle("-fx-background-color: #a5862e");
             singlePlayer.setOnMouseClicked(event1 -> {
+                isInSinglePlayer = true;
                 makeSideBar(group,false);
                 makeComboBox(group,false);
             });
@@ -257,15 +242,15 @@ public class SideBarUI {
     private static void initClient(String  name, String ip) throws IOException{
         AttackMapUI.clientSocket = new Socket(ip , 12345);
 //        AttackMapUI.leaderBoardSocket = new Socket(ip, 12347);
-            AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clientSocket.getOutputStream());
+        AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clientSocket.getOutputStream());
         AttackMapUI.clientObjectInput = new ObjectInputStream(AttackMapUI.clientSocket.getInputStream());
 //        AttackMapUI.leaderBoardOutput = new ObjectOutputStream(AttackMapUI.leaderBoardSocket.getOutputStream());
 //        AttackMapUI.leaderBoardInput = new ObjectInputStream(AttackMapUI.leaderBoardSocket.getInputStream());
-            Thread clientInputListener = new ClientInputListener();
-            clientInputListener.start();
+        Thread clientInputListener = new ClientInputListener();
+        clientInputListener.start();
 //            new LeaderBoardListenerOnClient().start();
-            AttackMapUI.clientName=name;
-            AttackMapUI.clientObjectOutput.writeObject(name);
+        AttackMapUI.clientName=name;
+        AttackMapUI.clientObjectOutput.writeObject(name);
     }
 
     public static void makeLoadEnemyMapMenu(Group group) {
@@ -287,14 +272,16 @@ public class SideBarUI {
 
         //ComboBox<String> comboBox = new ComboBox<>();
         clientsComboBox.setOnMouseClicked(event -> {
-            try {
-                AttackMapUI.clientObjectOutput.writeObject("giveClients");
-                AttackMapUI.clientObjectOutput.flush();
-                Thread.sleep(20);
-                clientsComboBox.getItems().clear();
-                clientsComboBox.getItems().addAll(availableVillagesToAttack);
-            } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
+            if(!isInSinglePlayer) {
+                try {
+                    AttackMapUI.clientObjectOutput.writeObject("giveClients");
+                    AttackMapUI.clientObjectOutput.flush();
+                    Thread.sleep(20);
+                    clientsComboBox.getItems().clear();
+                    clientsComboBox.getItems().addAll(availableVillagesToAttack);
+                } catch (IOException | InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         });
         makeComboBox(group,true);
@@ -381,7 +368,7 @@ public class SideBarUI {
         group.getChildren().add(clientsComboBox);
 
         if (multiPlayer) {
-            System.out.println("my log");
+//            System.out.println("my log");
             Button chatRoom = new Button("Chat");
             chatRoom.setStyle("-fx-background-color: #a5862e");
             chatRoom.relocate(120, UIConstants.MENU_VBOX_STARTING_Y + 100);
@@ -422,20 +409,20 @@ public class SideBarUI {
     }
 
     private static void loadEnemyMap(Group group, ComboBox<String> comboBox) {
-            try {
-                String nameOfEnemy = comboBox.getValue();
-                System.out.println(comboBox.getValue());
-                AttackMapUI.clientObjectOutput.reset(); //reset
-                AttackMapUI.clientObjectOutput.writeObject(nameOfEnemy);
-                while(controller.getGame().getAttackedVillage() == null) {
-                    System.out.println("stuck");
-                }
-                AttackMapUI.makeAttackGameBoard(primaryStage,controller);
-                Thread streamer = new LiveAttackStreamer();
-                streamer.start();
-            } catch (IOException e) {
-                e.printStackTrace();
+        try {
+            String nameOfEnemy = comboBox.getValue();
+            System.out.println(comboBox.getValue());
+            AttackMapUI.clientObjectOutput.reset(); //reset
+            AttackMapUI.clientObjectOutput.writeObject(nameOfEnemy);
+            while(controller.getGame().getAttackedVillage() == null) {
+                System.out.println("stuck");
             }
+            AttackMapUI.makeAttackGameBoard(primaryStage,controller);
+            Thread streamer = new LiveAttackStreamer();
+            streamer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void loadEnemyMapSinglePlayer(Group group , ComboBox comboBox) {
@@ -521,11 +508,7 @@ public class SideBarUI {
         });
         ImageView backView = getImageView("Back.png");
         backView.setOnMouseClicked(event -> {
-            if(AttackMapUI.isReturningFromAttack()) {
-                SideBarUI.makeLoadEnemyMapMenu(group);
-            }else {
-                SideBarUI.makeStartingMenu(group,primaryStage);
-            }
+            makeStartingMenu(group,primaryStage);
         });
         VBox vBox = new VBox(infoView, availableBuildingView, statusView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
@@ -577,13 +560,7 @@ public class SideBarUI {
         ImageView upgradeView = getImageView("Upgrade.png");
         upgradeView.setOnMouseClicked(event -> implementUpgradeBuildings(group , cell));
         ImageView backView = getImageView("Back.png");
-        backView.setOnMouseClicked(event -> {
-            if(AttackMapUI.isReturningFromAttack()) {
-                SideBarUI.makeLoadEnemyMapMenu(group);
-            }else {
-                SideBarUI.makeStartingMenu(group,primaryStage);
-            }
-        });
+        backView.setOnMouseClicked(event -> makeStartingMenu(group,primaryStage));
         VBox vBox = new VBox(1, overAllInfoView, UpgradeInfoView, SourcesInfoView, upgradeView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
@@ -621,11 +598,7 @@ public class SideBarUI {
         ImageView SoldiersView = getImageView("Soldiers.png");
         SoldiersView.setOnMouseClicked(event -> makeSoldiersMenu(group , cell));
         ImageView backView = getImageView("Back.png");
-        backView.setOnMouseClicked(event -> { if(AttackMapUI.isReturningFromAttack()) {
-            SideBarUI.makeLoadEnemyMapMenu(group);
-        }else {
-            SideBarUI.makeStartingMenu(group,primaryStage);
-        }});
+        backView.setOnMouseClicked(event -> makeStartingMenu(group,primaryStage));
         VBox vBox = new VBox(1, infoView, SoldiersView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
@@ -689,13 +662,7 @@ public class SideBarUI {
             makeMineMenu(group,cell);
         });
         ImageView backView = getImageView("Back.png");
-        backView.setOnMouseClicked(event -> {
-            if(AttackMapUI.isReturningFromAttack()) {
-                SideBarUI.makeLoadEnemyMapMenu(group);
-            }else {
-                SideBarUI.makeStartingMenu(group,primaryStage);
-            }
-        });
+        backView.setOnMouseClicked(event -> makeStartingMenu(group,primaryStage));
         VBox vBox = new VBox(1, infoView, mineView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
@@ -830,11 +797,7 @@ public class SideBarUI {
         });
         ImageView backView = getImageView("Back.png");
         backView.setOnMouseClicked(event -> {
-            if(AttackMapUI.isReturningFromAttack()) {
-                SideBarUI.makeLoadEnemyMapMenu(group);
-            }else {
-                SideBarUI.makeStartingMenu(group,primaryStage);
-            }
+            makeStartingMenu(group,primaryStage);
         });
         VBox vBox = new VBox(1, infoView, BuildSoldiersView, statusView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
@@ -901,17 +864,13 @@ public class SideBarUI {
         });
         VBox vBox;
         if(cell.getClass().getSimpleName().equals("Wall")){
-             vBox = new VBox(infoView,switchOrientation, backView);
+            vBox = new VBox(infoView,switchOrientation, backView);
         }else {
-             vBox = new VBox(infoView, targetView, backView);
+            vBox = new VBox(infoView, targetView, backView);
         }
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
-        backView.setOnMouseClicked(event -> { if(AttackMapUI.isReturningFromAttack()) {
-            SideBarUI.makeLoadEnemyMapMenu(group);
-        }else {
-            SideBarUI.makeStartingMenu(group,primaryStage);
-        }});
+        backView.setOnMouseClicked(event -> makeStartingMenu(group,primaryStage));
         infoView.setOnMouseClicked(event -> makeDefencesInfoMenu(group, cell));
         targetView.setOnMouseClicked(event -> makeDefencesAttackInfoMenu(group, cell));
     }
@@ -1025,7 +984,7 @@ public class SideBarUI {
                         controller.getGame().getVillage().getMap()[14][14].getImageView().requestFocus();
                         if (goldCost > controller.getGame().getVillage().getResource().getGold() || elixirCost > controller.getGame().getVillage().getResource().getElixir()) {
                             group.getChildren().add(new NotEnoughResourcesException().getImageView());
-                    } else {
+                        } else {
                             try {
                                 newCell.setY(MapUI.getBuildY());
                                 newCell.setX(MapUI.getBuildX());
@@ -1044,7 +1003,7 @@ public class SideBarUI {
                                 group.getChildren().add(e.getImageView());
                             }
 
-                    }} );
+                        }} );
                 } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                     e.printStackTrace();
                 }

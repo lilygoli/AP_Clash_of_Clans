@@ -20,7 +20,7 @@ public class LeaderBoardListenerOnClient extends Thread{
 
             if (stringCommand.startsWith("$")){
                 try {
-                    AttackMapUI.clientObjectOutput.writeObject("$Name : " + AttackMapUI.clientName + " GoldGained : " + Integer.toString(SideBarUI.allGainedGoldsResouces + MapUI.getController().getGame().getVillage().getGainedResource().getGold()) + " -- ElixirGained : " + Integer.toString(SideBarUI.allGainedElixirResouces + MapUI.getController().getGame().getVillage().getGainedResource().getElixir()));
+                    AttackMapUI.clientObjectOutput.writeObject("$Name : " + AttackMapUI.clientName + " GoldGained : " + Integer.toString(SideBarUI.allGainedGoldsResources + MapUI.getController().getGame().getVillage().getGainedResource().getGold()) + " -- ElixirGained : " + Integer.toString(SideBarUI.allGainedElixirResources + MapUI.getController().getGame().getVillage().getGainedResource().getElixir()));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

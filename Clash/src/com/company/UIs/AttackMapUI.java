@@ -150,7 +150,7 @@ public class AttackMapUI {
                         root.getChildren().add(exception.getImageView());
 
                     }else
-                        if (!chosenSoldierName.equals("")) {
+                    if (!chosenSoldierName.equals("")) {
                         for (Soldier soldier : controller.getGame().getTroops()) {
                             if (soldier.getClass().getSimpleName().equals(chosenSoldierName) && soldier.getX() == -1 && !MapUI.isIsInDefense()) {
                                 putSoldiersImageInMap(attackY, attackX, 32, canvas, soldiersGif.get(chosenSoldierName + "MoveUp"), soldier, root);
@@ -200,8 +200,8 @@ public class AttackMapUI {
                         controller.getGame().getAttackedVillage().setUnderAttackOrDefense(false);
                         winningLabel.setText("*war ended with " + controller.getGame().getVillage().getGainedResource().getGold() + "gold and\n" + controller.getGame().getVillage().getGainedResource().getElixir() + " elixir and " + controller.getGame().getVillage().getScore() + "scores achieved");
                         if (!isIsInDefense()) {
-                            SideBarUI.allGainedGoldsResouces += controller.getGame().getVillage().getGainedResource().getGold();
-                            SideBarUI.allGainedElixirResouces += controller.getGame().getVillage().getGainedResource().getElixir();
+                            SideBarUI.allGainedGoldsResources += controller.getGame().getVillage().getGainedResource().getGold();
+                            SideBarUI.allGainedElixirResources += controller.getGame().getVillage().getGainedResource().getElixir();
                         }
                         isIsInDefense(false);
                         returnToVillageUI();
@@ -316,7 +316,12 @@ public class AttackMapUI {
             }
             UIConstants.DELTA_T=1000;
             MapUI.getShowMapAnimationTimer().stop();
-            returningFromAttack = true;
+            clientsComboBox.getItems().clear();
+            if(SideBarUI.isInSinglePlayer){
+                SideBarUI.isInSinglePlayer = false;
+            }else {
+                returningFromAttack = true;
+            }
             MapUI.start(primaryStage);
 
         } catch (Exception e) {
@@ -385,7 +390,7 @@ public class AttackMapUI {
 
                 } else {
                     if(village.getMap()[j][i].isRuined()){
-                       root.getChildren().remove(village.getMap()[j][i].getImageView());
+                        root.getChildren().remove(village.getMap()[j][i].getImageView());
                     }else {
                         village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(),".png" , true));
                         if(!village.getMap()[j][i].getEventSet()){

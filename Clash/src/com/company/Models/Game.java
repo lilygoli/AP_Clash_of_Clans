@@ -460,21 +460,7 @@ public class Game implements Serializable {
         return  timePassedInWar>10000 || troops.size() == 0 || flag==0|| (attackedVillage.getVillage().getResource().getGold() == 0 && attackedVillage.getVillage().getResource().getElixir() == 0);
     }
 
-    public void selectUnit(String unitType) throws NoSuchSoldierInCampException {
-        for (Camp camp : village.getCamps()) {
-            for (Soldier soldier : camp.getSoldiers()) {
-                if (soldier.getClass().getSimpleName().equals(unitType)) {
-                    if (troops == null) {
-                        troops = new ArrayList<>();
-                    }
-                    troops.add(soldier);
-                    camp.removeSoldier(soldier);
-                    return;
-                }
-            }
-        }
-        throw new NoSuchSoldierInCampException();
-    }
+
 
     public void setTroops(ArrayList<Soldier> troops) {
         this.troops=troops;
