@@ -71,11 +71,11 @@ public class MapUI  {
 
     private static Controller controller = new Controller();
 
-    public static void isIsInDefense( boolean isInDefense1) {
+    public static void isInDefense(boolean isInDefense1) {
         isInDefense=isInDefense1;
     }
 
-    public static boolean isIsInDefense() {
+    public static boolean isInDefense() {
         return isInDefense;
     }
 

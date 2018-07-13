@@ -40,7 +40,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 import static com.company.UIs.MapUI.getImageOfBuildings;
-import static com.company.UIs.MapUI.isIsInDefense;
+import static com.company.UIs.MapUI.isInDefense;
 import static com.company.UIs.MapUI.putBuildingImageInMap;
 import static com.company.UIs.SideBarUI.*;
 
@@ -152,7 +152,7 @@ public class AttackMapUI {
                     }else
                     if (!chosenSoldierName.equals("")) {
                         for (Soldier soldier : controller.getGame().getTroops()) {
-                            if (soldier.getClass().getSimpleName().equals(chosenSoldierName) && soldier.getX() == -1 && !MapUI.isIsInDefense()) {
+                            if (soldier.getClass().getSimpleName().equals(chosenSoldierName) && soldier.getX() == -1 && !MapUI.isInDefense()) {
                                 putSoldiersImageInMap(attackY, attackX, 32, canvas, soldiersGif.get(chosenSoldierName + "MoveUp"), soldier, root);
 
                                 liveStreamingMessage lsm = new liveStreamingMessage();
@@ -195,15 +195,15 @@ public class AttackMapUI {
             public void handle(long now) {
                 if (controller.getGame().isUnderAttackOrDefense()) {
                     if (controller.getGame().isWarFinished()) {
-                        controller.getGame().healAfterWar(isIsInDefense());
+                        controller.getGame().healAfterWar(MapUI.isInDefense());
                         controller.getGame().setUnderAttackOrDefense(false);
                         //controller.getGame().getAttackedVillage().setUnderAttackOrDefense(false);
-                        if (!isIsInDefense()) {
+                        if (!MapUI.isInDefense()) {
                             SideBarUI.allGainedGoldsResources += controller.getGame().getVillage().getGainedResource().getGold();
                             SideBarUI.allGainedElixirResources += controller.getGame().getVillage().getGainedResource().getElixir();
                             winningLabel.setText("*war ended with " + controller.getGame().getVillage().getGainedResource().getGold() + "gold and\n" + controller.getGame().getVillage().getGainedResource().getElixir() + " elixir and " + controller.getGame().getVillage().getScore() + "scores achieved");
                               }
-                        isIsInDefense(false);
+                        isInDefense(false);
                         returnToVillageUI();
                     }
                 }
@@ -226,19 +226,8 @@ public class AttackMapUI {
         SideBarUI.makeSideBar(group,true);
         ImageView attackMap= getImageView("AttackMap.png");
         attackMap.setOnMouseClicked(event -> {
-//            MainMenuUI.getGameLogic().stop();
-//            controller.getGame().setUnderAttackOrDefense(true);
-
-//            Task task = new Task() {
-//                @Override
-//                protected Object call() throws Exception {
-//                    MainMenuUI.getGameLogic().start();
-//                    return null;
-//                }
-//            };
-//            new Thread(task).start();
             addTroops();
-
+            addTimer(group);
             showAttackSideBar(group);
         });
         ImageView back= getImageView("Back.png");
@@ -246,6 +235,32 @@ public class AttackMapUI {
         VBox vBox= new VBox(attackMap,back);
         vBox.relocate(UIConstants.BUTTON_STARTING_X,UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
+    }
+
+    private static void addTimer(Group group) {
+        final Label[] timeLabel = {new Label("Timer 0 : 0")};
+        group.getChildren().add(timeLabel[0]);
+        timeLabel[0].relocate(Screen.getPrimary().getVisualBounds().getWidth()/3.7,Screen.getPrimary().getVisualBounds().getHeight()*3/4);
+        timeLabel[0].setScaleX(3);
+        timeLabel[0].setScaleY(3);
+        timeLabel[0].setTextFill(Color.WHITE);
+        AnimationTimer animationTimer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                int time = 600 - controller.getGame().getTimePassedInWar()*1000 / UIConstants.DELTA_T;
+                Integer minutes = time / 60;
+                Integer seconds = time % 60;
+                System.out.println(minutes+"min sec " +seconds);
+                timeLabel[0].setText("Timer "+minutes+" : "+seconds);
+                System.out.println(timeLabel[0].getText());
+                if(controller.getGame().isWarFinished()){
+                    this.stop();
+                }
+
+            }
+        };
+        animationTimer.start();
+
     }
 
     private static void showAttackSideBar(Group group) {
@@ -295,7 +310,7 @@ public class AttackMapUI {
         Image backImage=new Image(backFile.toURI().toString());
         ImageView backView=new ImageView(backImage);
         backView.setOnMouseClicked(event -> {
-            controller.getGame().healAfterWar();
+            controller.getGame().healAfterWar(isInDefense());
             controller.getGame().setUnderAttackOrDefense(false);
             returnToVillageUI();
         });

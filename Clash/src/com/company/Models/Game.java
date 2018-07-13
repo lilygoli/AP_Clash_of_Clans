@@ -83,8 +83,8 @@ public class Game implements Serializable {
         this.time = time;
     }
 
-    public int getTime() {
-        return time;
+    public int getTimePassedInWar() {
+        return timePassedInWar;
     }
 
     public void setPlayerName(String playerName) {
@@ -459,7 +459,7 @@ public class Game implements Serializable {
                 flag = 1;
             }
         }
-        return  timePassedInWar>10000 || troops.size() == 0 || flag==0|| (attackedVillage.getVillage().getResource().getGold() == 0 && attackedVillage.getVillage().getResource().getElixir() == 0);
+        return  timePassedInWar>600 || troops.size() == 0 || flag==0|| (attackedVillage.getVillage().getResource().getGold() == 0 && attackedVillage.getVillage().getResource().getElixir() == 0);
     }
 
 

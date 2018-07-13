@@ -1,13 +1,10 @@
 package com.company.Multiplayer;
 
 import com.company.Models.Config;
-import com.company.Models.Game;
 import com.company.Models.Resource;
-import com.company.Models.Soldiers.Archer;
 import com.company.Models.Soldiers.Soldier;
 import com.company.UIs.AttackMapUI;
 import com.company.UIs.MapUI;
-import com.company.UIs.SideBarUI;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -19,7 +16,6 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class UDPReceiver extends Thread {
     private boolean running;
@@ -84,7 +80,7 @@ public class UDPReceiver extends Thread {
 //
                 MapUI.getController().getGame().getVillage().setResource(new Resource(10, 10));
                 MapUI.getController().getGame().setAttackedVillage(MapUI.getController().getGame());
-                MapUI.isIsInDefense(true);
+                MapUI.isInDefense(true);
 
                 if (MapUI.getController().getGame().getTroops() == null) {
                     MapUI.getController().getGame().setTroops(new ArrayList<Soldier>());
