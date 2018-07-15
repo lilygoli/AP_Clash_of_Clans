@@ -66,6 +66,10 @@ public class UDPReceiver extends Thread {
 //                    MapUI.getController().getGame().getTroops().addAll(soldiers);
 //                }
 //                for (Soldier soldier : MapUI.getController().getGame().getTroops()) {
+                if(liveStreamingMessage1.isHasFinished()){
+                    System.out.println("finished trueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+                    AttackMapUI.setCheckFinished(true);
+                }
                 Soldier soldier = liveStreamingMessage1.getSoldier();
                 System.out.println(liveStreamingMessage1.getSoldier());
                 soldier.setImageView(new ImageView());
