@@ -57,11 +57,13 @@ public class SideBarUI {
         leaderBoard.setMaxWidth(200);
         leaderBoard.setStyle("-fx-background-color: #a5862e");
         chatsArea.setEditable(false);
-        chatsArea.setMinWidth(250);
-        chatsArea.setMaxWidth(250);
-        chatsArea.setMaxHeight(500);
-        chatsArea.setMinHeight(500);
-        chatsArea.setStyle("-fx-background-color: transparent");
+        chatsArea.setMinWidth(220);
+        chatsArea.setMaxWidth(220);
+        chatsArea.setMaxHeight(600);
+        chatsArea.setMinHeight(600);
+        //chatsArea.setStyle("-fx-background-color: rgba(53,89,119,0.4); .scroll-pane");
+        File filecss = new File("./src/com/company/UIs/SideBarMenuImages/textArea.css");
+        chatsArea.getStylesheets().add(filecss.toURI().toString());
 
         File file = new File("./src/com/company/UIs/SideBarMenuImages/ChatroomBackground.jpg");
         Image image = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight(), false, true);
@@ -442,7 +444,7 @@ public class SideBarUI {
 //
         hBox = new HBox(10 , message ,send);
         vBox = new VBox(10 , hBox ,chatsArea);
-        vBox.relocate(10 , 30);
+        vBox.relocate(40 , 30);
         group.getChildren().add(vBox);
     }
 

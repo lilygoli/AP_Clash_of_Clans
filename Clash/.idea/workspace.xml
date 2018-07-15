@@ -7,6 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd4373d0-16e4-43f1-a01f-34df3517e604" name="Default" comment="bug fix">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/textArea.css" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java" afterPath="$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java" />
     </list>
@@ -28,12 +29,38 @@
       <file leaf-file-name="AttackMapUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1872">
-              <caret line="124" column="61" lean-forward="true" selection-start-line="124" selection-start-column="61" selection-end-line="124" selection-end-column="61" />
+            <state relative-caret-position="2169">
+              <caret line="133" column="61" lean-forward="true" selection-start-line="133" selection-start-column="61" selection-end-line="133" selection-end-column="61" />
               <folding>
-                <element signature="e#28910#28911#0" expanded="true" />
-                <element signature="e#28945#28946#0" expanded="true" />
+                <element signature="e#2675#2676#0" expanded="true" />
+                <element signature="e#2709#2710#0" expanded="true" />
+                <element signature="e#2757#2758#0" expanded="true" />
+                <element signature="e#2790#2791#0" expanded="true" />
+                <element signature="e#2837#2838#0" expanded="true" />
+                <element signature="e#2873#2874#0" expanded="true" />
+                <element signature="e#2939#2940#0" expanded="true" />
+                <element signature="e#2996#2997#0" expanded="true" />
+                <element signature="e#3049#3050#0" expanded="true" />
+                <element signature="e#3091#3092#0" expanded="true" />
+                <element signature="e#3148#3149#0" expanded="true" />
+                <element signature="e#3189#3190#0" expanded="true" />
+                <element signature="e#10646#12635#0" expanded="true" />
+                <element signature="e#12634#12635#0" expanded="true" />
+                <element signature="e#14627#15236#0" expanded="true" />
+                <element signature="e#15235#15236#0" expanded="true" />
+                <element signature="e#30173#30174#0" expanded="true" />
+                <element signature="e#30208#30209#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MapUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MapUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="561">
+              <caret line="179" column="37" lean-forward="false" selection-start-line="179" selection-start-column="37" selection-end-line="179" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -48,11 +75,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SideBarUI.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SideBarUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="438" column="38" lean-forward="false" selection-start-line="438" selection-start-column="38" selection-end-line="438" selection-end-column="38" />
+            <state relative-caret-position="528">
+              <caret line="65" column="46" lean-forward="false" selection-start-line="65" selection-start-column="46" selection-end-line="65" selection-end-column="46" />
+              <folding>
+                <element signature="e#56767#56768#0" expanded="true" />
+                <element signature="e#56827#56828#0" expanded="true" />
+                <element signature="e#57220#57221#0" expanded="true" />
+                <element signature="e#57277#57278#0" expanded="true" />
+                <element signature="e#57430#57431#0" expanded="true" />
+                <element signature="e#57485#57486#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="textArea.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/textArea.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="297">
+              <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -74,6 +118,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -148,7 +193,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/company/Models/Buildings/Building.java" />
         <option value="$PROJECT_DIR$/src/com/company/View.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Buildings/Storage.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/GameCenter.java" />
@@ -194,11 +238,12 @@
         <option value="$PROJECT_DIR$/src/com/company/Multiplayer/LeaderBoardUpdate.java" />
         <option value="$PROJECT_DIR$/src/com/company/Multiplayer/Server.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Game.java" />
-        <option value="$PROJECT_DIR$/src/com/company/UIs/MapUI.java" />
         <option value="$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java" />
         <option value="$PROJECT_DIR$/src/com/company/Models/Soldiers/Soldier.java" />
         <option value="$PROJECT_DIR$/src/com/company/Multiplayer/ClientInputListener.java" />
+        <option value="$PROJECT_DIR$/src/com/company/UIs/MapUI.java" />
         <option value="$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java" />
+        <option value="$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/textArea.css" />
       </list>
     </option>
   </component>
@@ -292,6 +337,7 @@
     <property name="SearchEverywhereHistoryKey" value="capacity&#9;PSI&#9;JAVA://com.company.Exception.NotEnoughCapacityInCampsException&#10;plugin&#9;ACTION&#9;WelcomeScreen.Plugins" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="ChangesBrowser.SHOW_FLATTEN" value="false" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -317,6 +363,8 @@
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Multiplayer/ClientInputListener.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Multiplayer/UDPReceiver.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/Multiplayer/liveStreamingMessage.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java</PATH>
         </FILE-GROUP>
@@ -650,12 +698,12 @@
       <workItem from="1531028215502" duration="19669000" />
       <workItem from="1531229821616" duration="26636000" />
       <workItem from="1531366701312" duration="20760000" />
-      <workItem from="1531624966748" duration="16733000" />
+      <workItem from="1531624966748" duration="18804000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="351513000" />
+    <option name="totallyTimeSpent" value="353584000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -679,7 +727,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922825" sideWeight="0.5016116" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922825" sideWeight="0.4983884" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2816092" sideWeight="0.49073327" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2816092" sideWeight="0.49073327" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922825" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -719,13 +767,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/AirDefence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Models/Towers/Defences/WizardTower.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="626">
@@ -1050,37 +1091,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MapUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1617">
-          <caret line="204" column="42" lean-forward="true" selection-start-line="204" selection-start-column="42" selection-end-line="204" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.graphics/javafx/scene/image/Image.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="616" column="0" lean-forward="false" selection-start-line="616" selection-start-column="0" selection-end-line="616" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1872">
-          <caret line="124" column="61" lean-forward="true" selection-start-line="124" selection-start-column="61" selection-end-line="124" selection-end-column="61" />
-          <folding>
-            <element signature="e#28910#28911#0" expanded="true" />
-            <element signature="e#28945#28946#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/ClientInputListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="17" column="66" lean-forward="true" selection-start-line="17" selection-start-column="66" selection-end-line="17" selection-end-column="66" />
           <folding />
         </state>
       </provider>
@@ -1093,10 +1107,68 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/AttackMapUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2169">
+          <caret line="133" column="61" lean-forward="true" selection-start-line="133" selection-start-column="61" selection-end-line="133" selection-end-column="61" />
+          <folding>
+            <element signature="e#2675#2676#0" expanded="true" />
+            <element signature="e#2709#2710#0" expanded="true" />
+            <element signature="e#2757#2758#0" expanded="true" />
+            <element signature="e#2790#2791#0" expanded="true" />
+            <element signature="e#2837#2838#0" expanded="true" />
+            <element signature="e#2873#2874#0" expanded="true" />
+            <element signature="e#2939#2940#0" expanded="true" />
+            <element signature="e#2996#2997#0" expanded="true" />
+            <element signature="e#3049#3050#0" expanded="true" />
+            <element signature="e#3091#3092#0" expanded="true" />
+            <element signature="e#3148#3149#0" expanded="true" />
+            <element signature="e#3189#3190#0" expanded="true" />
+            <element signature="e#10646#12635#0" expanded="true" />
+            <element signature="e#12634#12635#0" expanded="true" />
+            <element signature="e#14627#15236#0" expanded="true" />
+            <element signature="e#15235#15236#0" expanded="true" />
+            <element signature="e#30173#30174#0" expanded="true" />
+            <element signature="e#30208#30209#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Multiplayer/ClientInputListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="17" column="66" lean-forward="true" selection-start-line="17" selection-start-column="66" selection-end-line="17" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/MapUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="179" column="37" lean-forward="false" selection-start-line="179" selection-start-column="37" selection-end-line="179" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="438" column="38" lean-forward="false" selection-start-line="438" selection-start-column="38" selection-end-line="438" selection-end-column="38" />
+        <state relative-caret-position="528">
+          <caret line="65" column="46" lean-forward="false" selection-start-line="65" selection-start-column="46" selection-end-line="65" selection-end-column="46" />
+          <folding>
+            <element signature="e#56767#56768#0" expanded="true" />
+            <element signature="e#56827#56828#0" expanded="true" />
+            <element signature="e#57220#57221#0" expanded="true" />
+            <element signature="e#57277#57278#0" expanded="true" />
+            <element signature="e#57430#57431#0" expanded="true" />
+            <element signature="e#57485#57486#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/UIs/SideBarMenuImages/textArea.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
           <folding />
         </state>
       </provider>
