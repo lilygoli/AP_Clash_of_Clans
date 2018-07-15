@@ -46,6 +46,9 @@ public class SideBarUI {
     public static boolean isInSinglePlayer = false;
     public static ImageView chatButton = new ImageView();
     public static ImageView chatBackground = new ImageView();
+    public static HBox hBox = new HBox();
+    public static VBox vBox = new VBox();
+
 
     static {
         leaderBoard.setEditable(false);
@@ -64,7 +67,7 @@ public class SideBarUI {
         Image image = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight(), false, true);
         chatBackground.setImage(image);
         chatBackground.setScaleY(1);
-        chatBackground.setScaleX(0.4);
+        chatBackground.setScaleX(0.3);
         chatBackground.relocate(-1000 , -1000);
         //chatBackground.relocate(-630 , 0);
         File file2 = new File("./src/com/company/UIs/SideBarMenuImages/ChatButton.png");
@@ -274,6 +277,7 @@ public class SideBarUI {
 
     public static void makeLoadEnemyMapMenu(Group group) {
         chatBackground.relocate(-1000 , -1000);
+        vBox.relocate(-1000 , -1000);
         makeSideBar(group,false);
 
         String ip = "";
@@ -404,8 +408,8 @@ public class SideBarUI {
         }
         group.getChildren().add(chatButton);
         group.getChildren().add(chatBackground);
-        chatBackground.relocate(-630 , 0);
-        chatButton.relocate(-363 , -20);
+        chatBackground.relocate(-chatBackground.getImage().getWidth() / 2.5 , 0);
+        chatButton.relocate(-chatButton.getImage().getWidth() / 4 + 10 , -20);
         chatButton.setOnMouseClicked(event1 -> makeLoadEnemyMapMenu(group));
 //        makeSideBar(group, false);
         TextField message=new TextField("");
@@ -432,8 +436,8 @@ public class SideBarUI {
 //            makeLoadEnemyMapMenu(group);
 //        });
 //
-        HBox hBox = new HBox(10 , message , send);
-        VBox vBox = new VBox(10 , hBox , chatsArea);
+        hBox = new HBox(10 , message ,send);
+        vBox = new VBox(10 , hBox ,chatsArea);
         vBox.relocate(10 , 30);
         group.getChildren().add(vBox);
     }
