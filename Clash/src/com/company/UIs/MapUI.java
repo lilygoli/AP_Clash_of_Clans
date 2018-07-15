@@ -1,6 +1,7 @@
 package com.company.UIs;
 
 import com.company.Controller.Controller;
+import com.company.Models.Game;
 import com.company.Models.Soldiers.Soldier;
 import com.company.Models.Towers.Buildings.ElixirStorage;
 import com.company.Models.Towers.Buildings.GoldStorage;
@@ -32,12 +33,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -191,6 +194,15 @@ public class MapUI  {
         ImageView backGroundView = new ImageView(backGround);
         backGroundView.setOpacity(0.7);
         root.getChildren().add(backGroundView);
+        Rectangle pauseRectangle = new Rectangle(0 , 0 , primaryStage.getWidth() , primaryStage.getHeight());
+        pauseRectangle.setOpacity(0);
+        pauseRectangle.setFill(Color.BLACK);
+        root.getChildren().add(pauseRectangle);
+        Label pauseLabel = new Label("");
+        pauseLabel.setTextFill(Color.RED);
+        root.getChildren().add(pauseLabel);
+        pauseLabel.relocate(primaryStage.getWidth() * 1 / 5 + 20 , primaryStage.getHeight() / 5);
+        pauseLabel.setFont(Font.font(24));
 
         scene.setOnKeyPressed(new javafx.event.EventHandler<KeyEvent>() {
             @Override
@@ -230,9 +242,24 @@ public class MapUI  {
                         mediaPlayer.play();
                         isSongPuased[0] = false;
                     }
-                    else if (!isSongPuased[0]){
+                    else {
                         mediaPlayer.pause();
                         isSongPuased[0] = true;
+                    }
+                    cPressed.set(false);
+                    hPressed.set(false);
+                    ePressed.set(false);
+                    aPressed.set(false);
+                    tPressed.set(false);
+                }
+                else if (event.getCode() == KeyCode.P){
+                    Game.isPause = !Game.isPause;
+                    pauseRectangle.setOpacity(0.5 - pauseRectangle.getOpacity());
+                    if(pauseLabel.getText().equals("")) {
+                        pauseLabel.setText("Press P to Continue");
+                    }
+                    else{
+                        pauseLabel.setText("");
                     }
                     cPressed.set(false);
                     hPressed.set(false);

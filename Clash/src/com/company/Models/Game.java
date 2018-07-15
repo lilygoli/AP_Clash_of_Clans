@@ -11,6 +11,7 @@ import com.company.Models.Soldiers.Soldier;
 import com.company.UIs.MainMenuUI;
 import com.company.UIs.UIConstants;
 import com.company.View.View;
+import javafx.scene.Scene;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class Game implements Serializable {
     public Game getAttackedVillage() {
         return attackedVillage;
     }
+    public static boolean isPause = false;
 
 
     private ArrayList<Soldier> troops;
@@ -397,14 +399,16 @@ public class Game implements Serializable {
         troops.clear();
     }
     public void passTurn() {
-        if (isUnderAttackOrDefense) {
-            try {
-                passTurnInWarMode();
-            } catch (NotInWarException e) {
-                //something went wrong
+        if (!isPause) {
+            if (isUnderAttackOrDefense) {
+                try {
+                    passTurnInWarMode();
+                } catch (NotInWarException e) {
+                    //something went wrong
+                }
+            } else {
+                passTurnInNormalMode();
             }
-        } else {
-            passTurnInNormalMode();
         }
     }
 
