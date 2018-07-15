@@ -463,7 +463,7 @@ public class Game implements Serializable {
                 flag = 1;
             }
         }
-        return  troops.size() == 0 || flag==0|| (attackedVillage.getVillage().getResource().getGold() == 0 && attackedVillage.getVillage().getResource().getElixir() == 0);
+        return  timePassedInWar>600 || troops.size() == 0 || flag==0|| (attackedVillage.getVillage().getResource().getGold() == 0 && attackedVillage.getVillage().getResource().getElixir() == 0);
     }
 
 

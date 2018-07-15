@@ -68,6 +68,7 @@ public class AttackMapUI {
     private static String chosenSoldierName = "";
     private static Label winningLabel=new Label("");
     private static boolean returningFromAttack = false;
+    private static boolean checkFinished = false;
 
     public static HashMap<String, Image> getSoldiersGif() {
         return soldiersGif;
@@ -75,6 +76,14 @@ public class AttackMapUI {
 
     public static Controller getController() {
         return controller;
+    }
+
+    public static boolean isCheckFinished() {
+        return checkFinished;
+    }
+
+    public static void setCheckFinished(boolean checkFinished) {
+        AttackMapUI.checkFinished = checkFinished;
     }
 
     public static boolean isReturningFromAttack() {
@@ -206,25 +215,27 @@ public class AttackMapUI {
             @Override
             public void handle(long now) {
                 if (controller.getGame().isUnderAttackOrDefense()) {
-                    System.out.println(1);
+
                     if (controller.getGame().isWarFinished()) {
-                        controller.getGame().healAfterWar(MapUI.isInDefense());
-                        controller.getGame().setAttackedVillage(null);
-                        controller.getGame().setUnderAttackOrDefense(false);
-                        //controller.getGame().getAttackedVillage().setUnderAttackOrDefense(false);
-                        if (!MapUI.isInDefense()) {
-                            SideBarUI.allGainedGoldsResources += controller.getGame().getVillage().getGainedResource().getGold();
-                            SideBarUI.allGainedElixirResources += controller.getGame().getVillage().getGainedResource().getElixir();
-                            winningLabel.setText("*war ended with " + controller.getGame().getVillage().getGainedResource().getGold() + "gold and\n" + controller.getGame().getVillage().getGainedResource().getElixir() + " elixir and " + controller.getGame().getVillage().getScore() + "scores achieved");
-                              }
-                        if(isInDefense()){
-                            controller.getGame().getVillage().setResource(new Resource(controller.getGame().getVillage().getResource().getGold()-10,controller.getGame().getVillage().getResource().getElixir()-10));
+                        if ((isInDefense() && controller.getGame().getTroops().size() <= 0 && checkFinished) || !isInDefense() || ((isInDefense() && controller.getGame().getTroops().size() > 0))) {
+                                controller.getGame().healAfterWar(MapUI.isInDefense());
+                                controller.getGame().setAttackedVillage(null);
+                                controller.getGame().setUnderAttackOrDefense(false);
+                                //controller.getGame().getAttackedVillage().setUnderAttackOrDefense(false);
+                                if (!MapUI.isInDefense()) {
+                                    SideBarUI.allGainedGoldsResources += controller.getGame().getVillage().getGainedResource().getGold();
+                                    SideBarUI.allGainedElixirResources += controller.getGame().getVillage().getGainedResource().getElixir();
+                                    winningLabel.setText("*war ended with " + controller.getGame().getVillage().getGainedResource().getGold() + "gold and\n" + controller.getGame().getVillage().getGainedResource().getElixir() + " elixir and " + controller.getGame().getVillage().getScore() + "scores achieved");
+                                }
+                                if (isInDefense()) {
+                                    controller.getGame().getVillage().setResource(new Resource(controller.getGame().getVillage().getResource().getGold() - 10, controller.getGame().getVillage().getResource().getElixir() - 10));
+                                }
+                                isInDefense(false);
+                                returnToVillageUI();
+                            }
                         }
-                        isInDefense(false);
-                        returnToVillageUI();
                     }
                 }
-            }
 
         }.start();
 
@@ -279,7 +290,6 @@ public class AttackMapUI {
                 timeLabel[0].setText("Timer "+minutes+" : "+seconds);
                 System.out.println(timeLabel[0].getText());
                 if(controller.getGame().isWarFinished()){
-                    System.out.println(2);
                     this.stop();
                 }
 
@@ -513,7 +523,6 @@ public class AttackMapUI {
             public void handle(long now) {
                 addArcherArrows();
                 if(controller.getGame().isWarFinished()){
-                    System.out.println(3);
                     super.stop();
                 }
             }
@@ -593,7 +602,6 @@ public class AttackMapUI {
                 }
                 canvas.getChildren().removeAll(removedNodes);
                 if(controller.getGame().isWarFinished()){
-                    System.out.println(4);
                     super.stop();
                 }
             }
