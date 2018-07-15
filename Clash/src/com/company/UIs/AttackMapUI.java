@@ -219,7 +219,7 @@ public class AttackMapUI {
                     if (controller.getGame().isWarFinished()) {
                         if ((isInDefense() && controller.getGame().getTroops().size() <= 0 && checkFinished) || !isInDefense() || ((isInDefense() && controller.getGame().getTroops().size() > 0))) {
                                 controller.getGame().healAfterWar(MapUI.isInDefense());
-                                controller.getGame().setAttackedVillage(null);
+//                                controller.getGame().setAttackedVillage(null);
                                 controller.getGame().setUnderAttackOrDefense(false);
                                 //controller.getGame().getAttackedVillage().setUnderAttackOrDefense(false);
                                 if (!MapUI.isInDefense()) {

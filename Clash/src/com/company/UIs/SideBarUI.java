@@ -8,6 +8,7 @@ import com.company.Models.Game;
 import com.company.Models.Resource;
 import com.company.Models.Towers.Buildings.*;
 import com.company.Models.Towers.Cell;
+import com.company.Models.Towers.Defences.Wall;
 import com.company.Multiplayer.*;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -480,9 +481,9 @@ public class SideBarUI {
                     enemyGame = controller.getGameCenter().loadEnemyMap(textField.getText());
                     controller.getGame().setAttackedVillage(enemyGame);
                     AttackMapUI.makeAttackGameBoard(primaryStage, controller);
-                    if (!controller.getGame().getAllAttackedVillages().contains(enemyGame)) {
-                        controller.getGame().getAllAttackedVillages().add(enemyGame);
-                    }
+//                    if (!controller.getGame().getAllAttackedVillages().contains(enemyGame)) {
+//                        controller.getGame().getAllAttackedVillages().add(enemyGame);
+//                    }
                 } catch (NotValidFilePathException e) {
                     new Timeline(new KeyFrame(Duration.seconds(2), new KeyValue(e.getImageView().imageProperty(), null))).play();
                     group.getChildren().add(e.getImageView());
@@ -517,7 +518,6 @@ public class SideBarUI {
         group.getChildren().add(score);
     }
     private static void makeResourceLabelsInAttack(Group group, Double sideBarStartingX,Label gold,Label elixir, Label goldAchieved, Label elixirAchieved) {
-//        System.out.println(controller.getGame().getAttackedVillage());
         gold.setText(Integer.toString(controller.getGame().getAttackedVillage().getVillage().getResource().getGold()));
         gold.relocate(sideBarStartingX+130,65);
         elixir.setText(Integer.toString(controller.getGame().getAttackedVillage().getVillage().getResource().getElixir()));
@@ -896,10 +896,10 @@ public class SideBarUI {
         ImageView backView = getImageView("Back.png");
         ImageView switchOrientation= getImageView("SwitchOrientation.png");
         switchOrientation.setOnMouseClicked(event -> {
-            if(MapUI.getVerticalOrientationOfWall()){
-                MapUI.setVerticalOrientationOfWall(false);
+            if(((Wall)cell).getVerticalOrientation()){
+                ((Wall)cell).setVerticalOrientation(false);
             }else{
-                MapUI.setVerticalOrientationOfWall(true);
+                ((Wall)cell).setVerticalOrientation(true);
             }
         });
         VBox vBox;

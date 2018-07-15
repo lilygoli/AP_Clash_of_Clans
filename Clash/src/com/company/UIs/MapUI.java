@@ -7,6 +7,7 @@ import com.company.Models.Towers.Buildings.ElixirStorage;
 import com.company.Models.Towers.Buildings.GoldStorage;
 import com.company.Models.Towers.Buildings.Grass;
 import com.company.Models.Towers.Buildings.MainBuilding;
+import com.company.Models.Towers.Defences.Wall;
 import com.company.Models.Village;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -55,7 +56,6 @@ public class MapUI  {
     private static HashMap<String ,Image> gifsOfTowers=new HashMap<>();
     private static boolean isInBuildMenu=false;
     private static AnimationTimer showMapAnimationTimer;
-    private static boolean verticalOrientationOfWall=false;
     private static boolean isInDefense = false;
     static final BooleanProperty cPressed = new SimpleBooleanProperty(false);
     static final BooleanProperty hPressed = new SimpleBooleanProperty(false);
@@ -82,13 +82,6 @@ public class MapUI  {
         return isInDefense;
     }
 
-    public static boolean getVerticalOrientationOfWall() {
-        return verticalOrientationOfWall;
-    }
-
-    public static void setVerticalOrientationOfWall(boolean verticalOrientationOfWall) {
-        MapUI.verticalOrientationOfWall = verticalOrientationOfWall;
-    }
     // to be moved to a new thread
 // TODO: 6/11/2018 giant kill gif add and healer and wallbreaker and guardian giant kill add
 
@@ -499,7 +492,7 @@ public class MapUI  {
                                         putBuildingImageInMap(i, j, village, 32, canvas, -1);
                                     } else {
 
-                                        if (village.getMap()[j][i].getClass().getSimpleName().equals("Wall") && verticalOrientationOfWall) {
+                                        if (village.getMap()[j][i].getClass().getSimpleName().equals("Wall") && ((Wall)village.getMap()[j][i]).getVerticalOrientation()) {
                                             village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName() + "2", ".png", false));
                                         } else {
                                             village.getMap()[j][i].setImage(getImageOfBuildings(village.getMap()[j][i].getClass().getSimpleName(), ".png", false));

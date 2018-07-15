@@ -9,7 +9,17 @@ import java.util.ArrayList;
 
 
 public class Wall extends Defence{
-    public Wall(int number,int level) {
+    Boolean VerticalOrientation = false;
+
+    public void setVerticalOrientation(Boolean setVerticalOrientation) {
+        this.VerticalOrientation = setVerticalOrientation;
+    }
+
+    public Boolean getVerticalOrientation() {
+        return VerticalOrientation;
+    }
+
+    public Wall(int number, int level) {
         super(number,level);
         this.setStrength(Config.getDictionary().get(this.getClass().getSimpleName()+"_STRENGTH"));
     }
