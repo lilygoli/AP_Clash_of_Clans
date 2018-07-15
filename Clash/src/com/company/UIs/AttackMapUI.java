@@ -2,6 +2,7 @@ package com.company.UIs;
 
 import com.company.Controller.Controller;
 import com.company.Exception.InvalidPlaceForSoldiersException;
+import com.company.Models.Resource;
 import com.company.Models.Soldiers.Soldier;
 import com.company.Models.Towers.Buildings.Camp;
 import com.company.Models.Towers.Buildings.Grass;
@@ -203,6 +204,9 @@ public class AttackMapUI {
                             SideBarUI.allGainedElixirResources += controller.getGame().getVillage().getGainedResource().getElixir();
                             winningLabel.setText("*war ended with " + controller.getGame().getVillage().getGainedResource().getGold() + "gold and\n" + controller.getGame().getVillage().getGainedResource().getElixir() + " elixir and " + controller.getGame().getVillage().getScore() + "scores achieved");
                               }
+                        if(isInDefense()){
+                            controller.getGame().getVillage().setResource(new Resource(controller.getGame().getVillage().getResource().getGold()-10,controller.getGame().getVillage().getResource().getElixir()-10));
+                        }
                         isInDefense(false);
                         returnToVillageUI();
                     }
@@ -223,18 +227,26 @@ public class AttackMapUI {
     }
 
     private static void makeAttackStartingSideBar(Group group) {
-        SideBarUI.makeSideBar(group,true);
-        ImageView attackMap= getImageView("AttackMap.png");
-        attackMap.setOnMouseClicked(event -> {
-            addTroops();
-            addTimer(group);
-            showAttackSideBar(group);
-        });
-        ImageView back= getImageView("Back.png");
-        back.setOnMouseClicked(event -> returnToVillageUI());
-        VBox vBox= new VBox(attackMap,back);
-        vBox.relocate(UIConstants.BUTTON_STARTING_X,UIConstants.MENU_VBOX_STARTING_Y);
-        group.getChildren().add(vBox);
+        if(!isInDefense()) {
+            SideBarUI.makeSideBar(group, true);
+            ImageView attackMap = getImageView("AttackMap.png");
+            attackMap.setOnMouseClicked(event -> {
+                addTroops();
+                addTimer(group);
+                showAttackSideBar(group);
+            });
+            ImageView back = getImageView("Back.png");
+            back.setOnMouseClicked(event -> returnToVillageUI());
+            VBox vBox = new VBox(attackMap, back);
+            vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
+            group.getChildren().add(vBox);
+        }else {
+            Label attackedLabel = new Label("You have been raided");
+            attackedLabel.relocate(UIConstants.ATTACK_STARTING_X,UIConstants.ATTACK_STARTING_Y);
+            attackedLabel.setFont(Font.font("Papyrus",22));
+            attackedLabel.setTextFill(Color.BROWN);
+            group.getChildren().add(attackedLabel);
+        }
     }
 
     private static void addTimer(Group group) {
@@ -329,7 +341,7 @@ public class AttackMapUI {
                     controller.getGame().getVillage().getMap()[j][i].setIsEventSet(false);
                 }
             }
-            UIConstants.DELTA_T=1000;
+            UIConstants.DELTA_T = 1000;
             MapUI.getShowMapAnimationTimer().stop();
             clientsComboBox.getItems().clear();
             if(SideBarUI.isInSinglePlayer){

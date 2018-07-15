@@ -508,7 +508,7 @@ public class SideBarUI {
         });
         ImageView backView = getImageView("Back.png");
         backView.setOnMouseClicked(event -> {
-            makeStartingMenu(group,primaryStage);
+            backInVillage(group);
         });
         VBox vBox = new VBox(infoView, availableBuildingView, statusView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
@@ -560,7 +560,7 @@ public class SideBarUI {
         ImageView upgradeView = getImageView("Upgrade.png");
         upgradeView.setOnMouseClicked(event -> implementUpgradeBuildings(group , cell));
         ImageView backView = getImageView("Back.png");
-        backView.setOnMouseClicked(event -> makeStartingMenu(group,primaryStage));
+        backView.setOnMouseClicked(event -> backInVillage(group));
         VBox vBox = new VBox(1, overAllInfoView, UpgradeInfoView, SourcesInfoView, upgradeView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
@@ -598,7 +598,7 @@ public class SideBarUI {
         ImageView SoldiersView = getImageView("Soldiers.png");
         SoldiersView.setOnMouseClicked(event -> makeSoldiersMenu(group , cell));
         ImageView backView = getImageView("Back.png");
-        backView.setOnMouseClicked(event -> makeStartingMenu(group,primaryStage));
+        backView.setOnMouseClicked(event -> backInVillage(group));
         VBox vBox = new VBox(1, infoView, SoldiersView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
@@ -662,7 +662,7 @@ public class SideBarUI {
             makeMineMenu(group,cell);
         });
         ImageView backView = getImageView("Back.png");
-        backView.setOnMouseClicked(event -> makeStartingMenu(group,primaryStage));
+        backView.setOnMouseClicked(event -> backInVillage(group));
         VBox vBox = new VBox(1, infoView, mineView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
@@ -797,7 +797,7 @@ public class SideBarUI {
         });
         ImageView backView = getImageView("Back.png");
         backView.setOnMouseClicked(event -> {
-            makeStartingMenu(group,primaryStage);
+            backInVillage(group);
         });
         VBox vBox = new VBox(1, infoView, BuildSoldiersView, statusView, backView);
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
@@ -870,9 +870,21 @@ public class SideBarUI {
         }
         vBox.relocate(UIConstants.BUTTON_STARTING_X, UIConstants.MENU_VBOX_STARTING_Y);
         group.getChildren().add(vBox);
-        backView.setOnMouseClicked(event -> makeStartingMenu(group,primaryStage));
+        backView.setOnMouseClicked(event -> {
+            backInVillage(group);
+        });
         infoView.setOnMouseClicked(event -> makeDefencesInfoMenu(group, cell));
         targetView.setOnMouseClicked(event -> makeDefencesAttackInfoMenu(group, cell));
+    }
+
+    private static void backInVillage(Group group) {
+        if(AttackMapUI.isReturningFromAttack()) {
+            SideBarUI.makeLoadEnemyMapMenu(group);
+            Thread gameLogic = new Thread(new PassTurnThread(controller , primaryStage));
+            gameLogic.start();
+        }else {
+            SideBarUI.makeStartingMenu(group,primaryStage);
+        }
     }
 
     private static void makeDefencesInfoMenu(Group group, Cell cell) {
