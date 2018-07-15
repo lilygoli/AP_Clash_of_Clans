@@ -1,5 +1,7 @@
 package com.company.Multiplayer;
 
+import com.company.UIs.AttackMapUI;
+
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -17,9 +19,15 @@ public class LeaderBoardUpdate extends Thread {
 //            }
             for (ClientOnServer client : Server.clients) {
                 try {
-                    client.getOutput().writeObject("$");
+                    if(!client.getClientSocket().isClosed())
+                        client.getOutput().writeObject("$");
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    try {
+                        client.getOutput().close();
+                        client.getInput().close();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             }
             try {

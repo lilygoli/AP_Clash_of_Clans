@@ -5,7 +5,9 @@ import com.company.Models.Village;
 
 import java.io.IOException;
 
+import static com.company.Multiplayer.Server.clients;
 import static com.company.Multiplayer.Server.leaderBoard;
+import static com.company.Multiplayer.Server.serverSocket;
 
 public class ServerInputListener extends Thread{
     private ClientOnServer client;
@@ -68,7 +70,15 @@ public class ServerInputListener extends Thread{
                     }
                 }
             } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+                try {
+                    serverSocket.close();
+                    for (ClientOnServer clientOnServer : clients) {
+                        clientOnServer.getOutput().close();
+                        clientOnServer.getInput().close();
+                    }
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 System.out.println(this);
                 break;
             }

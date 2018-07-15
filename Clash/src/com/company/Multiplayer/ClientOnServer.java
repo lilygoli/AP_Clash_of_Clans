@@ -26,6 +26,10 @@ public class ClientOnServer implements Serializable{
         return output;
     }
 
+    public Socket getClientSocket() {
+        return clientSocket;
+    }
+
     public ClientOnServer(Socket clientSocket) throws IOException, ClassNotFoundException {
         this.clientSocket = clientSocket;
         input = new ObjectInputStream(this.clientSocket.getInputStream());

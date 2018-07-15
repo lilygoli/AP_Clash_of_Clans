@@ -199,7 +199,7 @@ public class AttackMapUI {
                                 try {
                                     AttackMapUI.udpSocket.send(gamePacket);
                                 } catch (IOException e) {
-                                    e.printStackTrace();
+                                    AttackMapUI.udpSocket.close();
                                 }
 
                                 break;

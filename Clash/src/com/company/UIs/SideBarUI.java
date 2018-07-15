@@ -311,7 +311,7 @@ public class SideBarUI {
                     clientsComboBox.getItems().clear();
                     clientsComboBox.getItems().addAll(availableVillagesToAttack);
                 } catch (IOException | InterruptedException e) {
-                    e.printStackTrace();
+                    catchServerException();
                 }
             }
         });
@@ -333,6 +333,16 @@ public class SideBarUI {
         leaderBoard.setOnMouseClicked(event -> {
             showLeaderBoard(group);
         });
+    }
+
+    public static void catchServerException() {
+        try {
+            AttackMapUI.clientSocket.close();
+            AttackMapUI.clientObjectOutput.close();
+            AttackMapUI.clientObjectInput.close();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
     }
 
     private static void showLeaderBoard(Group group) {
@@ -434,7 +444,7 @@ public class SideBarUI {
                 AttackMapUI.clientObjectOutput.writeObject("&" + MapUI.getController().getGame().getPlayerName() + " : " + message.getText());
                 message.setText("");
             } catch (IOException e) {
-                e.printStackTrace();
+                catchServerException();
             }
         });
 //        Button back = new Button("Back");
@@ -462,7 +472,7 @@ public class SideBarUI {
             Thread streamer = new LiveAttackStreamer();
             streamer.start();
         } catch (IOException e) {
-            e.printStackTrace();
+            catchServerException();
         }
     }
 

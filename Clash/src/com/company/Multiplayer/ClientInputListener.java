@@ -56,8 +56,12 @@ public class ClientInputListener extends Thread{
 
                 }
             } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+                catchServerException();
             }
         }
+    }
+
+    private void catchServerException() {
+        SideBarUI.catchServerException();
     }
 }
