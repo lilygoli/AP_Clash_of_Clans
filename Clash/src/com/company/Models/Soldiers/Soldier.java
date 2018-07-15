@@ -268,7 +268,7 @@ public abstract class Soldier implements Serializable{
                 elseMoveSolider(attackerVillage, cell);
             }
         } else if (direction == Direction.RIGHT) {
-            Cell cell = enemyVillage.getMap()[(int) Math.floor(x + 1)][(int) Math.floor(y)];
+                Cell cell = enemyVillage.getMap()[(int) Math.floor(x + 1)][(int) Math.floor(y)];
             if (cell.getClass().equals(Grass.class) || cell.getClass().equals(Trap.class) || cell.isRuined() || getCanFly()) {
                 setX(getX() + 1.0 * getMaxSpeed() / ((UIConstants.DELTA_T+0.1) * 0.002 * Config.getDictionary().get("KMM")));
             } else {
@@ -325,7 +325,9 @@ public abstract class Soldier implements Serializable{
         target.getImageView().setImage(null);
         target.setStrength(0);
         target.setImage(null);
-        attackerVillage.setScore(attackerVillage.getScore() + target.getPointsGainedWhenDestructed());
+        if (!MapUI.isInDefense()) {
+            attackerVillage.setScore(attackerVillage.getScore() + target.getPointsGainedWhenDestructed());
+        }
         Resource gainedResource;
         switch (target.getClass().getSimpleName()) {
             case "GoldStorage": {

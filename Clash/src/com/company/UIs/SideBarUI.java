@@ -44,6 +44,8 @@ public class SideBarUI {
     public static int allGainedGoldsResources = 0;
     public static int allGainedElixirResources = 0;
     public static boolean isInSinglePlayer = false;
+    public static ImageView chatButton = new ImageView();
+    public static ImageView chatBackground = new ImageView();
 
     static {
         leaderBoard.setEditable(false);
@@ -52,9 +54,26 @@ public class SideBarUI {
         leaderBoard.setMaxWidth(200);
         leaderBoard.setStyle("-fx-background-color: #a5862e");
         chatsArea.setEditable(false);
-        chatsArea.setMinWidth(180);
-        chatsArea.setMaxWidth(180);
-        chatsArea.setBackground(Background.EMPTY);
+        chatsArea.setMinWidth(250);
+        chatsArea.setMaxWidth(250);
+        chatsArea.setMaxHeight(500);
+        chatsArea.setMinHeight(500);
+        chatsArea.setStyle("-fx-background-color: transparent");
+
+        File file = new File("./src/com/company/UIs/SideBarMenuImages/ChatroomBackground.jpg");
+        Image image = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight(), false, true);
+        chatBackground.setImage(image);
+        chatBackground.setScaleY(1);
+        chatBackground.setScaleX(0.4);
+        chatBackground.relocate(-1000 , -1000);
+        //chatBackground.relocate(-630 , 0);
+        File file2 = new File("./src/com/company/UIs/SideBarMenuImages/ChatButton.png");
+        Image image2 = new Image(file2.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight(), false, true);
+        chatButton.setImage(image2);
+        chatButton.setScaleX(0.02);
+        chatButton.setScaleY(0.1);
+        chatButton.relocate(-1000 , -1000);
+        //chatButton.relocate(-363 , -20);
     }
 
     public static void setController(Controller controller) {
@@ -254,6 +273,7 @@ public class SideBarUI {
     }
 
     public static void makeLoadEnemyMapMenu(Group group) {
+        chatBackground.relocate(-1000 , -1000);
         makeSideBar(group,false);
 
         String ip = "";
@@ -285,16 +305,17 @@ public class SideBarUI {
             }
         });
         makeComboBox(group,true);
-        Button chatRoom = new Button("Chat");
-        chatRoom.setStyle("-fx-background-color: #a5862e");
-        chatRoom.relocate(90,UIConstants.MENU_VBOX_STARTING_Y + 100);
-        chatRoom.setMinWidth(100);
-        chatRoom.setMaxWidth(100);
-        group.getChildren().add(chatRoom);
-        chatRoom.setOnMouseClicked(event1 -> makeChatRoomSideBar(group));
+        File file = new File("./src/com/company/UIs/SideBarMenuImages/ChatButton.png");
+        Image image = new Image(file.toURI().toString(), Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getHeight(), false, true);
+        ImageView chatRoomButton = new ImageView(image);
+        chatRoomButton.setScaleX(0.02);
+        chatRoomButton.setScaleY(0.1);
+        chatRoomButton.relocate(-630 , -20);
+        group.getChildren().add(chatRoomButton);
+        chatRoomButton.setOnMouseClicked(event1 -> makeChatRoomSideBar(group));
         Button leaderBoard = new Button("LeaderBoard");
         leaderBoard.setStyle("-fx-background-color: #a5862e");
-        leaderBoard.relocate(90 , UIConstants.MENU_VBOX_STARTING_Y + 140);
+        leaderBoard.relocate(90 , UIConstants.MENU_VBOX_STARTING_Y + 100);
         group.getChildren().add(leaderBoard);
         leaderBoard.setMaxWidth(100);
         leaderBoard.setMinWidth(100);
@@ -369,25 +390,33 @@ public class SideBarUI {
 
         if (multiPlayer) {
 //            System.out.println("my log");
-            Button chatRoom = new Button("Chat");
-            chatRoom.setStyle("-fx-background-color: #a5862e");
-            chatRoom.relocate(120, UIConstants.MENU_VBOX_STARTING_Y + 100);
-            group.getChildren().add(chatRoom);
-            chatRoom.setOnMouseClicked(event1 -> makeChatRoomSideBar(group));
+            chatButton.relocate(-630 , -20);
+            chatButton.setOnMouseClicked(event1 -> makeChatRoomSideBar(group));
         }
     }
 
     private static void makeChatRoomSideBar(Group group) {
-        makeSideBar(group, false);
+        if (group.getChildren().contains(chatBackground)){
+            group.getChildren().remove(chatBackground);
+        }
+        if (group.getChildren().contains(chatButton)){
+            group.getChildren().remove(chatButton);
+        }
+        group.getChildren().add(chatButton);
+        group.getChildren().add(chatBackground);
+        chatBackground.relocate(-630 , 0);
+        chatButton.relocate(-363 , -20);
+        chatButton.setOnMouseClicked(event1 -> makeLoadEnemyMapMenu(group));
+//        makeSideBar(group, false);
         TextField message=new TextField("");
         message.setMinWidth(180);
         message.setMaxWidth(180);
         message.setBackground(Background.EMPTY);
         message.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
-
+//
         Button send = new Button("Send");
         send.setStyle("-fx-background-color: #a5862e");
-        send.relocate(120,UIConstants.MENU_VBOX_STARTING_Y + 100);
+        send.relocate(20,UIConstants.MENU_VBOX_STARTING_Y + 100);
         group.getChildren().add(send);
         send.setOnMouseClicked(event1 -> {
             try {
@@ -397,14 +426,15 @@ public class SideBarUI {
                 e.printStackTrace();
             }
         });
-        Button back = new Button("Back");
-        back.setStyle("-fx-background-color: #a5862e");
-        back.setOnMouseClicked(event -> {
-            makeLoadEnemyMapMenu(group);
-        });
-
-        VBox vBox = new VBox(10 , message, send , chatsArea , back);
-        vBox.relocate(UIConstants.BUTTON_STARTING_X + 10 , Screen.getPrimary().getVisualBounds().getHeight() * 0.2);
+//        Button back = new Button("Back");
+//        back.setStyle("-fx-background-color: #a5862e");
+//        back.setOnMouseClicked(event -> {
+//            makeLoadEnemyMapMenu(group);
+//        });
+//
+        HBox hBox = new HBox(10 , message , send);
+        VBox vBox = new VBox(10 , hBox , chatsArea);
+        vBox.relocate(10 , 30);
         group.getChildren().add(vBox);
     }
 
