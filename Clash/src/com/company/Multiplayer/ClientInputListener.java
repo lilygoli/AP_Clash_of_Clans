@@ -48,8 +48,10 @@ public class ClientInputListener extends Thread{
                 else if (command.getClass().getSimpleName().equals("Message")) {
                     System.out.println(command+"thread?");
                     System.out.println(AttackMapUI.clientName);
-                    MapUI.getController().getGame().setAttackedVillage(((Message)command).getGame());
-                    AttackMapUI.attackedIP = ((Message) command).getIp();
+//                    if (((Message) command).isAttackable()) {
+                        MapUI.getController().getGame().setAttackedVillage(((Message) command).getGame());
+                        AttackMapUI.attackedIP = ((Message) command).getIp();
+//                    }
 //                    AttackMapUI.attackedPort = (((Message) command).getPort());
 
                 }

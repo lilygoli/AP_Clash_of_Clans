@@ -156,8 +156,19 @@ public class AttackMapUI {
                             if (soldier.getClass().getSimpleName().equals(chosenSoldierName) && soldier.getX() == -1 && !MapUI.isInDefense()) {
                                 putSoldiersImageInMap(attackY, attackX, 32, canvas, soldiersGif.get(chosenSoldierName + "MoveUp"), soldier, root);
 
+
+                                boolean isTroopsEmpty = true;
+                                if (!MapUI.getController().getGame().getTroops().isEmpty()) {
+                                    for (Soldier soldier1 : MapUI.getController().getGame().getTroops()) {
+                                        if (soldier1.getX() == -1) {
+                                            isTroopsEmpty = false;
+                                        }
+                                    }
+                                }
+
                                 liveStreamingMessage lsm = new liveStreamingMessage();
                                 lsm.setSoldier(soldier);
+                                lsm.setHasFinished(isTroopsEmpty);
                                 ArrayList<Integer> healths = new ArrayList<>();
                                 for (int r = 0; r <30 ; r++) {
                                     for (int t = 0; t <30 ; t++) {
@@ -195,8 +206,10 @@ public class AttackMapUI {
             @Override
             public void handle(long now) {
                 if (controller.getGame().isUnderAttackOrDefense()) {
+                    System.out.println(1);
                     if (controller.getGame().isWarFinished()) {
                         controller.getGame().healAfterWar(MapUI.isInDefense());
+                        controller.getGame().setAttackedVillage(null);
                         controller.getGame().setUnderAttackOrDefense(false);
                         //controller.getGame().getAttackedVillage().setUnderAttackOrDefense(false);
                         if (!MapUI.isInDefense()) {
@@ -266,6 +279,7 @@ public class AttackMapUI {
                 timeLabel[0].setText("Timer "+minutes+" : "+seconds);
                 System.out.println(timeLabel[0].getText());
                 if(controller.getGame().isWarFinished()){
+                    System.out.println(2);
                     this.stop();
                 }
 
@@ -499,6 +513,7 @@ public class AttackMapUI {
             public void handle(long now) {
                 addArcherArrows();
                 if(controller.getGame().isWarFinished()){
+                    System.out.println(3);
                     super.stop();
                 }
             }
@@ -578,6 +593,7 @@ public class AttackMapUI {
                 }
                 canvas.getChildren().removeAll(removedNodes);
                 if(controller.getGame().isWarFinished()){
+                    System.out.println(4);
                     super.stop();
                 }
             }

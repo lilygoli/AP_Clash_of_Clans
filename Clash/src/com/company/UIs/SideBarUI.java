@@ -178,7 +178,9 @@ public class SideBarUI {
                     AttackMapUI.server = new Server();
                     AttackMapUI.server.start();
                     try {
-                        AttackMapUI.udpSocket = new DatagramSocket(12346);
+                        if (AttackMapUI.udpSocket == null) {
+                            AttackMapUI.udpSocket = new DatagramSocket(12346);
+                        }
                     } catch (SocketException e) {
                         e.printStackTrace();
                     }
@@ -213,7 +215,9 @@ public class SideBarUI {
                     connect.setOnMouseClicked(event2 -> {
                         //SideBarUI.port= port.getText();
                         try {
-                            AttackMapUI.udpSocket = new DatagramSocket(12346);
+                            if (AttackMapUI.udpSocket == null) {
+                                AttackMapUI.udpSocket = new DatagramSocket(12346);
+                            }
                         } catch (SocketException e) {
                             e.printStackTrace();
                         }

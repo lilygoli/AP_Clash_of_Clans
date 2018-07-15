@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class liveStreamingMessage implements Serializable {
     Soldier soldier;
     ArrayList<Integer> healths = new ArrayList<>();
+    boolean hasFinished;
 
     public ArrayList<Integer> getHealths() {
         return healths;
@@ -24,5 +25,13 @@ public class liveStreamingMessage implements Serializable {
 
     public void setHealths(ArrayList<Integer> healths) {
         this.healths = healths;
+    }
+
+    public boolean isHasFinished() {
+        return hasFinished;
+    }
+
+    public void setHasFinished(boolean hasFinished) {
+        this.hasFinished = hasFinished;
     }
 }
