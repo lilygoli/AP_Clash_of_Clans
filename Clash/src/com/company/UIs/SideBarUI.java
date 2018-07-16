@@ -1171,7 +1171,7 @@ public class SideBarUI {
                 } catch (NotEnoughCapacityInCampsException e) {
                     new Timeline( new KeyFrame(Duration.seconds(2), new KeyValue(e.getImageView().imageProperty(), null))).play();
                     group.getChildren().add(e.getImageView());
-                } catch (unAvailableSoldierException e) {
+                } catch (UnavailableSoldierException e) {
                     new Timeline( new KeyFrame(Duration.seconds(2), new KeyValue(e.getImageView().imageProperty(), null))).play();
                     group.getChildren().add(e.getImageView());
                 }
@@ -1179,11 +1179,11 @@ public class SideBarUI {
         });
     }
 
-    private static void implementBuildSoldier(Group group, Cell cell, String playerChoice) throws NotEnoughResourcesException, NotEnoughCapacityInCampsException, unAvailableSoldierException {
+    private static void implementBuildSoldier(Group group, Cell cell, String playerChoice) throws NotEnoughResourcesException, NotEnoughCapacityInCampsException, UnavailableSoldierException {
         Barrack barrack = (Barrack) cell;
         HashMap<String, Integer> availableSoldiers = barrack.determineAvailableSoldiers(controller.getGame().getVillage().getResource().getElixir());
         if (availableSoldiers.get(playerChoice) == 0) {
-            throw new unAvailableSoldierException();
+            throw new UnavailableSoldierException();
         } else {
             int soldierAmount = 1;
             int totalCapacity = 0;

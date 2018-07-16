@@ -154,7 +154,7 @@ public class AttackMapUI {
                 imageView.setOnMouseClicked(event -> {
                     attackX = finalI - 2;
                     attackY = finalJ - 1;
-                    if(!(attackX==29 || attackX==0 || attackY==29 || attackY==0) || attackX<0 || attackX>29 || attackY<0 || attackY>29){
+                    if((!(attackX==29 || attackX==0 || attackY==29 || attackY==0) || attackX<0 || attackX>29 || attackY<0 || attackY>29) && !isInDefense()){
                         InvalidPlaceForSoldiersException exception = new InvalidPlaceForSoldiersException();
                         new Timeline(new KeyFrame(Duration.seconds(4), new KeyValue(exception.getImageView().imageProperty(), null))).play();
                         root.getChildren().add(exception.getImageView());
@@ -174,35 +174,35 @@ public class AttackMapUI {
                                         }
                                     }
                                 }
+                                if(!isInSinglePlayer && udpSocket!=null) {
+                                    liveStreamingMessage lsm = new liveStreamingMessage();
+                                    lsm.setSoldier(soldier);
+                                    lsm.setHasFinished(isTroopsEmpty);
+                                    ArrayList<Integer> healths = new ArrayList<>();
+                                    for (int r = 0; r < 30; r++) {
+                                        for (int t = 0; t < 30; t++) {
+                                            healths.add(MapUI.getController().getGame().getVillage().getMap()[r][t].getStrength());
+                                        }
+                                    }
+                                    lsm.setHealths(healths);
+                                    ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+                                    try {
+                                        ObjectOutput oo = new ObjectOutputStream(bStream);
+                                        oo.writeObject(lsm);
+                                        oo.flush();
+                                        oo.close();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
 
-                                liveStreamingMessage lsm = new liveStreamingMessage();
-                                lsm.setSoldier(soldier);
-                                lsm.setHasFinished(isTroopsEmpty);
-                                ArrayList<Integer> healths = new ArrayList<>();
-                                for (int r = 0; r <30 ; r++) {
-                                    for (int t = 0; t <30 ; t++) {
-                                        healths.add(MapUI.getController().getGame().getVillage().getMap()[r][t].getStrength());
+                                    byte[] buf = bStream.toByteArray();
+                                    DatagramPacket gamePacket = new DatagramPacket(buf, buf.length, AttackMapUI.attackedIP, 12346);
+                                    try {
+                                        AttackMapUI.udpSocket.send(gamePacket);
+                                    } catch (IOException e) {
+                                        AttackMapUI.udpSocket.close();
                                     }
                                 }
-                                lsm.setHealths(healths);
-                                ByteArrayOutputStream bStream = new ByteArrayOutputStream();
-                                try {
-                                    ObjectOutput oo = new ObjectOutputStream(bStream);
-                                    oo.writeObject(lsm);
-                                    oo.flush();
-                                    oo.close();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-
-                                byte[] buf = bStream.toByteArray();
-                                DatagramPacket gamePacket = new DatagramPacket(buf, buf.length, AttackMapUI.attackedIP, 12346);
-                                try {
-                                    AttackMapUI.udpSocket.send(gamePacket);
-                                } catch (IOException e) {
-                                    AttackMapUI.udpSocket.close();
-                                }
-
                                 break;
                             }
                         }

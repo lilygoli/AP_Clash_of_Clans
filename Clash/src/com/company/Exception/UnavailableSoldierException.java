@@ -8,7 +8,7 @@ import javafx.stage.Screen;
 
 import java.io.File;
 
-public class unAvailableSoldierException extends Exception {
+public class UnavailableSoldierException extends Exception {
     ImageView imageView = new ImageView();
 
     public ImageView getImageView() {
