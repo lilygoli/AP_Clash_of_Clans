@@ -337,9 +337,11 @@ public class SideBarUI {
 
     public static void catchServerException() {
         try {
-            AttackMapUI.clientSocket.close();
-            AttackMapUI.clientObjectOutput.close();
-            AttackMapUI.clientObjectInput.close();
+            if(!AttackMapUI.clientSocket.isClosed()) {
+                AttackMapUI.clientSocket.close();
+                AttackMapUI.clientObjectOutput.close();
+                AttackMapUI.clientObjectInput.close();
+            }
         } catch (IOException e1) {
             e1.printStackTrace();
         }
@@ -397,7 +399,7 @@ public class SideBarUI {
         backView.setX(UIConstants.BUTTON_STARTING_X);
         backView.setOnMouseClicked(event3 -> {
             try {
-                if (multiPlayer) {
+                if (multiPlayer && Server.serverSocket!= null) {
                     Server.serverSocket.close();
                 }
             } catch (IOException e) {

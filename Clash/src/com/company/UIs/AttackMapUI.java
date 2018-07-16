@@ -189,6 +189,7 @@ public class AttackMapUI {
                                 try {
                                     ObjectOutput oo = new ObjectOutputStream(bStream);
                                     oo.writeObject(lsm);
+                                    oo.flush();
                                     oo.close();
                                 } catch (Exception e) {
                                     e.printStackTrace();

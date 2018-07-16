@@ -315,7 +315,7 @@ public class Game implements Serializable {
         //Attacker Soldiers part
         for (int i = 0; i < Config.getDictionary().get("KMM"); i++) {
             for (int j = troops.size()-1; j > -1 ; j--) {
-                if (troops.get(j).getX() == -1 && troops.get(j).getY() == -1) {
+                if (troops.get(j).getX() == -1 || troops.get(j).getY() == -1) {
                     continue;
                 }
                 System.out.println(troops.get(j).getClass().getSimpleName() + " " + troops.get(j).getDamage());

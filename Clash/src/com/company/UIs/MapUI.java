@@ -196,6 +196,7 @@ public class MapUI  {
         root.getChildren().add(pauseLabel);
         pauseLabel.relocate(primaryStage.getWidth() * 1 / 5 + 20 , primaryStage.getHeight() / 5);
         pauseLabel.setFont(Font.font(24));
+        AttackMapUI.setCheckFinished(false);
 
         scene.setOnKeyPressed(new javafx.event.EventHandler<KeyEvent>() {
             @Override
@@ -443,17 +444,23 @@ public class MapUI  {
 //                        canvas.getChildren().removeIf(x-> x.getClass().getSimpleName().equals("Rectangle"));
 //                        previousTroops.clear();
                         ArrayList<Soldier> soldiers = MapUI.getController().getGame().getTroops();
-                        for (Soldier soldier : soldiers) {
-                            if(!soldier.isHasPut()) {
-                                AttackMapUI.putSoldiersImageInMap((int) Math.ceil(soldier.getY()), (int) Math.ceil(soldier.getX()), 32, AttackMapUI.canvas, AttackMapUI.getSoldiersGif().get(soldier.getClass().getSimpleName() + "MoveUp"), soldier, root);
-                                soldier.setHasPut(true);
+                        for (int i = soldiers.size()-1; i >-1 ; i--) {
+                            if(!soldiers.get(i).isHasPut()) {
+                                AttackMapUI.putSoldiersImageInMap((int) Math.ceil(soldiers.get(i).getY()), (int) Math.ceil(soldiers.get(i).getX()), 32, AttackMapUI.canvas, AttackMapUI.getSoldiersGif().get(soldiers.get(i).getClass().getSimpleName() + "MoveUp"), soldiers.get(i), root);
+                                soldiers.get(i).setHasPut(true);
                             }
+                        }
+//                        for (Soldier soldier : soldiers) {
+//                            if(!soldier.isHasPut()) {
+//                                AttackMapUI.putSoldiersImageInMap((int) Math.ceil(soldier.getY()), (int) Math.ceil(soldier.getX()), 32, AttackMapUI.canvas, AttackMapUI.getSoldiersGif().get(soldier.getClass().getSimpleName() + "MoveUp"), soldier, root);
+//                                soldier.setHasPut(true);
+//                            }
 //                                System.out.println("putting image");
 //                                soldier.setHasPut(true);
 //                                AttackMapUI.putSoldiersImageInMap((int) Math.ceil(soldier.getY()), (int) Math.ceil(soldier.getX()), 32, AttackMapUI.canvas, AttackMapUI.getSoldiersGif().get(soldier.getClass().getSimpleName() + "MoveUp"), soldier, root);
 //                                previousTroops.add(soldier);
 //                            }
-                        }
+//                        }
                         //if(controller.getGame().isWarFinished()){
                         //isInDefense = false;
                         //}
