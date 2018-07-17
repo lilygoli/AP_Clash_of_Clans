@@ -185,7 +185,7 @@ public class SideBarUI {
                     AttackMapUI.server.start();
                     try {
                         if (AttackMapUI.udpSocket == null) {
-                            AttackMapUI.udpSocket = new DatagramSocket(12346);
+                            AttackMapUI.udpSocket = new DatagramSocket(12346);//change
                         }
                     } catch (SocketException e) {
                         e.printStackTrace();
@@ -222,7 +222,7 @@ public class SideBarUI {
                         //SideBarUI.port= port.getText();
                         try {
                             if (AttackMapUI.udpSocket == null) {
-                                AttackMapUI.udpSocket = new DatagramSocket(12346);
+                                AttackMapUI.udpSocket = new DatagramSocket(12346);//change
                             }
                         } catch (SocketException e) {
                             e.printStackTrace();
@@ -270,7 +270,6 @@ public class SideBarUI {
 
     private static void initClient(String  name, String ip) throws IOException{
         AttackMapUI.clientSocket = new Socket(ip , 12345);
-//        AttackMapUI.leaderBoardSocket = new Socket(ip, 12347);
         AttackMapUI.clientObjectOutput = new ObjectOutputStream(AttackMapUI.clientSocket.getOutputStream());
         AttackMapUI.clientObjectInput = new ObjectInputStream(AttackMapUI.clientSocket.getInputStream());
 //        AttackMapUI.leaderBoardOutput = new ObjectOutputStream(AttackMapUI.leaderBoardSocket.getOutputStream());
@@ -387,7 +386,7 @@ public class SideBarUI {
         selectButton.setMinWidth(100);
         selectButton.setMaxWidth(100);
         selectButton.setOnMouseClicked(event -> {
-            if(multiPlayer)
+            if(!isInSinglePlayer)
                 loadEnemyMap(group, clientsComboBox);
             else {
                 loadEnemyMapSinglePlayer(group,clientsComboBox);

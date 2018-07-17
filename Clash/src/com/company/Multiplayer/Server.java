@@ -47,7 +47,7 @@ public class Server {
 
     private void serverInitialization() {
         try {
-            serverSocket = new ServerSocket(12345);
+            serverSocket = new ServerSocket(12345);//change
             //leaderBoardServerSocket = new ServerSocket(12347);
             Thread clientAcceptor = new ClientAcceptor(this);
             //Thread clientLeaderBoardAcceptor =  new ClientLeaderBoardAcceptor(this);

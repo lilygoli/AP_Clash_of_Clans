@@ -259,15 +259,15 @@ public abstract class Soldier implements Serializable{
     }
 
     public void moveSoldier(Village attackerVillage, Direction direction, Village enemyVillage) {
-        // TODO: 4/24/2018 check double int
-        if (direction == Direction.LEFT) {
+
+        if (direction == Direction.LEFT && x-1>0) {
             Cell cell = enemyVillage.getMap()[(int) Math.ceil(x - 1)][(int)Math.ceil(y)];
             if (cell.getClass().equals(Grass.class) || cell.getClass().equals(Trap.class) || cell.isRuined() || getCanFly()) {
                 setX(getX() - 1.0 * getMaxSpeed() / ((UIConstants.DELTA_T+0.1) * 0.002 * Config.getDictionary().get("KMM")));
             } else {
                 elseMoveSolider(attackerVillage, cell);
             }
-        } else if (direction == Direction.RIGHT) {
+        } else if (direction == Direction.RIGHT ) {
                 Cell cell = enemyVillage.getMap()[(int) Math.floor(x + 1)][(int) Math.floor(y)];
             if (cell.getClass().equals(Grass.class) || cell.getClass().equals(Trap.class) || cell.isRuined() || getCanFly()) {
                 setX(getX() + 1.0 * getMaxSpeed() / ((UIConstants.DELTA_T+0.1) * 0.002 * Config.getDictionary().get("KMM")));
@@ -281,7 +281,7 @@ public abstract class Soldier implements Serializable{
             } else {
                 elseMoveSolider(attackerVillage, cell);
             }
-        } else if (direction == Direction.UP) {
+        } else if (direction == Direction.UP && y-1>0) {
             Cell cell = enemyVillage.getMap()[(int)Math.ceil(x)][(int)Math.ceil(y - 1)];
             if (cell.getClass().equals(Grass.class) || cell.getClass().equals(Trap.class) || cell.isRuined() || getCanFly()) {
                 setY(getY() - 1.0 * getMaxSpeed() / ((UIConstants.DELTA_T + 0.1) * 0.002 * Config.getDictionary().get("KMM")));
