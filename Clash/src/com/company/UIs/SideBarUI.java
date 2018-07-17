@@ -10,10 +10,7 @@ import com.company.Models.Towers.Buildings.*;
 import com.company.Models.Towers.Cell;
 import com.company.Models.Towers.Defences.Wall;
 import com.company.Multiplayer.*;
-import javafx.animation.AnimationTimer;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.*;
@@ -22,6 +19,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -283,8 +284,8 @@ public class SideBarUI {
     }
 
     public static void makeLoadEnemyMapMenu(Group group) {
+        chatButton.relocate(-1000 , -1000);
         chatBackground.relocate(-1000 , -1000);
-        vBox.relocate(-1000 , -1000);
         makeSideBar(group,false);
 
         String ip = "";
@@ -419,24 +420,22 @@ public class SideBarUI {
     }
 
     private static void makeChatRoomSideBar(Group group) {
-        if (group.getChildren().contains(chatBackground)){
-            group.getChildren().remove(chatBackground);
-        }
         if (group.getChildren().contains(chatButton)){
             group.getChildren().remove(chatButton);
         }
+        if (group.getChildren().contains(chatBackground)){
+            group.getChildren().remove(chatBackground);
+        }
         group.getChildren().add(chatButton);
         group.getChildren().add(chatBackground);
-        chatBackground.relocate(-chatBackground.getImage().getWidth() / 2.5 , 0);
-        chatButton.relocate(-chatButton.getImage().getWidth() / 4 + 10 , -20);
+
+
         chatButton.setOnMouseClicked(event1 -> makeLoadEnemyMapMenu(group));
-//        makeSideBar(group, false);
         TextField message=new TextField("");
         message.setMinWidth(180);
         message.setMaxWidth(180);
         message.setBackground(Background.EMPTY);
         message.setStyle("-fx-border-radius: 5; -fx-border-width:3;  -fx-border-color: rgba(143,99,29,0.87)");
-//
         Button send = new Button("Send");
         send.setStyle("-fx-background-color: #a5862e");
         send.relocate(20,UIConstants.MENU_VBOX_STARTING_Y + 100);
@@ -449,16 +448,24 @@ public class SideBarUI {
                 catchServerException();
             }
         });
-//        Button back = new Button("Back");
-//        back.setStyle("-fx-background-color: #a5862e");
-//        back.setOnMouseClicked(event -> {
-//            makeLoadEnemyMapMenu(group);
-//        });
-//
         hBox = new HBox(10 , message ,send);
         vBox = new VBox(10 , hBox ,chatsArea);
-        vBox.relocate(40 , 30);
         group.getChildren().add(vBox);
+        timeLineForChat();
+    }
+
+    private static void timeLineForChat() {
+        chatBackground.relocate(-chatBackground.getImage().getWidth() / 2.5 - chatBackground.getImage().getWidth() , 0);
+        chatButton.relocate(-chatButton.getImage().getWidth() / 4 + 10 - chatBackground.getImage().getWidth() , -20);
+        vBox.relocate(40 - chatBackground.getImage().getWidth() , 30);
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1) , e->{
+            chatButton.setX(chatButton.getX() + 1);
+            chatBackground.setX(chatBackground.getX() + 1);
+            vBox.setTranslateX(vBox.getTranslateX() + 1);
+        })
+        );
+        timeline.setCycleCount((int) chatBackground.getImage().getWidth());
+        timeline.play();
     }
 
     private static void loadEnemyMap(Group group, ComboBox<String> comboBox) {
