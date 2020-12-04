@@ -1,3 +1,7 @@
-لیلی گلی 96106044
-اشکان میرزایی 96109652
-آراد محمدی 96106066
+# Clash of Clans
+A project for Advanced Programming course: A Simulation of the Clash of Clans Game.
+# Features:
+- Game logics
+- Graphic design
+- Multi-player mode
+    
